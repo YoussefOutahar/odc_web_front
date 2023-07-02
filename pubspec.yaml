@@ -1,0 +1,54 @@
+name: odc_web_front
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  
+  # Back-end services
+  firebase_core: ^2.14.0
+  firebase_auth: ^4.6.3
+  cloud_firestore: ^4.8.1
+  firebase_analytics: ^10.4.3
+  firebase_crashlytics: ^3.3.3
+
+  # State Management
+  get: ^4.6.5
+  get_storage: ^2.1.1
+
+  # UI
+  flutter_animate: ^4.2.0
+  responsive_builder: ^0.7.0
+  lottie: ^2.4.0 
+  loading_animation_widget: ^1.2.0+4
+  flutter_slider_drawer: ^2.1.3
+  flutter_carousel_widget: ^2.0.4
+  blur: ^3.1.0
+
+  # Utils
+  email_validator: ^2.1.17
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/animations/
+    - assets/images/
+    - assets/images/OpenSourceImages/
+
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-VariableFont_wght.ttf
+        - asset: assets/fonts/Montserrat-Italic-VariableFont_wght.ttf
+          style: italic
