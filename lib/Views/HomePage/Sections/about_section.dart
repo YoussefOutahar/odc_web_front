@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../Core/Components/deafult_button.dart';
-
 class AboutSection extends StatelessWidget {
   const AboutSection({
     super.key,

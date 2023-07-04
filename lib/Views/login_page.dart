@@ -21,8 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   bool isLogin = true;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return isLogin
         ? Container(
             decoration: const BoxDecoration(

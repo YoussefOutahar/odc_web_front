@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:odc_web_front/Models/formations.dart';
 import 'package:odc_web_front/Views/FormationsPage/formations_page.dart';
-import 'DataBase/auth_guard.dart';
 import 'Core/Layout/app_layout.dart';
 import 'Views/AboutUsPage/about_us_page.dart';
 import 'Views/ContactUsPage/contact_us_page.dart';

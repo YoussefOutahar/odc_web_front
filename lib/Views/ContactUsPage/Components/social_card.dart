@@ -14,7 +14,7 @@ class SocialCard extends StatefulWidget {
   final VoidCallback press;
 
   @override
-  _SocialCardState createState() => _SocialCardState();
+  State<SocialCard> createState() => _SocialCardState();
 }
 
 class _SocialCardState extends State<SocialCard> {
