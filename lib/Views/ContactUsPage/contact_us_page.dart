@@ -24,11 +24,12 @@ class ContactUsPage extends StatelessWidget {
         children: [
           SizedBox(height: 20 * 2.5),
           SectionTitle(
-            title: "Contact Me",
+            title: "Contact Us",
             subTitle: "For Project inquiry and information",
             color: Color(0xFF07E24A),
           ),
-          ContactBox()
+          ContactBox(),
+          SizedBox(height: 20 * 2.5),
         ],
       ),
     );
@@ -59,21 +60,21 @@ class ContactBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SocialCard(
+                color: const Color(0xFFE8F0F9),
+                iconSrc: "assets/images/messanger.png",
+                name: 'LinkedIn',
+                press: () {},
+              ),
+              SocialCard(
                 color: const Color(0xFFD9FFFC),
                 iconSrc: "assets/images/skype.png",
-                name: 'TheFlutterWay',
+                name: 'Email',
                 press: () {},
               ),
               SocialCard(
                 color: const Color(0xFFE4FFC7),
                 iconSrc: "assets/images/whatsapp.png",
-                name: 'TheFlutterWay',
-                press: () {},
-              ),
-              SocialCard(
-                color: const Color(0xFFE8F0F9),
-                iconSrc: "assets/images/messanger.png",
-                name: 'TheFlutterWay',
+                name: 'Whatsapp',
                 press: () {},
               ),
             ],

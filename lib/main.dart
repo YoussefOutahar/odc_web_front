@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import 'Services/analytics_service.dart';
 import 'Services/Themes/app_theme.dart';
@@ -14,6 +15,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
 

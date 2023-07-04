@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../Models/recent_works.dart';
+import '../../../Models/formations.dart';
 
-class RecentWorkCard extends StatefulWidget {
+class FormationCard extends StatefulWidget {
   // just press "Command + ."
-  const RecentWorkCard({
+  const FormationCard({
     Key? key,
     required this.index,
     required this.press,
@@ -14,10 +14,10 @@ class RecentWorkCard extends StatefulWidget {
   final VoidCallback press;
 
   @override
-  State<RecentWorkCard> createState() => _RecentWorkCardState();
+  State<FormationCard> createState() => _FormationCardState();
 }
 
-class _RecentWorkCardState extends State<RecentWorkCard> {
+class _FormationCardState extends State<FormationCard> {
   bool isHover = false;
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,12 @@ class _RecentWorkCardState extends State<RecentWorkCard> {
         ),
         child: Row(
           children: [
-            Image.asset(recentWorks[widget.index].image),
+            SizedBox(
+              width: 270,
+              height: 320,
+              child: Image.asset(formations[widget.index].image,
+                  fit: BoxFit.cover),
+            ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -54,9 +59,9 @@ class _RecentWorkCardState extends State<RecentWorkCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(recentWorks[widget.index].category.toUpperCase()),
+                    Text(formations[widget.index].category.toUpperCase()),
                     const SizedBox(height: 20 / 2),
-                    Text(recentWorks[widget.index].title,
+                    Text(formations[widget.index].title,
                         style: Theme.of(context).textTheme.headlineSmall),
                     const SizedBox(height: 20),
                     const Text(

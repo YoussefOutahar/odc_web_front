@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../Core/Components/deafult_button.dart';
-import '../../Core/Components/section_title.dart';
 
-class FormationsPage extends StatefulWidget {
-  const FormationsPage({super.key});
+class AboutUsPage extends StatefulWidget {
+  const AboutUsPage({super.key});
 
   @override
-  State<FormationsPage> createState() => _FormationsPageState();
+  State<AboutUsPage> createState() => _AboutUsPageState();
 }
 
-class _FormationsPageState extends State<FormationsPage> {
+class _AboutUsPageState extends State<AboutUsPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -28,16 +27,10 @@ class _FormationsPageState extends State<FormationsPage> {
             builder: (_) => TopSection(size: size),
           ),
           ScrollTransformItem(
-            builder: (_) => const SurMesures(),
+            builder: (_) => const GeneralInfo(),
           ),
           ScrollTransformItem(
-            builder: (_) => const SoftSkills(),
-          ),
-          ScrollTransformItem(
-            builder: (_) => const FormationDoctorant(),
-          ),
-          ScrollTransformItem(
-            builder: (_) => const LearningTravel(),
+            builder: (_) => const OurMission(),
           ),
         ],
       ),
@@ -128,86 +121,20 @@ class TopSectionClipper extends CustomClipper<Path> {
   }
 }
 
-class SurMesures extends StatelessWidget {
-  const SurMesures({super.key});
+class GeneralInfo extends StatelessWidget {
+  const GeneralInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
-      constraints: const BoxConstraints(maxWidth: 1110),
-      child: const Column(
-        children: [
-          SectionTitle(
-            color: Color(0xFFFF0000),
-            title: "Sur Mesures",
-            subTitle: "Recent Events",
-          ),
-        ],
-      ),
-    );
+    return const Placeholder();
   }
 }
 
-class SoftSkills extends StatelessWidget {
-  const SoftSkills({super.key});
+class OurMission extends StatelessWidget {
+  const OurMission({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
-      constraints: const BoxConstraints(maxWidth: 1110),
-      child: const Column(
-        children: [
-          SectionTitle(
-            color: Color(0xFFFF0000),
-            title: "Soft Skills",
-            subTitle: "Recent Events",
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class FormationDoctorant extends StatelessWidget {
-  const FormationDoctorant({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
-      constraints: const BoxConstraints(maxWidth: 1110),
-      child: const Column(
-        children: [
-          SectionTitle(
-            color: Color(0xFFFF0000),
-            title: "Formations Doctorants",
-            subTitle: "Recent Events",
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class LearningTravel extends StatelessWidget {
-  const LearningTravel({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
-      constraints: const BoxConstraints(maxWidth: 1110),
-      child: const Column(
-        children: [
-          SectionTitle(
-            color: Color(0xFFFF0000),
-            title: "Learning Travel",
-            subTitle: "Recent Events",
-          ),
-        ],
-      ),
-    );
+    return const Placeholder();
   }
 }

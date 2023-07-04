@@ -18,15 +18,33 @@ class _LoginPageState extends State<LoginPage> {
   bool isLogin = true;
   @override
   Widget build(BuildContext context) => isLogin
-      ? LoginForm(
-          onClickSignUp: toggle,
-          redirectPage: widget.redirectPage,
-          routeName: widget.routeName,
+      ? Container(
+          decoration: const BoxDecoration(
+            color: Color(0xFFE8F0F9),
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage("assets/images/bg_img_2.png"),
+            ),
+          ),
+          child: LoginForm(
+            onClickSignUp: toggle,
+            redirectPage: widget.redirectPage,
+            routeName: widget.routeName,
+          ),
         )
-      : RegisterForm(
-          onClickSignUp: toggle,
-          redirectPage: widget.redirectPage,
-          routeName: widget.routeName,
+      : Container(
+          decoration: const BoxDecoration(
+            color: Color(0xFFE8F0F9),
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage("assets/images/bg_img_2.png"),
+            ),
+          ),
+          child: RegisterForm(
+            onClickSignUp: toggle,
+            redirectPage: widget.redirectPage,
+            routeName: widget.routeName,
+          ),
         );
 
   void toggle() {

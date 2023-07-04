@@ -32,10 +32,11 @@ class _HeaderState extends State<Header> {
           Row(
             children: [
               TabTile(text: "Home", onTap: () => Get.offAndToNamed("/home")),
-              TabTile(text: "About", onTap: () => Get.toNamed("/about")),
-              TabTile(text: "Services", onTap: () => Get.toNamed("/services")),
+              TabTile(text: "About", onTap: () => Get.toNamed("/aboutUs")),
               TabTile(
                   text: "Formations", onTap: () => Get.toNamed("/formations")),
+              TabTile(
+                  text: "Contact Us", onTap: () => Get.toNamed("/contactUs")),
             ],
           ),
           const Spacer(),
