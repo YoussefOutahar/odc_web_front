@@ -1,8 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:odc_web_front/Core/Components/section_title.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
-import '../../Core/Components/deafult_button.dart';
 
 class AboutUsPage extends StatefulWidget {
   const AboutUsPage({super.key});
@@ -27,10 +26,16 @@ class _AboutUsPageState extends State<AboutUsPage> {
             builder: (_) => TopSection(size: size),
           ),
           ScrollTransformItem(
-            builder: (_) => const GeneralInfo(),
+            builder: (_) => const OurMission(),
           ),
           ScrollTransformItem(
-            builder: (_) => const OurMission(),
+            builder: (_) => const OurValues(),
+          ),
+          ScrollTransformItem(
+            builder: (_) => const Formations(),
+          ),
+          ScrollTransformItem(
+            builder: (_) => const GeneralInfo(),
           ),
         ],
       ),
@@ -72,7 +77,7 @@ class TopSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Nos Formations",
+                  "About Us",
                   style: Theme.of(context).textTheme.displayMedium,
                 ),
                 SizedBox(height: size.height * 0.05),
@@ -81,11 +86,6 @@ class TopSection extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 SizedBox(height: size.height * 0.05),
-                DefaultButton(
-                  imageSrc: "assets/images/logo.png",
-                  press: () {},
-                  text: "Learn More",
-                ),
               ],
             ),
           ),
@@ -121,12 +121,23 @@ class TopSectionClipper extends CustomClipper<Path> {
   }
 }
 
-class GeneralInfo extends StatelessWidget {
-  const GeneralInfo({super.key});
+class OurValues extends StatelessWidget {
+  const OurValues({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+      constraints: const BoxConstraints(maxWidth: 1110),
+      child: Column(
+        children: [
+          const SectionTitle(
+              title: "Our Values", subTitle: "", color: Colors.orange),
+          Image.asset("assets/images/values.png"),
+          const SizedBox(height: 20 * 3),
+        ],
+      ),
+    );
   }
 }
 
@@ -135,6 +146,165 @@ class OurMission extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+      constraints: const BoxConstraints(maxWidth: 1110),
+      child: Column(
+        children: [
+          const SectionTitle(
+              title: "Our Mission", subTitle: "", color: Colors.orange),
+          const SizedBox(height: 20 * 3),
+          Image.asset("assets/images/text/description1.png"),
+          const SizedBox(height: 20 * 3),
+          Image.asset("assets/images/text/description2.png"),
+          const SizedBox(height: 20 * 3),
+          Image.asset("assets/images/text/description3.png"),
+        ],
+      ),
+    );
+  }
+}
+
+class Formations extends StatelessWidget {
+  const Formations({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+      constraints: const BoxConstraints(maxWidth: 1110),
+      child: const Column(
+        children: [
+          SectionTitle(
+              title: "Formations", subTitle: "", color: Colors.blueGrey),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "Découvrez notre entreprise, votre partenaire privilégié pour votre développement personnel et professionnel. Notre vaste gamme de formations comprend des solutions sur mesure, des programmes de renforcement des soft skills, des formations spécialisées pour les doctorants et même des expériences uniques de voyage et d'apprentissage. Que vous souhaitiez renforcer vos compétences techniques, améliorer votre communication interpersonnelle, approfondir vos connaissances académiques ou vivre une expérience d'apprentissage immersive, nous avons tout ce dont vous avez besoin. Nos formateurs qualifiés et expérimentés vous guideront dans votre parcours de formation, en vous offrant des cours pertinents, interactifs et adaptés à vos besoins spécifiques. Investissez dans votre croissance professionnelle avec nous et ouvrez-vous à un monde de possibilités",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+                height: 2,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class GeneralInfo extends StatelessWidget {
+  const GeneralInfo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+      constraints: const BoxConstraints(maxWidth: 1110),
+      child: const Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SectionTitle(
+              title: "What we do", subTitle: "", color: Colors.blueGrey),
+          SizedBox(height: 20 * 3),
+          Text(
+            "SCM & Smart Système",
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueGrey),
+          ),
+          SizedBox(height: 20 * 3),
+          Text(
+            "* Optimisation et amélioration de la Supply Chain (Achats, Approvisionnement, Production, Distribution et logistique de retour)\n\n* Audit logistique (Supply Chain Master, SCOR(APICS))\n\n* Instauration du Lean Management\n\n* Solution IT adaptée et sur-mesure ",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(height: 20 * 4),
+          Text(
+            "Certification ISO",
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueGrey),
+          ),
+          SizedBox(height: 20 * 3),
+          Text(
+            "* Audit d’évaluation de la maturité SMQ de l’organisation\n\n* Réalisation/Correction du manuel qualité\n\n* Formation au système management de la qualité\n\n* Tableau de bord ISO",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(height: 20 * 4),
+          Text(
+            "Energie & exploitation énergétique",
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueGrey),
+          ),
+          SizedBox(height: 20 * 3),
+          Text(
+            "* Optimisation de l’exploitation énergétique dans les bâtiments \n\n* Audit énergétique\n\n* Amélioration du confort thermique",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(height: 20 * 4),
+          Text(
+            "Transformation digitale",
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueGrey),
+          ),
+          SizedBox(height: 20 * 3),
+          Text(
+            "* Développement et maintenance des sites et applications.\n\n* Référencement Web (SEA - SEO)\n\n* Web Marketing\n\n* Accompagnement et conseil en E-logistique",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(height: 20 * 4),
+          Text(
+            "Aménagement, Agencement et bâtiment",
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueGrey),
+          ),
+          SizedBox(height: 20 * 3),
+          Text(
+            "* Conception de bâtiments éco-responsable.\n\n* Aménagement d’espace et agencement industriel.\n\n* Conseil et accompagnement d’achats d’équipements et matériels.\n\n* Projets Architecture, Aménagement et Design Urbain.",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(height: 20 * 4),
+          Text(
+            "Qualification et renforcement des compétences",
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueGrey),
+          ),
+          SizedBox(height: 20 * 3),
+          Text(
+            "* Bilan et diagnostic  RH.\n\n* Manuel d’employé.\n\n* Formations continues sur mesure pour Top Management. Middle management et collaborateurs.\n\n* Team Building et coaching.",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

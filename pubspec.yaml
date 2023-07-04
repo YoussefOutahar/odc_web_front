@@ -46,6 +46,8 @@ flutter:
     - assets/animations/
     - assets/images/
     - assets/images/OpenSourceImages/
+    - assets/images/text/
+    - assets/images/formations/
 
   fonts:
     - family: Montserrat

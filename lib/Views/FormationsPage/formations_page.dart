@@ -136,13 +136,15 @@ class SurMesures extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20 * 2),
       constraints: const BoxConstraints(maxWidth: 1110),
-      child: const Column(
+      child: Column(
         children: [
-          SectionTitle(
+          const SectionTitle(
             color: Color(0xFFFF0000),
             title: "Sur Mesures",
             subTitle: "Recent Events",
           ),
+          const SizedBox(height: 20 * 2),
+          Image.asset("assets/images/formations/sur_mesures.png"),
         ],
       ),
     );
@@ -157,13 +159,15 @@ class SoftSkills extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20 * 2),
       constraints: const BoxConstraints(maxWidth: 1110),
-      child: const Column(
+      child: Column(
         children: [
-          SectionTitle(
+          const SectionTitle(
             color: Color(0xFFFF0000),
             title: "Soft Skills",
             subTitle: "Recent Events",
           ),
+          const SizedBox(height: 20 * 2),
+          Image.asset("assets/images/formations/soft_skills.png"),
         ],
       ),
     );
@@ -178,13 +182,15 @@ class FormationDoctorant extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20 * 2),
       constraints: const BoxConstraints(maxWidth: 1110),
-      child: const Column(
+      child: Column(
         children: [
-          SectionTitle(
+          const SectionTitle(
             color: Color(0xFFFF0000),
             title: "Formations Doctorants",
             subTitle: "Recent Events",
           ),
+          const SizedBox(height: 20 * 2),
+          Image.asset("assets/images/formations/doctorant.png"),
         ],
       ),
     );
@@ -199,13 +205,15 @@ class LearningTravel extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20 * 2),
       constraints: const BoxConstraints(maxWidth: 1110),
-      child: const Column(
+      child: Column(
         children: [
-          SectionTitle(
+          const SectionTitle(
             color: Color(0xFFFF0000),
             title: "Learning Travel",
             subTitle: "Recent Events",
           ),
+          const SizedBox(height: 20 * 2),
+          Image.asset("assets/images/formations/learning_travel.png"),
         ],
       ),
     );

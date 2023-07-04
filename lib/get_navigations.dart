@@ -39,9 +39,7 @@ getNavigations() => [
         middlewares: [Middelware()],
         page: () => const Scaffold(
           body: LoginPage(
-            redirectPage: Center(
-              child: Text("Home"),
-            ),
+            redirectPage: HomePage(),
             routeName: '/home',
           ),
         ).animate().fadeIn(duration: const Duration(milliseconds: 500)),

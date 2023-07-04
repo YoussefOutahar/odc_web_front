@@ -31,7 +31,7 @@ class EventsCarousel extends StatelessWidget {
               pauseAutoPlayOnTouch: true,
               aspectRatio: 2.0,
               enlargeCenterPage: true,
-              viewportFraction: 0.5,
+              viewportFraction: 0.45,
               onPageChanged: (index, reason) {},
             ),
             itemCount: events.length,
@@ -76,14 +76,33 @@ class _EventCardState extends State<EventCard> {
       child: Card(
         child: Row(
           children: [
-            Image.asset("assets/images/Logo.png"),
-            Center(
-              child: Column(
-                children: [
-                  Text(widget.title),
-                  Text(widget.date.toString()),
-                  Text(widget.description),
-                ],
+            SizedBox(
+              height: 320,
+              width: 270,
+              child: Image.asset(
+                "assets/images/OpenSourceImages/img3.png",
+                filterQuality: FilterQuality.high,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      widget.title,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 40),
+                    Text(widget.date.toString()),
+                    const SizedBox(height: 20),
+                    Text(widget.description),
+                  ],
+                ),
               ),
             )
           ],

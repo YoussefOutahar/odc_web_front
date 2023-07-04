@@ -40,53 +40,56 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.4,
-          width: MediaQuery.of(context).size.width * 0.7,
-          child: Image.asset("assets/images/logo.png"),
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-        TextField(
-          controller: _emailController,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: 'Email',
+    return Padding(
+      padding: EdgeInsets.only(left: size.width / 16, right: size.width / 16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.4,
+            width: MediaQuery.of(context).size.width * 0.7,
+            child: Image.asset("assets/images/logo.png"),
           ),
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-        TextField(
-          controller: _passwordController,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: 'Password',
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          TextField(
+            controller: _emailController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Email',
+            ),
           ),
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-        ElevatedButton(
-          onPressed: signIn,
-          child: const Text('Login'),
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-        RichText(
-          text: TextSpan(
-            text: 'Don\'t have an account? ',
-            style: const TextStyle(color: Colors.black),
-            children: [
-              TextSpan(
-                text: 'Sign up',
-                style: const TextStyle(color: Colors.blue),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    widget.onClickSignUp();
-                  },
-              ),
-            ],
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          TextField(
+            controller: _passwordController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Password',
+            ),
           ),
-        ),
-      ],
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          ElevatedButton(
+            onPressed: signIn,
+            child: const Text('Login'),
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+          RichText(
+            text: TextSpan(
+              text: 'Don\'t have an account? ',
+              style: const TextStyle(color: Colors.black),
+              children: [
+                TextSpan(
+                  text: 'Sign up',
+                  style: const TextStyle(color: Colors.blue),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      widget.onClickSignUp();
+                    },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 

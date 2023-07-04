@@ -61,20 +61,20 @@ class ContactBox extends StatelessWidget {
             children: [
               SocialCard(
                 color: const Color(0xFFE8F0F9),
-                iconSrc: "assets/images/messanger.png",
+                iconSrc: "assets/images/linkedin-50.png",
                 name: 'LinkedIn',
                 press: () {},
               ),
               SocialCard(
                 color: const Color(0xFFD9FFFC),
-                iconSrc: "assets/images/skype.png",
+                iconSrc: "assets/images/email-50.png",
                 name: 'Email',
                 press: () {},
               ),
               SocialCard(
                 color: const Color(0xFFE4FFC7),
-                iconSrc: "assets/images/whatsapp.png",
-                name: 'Whatsapp',
+                iconSrc: "assets/images/phone-50.png",
+                name: 'Call Us',
                 press: () {},
               ),
             ],
@@ -155,7 +155,7 @@ class ContactForm extends StatelessWidget {
             child: FittedBox(
               child: DefaultButton(
                 imageSrc: "assets/images/contact_icon.png",
-                text: "Contact Me!",
+                text: "Contact Us!",
                 press: () {},
               ),
             ),
