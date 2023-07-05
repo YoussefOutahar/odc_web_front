@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../Core/Components/section_title.dart';
 import '../../../Models/events.dart';
@@ -21,26 +22,33 @@ class EventsCarousel extends StatelessWidget {
             title: "Events",
             subTitle: "Recent Events",
           ),
-          FlutterCarousel.builder(
-            options: CarouselOptions(
-              height: 320,
-              autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 3),
-              autoPlayAnimationDuration: const Duration(milliseconds: 800),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              pauseAutoPlayOnTouch: true,
-              aspectRatio: 2.0,
-              enlargeCenterPage: true,
-              viewportFraction: 0.45,
-              onPageChanged: (index, reason) {},
+          ResponsiveBuilder(
+            builder: (context, sizingInfo) => FlutterCarousel.builder(
+              options: CarouselOptions(
+                height: 320,
+                autoPlay: true,
+                autoPlayInterval: const Duration(seconds: 3),
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                pauseAutoPlayOnTouch: true,
+                aspectRatio: 2.0,
+                enlargeCenterPage: true,
+                viewportFraction:
+                    sizingInfo.deviceScreenType == DeviceScreenType.desktop
+                        ? 0.35
+                        : sizingInfo.deviceScreenType == DeviceScreenType.tablet
+                            ? 0.4
+                            : 0.8,
+                onPageChanged: (index, reason) {},
+              ),
+              itemCount: events.length,
+              itemBuilder: ((context, index, realIndex) => EventCard(
+                    title: events[index].name,
+                    date: events[index].date,
+                    description: events[index].description,
+                    imageUrl: events[index].image,
+                  )),
             ),
-            itemCount: events.length,
-            itemBuilder: ((context, index, realIndex) => EventCard(
-                  title: events[index].name,
-                  date: events[index].date,
-                  description: events[index].description,
-                  imageUrl: events[index].image,
-                )),
           ),
           const SizedBox(height: 20 * 3),
         ],
@@ -74,11 +82,11 @@ class _EventCardState extends State<EventCard> {
       height: 320,
       width: 540,
       child: Card(
-        child: Row(
+        child: Column(
           children: [
             SizedBox(
-              height: 320,
-              width: 270,
+              height: 160,
+              width: 540,
               child: Image.asset(
                 "assets/images/OpenSourceImages/img3.png",
                 filterQuality: FilterQuality.high,

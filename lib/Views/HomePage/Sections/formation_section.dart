@@ -14,6 +14,7 @@ class Formations extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 20 * 6),
       width: double.infinity,
+      padding: const EdgeInsets.all(20),
       // just for demo
       // height: 600,
       decoration: BoxDecoration(

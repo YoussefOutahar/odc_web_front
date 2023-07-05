@@ -50,47 +50,55 @@ class TopSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: size.width,
-      height: size.height,
-      child: Stack(
-        children: [
-          Stack(
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        return SizedBox(
+          width: size.width,
+          height: sizingInformation.isMobile
+              ? size.height * 0.5
+              : size.height * 0.9,
+          child: Stack(
             children: [
-              Image.asset(
-                "assets/images/OpenSourceImages/img2.png",
-                fit: BoxFit.cover,
-                width: size.width,
+              Stack(
+                children: [
+                  Image.asset(
+                    "assets/images/OpenSourceImages/img2.png",
+                    fit: BoxFit.cover,
+                    width: size.width,
+                  ),
+                  ClipPath(
+                    clipper: TopSectionClipper(),
+                    child: Container(
+                      width: size.width,
+                    ).blurred(blur: 5, blurColor: Colors.white),
+                  )
+                ],
               ),
-              ClipPath(
-                clipper: TopSectionClipper(),
-                child: Container(
-                  width: size.width,
-                ).blurred(blur: 5, blurColor: Colors.white),
-              )
+              Positioned(
+                top: sizingInformation.isMobile
+                    ? size.height * 0.1
+                    : size.height * 0.35,
+                left: size.width * 0.1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "About Us",
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                    SizedBox(height: size.height * 0.05),
+                    Text(
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,\n luctus nec ullamcorper mattis, pulvinar dapibus leo.",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    SizedBox(height: size.height * 0.05),
+                  ],
+                ),
+              ),
             ],
           ),
-          Positioned(
-            top: size.height * 0.35,
-            left: size.width * 0.1,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "About Us",
-                  style: Theme.of(context).textTheme.displayMedium,
-                ),
-                SizedBox(height: size.height * 0.05),
-                Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,\n luctus nec ullamcorper mattis, pulvinar dapibus leo.",
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                SizedBox(height: size.height * 0.05),
-              ],
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -154,11 +162,20 @@ class OurMission extends StatelessWidget {
           const SectionTitle(
               title: "Our Mission", subTitle: "", color: Colors.orange),
           const SizedBox(height: 20 * 3),
-          Image.asset("assets/images/text/description1.png"),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset("assets/images/text/description1.png"),
+          ),
           const SizedBox(height: 20 * 3),
-          Image.asset("assets/images/text/description2.png"),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset("assets/images/text/description2.png"),
+          ),
           const SizedBox(height: 20 * 3),
-          Image.asset("assets/images/text/description3.png"),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset("assets/images/text/description3.png"),
+          ),
         ],
       ),
     );
@@ -208,99 +225,135 @@ class GeneralInfo extends StatelessWidget {
           SectionTitle(
               title: "What we do", subTitle: "", color: Colors.blueGrey),
           SizedBox(height: 20 * 3),
-          Text(
-            "SCM & Smart Système",
-            style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey),
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "SCM & Smart Système",
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey),
+            ),
           ),
           SizedBox(height: 20 * 3),
-          Text(
-            "* Optimisation et amélioration de la Supply Chain (Achats, Approvisionnement, Production, Distribution et logistique de retour)\n\n* Audit logistique (Supply Chain Master, SCOR(APICS))\n\n* Instauration du Lean Management\n\n* Solution IT adaptée et sur-mesure ",
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "* Optimisation et amélioration de la Supply Chain (Achats, Approvisionnement, Production, Distribution et logistique de retour)\n\n* Audit logistique (Supply Chain Master, SCOR(APICS))\n\n* Instauration du Lean Management\n\n* Solution IT adaptée et sur-mesure ",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
             ),
           ),
           SizedBox(height: 20 * 4),
-          Text(
-            "Certification ISO",
-            style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey),
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "Certification ISO",
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey),
+            ),
           ),
           SizedBox(height: 20 * 3),
-          Text(
-            "* Audit d’évaluation de la maturité SMQ de l’organisation\n\n* Réalisation/Correction du manuel qualité\n\n* Formation au système management de la qualité\n\n* Tableau de bord ISO",
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "* Audit d’évaluation de la maturité SMQ de l’organisation\n\n* Réalisation/Correction du manuel qualité\n\n* Formation au système management de la qualité\n\n* Tableau de bord ISO",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
             ),
           ),
           SizedBox(height: 20 * 4),
-          Text(
-            "Energie & exploitation énergétique",
-            style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey),
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "Energie & exploitation énergétique",
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey),
+            ),
           ),
           SizedBox(height: 20 * 3),
-          Text(
-            "* Optimisation de l’exploitation énergétique dans les bâtiments \n\n* Audit énergétique\n\n* Amélioration du confort thermique",
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "* Optimisation de l’exploitation énergétique dans les bâtiments \n\n* Audit énergétique\n\n* Amélioration du confort thermique",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
             ),
           ),
           SizedBox(height: 20 * 4),
-          Text(
-            "Transformation digitale",
-            style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey),
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "Transformation digitale",
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey),
+            ),
           ),
           SizedBox(height: 20 * 3),
-          Text(
-            "* Développement et maintenance des sites et applications.\n\n* Référencement Web (SEA - SEO)\n\n* Web Marketing\n\n* Accompagnement et conseil en E-logistique",
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "* Développement et maintenance des sites et applications.\n\n* Référencement Web (SEA - SEO)\n\n* Web Marketing\n\n* Accompagnement et conseil en E-logistique",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
             ),
           ),
           SizedBox(height: 20 * 4),
-          Text(
-            "Aménagement, Agencement et bâtiment",
-            style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey),
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "Aménagement, Agencement et bâtiment",
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey),
+            ),
           ),
           SizedBox(height: 20 * 3),
-          Text(
-            "* Conception de bâtiments éco-responsable.\n\n* Aménagement d’espace et agencement industriel.\n\n* Conseil et accompagnement d’achats d’équipements et matériels.\n\n* Projets Architecture, Aménagement et Design Urbain.",
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "* Conception de bâtiments éco-responsable.\n\n* Aménagement d’espace et agencement industriel.\n\n* Conseil et accompagnement d’achats d’équipements et matériels.\n\n* Projets Architecture, Aménagement et Design Urbain.",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
             ),
           ),
           SizedBox(height: 20 * 4),
-          Text(
-            "Qualification et renforcement des compétences",
-            style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueGrey),
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "Qualification et renforcement des compétences",
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey),
+            ),
           ),
           SizedBox(height: 20 * 3),
-          Text(
-            "* Bilan et diagnostic  RH.\n\n* Manuel d’employé.\n\n* Formations continues sur mesure pour Top Management. Middle management et collaborateurs.\n\n* Team Building et coaching.",
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
+          Padding(
+            padding: EdgeInsets.all(15.0),
+            child: Text(
+              "* Bilan et diagnostic  RH.\n\n* Manuel d’employé.\n\n* Formations continues sur mesure pour Top Management. Middle management et collaborateurs.\n\n* Team Building et coaching.",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
             ),
           ),
         ],

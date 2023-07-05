@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../Core/Components/section_title.dart';
 import '../../../Models/team.dart';
@@ -29,21 +30,30 @@ class TeamSection extends StatelessWidget {
             title: 'Our Team',
           ),
           const SizedBox(height: 20 * 1.5),
-          FlutterCarousel.builder(
-            options: CarouselOptions(
-              height: 450,
-              autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 3),
-              autoPlayAnimationDuration: const Duration(milliseconds: 800),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              pauseAutoPlayOnTouch: true,
-              aspectRatio: 1,
-              enlargeCenterPage: true,
-              viewportFraction: 0.3,
-              onPageChanged: (index, reason) {},
+          ResponsiveBuilder(
+            builder: (context, sizingInformation) => FlutterCarousel.builder(
+              options: CarouselOptions(
+                height: 450,
+                autoPlay: true,
+                autoPlayInterval: const Duration(seconds: 3),
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                pauseAutoPlayOnTouch: true,
+                aspectRatio: 1,
+                enlargeCenterPage: true,
+                viewportFraction: sizingInformation.deviceScreenType ==
+                        DeviceScreenType.desktop
+                    ? 0.25
+                    : sizingInformation.deviceScreenType ==
+                            DeviceScreenType.tablet
+                        ? 0.4
+                        : 0.8,
+                onPageChanged: (index, reason) {},
+              ),
+              itemCount: members.length,
+              itemBuilder: (context, index, realIndex) =>
+                  TeamCard(index: index),
             ),
-            itemCount: members.length,
-            itemBuilder: (context, index, realIndex) => TeamCard(index: index),
           ),
           const SizedBox(height: 20 * 5),
         ],
@@ -67,6 +77,7 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: () {},
       onHover: (value) {
@@ -78,7 +89,7 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
       child: AnimatedContainer(
         duration: duration,
         height: 400,
-        width: 350,
+        width: 300,
         decoration: BoxDecoration(
           boxShadow: [
             if (isHover)

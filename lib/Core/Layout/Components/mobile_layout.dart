@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
+import 'package:get/get.dart';
+import 'package:odc_web_front/Core/footer.dart';
 
 import 'tab_tile.dart';
 
@@ -26,7 +28,6 @@ class _MobileLayoutState extends State<MobileLayout> {
               _key.currentState!.toggle();
             },
           ),
-          title: const Text('Slider Drawer'),
         ),
         slider: Container(
           width: 250.0,
@@ -41,14 +42,12 @@ class _MobileLayoutState extends State<MobileLayout> {
                 ),
               ),
               const SizedBox(height: 20.0),
+              TabTile(text: "Home", onTap: () => Get.offAndToNamed("/home")),
+              TabTile(text: "About", onTap: () => Get.toNamed("/aboutUs")),
               TabTile(
-                onTap: () {},
-                text: 'Formations',
-              ),
+                  text: "Formations", onTap: () => Get.toNamed("/formations")),
               TabTile(
-                onTap: () {},
-                text: 'Services',
-              ),
+                  text: "Contact Us", onTap: () => Get.toNamed("/contactUs")),
               const SizedBox(height: 20.0),
               Expanded(
                 child: Align(
@@ -79,7 +78,10 @@ class _MobileLayoutState extends State<MobileLayout> {
             ],
           ),
         ),
-        child: Container(color: Colors.amber),
+        child: SingleChildScrollView(
+            child: Column(
+          children: [widget.child, const Footer()],
+        )),
       ),
     );
   }

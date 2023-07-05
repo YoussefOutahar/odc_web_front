@@ -9,6 +9,7 @@ class AboutSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+      padding: const EdgeInsets.symmetric(horizontal: 20 * 2),
       constraints: const BoxConstraints(maxWidth: 1110),
       child: Column(
         children: [
@@ -21,7 +22,7 @@ class AboutSection extends StatelessWidget {
                 width: 20,
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width / 2,
+                width: MediaQuery.of(context).size.width / 3,
                 child: const AboutSectionText(
                   text:
                       "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore mag aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
