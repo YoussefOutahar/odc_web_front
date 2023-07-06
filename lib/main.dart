@@ -4,11 +4,12 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-import 'Services/analytics_service.dart';
-import 'Services/Themes/app_theme.dart';
+import 'DashBoard/get_dashboard_navigations.dart';
+import 'Core/Services/analytics_service.dart';
+import 'Core/Services/Themes/app_theme.dart';
 import 'DataBase/firebase_options.dart';
-import 'Views/error_page.dart';
-import 'get_navigations.dart';
+import 'FrontEnd/Views/error_page.dart';
+import 'FrontEnd/get_front_navigations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +30,10 @@ class MyApp extends StatelessWidget {
       theme: AppThemes.deafult,
       darkTheme: AppThemes.alternative,
       themeMode: AppThemes().themeMode,
-      getPages: getNavigations(),
+      getPages: [
+        ...getFrontNavigations(),
+        ...getDashboardNavigations(),
+      ],
       navigatorObservers: [
         AnalyticsService().getAnalyticsObserver(),
       ],
