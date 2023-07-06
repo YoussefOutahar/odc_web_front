@@ -40,7 +40,7 @@ class _HeaderState extends State<Header> {
             ],
           ),
           const Spacer(),
-          AuthController.checkIfLogged() ? _buildLogged() : _buildNotLogged(),
+          // AuthController.checkIfLogged() ? _buildLogged() : _buildNotLogged(),
         ],
       ),
     );

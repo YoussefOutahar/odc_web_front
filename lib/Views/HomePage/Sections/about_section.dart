@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({
@@ -7,48 +8,75 @@ class AboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
-      padding: const EdgeInsets.symmetric(horizontal: 20 * 2),
-      constraints: const BoxConstraints(maxWidth: 1110),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("About us",
-                  style: Theme.of(context).textTheme.displayMedium),
-              const SizedBox(
-                width: 20,
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 3,
-                child: const AboutSectionText(
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        if (sizingInformation.isMobile) {
+          return Container(
+            margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+            padding: const EdgeInsets.symmetric(horizontal: 20 * 2),
+            constraints: const BoxConstraints(maxWidth: 1110),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("About us",
+                    style: Theme.of(context).textTheme.displayMedium),
+                const SizedBox(
+                  height: 40,
+                ),
+                const AboutSectionText(
                   text:
                       "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore mag aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20 * 3),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     DefaultButton(
-          //       imageSrc: "assets/images/hand.png",
-          //       text: "Hire Me!",
-          //       press: () {},
-          //     ),
-          //     const SizedBox(width: 20 * 1.5),
-          //     DefaultButton(
-          //       imageSrc: "assets/images/download.png",
-          //       text: "Download CV",
-          //       press: () {},
-          //     ),
-          //   ],
-          // ),
-        ],
-      ),
+                const SizedBox(height: 20),
+              ],
+            ),
+          );
+        } else {
+          return Container(
+            margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+            padding: const EdgeInsets.symmetric(horizontal: 20 * 2),
+            constraints: const BoxConstraints(maxWidth: 1110),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("About us",
+                        style: Theme.of(context).textTheme.displayMedium),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: const AboutSectionText(
+                        text:
+                            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore mag aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20 * 3),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     DefaultButton(
+                //       imageSrc: "assets/images/hand.png",
+                //       text: "Hire Me!",
+                //       press: () {},
+                //     ),
+                //     const SizedBox(width: 20 * 1.5),
+                //     DefaultButton(
+                //       imageSrc: "assets/images/download.png",
+                //       text: "Download CV",
+                //       press: () {},
+                //     ),
+                //   ],
+                // ),
+              ],
+            ),
+          );
+        }
+      },
     );
   }
 }
@@ -68,7 +96,7 @@ class AboutSectionText extends StatelessWidget {
       child: Text(
         text,
         style: const TextStyle(
-            fontWeight: FontWeight.normal, height: 3, color: Colors.black),
+            fontWeight: FontWeight.normal, color: Colors.black, height: 1.5),
       ),
     );
   }
