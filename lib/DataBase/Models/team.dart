@@ -4,6 +4,20 @@ class TeamMember {
   final String image;
 
   TeamMember({required this.name, required this.role, required this.image});
+
+  factory TeamMember.fromJson(Map<String, dynamic> json) {
+    return TeamMember(
+      name: json['name'],
+      role: json['role'],
+      image: json['image'],
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'role': role,
+        'image': image,
+      };
 }
 
 List<TeamMember> members = [

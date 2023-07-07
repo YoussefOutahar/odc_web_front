@@ -10,6 +10,22 @@ class Service {
       required this.title,
       required this.image,
       required this.color});
+
+  factory Service.fromJson(Map<String, dynamic> json) {
+    return Service(
+      id: json['id'],
+      title: json['title'],
+      image: json['image'],
+      color: json['color'],
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+        'image': image,
+        'color': color,
+      };
 }
 
 // For demo list of service
