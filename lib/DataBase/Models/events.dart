@@ -1,5 +1,5 @@
 class Event {
-  final int id;
+  final String uid;
   final String name;
   final String organisation;
   final DateTime date;
@@ -13,7 +13,7 @@ class Event {
     required this.organisation,
     required this.city,
     required this.theme,
-    required this.id,
+    required this.uid,
     required this.name,
     required this.description,
     required this.image,
@@ -21,7 +21,7 @@ class Event {
 
   factory Event.fromJson(Map<String, dynamic> json) {
     return Event(
-      id: json['id'],
+      uid: json['uid'],
       name: json['name'],
       organisation: json['organisation'],
       date: json['date'],
@@ -33,7 +33,7 @@ class Event {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
+        'uid': uid,
         'name': name,
         'organisation': organisation,
         'date': date,
@@ -46,7 +46,7 @@ class Event {
 
 final events = [
   Event(
-    id: 1,
+    uid: "9126d4f1-43c0-5996-8440-a67787e76338",
     name: 'Event 1',
     organisation: 'Organisation 1',
     date: DateTime.now(),
@@ -56,7 +56,7 @@ final events = [
     image: 'assets/images/event1.jpg',
   ),
   Event(
-    id: 2,
+    uid: "1744c3d0-92e6-58f6-8037-41532686b5e9",
     name: 'Event 2',
     organisation: 'Organisation 2',
     date: DateTime.now(),
@@ -66,7 +66,7 @@ final events = [
     image: 'assets/images/event2.jpg',
   ),
   Event(
-    id: 3,
+    uid: "991d6708-9340-58eb-9c74-4cc8fc22f8e9",
     name: 'Event 3',
     organisation: 'Organisation 3',
     date: DateTime.now(),
@@ -76,7 +76,7 @@ final events = [
     image: 'assets/images/event3.jpg',
   ),
   Event(
-    id: 4,
+    uid: "567ab52d-161e-5a16-9643-dc6e24b78b55",
     name: 'Event 4',
     organisation: 'Organisation 4',
     date: DateTime.now(),
@@ -86,7 +86,7 @@ final events = [
     image: 'assets/images/event4.jpg',
   ),
   Event(
-    id: 5,
+    uid: "91a1f00e-15ea-5afd-8f26-a214a6cecc3f",
     name: 'Event 5',
     organisation: 'Organisation 5',
     date: DateTime.now(),
@@ -96,7 +96,7 @@ final events = [
     image: 'assets/images/event5.jpg',
   ),
   Event(
-    id: 6,
+    uid: "e14f9974-30e6-556a-8907-5fd092dd4b62",
     name: 'Event 6',
     organisation: 'Organisation 6',
     date: DateTime.now(),
@@ -106,7 +106,7 @@ final events = [
     image: 'assets/images/event6.jpg',
   ),
   Event(
-    id: 7,
+    uid: "d901b749-c979-53cc-9eb6-8fd7e20f5753",
     name: 'Event 7',
     organisation: 'Organisation 7',
     date: DateTime.now(),
