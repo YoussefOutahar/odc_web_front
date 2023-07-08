@@ -4,9 +4,27 @@ import 'package:odc/DataBase/Models/team.dart';
 
 class TeamController {
   //Create:
-  Future<bool> addTeam(TeamMember member) async {
+  static Future<bool> addTeam(TeamMember member) async {
     try {
-      await FirebaseFirestore.instance.collection('Teams').add(member.toJson());
+      await FirebaseFirestore.instance
+          .collection('Teams')
+          .doc()
+          .set(member.toJson());
+
+      final QuerySnapshot<Map<String, dynamic>> snapshot =
+          await FirebaseFirestore.instance
+              .collection('Teams')
+              .where('name', isEqualTo: member.name)
+              .where("role", isEqualTo: member.role)
+              .where('image', isEqualTo: member.image)
+              .get();
+
+      final String uid = snapshot.docs.first.id;
+
+      await FirebaseFirestore.instance
+          .collection('Teams')
+          .doc(uid)
+          .update({'uid': uid});
       return true;
     } catch (e) {
       return false;
@@ -14,7 +32,7 @@ class TeamController {
   }
 
   //Read:
-  Stream<List<TeamMember>> getTeams() {
+  static Stream<List<TeamMember>> getTeams() {
     try {
       return FirebaseFirestore.instance.collection('Teams').snapshots().map(
           (snapshot) => snapshot.docs
@@ -25,7 +43,7 @@ class TeamController {
     }
   }
 
-  Future<TeamMember?> getTeam(String uid) async {
+  static Future<TeamMember?> getTeam(String uid) async {
     DocumentSnapshot? document;
     try {
       document =
@@ -41,7 +59,7 @@ class TeamController {
   }
 
   //Update:
-  Future<bool> updateTeam(TeamMember member) async {
+  static Future<bool> updateTeam(TeamMember member) async {
     try {
       await FirebaseFirestore.instance
           .collection('Teams')
@@ -54,7 +72,7 @@ class TeamController {
   }
 
   //Delete:
-  Future<bool> deleteTeam(String id) async {
+  static Future<bool> deleteTeam(String id) async {
     try {
       await FirebaseFirestore.instance.collection('Teams').doc(id).delete();
       return true;

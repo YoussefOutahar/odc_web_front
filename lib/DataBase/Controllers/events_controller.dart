@@ -5,9 +5,27 @@ import '../Models/events.dart';
 
 class EventsController {
   //Create:
-  Future<bool> addEvent(Event event) async {
+  static Future<bool> addEvent(Event event) async {
     try {
-      await FirebaseFirestore.instance.collection('Events').add(event.toJson());
+      await FirebaseFirestore.instance
+          .collection('Events')
+          .doc()
+          .set(event.toJson());
+
+      final QuerySnapshot<Map<String, dynamic>> snapshot =
+          await FirebaseFirestore.instance
+              .collection("Events")
+              .where("name", isEqualTo: event.name)
+              .where("description", isEqualTo: event.description)
+              .where("date", isEqualTo: event.date)
+              .where("city", isEqualTo: event.city)
+              .get();
+
+      final String uid = snapshot.docs.first.id;
+      await FirebaseFirestore.instance
+          .collection('Events')
+          .doc(uid)
+          .update({"uid": uid});
       return true;
     } catch (e) {
       return false;
@@ -15,18 +33,19 @@ class EventsController {
   }
 
   //Read:
-  Stream<List<Event>> getEvents() {
+  static Stream<List<Event>> getEvents() {
     try {
       return FirebaseFirestore.instance.collection('Events').snapshots().map(
           (snapshot) => snapshot.docs
               .map((document) => Event.fromJson(document.data()))
               .toList());
     } catch (e) {
+      debugPrint(e.toString());
       return const Stream.empty();
     }
   }
 
-  Future<Event?> getEvent(String uid) async {
+  static Future<Event?> getEvent(String uid) async {
     DocumentSnapshot? document;
     try {
       document =
@@ -42,7 +61,7 @@ class EventsController {
   }
 
   //Update:
-  Future<bool> updateEvent(Event event) async {
+  static Future<bool> updateEvent(Event event) async {
     try {
       await FirebaseFirestore.instance
           .collection('Events')
@@ -55,7 +74,7 @@ class EventsController {
   }
 
   //Delete:
-  Future<bool> deleteEvent(String id) async {
+  static Future<bool> deleteEvent(String id) async {
     try {
       await FirebaseFirestore.instance.collection('Events').doc(id).delete();
       return true;

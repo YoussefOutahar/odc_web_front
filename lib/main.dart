@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 import 'DashBoard/get_dashboard_navigations.dart';
-import 'Core/Services/analytics_service.dart';
-import 'Core/Services/Themes/app_theme.dart';
+import 'Services/analytics_service.dart';
+import 'Services/Themes/app_theme.dart';
 import 'DataBase/firebase_options.dart';
 import 'FrontEnd/Views/error_page.dart';
 import 'FrontEnd/get_front_navigations.dart';

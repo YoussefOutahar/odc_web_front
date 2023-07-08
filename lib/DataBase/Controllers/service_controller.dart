@@ -5,11 +5,23 @@ import '../Models/service.dart';
 
 class ServiceController {
   //Create:
-  Future<bool> addService(Service service) async {
+  static Future<bool> addService(Service service) async {
     try {
       await FirebaseFirestore.instance
           .collection('Services')
-          .add(service.toJson());
+          .doc()
+          .set(service.toJson());
+      final QuerySnapshot<Map<String, dynamic>> snapshot =
+          await FirebaseFirestore.instance
+              .collection('Services')
+              .where('title', isEqualTo: service.title)
+              .where('image', isEqualTo: service.image)
+              .get();
+      final String uid = snapshot.docs.first.id;
+      await FirebaseFirestore.instance
+          .collection('Services')
+          .doc(uid)
+          .update({'uid': uid});
       return true;
     } catch (e) {
       return false;
@@ -17,7 +29,7 @@ class ServiceController {
   }
 
   //Read:
-  Stream<List<Service>> getServices() {
+  static Stream<List<Service>> getServices() {
     try {
       return FirebaseFirestore.instance.collection('Services').snapshots().map(
           (snapshot) => snapshot.docs
@@ -28,7 +40,7 @@ class ServiceController {
     }
   }
 
-  Future<Service?> getService(String uid) async {
+  static Future<Service?> getService(String uid) async {
     DocumentSnapshot? document;
     try {
       document = await FirebaseFirestore.instance
@@ -46,7 +58,7 @@ class ServiceController {
   }
 
   //Update:
-  Future<bool> updateService(Service service) async {
+  static Future<bool> updateService(Service service) async {
     try {
       await FirebaseFirestore.instance
           .collection('Services')
@@ -59,7 +71,7 @@ class ServiceController {
   }
 
   //Delete:
-  Future<bool> deleteService(String id) async {
+  static Future<bool> deleteService(String id) async {
     try {
       await FirebaseFirestore.instance.collection('Services').doc(id).delete();
       return true;

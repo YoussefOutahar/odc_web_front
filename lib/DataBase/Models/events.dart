@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Event {
   final String uid;
   final String name;
   final String organisation;
-  final DateTime date;
+  final Timestamp date;
   final String description;
   final String city;
   final String theme;
@@ -49,7 +51,7 @@ final events = [
     uid: "9126d4f1-43c0-5996-8440-a67787e76338",
     name: 'Event 1',
     organisation: 'Organisation 1',
-    date: DateTime.now(),
+    date: Timestamp.now(),
     description: 'Description 1',
     city: 'City 1',
     theme: 'Theme 1',
@@ -59,7 +61,7 @@ final events = [
     uid: "1744c3d0-92e6-58f6-8037-41532686b5e9",
     name: 'Event 2',
     organisation: 'Organisation 2',
-    date: DateTime.now(),
+    date: Timestamp.now(),
     description: 'Description 2',
     city: 'City 2',
     theme: 'Theme 2',
@@ -69,7 +71,7 @@ final events = [
     uid: "991d6708-9340-58eb-9c74-4cc8fc22f8e9",
     name: 'Event 3',
     organisation: 'Organisation 3',
-    date: DateTime.now(),
+    date: Timestamp.now(),
     description: 'Description 3',
     city: 'City 3',
     theme: 'Theme 3',
@@ -79,7 +81,7 @@ final events = [
     uid: "567ab52d-161e-5a16-9643-dc6e24b78b55",
     name: 'Event 4',
     organisation: 'Organisation 4',
-    date: DateTime.now(),
+    date: Timestamp.now(),
     description: 'Description 4',
     city: 'City 4',
     theme: 'Theme 4',
@@ -89,7 +91,7 @@ final events = [
     uid: "91a1f00e-15ea-5afd-8f26-a214a6cecc3f",
     name: 'Event 5',
     organisation: 'Organisation 5',
-    date: DateTime.now(),
+    date: Timestamp.now(),
     description: 'Description 5',
     city: 'City 5',
     theme: 'Theme 5',
@@ -99,7 +101,7 @@ final events = [
     uid: "e14f9974-30e6-556a-8907-5fd092dd4b62",
     name: 'Event 6',
     organisation: 'Organisation 6',
-    date: DateTime.now(),
+    date: Timestamp.now(),
     description: 'Description 6',
     city: 'City 6',
     theme: 'Theme 6',
@@ -109,7 +111,7 @@ final events = [
     uid: "d901b749-c979-53cc-9eb6-8fd7e20f5753",
     name: 'Event 7',
     organisation: 'Organisation 7',
-    date: DateTime.now(),
+    date: Timestamp.now(),
     description: 'Description 7',
     city: 'City 7',
     theme: 'Theme 7',

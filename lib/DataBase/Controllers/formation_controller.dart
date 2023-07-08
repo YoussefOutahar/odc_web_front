@@ -5,11 +5,24 @@ import '../Models/formations.dart';
 
 class FormationController {
   //Create:
-  Future<bool> addFormation(Formation formation) async {
+  static Future<bool> addFormation(Formation formation) async {
     try {
       await FirebaseFirestore.instance
           .collection('Formations')
-          .add(formation.toJson());
+          .doc()
+          .set(formation.toJson());
+
+      final QuerySnapshot<Map<String, dynamic>> snapshot =
+          await FirebaseFirestore.instance
+              .collection('Formations')
+              .where('title', isEqualTo: formation.title)
+              .where('category', isEqualTo: formation.category)
+              .get();
+      final String uid = snapshot.docs.first.id;
+      await FirebaseFirestore.instance
+          .collection('Formations')
+          .doc(uid)
+          .update({'uid': uid});
       return true;
     } catch (e) {
       return false;
@@ -17,7 +30,7 @@ class FormationController {
   }
 
   //Read:
-  Stream<List<Formation>> getFormations() {
+  static Stream<List<Formation>> getFormations() {
     try {
       return FirebaseFirestore.instance
           .collection('Formations')
@@ -30,7 +43,7 @@ class FormationController {
     }
   }
 
-  Future<Formation?> getFormation(String uid) async {
+  static Future<Formation?> getFormation(String uid) async {
     DocumentSnapshot? document;
     try {
       document = await FirebaseFirestore.instance
@@ -48,7 +61,7 @@ class FormationController {
   }
 
   //Update:
-  Future<bool> updateFormation(Formation formation) async {
+  static Future<bool> updateFormation(Formation formation) async {
     try {
       await FirebaseFirestore.instance
           .collection('Formations')
@@ -61,7 +74,7 @@ class FormationController {
   }
 
   //Delete:
-  Future<bool> deleteFormation(String uid) async {
+  static Future<bool> deleteFormation(String uid) async {
     try {
       await FirebaseFirestore.instance
           .collection('Formations')

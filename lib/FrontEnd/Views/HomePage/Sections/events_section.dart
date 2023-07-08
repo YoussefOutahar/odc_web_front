@@ -35,16 +35,16 @@ class EventsCarousel extends StatelessWidget {
                 enlargeCenterPage: true,
                 viewportFraction:
                     sizingInfo.deviceScreenType == DeviceScreenType.desktop
-                        ? 0.35
+                        ? 0.5
                         : sizingInfo.deviceScreenType == DeviceScreenType.tablet
-                            ? 0.4
+                            ? 0.5
                             : 0.8,
                 onPageChanged: (index, reason) {},
               ),
               itemCount: events.length,
               itemBuilder: ((context, index, realIndex) => EventCard(
                     title: events[index].name,
-                    date: events[index].date,
+                    date: events[index].date.toDate(),
                     description: events[index].description,
                     imageUrl: events[index].image,
                   )),
@@ -77,45 +77,47 @@ class EventCard extends StatefulWidget {
 class _EventCardState extends State<EventCard> {
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      height: 320,
-      width: 540,
-      child: Card(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 160,
-              width: 540,
-              child: Image.asset(
-                "assets/images/OpenSourceImages/img3.png",
-                filterQuality: FilterQuality.high,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      widget.title,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+    return ResponsiveBuilder(
+      builder: ((context, sizingInformation) => AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            height: 340,
+            width: 540,
+            child: Card(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 170,
+                    width: 540,
+                    child: Image.asset(
+                      "assets/images/OpenSourceImages/img3.png",
+                      filterQuality: FilterQuality.high,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            widget.title,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 40),
+                          Text(widget.date.toString()),
+                          const SizedBox(height: 20),
+                          Text(widget.description),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 40),
-                    Text(widget.date.toString()),
-                    const SizedBox(height: 20),
-                    Text(widget.description),
-                  ],
-                ),
+                  )
+                ],
               ),
-            )
-          ],
-        ),
-      ),
+            ),
+          )),
     );
   }
 }
