@@ -5,10 +5,10 @@ import '../Models/blog_post.dart';
 
 class BlogController {
   //Create:
-  static Future<bool> addBlogPost(BlogPost blogPost) async {
+  static Future<BlogPost?> addBlogPost(BlogPost blogPost) async {
     try {
       await FirebaseFirestore.instance
-          .collection('Blog')
+          .collection('BlogPosts')
           .doc()
           .set(blogPost.toJson());
 
@@ -25,9 +25,11 @@ class BlogController {
           .collection('BlogPosts')
           .doc(uid)
           .update({"uid": uid});
-      return true;
+
+      blogPost.uid = uid;
+      return blogPost;
     } catch (e) {
-      return false;
+      return null;
     }
   }
 

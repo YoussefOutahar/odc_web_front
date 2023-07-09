@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BlogPost {
-  String uid;
+  String? uid;
   String title;
   String content;
   String image;
   Timestamp createdAt;
 
   BlogPost({
-    required this.uid,
+    this.uid,
     required this.title,
     required this.content,
     required this.image,
@@ -33,5 +33,10 @@ class BlogPost {
       'image': image,
       'createdAt': createdAt,
     };
+  }
+
+  @override
+  String toString() {
+    return "BlogPost [uid = $uid, title = $title, content = $content, image = $image, createdAt = $createdAt]";
   }
 }

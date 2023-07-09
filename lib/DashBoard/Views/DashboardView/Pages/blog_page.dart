@@ -36,42 +36,16 @@ class _BlogPageState extends State<BlogPage> {
           if (snapshot.hasData) {
             return Stack(
               children: [
-                ListView.builder(
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        child: ListTile(
-                            title: Text(snapshot.data![index].title),
-                            subtitle: Text(snapshot.data![index].content),
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                IconButton(
-                                  icon: const Icon(Icons.mode_edit),
-                                  onPressed: () async {
-                                    setState(() {
-                                      currentView = _buildEditBlogView(
-                                          snapshot.data![index]);
-                                    });
-                                  },
-                                ),
-                                IconButton(
-                                  icon: const Icon(Icons.delete),
-                                  onPressed: () async {
-                                    await BlogController.deleteBlogPost(
-                                        snapshot.data![index].uid);
-                                    setState(() {
-                                      currentView = _buildBlogListView();
-                                    });
-                                  },
-                                ),
-                              ],
-                            )),
+                Wrap(
+                  runSpacing: 20,
+                  spacing: 20,
+                  children: [
+                    for (int i = 0; i < snapshot.data!.length; i++)
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: BlogPostCard(blogPost: snapshot.data![i]),
                       ),
-                    );
-                  },
+                  ],
                 ),
                 Positioned(
                   bottom: 10,
@@ -259,32 +233,79 @@ class _BlogDataState extends State<BlogData> {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   onPressed: () async {
-                    try {
-                      final String path =
-                          'files/blog/${widget.blogPost.uid}/$fileName';
-                      final Reference ref = FirebaseStorage.instance.ref(path);
+                    if (widget.blogPost.title.isEmpty ||
+                        widget.blogPost.content.isEmpty) {
+                      BlogPost? newBlogPost = await BlogController.addBlogPost(
+                        BlogPost(
+                          title: titleController.text,
+                          content: contentController.text,
+                          createdAt: Timestamp.now(),
+                          image: "",
+                        ),
+                      );
 
-                      setState(() {
-                        uploadTask = ref.putData(data);
-                      });
-                      await uploadTask!.whenComplete(() {
+                      if (newBlogPost != null) {
+                        try {
+                          final String path =
+                              'files/blog/${newBlogPost.uid}/$fileName';
+                          final Reference ref =
+                              FirebaseStorage.instance.ref(path);
+                          setState(() {
+                            uploadTask = ref.putData(data);
+                          });
+                          await uploadTask!.whenComplete(() {
+                            setState(() {
+                              progress = 0;
+                              uploadTask = null;
+                            });
+                          });
+                          await BlogController.updateBlogPost(
+                            BlogPost(
+                              uid: newBlogPost.uid,
+                              title: titleController.text,
+                              content: contentController.text,
+                              image: path,
+                              createdAt: Timestamp.now(),
+                            ),
+                          );
+                          setState(() {});
+                        } catch (e) {
+                          debugPrint(e.toString());
+                        }
+                      } else {
+                        debugPrint('Error');
+                      }
+                    } else {
+                      try {
+                        final String path =
+                            'files/blog/${widget.blogPost.uid}/$fileName';
+
+                        debugPrint(path);
+                        final Reference ref =
+                            FirebaseStorage.instance.ref(path);
+                        await BlogController.updateBlogPost(
+                          BlogPost(
+                            uid: widget.blogPost.uid,
+                            title: titleController.text,
+                            content: contentController.text,
+                            image: path,
+                            createdAt: Timestamp.now(),
+                          ),
+                        );
+
                         setState(() {
-                          progress = 0;
-                          uploadTask = null;
+                          uploadTask = ref.putData(data);
                         });
-                      });
-                      await FirebaseFirestore.instance
-                          .collection('BlogPosts')
-                          .doc(widget.blogPost.uid)
-                          .update({
-                        'title': titleController.text,
-                        'content': contentController.text,
-                        'image': path,
-                      });
-
-                      setState(() {});
-                    } catch (e) {
-                      debugPrint(e.toString());
+                        await uploadTask!.whenComplete(() {
+                          setState(() {
+                            progress = 0;
+                            uploadTask = null;
+                          });
+                        });
+                        setState(() {});
+                      } catch (e) {
+                        debugPrint(e.toString());
+                      }
                     }
                   },
                   child: const Text('Done'),
@@ -292,7 +313,8 @@ class _BlogDataState extends State<BlogData> {
               )
             ],
           ),
-        )
+        ),
+        _buildUploadProgress(),
       ],
     );
   }
@@ -327,8 +349,9 @@ class _BlogDataState extends State<BlogData> {
               onDrop: (value) async {
                 fileName = await dropZoneController.getFilename(value);
                 data = await dropZoneController.getFileData(value);
-
-                fileUploaded = true;
+                setState(() {
+                  fileUploaded = true;
+                });
               },
             ),
           ),
@@ -341,6 +364,53 @@ class _BlogDataState extends State<BlogData> {
           ),
         ],
       );
+
+  Widget _buildUploadProgress() {
+    if (uploadTask != null) {
+      return Center(
+        child: StreamBuilder(
+          stream: uploadTask?.snapshotEvents,
+          builder:
+              (BuildContext context, AsyncSnapshot<TaskSnapshot> snapshot) {
+            if (snapshot.hasData) {
+              progress =
+                  snapshot.data!.bytesTransferred / snapshot.data!.totalBytes;
+              return SizedBox(
+                  height: 120,
+                  width: 100,
+                  child: Card(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: CircularProgressIndicator(
+                            color: Colors.green,
+                            backgroundColor: Colors.grey,
+                            value: progress,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          "${(progress * 100).toStringAsFixed(2)} %",
+                          style: const TextStyle(color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ));
+            } else if (snapshot.hasError) {
+              return const Text("Error");
+            } else {
+              return const SizedBox();
+            }
+          },
+        ),
+      );
+    } else {
+      return const SizedBox();
+    }
+  }
 }
 
 class BlogPostCard extends StatefulWidget {
@@ -355,6 +425,23 @@ class BlogPostCard extends StatefulWidget {
 class _BlogPostCardState extends State<BlogPostCard> {
   bool isHover = false;
   Duration duration = const Duration(milliseconds: 200);
+
+  String? imageUrl;
+
+  @override
+  void initState() {
+    loadImageUrl();
+    super.initState();
+  }
+
+  Future<void> loadImageUrl() async {
+    String downloadUrl = await FirebaseStorage.instance
+        .ref(widget.blogPost.image)
+        .getDownloadURL();
+    setState(() {
+      imageUrl = downloadUrl;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -387,9 +474,16 @@ class _BlogPostCardState extends State<BlogPostCard> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const CircleAvatar(
-                      radius: 70,
-                    ),
+                    imageUrl != null
+                        ? SizedBox(
+                            height: 200,
+                            width: 200,
+                            child: Image.network(
+                              imageUrl!,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : const CircularProgressIndicator(),
                     const SizedBox(height: 60),
                     Text(
                       widget.blogPost.title,
