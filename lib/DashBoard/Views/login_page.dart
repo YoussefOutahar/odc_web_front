@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../Components/login_form.dart';
-import '../Components/register_form.dart';
+import '../../FrontEnd/Components/login_form.dart';
+import '../../FrontEnd/Components/register_form.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage(

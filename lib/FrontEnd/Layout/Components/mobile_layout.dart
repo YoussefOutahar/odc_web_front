@@ -70,6 +70,7 @@ class SliderMenu extends StatelessWidget {
           TabTile(text: "Home", onTap: () => Get.offAndToNamed("/home")),
           TabTile(text: "About", onTap: () => Get.toNamed("/aboutUs")),
           TabTile(text: "Formations", onTap: () => Get.toNamed("/formations")),
+          TabTile(text: "Blog", onTap: () => Get.toNamed("/blog")),
           TabTile(text: "Contact Us", onTap: () => Get.toNamed("/contactUs")),
           const SizedBox(height: 20.0),
           // Expanded(

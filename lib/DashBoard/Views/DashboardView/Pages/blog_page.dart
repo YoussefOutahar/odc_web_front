@@ -4,25 +4,24 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../../DataBase/Controllers/events_controller.dart';
-import '../../../../DataBase/Models/events.dart';
+import '../../../../DataBase/Controllers/blog_controller.dart';
+import '../../../../DataBase/Models/blog_post.dart';
 
-class EventsPage extends StatefulWidget {
-  const EventsPage({super.key});
+class BlogPage extends StatefulWidget {
+  const BlogPage({super.key});
 
   @override
-  State<EventsPage> createState() => _EventsPageState();
+  State<BlogPage> createState() => _BlogPageState();
 }
 
-class _EventsPageState extends State<EventsPage> {
+class _BlogPageState extends State<BlogPage> {
   Widget? currentView;
 
   @override
   void initState() {
-    currentView = _buildEventsListView();
+    currentView = _buildBlogListView();
     super.initState();
   }
 
@@ -31,8 +30,8 @@ class _EventsPageState extends State<EventsPage> {
     return currentView ?? const Center(child: CircularProgressIndicator());
   }
 
-  Widget _buildEventsListView() => StreamBuilder<List<Event>>(
-        stream: EventsController.getEvents(),
+  Widget _buildBlogListView() => StreamBuilder<List<BlogPost>>(
+        stream: BlogController.getBlogPosts(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Stack(
@@ -44,8 +43,8 @@ class _EventsPageState extends State<EventsPage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
                         child: ListTile(
-                            title: Text(snapshot.data![index].name),
-                            subtitle: Text(snapshot.data![index].description),
+                            title: Text(snapshot.data![index].title),
+                            subtitle: Text(snapshot.data![index].content),
                             trailing: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -53,7 +52,7 @@ class _EventsPageState extends State<EventsPage> {
                                   icon: const Icon(Icons.mode_edit),
                                   onPressed: () async {
                                     setState(() {
-                                      currentView = _buildEditEventView(
+                                      currentView = _buildEditBlogView(
                                           snapshot.data![index]);
                                     });
                                   },
@@ -61,13 +60,11 @@ class _EventsPageState extends State<EventsPage> {
                                 IconButton(
                                   icon: const Icon(Icons.delete),
                                   onPressed: () async {
-                                    // await EventsController.deleteEvent(
-                                    //     snapshot.data![index].uid);
-                                    Get.snackbar(
-                                      'Event Deleted',
-                                      'Event Deleted Successfully',
-                                      snackPosition: SnackPosition.BOTTOM,
-                                    );
+                                    await BlogController.deleteBlogPost(
+                                        snapshot.data![index].uid);
+                                    setState(() {
+                                      currentView = _buildBlogListView();
+                                    });
                                   },
                                 ),
                               ],
@@ -77,28 +74,21 @@ class _EventsPageState extends State<EventsPage> {
                   },
                 ),
                 Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: IconButton(
-                          icon: const Icon(Icons.add),
-                          onPressed: () {
-                            setState(() {
-                              currentView = _buildAddEventView();
-                            });
-                          },
-                        ),
-                      ),
-                    ],
+                  bottom: 10,
+                  right: 10,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      setState(() {
+                        currentView = _buildAddBlogView();
+                      });
+                    },
+                    child: const Icon(Icons.add),
                   ),
-                )
+                ),
               ],
             );
           } else if (snapshot.hasError) {
-            snapshot.error.printError();
+            debugPrint(snapshot.error.toString());
             return const Center(
               child: Text('Error'),
             );
@@ -110,21 +100,18 @@ class _EventsPageState extends State<EventsPage> {
         },
       );
 
-  _buildAddEventView() => Stack(
+  Widget _buildAddBlogView() => Stack(
         children: [
-          EventData(
-            event: Event(
-              name: '',
-              description: '',
-              organisation: '',
-              city: '',
-              theme: '',
-              date: Timestamp.now(),
-              image: '',
+          BlogData(
+            blogPost: BlogPost(
               uid: '',
+              title: '',
+              content: '',
+              image: '',
+              createdAt: Timestamp.now(),
             ),
             onCanceled: () => setState(() {
-              currentView = _buildEventsListView();
+              currentView = _buildBlogListView();
             }),
           ),
           Positioned(
@@ -136,7 +123,7 @@ class _EventsPageState extends State<EventsPage> {
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   setState(() {
-                    currentView = _buildEventsListView();
+                    currentView = _buildBlogListView();
                   });
                 },
               ),
@@ -145,12 +132,12 @@ class _EventsPageState extends State<EventsPage> {
         ],
       );
 
-  _buildEditEventView(Event event) => Stack(
+  Widget _buildEditBlogView(BlogPost blogPost) => Stack(
         children: [
-          EventData(
-            event: event,
+          BlogData(
+            blogPost: blogPost,
             onCanceled: () => setState(() {
-              currentView = _buildEventsListView();
+              currentView = _buildBlogListView();
             }),
           ),
           Positioned(
@@ -162,7 +149,7 @@ class _EventsPageState extends State<EventsPage> {
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   setState(() {
-                    currentView = _buildEventsListView();
+                    currentView = _buildBlogListView();
                   });
                 },
               ),
@@ -172,24 +159,19 @@ class _EventsPageState extends State<EventsPage> {
       );
 }
 
-class EventData extends StatefulWidget {
-  const EventData({super.key, required this.event, required this.onCanceled});
+class BlogData extends StatefulWidget {
+  const BlogData({super.key, required this.blogPost, required this.onCanceled});
 
-  final Event event;
+  final BlogPost blogPost;
   final VoidCallback onCanceled;
 
   @override
-  State<EventData> createState() => _EventDataState();
+  State<BlogData> createState() => _BlogDataState();
 }
 
-class _EventDataState extends State<EventData> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _cityController = TextEditingController();
-  final TextEditingController _themeController = TextEditingController();
-  final TextEditingController _organisationController = TextEditingController();
-  // TextEditingController _dateController = TextEditingController();
-  // TextEditingController _imageController = TextEditingController();
+class _BlogDataState extends State<BlogData> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController contentController = TextEditingController();
 
   late DropzoneViewController dropZoneController;
   UploadTask? uploadTask;
@@ -202,22 +184,15 @@ class _EventDataState extends State<EventData> {
 
   @override
   void initState() {
-    _nameController.text = widget.event.name;
-    _descriptionController.text = widget.event.description;
-    _organisationController.text = widget.event.organisation;
-    _cityController.text = widget.event.city;
-    _themeController.text = widget.event.theme;
+    titleController.text = widget.blogPost.title;
+    contentController.text = widget.blogPost.content;
     super.initState();
   }
 
   @override
   void dispose() {
-    _nameController.dispose();
-    _descriptionController.dispose();
-    _cityController.dispose();
-    _themeController.dispose();
-    _organisationController.dispose();
-
+    titleController.dispose();
+    contentController.dispose();
     super.dispose();
   }
 
@@ -254,33 +229,15 @@ class _EventDataState extends State<EventData> {
                     : _buildDropZone(),
               ),
               TextField(
-                controller: _nameController,
+                controller: titleController,
                 decoration: const InputDecoration(
-                  labelText: 'Name',
+                  labelText: "Title",
                 ),
               ),
               TextField(
-                controller: _descriptionController,
+                controller: contentController,
                 decoration: const InputDecoration(
-                  labelText: 'Description',
-                ),
-              ),
-              TextField(
-                controller: _organisationController,
-                decoration: const InputDecoration(
-                  labelText: 'Organisation',
-                ),
-              ),
-              TextField(
-                controller: _cityController,
-                decoration: const InputDecoration(
-                  labelText: 'City',
-                ),
-              ),
-              TextField(
-                controller: _themeController,
-                decoration: const InputDecoration(
-                  labelText: 'Theme',
+                  labelText: "Content",
                 ),
               ),
             ],
@@ -304,29 +261,26 @@ class _EventDataState extends State<EventData> {
                   onPressed: () async {
                     try {
                       final String path =
-                          'files/blog/${widget.event.uid}/$fileName';
+                          'files/blog/${widget.blogPost.uid}/$fileName';
                       final Reference ref = FirebaseStorage.instance.ref(path);
 
-                      // setState(() {
-                      //   uploadTask = ref.putData(data);
-                      // });
-                      // await uploadTask!.whenComplete(() {
-                      //   setState(() {
-                      //     progress = 0;
-                      //     uploadTask = null;
-                      //   });
-                      // });
-                      // await FirebaseFirestore.instance
-                      //     .collection('files')
-                      //     .doc(userId)
-                      //     .collection('files')
-                      //     .doc(fileName)
-                      //     .set({
-                      //   'name': fileName,
-                      //   'path': path,
-                      //   'date': DateTime.now().toString(),
-                      //   'status': false,
-                      // });
+                      setState(() {
+                        uploadTask = ref.putData(data);
+                      });
+                      await uploadTask!.whenComplete(() {
+                        setState(() {
+                          progress = 0;
+                          uploadTask = null;
+                        });
+                      });
+                      await FirebaseFirestore.instance
+                          .collection('BlogPosts')
+                          .doc(widget.blogPost.uid)
+                          .update({
+                        'title': titleController.text,
+                        'content': contentController.text,
+                        'image': path,
+                      });
 
                       setState(() {});
                     } catch (e) {
@@ -373,6 +327,7 @@ class _EventDataState extends State<EventData> {
               onDrop: (value) async {
                 fileName = await dropZoneController.getFilename(value);
                 data = await dropZoneController.getFileData(value);
+
                 fileUploaded = true;
               },
             ),
@@ -386,4 +341,90 @@ class _EventDataState extends State<EventData> {
           ),
         ],
       );
+}
+
+class BlogPostCard extends StatefulWidget {
+  const BlogPostCard({super.key, required this.blogPost});
+
+  final BlogPost blogPost;
+
+  @override
+  State<BlogPostCard> createState() => _BlogPostCardState();
+}
+
+class _BlogPostCardState extends State<BlogPostCard> {
+  bool isHover = false;
+  Duration duration = const Duration(milliseconds: 200);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      onHover: (value) {
+        setState(() {
+          isHover = value;
+        });
+      },
+      hoverColor: Colors.transparent,
+      child: AnimatedContainer(
+        duration: duration,
+        height: 400,
+        width: 300,
+        decoration: BoxDecoration(
+          boxShadow: [
+            if (isHover)
+              BoxShadow(
+                offset: const Offset(0, 20),
+                blurRadius: 50,
+                color: Colors.black.withOpacity(0.1),
+              )
+          ],
+        ),
+        child: Card(
+          child: Stack(
+            children: [
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircleAvatar(
+                      radius: 70,
+                    ),
+                    const SizedBox(height: 60),
+                    Text(
+                      widget.blogPost.title,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Positioned(
+                right: 0,
+                bottom: 0,
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Text.rich(
+                    TextSpan(
+                      text: "Know more about ",
+                      children: [
+                        TextSpan(
+                          text: "me",
+                          style: TextStyle(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
+import 'Pages/blog_page.dart';
 import 'Pages/events_page.dart';
 import 'Pages/formation_page.dart';
 import 'Pages/team_page.dart';
@@ -81,16 +82,20 @@ class _DashboardState extends State<Dashboard> {
                 label: 'Home',
               ),
               SidebarXItem(
-                icon: Icons.person,
-                label: 'Formations',
-              ),
-              SidebarXItem(
                 icon: Icons.event,
                 label: 'Events',
               ),
               SidebarXItem(
+                icon: Icons.article,
+                label: 'Blog',
+              ),
+              SidebarXItem(
                 icon: Icons.person,
                 label: 'Team',
+              ),
+              SidebarXItem(
+                icon: Icons.person,
+                label: 'Formations',
               ),
             ],
             controller: _controller,
@@ -143,6 +148,8 @@ class _PagesControllerState extends State<PagesController> {
             return pages[2];
           case 3:
             return pages[3];
+          case 4:
+            return pages[4];
           default:
             return const Center(
               child: Text("Not found page"),
@@ -156,9 +163,10 @@ class _PagesControllerState extends State<PagesController> {
     const Center(
       child: Text("home"),
     ),
-    const FormationsPage(),
     const EventsPage(),
+    const BlogPage(),
     const TeamPage(),
+    const FormationsPage(),
   ];
 }
 

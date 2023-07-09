@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../FrontEnd/Views/error_page.dart';
-import '../../FrontEnd/Views/login_page.dart';
+import '../../DashBoard/Views/login_page.dart';
 
 class AuthCheck extends StatefulWidget {
   const AuthCheck({Key? key, required this.child, required this.routeName})

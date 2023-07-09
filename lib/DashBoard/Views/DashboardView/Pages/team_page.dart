@@ -1,4 +1,9 @@
+import 'package:dotted_border/dotted_border.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dropzone/flutter_dropzone.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../DataBase/Controllers/team_controller.dart';
 import '../../../../DataBase/Models/team.dart';
@@ -225,6 +230,15 @@ class _TeamDataState extends State<TeamData> {
   final TextEditingController _roleController = TextEditingController();
   // final TextEditingController _imageController = TextEditingController();
 
+  late DropzoneViewController dropZoneController;
+  UploadTask? uploadTask;
+  double progress = 0;
+  bool _startAnimation = false;
+
+  bool fileUploaded = false;
+  String fileName = '';
+  Uint8List data = Uint8List(0);
+
   @override
   void initState() {
     _nameController.text = widget.teamMember.name;
@@ -243,12 +257,36 @@ class _TeamDataState extends State<TeamData> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
           child: Column(
             children: [
+              SizedBox(
+                height: size.height * 0.3,
+                width: size.width * 0.3,
+                child: fileUploaded
+                    ? Column(
+                        children: [
+                          SizedBox(
+                              height: size.height * 0.2,
+                              width: size.width * 0.2,
+                              child: Image.memory(data)),
+                          Text(fileName),
+                          IconButton(
+                            onPressed: () {
+                              setState(() {
+                                fileUploaded = false;
+                              });
+                            },
+                            icon: const Icon(Icons.restart_alt_outlined),
+                          ),
+                        ],
+                      )
+                    : _buildDropZone(),
+              ),
               TextField(
                 controller: _nameController,
                 decoration: const InputDecoration(
@@ -286,7 +324,36 @@ class _TeamDataState extends State<TeamData> {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   onPressed: () async {
-                    // await EventsController.updateEvent();
+                    try {
+                      final String path =
+                          'files/blog/${widget.teamMember.uid}/$fileName';
+                      final Reference ref = FirebaseStorage.instance.ref(path);
+
+                      // setState(() {
+                      //   uploadTask = ref.putData(data);
+                      // });
+                      // await uploadTask!.whenComplete(() {
+                      //   setState(() {
+                      //     progress = 0;
+                      //     uploadTask = null;
+                      //   });
+                      // });
+                      // await FirebaseFirestore.instance
+                      //     .collection('files')
+                      //     .doc(userId)
+                      //     .collection('files')
+                      //     .doc(fileName)
+                      //     .set({
+                      //   'name': fileName,
+                      //   'path': path,
+                      //   'date': DateTime.now().toString(),
+                      //   'status': false,
+                      // });
+
+                      setState(() {});
+                    } catch (e) {
+                      debugPrint(e.toString());
+                    }
                   },
                   child: const Text('Done'),
                 ),
@@ -297,4 +364,49 @@ class _TeamDataState extends State<TeamData> {
       ],
     );
   }
+
+  Widget _buildDropZone() => Stack(
+        children: [
+          DottedBorder(
+            color: Colors.black,
+            strokeWidth: 2,
+            dashPattern: const [10, 10],
+            borderType: BorderType.RRect,
+            radius: const Radius.circular(20),
+            child: DropzoneView(
+              operation: DragOperation.copy,
+              cursor: CursorType.grab,
+              onCreated: (DropzoneViewController controller) {
+                dropZoneController = controller;
+              },
+              mime: const [
+                'image/jpeg',
+                'image/png',
+                'image/bmp',
+                'image/gif',
+                'image/jpg',
+              ],
+              onHover: () => setState(() {
+                _startAnimation = true;
+              }),
+              onLeave: () => setState(() {
+                _startAnimation = false;
+              }),
+              onDrop: (value) async {
+                fileName = await dropZoneController.getFilename(value);
+                data = await dropZoneController.getFileData(value);
+
+                fileUploaded = true;
+              },
+            ),
+          ),
+          Center(
+            child: Lottie.asset(
+              'assets/animations/download-file-icon-animation.json',
+              frameRate: FrameRate.max,
+              repeat: _startAnimation,
+            ),
+          ),
+        ],
+      );
 }

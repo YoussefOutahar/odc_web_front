@@ -22,7 +22,17 @@ class _FormationsPageState extends State<FormationsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return currentView ?? const Center(child: CircularProgressIndicator());
+    return const Center(
+      child: Text(
+        "in Devellopement",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),
+      ),
+    );
+
+    //return currentView ?? const Center(child: CircularProgressIndicator());
   }
 
   Widget _buildFormationListView() => Stack(
