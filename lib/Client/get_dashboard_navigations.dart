@@ -4,7 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/route_middleware.dart';
 
-import 'Views/DashboardView/dashboard.dart';
+import 'Views/Admin/dashboard.dart';
 import 'Views/login_page.dart';
 
 getDashboardNavigations() => [

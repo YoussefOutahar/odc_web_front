@@ -1,12 +1,12 @@
 import 'dart:ui';
 
 class Service {
-  final String uid;
-  final String title, image;
-  final Color color;
+  String? uid;
+  String title, image;
+  Color color;
 
   Service(
-      {required this.uid,
+      {this.uid,
       required this.title,
       required this.image,
       required this.color});

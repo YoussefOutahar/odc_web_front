@@ -32,6 +32,7 @@ dependencies:
   flutter_carousel_widget: ^2.0.4
   blur: ^3.1.0
   dotted_border: ^2.0.0+3
+  date_time_picker: ^2.1.0
 
   # Utils
   email_validator: ^2.1.17

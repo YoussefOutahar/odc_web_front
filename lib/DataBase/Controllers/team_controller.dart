@@ -4,7 +4,7 @@ import 'package:odc/DataBase/Models/team.dart';
 
 class TeamController {
   //Create:
-  static Future<bool> addTeam(TeamMember member) async {
+  static Future<TeamMember?> addTeamMember(TeamMember member) async {
     try {
       await FirebaseFirestore.instance
           .collection('Teams')
@@ -25,14 +25,16 @@ class TeamController {
           .collection('Teams')
           .doc(uid)
           .update({'uid': uid});
-      return true;
+
+      member.uid = uid;
+      return member;
     } catch (e) {
-      return false;
+      return null;
     }
   }
 
   //Read:
-  static Stream<List<TeamMember>> getTeams() {
+  static Stream<List<TeamMember>> getTeamMembers() {
     try {
       return FirebaseFirestore.instance.collection('Teams').snapshots().map(
           (snapshot) => snapshot.docs
@@ -43,7 +45,7 @@ class TeamController {
     }
   }
 
-  static Future<TeamMember?> getTeam(String uid) async {
+  static Future<TeamMember?> getTeamMember(String uid) async {
     DocumentSnapshot? document;
     try {
       document =
@@ -59,7 +61,7 @@ class TeamController {
   }
 
   //Update:
-  static Future<bool> updateTeam(TeamMember member) async {
+  static Future<bool> updateTeamMember(TeamMember member) async {
     try {
       await FirebaseFirestore.instance
           .collection('Teams')
@@ -72,7 +74,7 @@ class TeamController {
   }
 
   //Delete:
-  static Future<bool> deleteTeam(String id) async {
+  static Future<bool> deleteTeamMember(String id) async {
     try {
       await FirebaseFirestore.instance.collection('Teams').doc(id).delete();
       return true;

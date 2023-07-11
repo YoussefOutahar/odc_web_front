@@ -4,7 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-import 'DashBoard/get_dashboard_navigations.dart';
+import 'Client/get_dashboard_navigations.dart';
 import 'Services/analytics_service.dart';
 import 'Services/Themes/app_theme.dart';
 import 'DataBase/firebase_options.dart';

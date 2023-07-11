@@ -1,9 +1,9 @@
 class Formation {
-  final String image, category, title;
-  final String uid;
+  String image, category, title;
+  String? uid;
 
   Formation(
-      {required this.uid,
+      {this.uid,
       required this.image,
       required this.category,
       required this.title});

@@ -5,7 +5,7 @@ import '../Models/events.dart';
 
 class EventsController {
   //Create:
-  static Future<bool> addEvent(Event event) async {
+  static Future<Event?> addEvent(Event event) async {
     try {
       await FirebaseFirestore.instance
           .collection('Events')
@@ -26,9 +26,11 @@ class EventsController {
           .collection('Events')
           .doc(uid)
           .update({"uid": uid});
-      return true;
+
+      event.uid = uid;
+      return event;
     } catch (e) {
-      return false;
+      return null;
     }
   }
 

@@ -5,7 +5,7 @@ import '../Models/formations.dart';
 
 class FormationController {
   //Create:
-  static Future<bool> addFormation(Formation formation) async {
+  static Future<Formation?> addFormation(Formation formation) async {
     try {
       await FirebaseFirestore.instance
           .collection('Formations')
@@ -23,9 +23,11 @@ class FormationController {
           .collection('Formations')
           .doc(uid)
           .update({'uid': uid});
-      return true;
+
+      formation.uid = uid;
+      return formation;
     } catch (e) {
-      return false;
+      return null;
     }
   }
 

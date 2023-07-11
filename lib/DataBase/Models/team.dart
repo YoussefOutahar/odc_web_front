@@ -1,14 +1,11 @@
 class TeamMember {
-  final String uid;
-  final String name;
-  final String role;
-  final String image;
+  String? uid;
+  String name;
+  String role;
+  String image;
 
   TeamMember(
-      {required this.uid,
-      required this.name,
-      required this.role,
-      required this.image});
+      {this.uid, required this.name, required this.role, required this.image});
 
   factory TeamMember.fromJson(Map<String, dynamic> json) {
     return TeamMember(

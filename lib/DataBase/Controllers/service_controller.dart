@@ -5,7 +5,7 @@ import '../Models/service.dart';
 
 class ServiceController {
   //Create:
-  static Future<bool> addService(Service service) async {
+  static Future<Service?> addService(Service service) async {
     try {
       await FirebaseFirestore.instance
           .collection('Services')
@@ -22,9 +22,11 @@ class ServiceController {
           .collection('Services')
           .doc(uid)
           .update({'uid': uid});
-      return true;
+
+      service.uid = uid;
+      return service;
     } catch (e) {
-      return false;
+      return null;
     }
   }
 
