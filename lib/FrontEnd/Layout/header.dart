@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../Services/responsive.dart';
 import '../Animations/entrance_fader.dart';
 import 'Components/tab_tile.dart';
 
 class Header extends StatefulWidget {
-  const Header({super.key});
+  const Header({super.key, required this.openDrawer});
+
+  final VoidCallback openDrawer;
 
   @override
   State<Header> createState() => _HeaderState();
@@ -18,27 +21,30 @@ class _HeaderState extends State<Header> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
-          Container(
-            margin: const EdgeInsets.only(left: 10),
-            child: const Image(
-              image: AssetImage("assets/images/logo.png"),
-              height: 50,
-              filterQuality: FilterQuality.high,
-              isAntiAlias: true,
-            ),
-          ),
+          Responsive.isMobile(context)
+              ? IconButton(
+                  onPressed: widget.openDrawer,
+                  icon: const Icon(Icons.menu),
+                )
+              : const SizedBox(),
           const Spacer(),
-          Row(
-            children: [
-              TabTile(text: "Home", onTap: () => Get.offAndToNamed("/home")),
-              TabTile(text: "About", onTap: () => Get.toNamed("/aboutUs")),
-              TabTile(
-                  text: "Formations", onTap: () => Get.toNamed("/formations")),
-              TabTile(text: "Blog", onTap: () => Get.toNamed("/blog")),
-              TabTile(
-                  text: "Contact Us", onTap: () => Get.toNamed("/contactUs")),
-            ],
-          ),
+          !Responsive.isMobile(context)
+              ? Row(
+                  children: [
+                    TabTile(
+                        text: "Home", onTap: () => Get.offAndToNamed("/home")),
+                    TabTile(
+                        text: "About", onTap: () => Get.toNamed("/aboutUs")),
+                    TabTile(
+                        text: "Formations",
+                        onTap: () => Get.toNamed("/formations")),
+                    TabTile(text: "Blog", onTap: () => Get.toNamed("/blog")),
+                    TabTile(
+                        text: "Contact Us",
+                        onTap: () => Get.toNamed("/contactUs")),
+                  ],
+                )
+              : const SizedBox(),
           const Spacer(),
           // AuthController.checkIfLogged() ? _buildLogged() : _buildNotLogged(),
         ],

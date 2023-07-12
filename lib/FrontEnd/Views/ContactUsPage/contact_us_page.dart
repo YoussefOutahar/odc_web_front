@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
+import '../../../Services/responsive.dart';
 import '../../Components/deafult_button.dart';
 import '../../Components/section_title.dart';
 import 'Components/social_card.dart';
@@ -57,56 +57,52 @@ class ContactBox extends StatelessWidget {
       ),
       child: Column(
         children: [
-          ResponsiveBuilder(
-            builder: ((context, sizingInformation) {
-              return sizingInformation.isMobile
-                  ? Column(
-                      children: [
-                        SocialCard(
-                          color: const Color(0xFFE8F0F9),
-                          iconSrc: "assets/images/linkedin-50.png",
-                          name: 'LinkedIn',
-                          press: () {},
-                        ),
-                        SocialCard(
-                          color: const Color(0xFFD9FFFC),
-                          iconSrc: "assets/images/email-50.png",
-                          name: 'Email',
-                          press: () {},
-                        ),
-                        SocialCard(
-                          color: const Color(0xFFE4FFC7),
-                          iconSrc: "assets/images/phone-50.png",
-                          name: 'Call Us',
-                          press: () {},
-                        ),
-                      ],
-                    )
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SocialCard(
-                          color: const Color(0xFFE8F0F9),
-                          iconSrc: "assets/images/linkedin-50.png",
-                          name: 'LinkedIn',
-                          press: () {},
-                        ),
-                        SocialCard(
-                          color: const Color(0xFFD9FFFC),
-                          iconSrc: "assets/images/email-50.png",
-                          name: 'Email',
-                          press: () {},
-                        ),
-                        SocialCard(
-                          color: const Color(0xFFE4FFC7),
-                          iconSrc: "assets/images/phone-50.png",
-                          name: 'Call Us',
-                          press: () {},
-                        ),
-                      ],
-                    );
-            }),
-          ),
+          Responsive.isMobile(context)
+              ? Column(
+                  children: [
+                    SocialCard(
+                      color: const Color(0xFFE8F0F9),
+                      iconSrc: "assets/images/linkedin-50.png",
+                      name: 'LinkedIn',
+                      press: () {},
+                    ),
+                    SocialCard(
+                      color: const Color(0xFFD9FFFC),
+                      iconSrc: "assets/images/email-50.png",
+                      name: 'Email',
+                      press: () {},
+                    ),
+                    SocialCard(
+                      color: const Color(0xFFE4FFC7),
+                      iconSrc: "assets/images/phone-50.png",
+                      name: 'Call Us',
+                      press: () {},
+                    ),
+                  ],
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SocialCard(
+                      color: const Color(0xFFE8F0F9),
+                      iconSrc: "assets/images/linkedin-50.png",
+                      name: 'LinkedIn',
+                      press: () {},
+                    ),
+                    SocialCard(
+                      color: const Color(0xFFD9FFFC),
+                      iconSrc: "assets/images/email-50.png",
+                      name: 'Email',
+                      press: () {},
+                    ),
+                    SocialCard(
+                      color: const Color(0xFFE4FFC7),
+                      iconSrc: "assets/images/phone-50.png",
+                      name: 'Call Us',
+                      press: () {},
+                    ),
+                  ],
+                ),
           const SizedBox(height: 20 * 2),
           const ContactForm(),
         ],
@@ -182,7 +178,6 @@ class ContactForm extends StatelessWidget {
           Center(
             child: FittedBox(
               child: DefaultButton(
-                imageSrc: "assets/images/contact_icon.png",
                 text: "Contact Us!",
                 press: () {},
               ),

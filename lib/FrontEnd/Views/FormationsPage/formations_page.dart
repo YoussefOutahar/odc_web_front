@@ -5,6 +5,7 @@ import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import '../../../Services/responsive.dart';
 import '../../Components/deafult_button.dart';
 import '../../Components/section_title.dart';
 
@@ -55,58 +56,55 @@ class TopSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(builder: (context, sizingInformation) {
-      return SizedBox(
-        width: size.width,
-        height:
-            sizingInformation.isMobile ? size.height * 0.5 : size.height * 0.9,
-        child: Stack(
-          children: [
-            Stack(
-              children: [
-                Image.asset(
-                  "assets/images/OpenSourceImages/img2.png",
-                  fit: BoxFit.cover,
+    return SizedBox(
+      width: size.width,
+      height:
+          Responsive.isMobile(context) ? size.height * 0.5 : size.height * 0.9,
+      child: Stack(
+        children: [
+          Stack(
+            children: [
+              Image.asset(
+                "assets/images/OpenSourceImages/img2.png",
+                fit: BoxFit.cover,
+                width: size.width,
+              ),
+              ClipPath(
+                clipper: TopSectionClipper(),
+                child: Container(
                   width: size.width,
+                ).blurred(blur: 5, blurColor: Colors.white),
+              )
+            ],
+          ),
+          Positioned(
+            top: Responsive.isMobile(context)
+                ? size.height * 0.1
+                : size.height * 0.35,
+            left: size.width * 0.1,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Nos Formations",
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
-                ClipPath(
-                  clipper: TopSectionClipper(),
-                  child: Container(
-                    width: size.width,
-                  ).blurred(blur: 5, blurColor: Colors.white),
-                )
+                SizedBox(height: size.height * 0.05),
+                Text(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,\n luctus nec ullamcorper mattis, pulvinar dapibus leo.",
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                SizedBox(height: size.height * 0.05),
+                DefaultButton(
+                  press: () {},
+                  text: "Learn More",
+                ),
               ],
             ),
-            Positioned(
-              top: sizingInformation.isMobile
-                  ? size.height * 0.1
-                  : size.height * 0.35,
-              left: size.width * 0.1,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Nos Formations",
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
-                  SizedBox(height: size.height * 0.05),
-                  Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,\n luctus nec ullamcorper mattis, pulvinar dapibus leo.",
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  SizedBox(height: size.height * 0.05),
-                  DefaultButton(
-                    imageSrc: "assets/images/logo.png",
-                    press: () {},
-                    text: "Learn More",
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
-    });
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -241,7 +239,7 @@ class LearningTravel extends StatelessWidget {
             packs:
                 "* Voyage Programmation Informatique\n\n* Voyage découverte pédagogique \n\n* Voyage entreprenariat",
             press: () {},
-            imageSrc: "assets/images/formations/background1.png",
+            imageSrc: "assets/images/OpenSourceImages/img10.png",
           )
         ],
       ),
@@ -282,24 +280,18 @@ class ForamationCard extends StatelessWidget {
               height: 400,
             ),
             Center(
-              child: Padding(
-                padding: const EdgeInsets.all(40.0),
-                child: ClipRect(
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                    child: Container(
-                      padding: const EdgeInsets.all(40.0),
-                      margin: const EdgeInsets.all(40.0),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade200.withOpacity(0.5),
-                      ),
-                      child: Center(
-                        child: Text(
-                          packs,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                          ),
+              child: ClipRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 7.0, sigmaY: 7.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(40.0),
+                    margin: const EdgeInsets.all(40.0),
+                    child: Center(
+                      child: Text(
+                        packs,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -313,7 +305,6 @@ class ForamationCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DefaultButton(
-                  imageSrc: "assets/images/contact_icon.png",
                   press: press,
                   text: 'Learn more',
                 ),

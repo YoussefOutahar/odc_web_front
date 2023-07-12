@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:responsive_builder/responsive_builder.dart';
+import 'package:infinite_carousel/infinite_carousel.dart';
 
 import '../../../Components/section_title.dart';
 import '../../../../DataBase/Models/team.dart';
@@ -30,28 +29,16 @@ class TeamSection extends StatelessWidget {
             title: 'Our Team',
           ),
           const SizedBox(height: 20 * 1.5),
-          ResponsiveBuilder(
-            builder: (context, sizingInformation) => FlutterCarousel.builder(
-              options: CarouselOptions(
-                height: 450,
-                autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 3),
-                autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
-                pauseAutoPlayOnTouch: true,
-                aspectRatio: 1,
-                viewportFraction: sizingInformation.deviceScreenType ==
-                        DeviceScreenType.desktop
-                    ? 0.3
-                    : sizingInformation.deviceScreenType ==
-                            DeviceScreenType.tablet
-                        ? 0.4
-                        : 0.8,
-                onPageChanged: (index, reason) {},
-              ),
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 20.0),
+            height: 400.0,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
               itemCount: members.length,
-              itemBuilder: (context, index, realIndex) =>
-                  TeamCard(index: index),
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TeamCard(index: index),
+              ),
             ),
           ),
           const SizedBox(height: 20 * 5),

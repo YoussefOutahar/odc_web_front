@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
-import 'package:responsive_builder/responsive_builder.dart';
+import 'package:infinite_carousel/infinite_carousel.dart';
+import 'package:odc/DataBase/Models/events.dart';
 
 import '../../../Components/section_title.dart';
-import '../../../../DataBase/Models/events.dart';
 
 class EventsCarousel extends StatelessWidget {
   const EventsCarousel({
@@ -22,31 +21,21 @@ class EventsCarousel extends StatelessWidget {
             title: "Events",
             subTitle: "Recent Events",
           ),
-          ResponsiveBuilder(
-            builder: (context, sizingInfo) => FlutterCarousel.builder(
-              options: CarouselOptions(
-                height: 320,
-                autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 3),
-                autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
-                pauseAutoPlayOnTouch: true,
-                aspectRatio: 2.0,
-                viewportFraction:
-                    sizingInfo.deviceScreenType == DeviceScreenType.desktop
-                        ? 0.5
-                        : sizingInfo.deviceScreenType == DeviceScreenType.tablet
-                            ? 0.6
-                            : 0.8,
-                onPageChanged: (index, reason) {},
-              ),
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 20.0),
+            height: 400.0,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
               itemCount: events.length,
-              itemBuilder: ((context, index, realIndex) => EventCard(
-                    title: events[index].name,
-                    date: events[index].date.toDate(),
-                    description: events[index].description,
-                    imageUrl: events[index].image,
-                  )),
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: EventCard(
+                  title: events[index].name,
+                  date: events[index].date.toDate(),
+                  description: events[index].description,
+                  imageUrl: events[index].image,
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 20 * 3),
@@ -76,47 +65,45 @@ class EventCard extends StatefulWidget {
 class _EventCardState extends State<EventCard> {
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: ((context, sizingInformation) => AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            height: 340,
-            width: 540,
-            child: Card(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 170,
-                    width: 540,
-                    child: Image.asset(
-                      "assets/images/OpenSourceImages/img3.png",
-                      filterQuality: FilterQuality.high,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            widget.title,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 40),
-                          Text(widget.date.toString()),
-                          const SizedBox(height: 20),
-                          Text(widget.description),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      height: 340,
+      width: 540,
+      child: Card(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 170,
+              width: 540,
+              child: Image.asset(
+                "assets/images/OpenSourceImages/img3.png",
+                filterQuality: FilterQuality.high,
+                fit: BoxFit.cover,
               ),
             ),
-          )),
+            Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      widget.title,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 40),
+                    Text(widget.date.toString()),
+                    const SizedBox(height: 20),
+                    Text(widget.description),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

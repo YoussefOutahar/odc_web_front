@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 class DefaultButton extends StatelessWidget {
   const DefaultButton({
     Key? key,
-    required this.imageSrc,
     required this.text,
     required this.press,
   }) : super(key: key);
 
-  final String imageSrc, text;
+  final String text;
   final VoidCallback press;
 
   @override
