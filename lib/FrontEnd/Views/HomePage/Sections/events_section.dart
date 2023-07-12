@@ -32,12 +32,11 @@ class EventsCarousel extends StatelessWidget {
                 autoPlayCurve: Curves.fastOutSlowIn,
                 pauseAutoPlayOnTouch: true,
                 aspectRatio: 2.0,
-                enlargeCenterPage: true,
                 viewportFraction:
                     sizingInfo.deviceScreenType == DeviceScreenType.desktop
                         ? 0.5
                         : sizingInfo.deviceScreenType == DeviceScreenType.tablet
-                            ? 0.5
+                            ? 0.6
                             : 0.8,
                 onPageChanged: (index, reason) {},
               ),

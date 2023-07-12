@@ -38,6 +38,8 @@ dependencies:
   email_validator: ^2.1.17
   url_strategy: ^0.2.0
   flutter_dropzone: ^3.0.5
+  flutter_svg: ^2.0.7
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
@@ -47,11 +49,13 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/
     - assets/animations/
     - assets/images/
     - assets/images/OpenSourceImages/
     - assets/images/text/
     - assets/images/formations/
+    - assets/icons/
 
   fonts:
     - family: Montserrat

@@ -11,7 +11,9 @@ getDashboardNavigations() => [
       GetPage(
         name: "/dashboard",
         middlewares: [Middelware()],
-        page: () => const Dashboard(),
+        page: () => const Dashboard()
+            .animate()
+            .fadeIn(duration: const Duration(milliseconds: 500)),
       ),
       GetPage(
         name: "/authenticate",

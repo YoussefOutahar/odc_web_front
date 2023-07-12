@@ -89,32 +89,32 @@ class SliderMenu extends StatelessWidget {
     );
   }
 
-  _buildNotLoggedIn() {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [],
-    );
-  }
+  // _buildNotLoggedIn() {
+  //   return const Column(
+  //     mainAxisAlignment: MainAxisAlignment.end,
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [],
+  //   );
+  // }
 
-  _buildLoggedIn() {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Username',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16.0,
-          ),
-        ),
-        SizedBox(height: 8.0),
-        Text(
-          'user@example.com',
-          style: TextStyle(fontSize: 14.0),
-        ),
-      ],
-    );
-  }
+  // _buildLoggedIn() {
+  //   return const Column(
+  //     mainAxisAlignment: MainAxisAlignment.end,
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text(
+  //         'Username',
+  //         style: TextStyle(
+  //           fontWeight: FontWeight.bold,
+  //           fontSize: 16.0,
+  //         ),
+  //       ),
+  //       SizedBox(height: 8.0),
+  //       Text(
+  //         'user@example.com',
+  //         style: TextStyle(fontSize: 14.0),
+  //       ),
+  //     ],
+  //   );
+  // }
 }

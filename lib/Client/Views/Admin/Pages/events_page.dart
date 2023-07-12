@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../DataBase/Controllers/events_controller.dart';
 import '../../../../DataBase/Models/events.dart';
+import '../Components/Events/event_card.dart';
 import '../Components/Events/events_data.dart';
 
 class EventsPage extends StatefulWidget {
@@ -41,22 +41,15 @@ class _EventsPageState extends State<EventsPage> {
                   },
                 ),
                 Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: IconButton(
-                          icon: const Icon(Icons.add),
-                          onPressed: () {
-                            setState(() {
-                              currentView = _buildAddEventView();
-                            });
-                          },
-                        ),
-                      ),
-                    ],
+                  bottom: 10,
+                  right: 10,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      setState(() {
+                        currentView = _buildAddEventView();
+                      });
+                    },
+                    child: const Icon(Icons.add),
                   ),
                 )
               ],
@@ -134,70 +127,4 @@ class _EventsPageState extends State<EventsPage> {
           ),
         ],
       );
-}
-
-class EventCard extends StatefulWidget {
-  const EventCard({super.key, required this.event});
-
-  final Event event;
-
-  @override
-  State<EventCard> createState() => _EventCardState();
-}
-
-class _EventCardState extends State<EventCard> {
-  String? imageUrl;
-
-  @override
-  void initState() {
-    loadImageUrl();
-    super.initState();
-  }
-
-  Future<void> loadImageUrl() async {
-    String downloadUrl =
-        await FirebaseStorage.instance.ref(widget.event.image).getDownloadURL();
-    setState(() {
-      imageUrl = downloadUrl;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Card(
-        child: ListTile(
-            leading: imageUrl != null
-                ? SizedBox(
-                    height: 200,
-                    width: 200,
-                    child: Image.network(
-                      imageUrl!,
-                      fit: BoxFit.cover,
-                    ),
-                  )
-                : const CircularProgressIndicator(),
-            title: Text(widget.event.name),
-            subtitle: Text(widget.event.description),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.delete),
-                  onPressed: () async {
-                    // await EventsController.deleteEvent(
-                    //     snapshot.data![index].uid);
-                    Get.snackbar(
-                      'Event Deleted',
-                      'Event Deleted Successfully',
-                      snackPosition: SnackPosition.BOTTOM,
-                    );
-                  },
-                ),
-              ],
-            )),
-      ),
-    );
-  }
 }

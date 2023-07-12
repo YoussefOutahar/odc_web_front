@@ -117,7 +117,7 @@ class _BlogDataState extends State<BlogData> {
             ],
           ),
         ),
-        _buildUploadProgress(),
+        Positioned.fill(child: _buildUploadProgress()),
       ],
     );
   }

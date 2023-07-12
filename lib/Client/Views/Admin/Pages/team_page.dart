@@ -37,7 +37,17 @@ class _TeamPageState extends State<TeamPage> {
                     for (var teamMember in snapshot.data!)
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: TeamCard(teamMember: teamMember),
+                        child: TeamCard(
+                          teamMember: teamMember,
+                          onDeleted: () {
+                            TeamController.deleteTeamMember(teamMember.uid!);
+                          },
+                          onModified: () {
+                            setState(() {
+                              currentView = _buildEditTeamView(teamMember);
+                            });
+                          },
+                        ),
                       ),
                   ],
                 );
@@ -49,18 +59,15 @@ class _TeamPageState extends State<TeamPage> {
             },
           ),
           Positioned(
-            bottom: 0,
-            right: 0,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: IconButton(
-                icon: const Icon(Icons.add),
-                onPressed: () {
-                  setState(() {
-                    currentView = _buildAddTeamView();
-                  });
-                },
-              ),
+            bottom: 10,
+            right: 10,
+            child: FloatingActionButton(
+              onPressed: () {
+                setState(() {
+                  currentView = _buildAddTeamView();
+                });
+              },
+              child: const Icon(Icons.add),
             ),
           ),
         ],

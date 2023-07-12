@@ -68,11 +68,11 @@ class _DashboardState extends State<Dashboard> {
             ),
             footerDivider: divider,
             headerBuilder: (context, extended) {
-              return SizedBox(
+              return const SizedBox(
                 height: 100,
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Image.asset('assets/images/logo.png'),
+                  padding: EdgeInsets.all(16.0),
+                  child: Image(image: AssetImage('assets/images/logo.png')),
                 ),
               );
             },
@@ -106,11 +106,6 @@ class _DashboardState extends State<Dashboard> {
             builder: (BuildContext context, Widget? child) {
               return Stack(
                 children: [
-                  Positioned.fill(
-                    child: Container(
-                      color: canvasColor,
-                    ),
-                  ),
                   Positioned.fill(
                     child: PagesController(controller: _controller),
                   ),

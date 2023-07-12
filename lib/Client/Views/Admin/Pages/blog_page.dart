@@ -40,7 +40,19 @@ class _BlogPageState extends State<BlogPage> {
                     for (int i = 0; i < snapshot.data!.length; i++)
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: BlogPostCard(blogPost: snapshot.data![i]),
+                        child: BlogPostCard(
+                          blogPost: snapshot.data![i],
+                          onDeleted: () {
+                            BlogController.deleteBlogPost(
+                                snapshot.data![i].uid!);
+                          },
+                          onModified: () {
+                            setState(() {
+                              currentView =
+                                  _buildEditBlogView(snapshot.data![i]);
+                            });
+                          },
+                        ),
                       ),
                   ],
                 ),

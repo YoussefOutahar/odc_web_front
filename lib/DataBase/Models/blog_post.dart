@@ -40,3 +40,27 @@ class BlogPost {
     return "BlogPost [uid = $uid, title = $title, content = $content, image = $image, createdAt = $createdAt]";
   }
 }
+
+List<BlogPost> blogPosts = [
+  BlogPost(
+    title: "Our “Secret” Formula to Online Workshops",
+    content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar tortor. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl.",
+    image: "assets/images/recent_1.png",
+    createdAt: Timestamp.now(),
+  ),
+  BlogPost(
+    title: "Digital Product Innovations from Warsaw with Love",
+    content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar tortor. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl.",
+    image: "assets/images/recent_2.png",
+    createdAt: Timestamp.now(),
+  ),
+  BlogPost(
+    title: "Our “Secret” Formula to Online Workshops",
+    content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar tortor. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl.",
+    image: "assets/images/recent_1.png",
+    createdAt: Timestamp.now(),
+  ),
+];

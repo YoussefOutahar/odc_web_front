@@ -23,8 +23,8 @@ class DefaultButton extends StatelessWidget {
       onPressed: press,
       child: Row(
         children: [
-          Image.asset(imageSrc, height: 40),
-          const SizedBox(width: 20),
+          // Image.asset(imageSrc, height: 40),
+          // const SizedBox(width: 20),
           Text(text),
         ],
       ),

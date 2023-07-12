@@ -17,13 +17,12 @@ class Formations extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       // just for demo
       // height: 600,
-      decoration: BoxDecoration(
-        color: const Color(0xFFF7E8FF).withOpacity(0.3),
-        image: const DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage("assets/images/recent_work_bg.png"),
-        ),
-      ),
+      decoration: const BoxDecoration(
+          // image: const DecorationImage(
+          //   fit: BoxFit.cover,
+          //   image: AssetImage("assets/images/recent_work_bg.png"),
+          // ),
+          ),
       child: Column(
         children: [
           const SectionTitle(

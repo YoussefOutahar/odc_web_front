@@ -1,12 +1,19 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../DataBase/Models/team.dart';
 
 class TeamCard extends StatefulWidget {
-  const TeamCard({super.key, required this.teamMember});
+  const TeamCard(
+      {super.key,
+      required this.teamMember,
+      required this.onModified,
+      required this.onDeleted});
 
   final TeamMember teamMember;
+  final VoidCallback onModified;
+  final VoidCallback onDeleted;
 
   @override
   State<TeamCard> createState() => _TeamCardState();
@@ -49,12 +56,10 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
         width: 300,
         decoration: BoxDecoration(
           boxShadow: [
-            if (isHover)
-              BoxShadow(
-                offset: const Offset(0, 20),
-                blurRadius: 50,
-                color: Colors.black.withOpacity(0.1),
-              )
+            BoxShadow(
+              blurRadius: 20,
+              color: Colors.black.withOpacity(0.1),
+            )
           ],
         ),
         child: Card(
@@ -65,16 +70,13 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     imageUrl != null
-                        ? SizedBox(
-                            height: 200,
-                            width: 200,
-                            child: Image.network(
-                              imageUrl!,
-                              fit: BoxFit.cover,
-                            ),
+                        ? CircleAvatar(
+                            radius: 50,
+                            foregroundImage:
+                                CachedNetworkImageProvider(imageUrl!),
                           )
                         : const CircularProgressIndicator(),
-                    const SizedBox(height: 60),
+                    const SizedBox(height: 20),
                     Text(
                       widget.teamMember.name,
                       style: const TextStyle(
@@ -87,24 +89,22 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
                   ],
                 ),
               ),
-              const Positioned(
-                right: 0,
-                bottom: 0,
-                child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Text.rich(
-                    TextSpan(
-                      text: "Know more about ",
-                      children: [
-                        TextSpan(
-                          text: "me",
-                          style: TextStyle(
-                            color: Colors.red,
-                          ),
-                        ),
-                      ],
+              Positioned(
+                right: 5,
+                bottom: 5,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: widget.onModified,
+                      child: const Text("Modify"),
                     ),
-                  ),
+                    const SizedBox(width: 5),
+                    ElevatedButton(
+                      onPressed: widget.onDeleted,
+                      child: const Text("Delete"),
+                    ),
+                  ],
                 ),
               ),
             ],

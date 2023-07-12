@@ -46,36 +46,36 @@ class _HeaderState extends State<Header> {
     );
   }
 
-  Widget _buildLogged() {
-    return const Row(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(right: 10),
-          child: Text(
-            "Welcome Back",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-        )
-      ],
-    );
-  }
+  // Widget _buildLogged() {
+  //   return const Row(
+  //     children: [
+  //       Padding(
+  //         padding: EdgeInsets.only(right: 10),
+  //         child: Text(
+  //           "Welcome Back",
+  //           style: TextStyle(
+  //             fontSize: 16,
+  //             fontWeight: FontWeight.bold,
+  //             color: Colors.black,
+  //           ),
+  //         ),
+  //       )
+  //     ],
+  //   );
+  // }
 
-  Widget _buildNotLogged() {
-    return Row(
-      children: [
-        TabTile(
-          text: "Login",
-          onTap: () {
-            Get.toNamed("/authenticate");
-          },
-        )
-      ],
-    );
-  }
+  // Widget _buildNotLogged() {
+  //   return Row(
+  //     children: [
+  //       TabTile(
+  //         text: "Login",
+  //         onTap: () {
+  //           Get.toNamed("/authenticate");
+  //         },
+  //       )
+  //     ],
+  //   );
+  // }
 }
 
 class NavBarActionButton extends StatefulWidget {

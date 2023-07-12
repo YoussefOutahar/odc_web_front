@@ -15,13 +15,13 @@ class TeamSection extends StatelessWidget {
       // constraints: const BoxConstraints(maxWidth: 1110),
       margin: const EdgeInsets.only(top: 20 * 6),
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: const Color(0xFFF7E8FF).withOpacity(0.3),
-        image: const DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage("assets/images/recent_work_bg.png"),
-        ),
-      ),
+      decoration: const BoxDecoration(
+          // color: const Color(0xFFF7E8FF).withOpacity(0.3),
+          // image: const DecorationImage(
+          //   fit: BoxFit.cover,
+          //   image: AssetImage("assets/images/recent_work_bg.png"),
+          // ),
+          ),
       child: Column(
         children: [
           const SectionTitle(
@@ -40,10 +40,9 @@ class TeamSection extends StatelessWidget {
                 autoPlayCurve: Curves.fastOutSlowIn,
                 pauseAutoPlayOnTouch: true,
                 aspectRatio: 1,
-                enlargeCenterPage: true,
                 viewportFraction: sizingInformation.deviceScreenType ==
                         DeviceScreenType.desktop
-                    ? 0.25
+                    ? 0.3
                     : sizingInformation.deviceScreenType ==
                             DeviceScreenType.tablet
                         ? 0.4
@@ -105,6 +104,7 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
               Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const CircleAvatar(
                       radius: 70,
@@ -112,13 +112,17 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
                     const SizedBox(height: 60),
                     Text(
                       members[widget.index].name,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Text(members[widget.index].role),
+                    Text(
+                      members[widget.index].role,
+                      textAlign: TextAlign.center,
+                    ),
                   ],
                 ),
               ),

@@ -117,7 +117,7 @@ class _TeamDataState extends State<TeamData> {
             ],
           ),
         ),
-        _buildUploadProgress(),
+        Positioned.fill(child: _buildUploadProgress()),
       ],
     );
   }
