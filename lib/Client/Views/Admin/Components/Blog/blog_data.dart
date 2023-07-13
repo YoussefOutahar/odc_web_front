@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -49,76 +50,85 @@ class _BlogDataState extends State<BlogData> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
-          child: Column(
-            children: [
-              SizedBox(
-                height: size.height * 0.3,
-                width: size.width * 0.3,
-                child: fileUploaded
-                    ? Column(
-                        children: [
-                          SizedBox(
-                              height: size.height * 0.2,
-                              width: size.width * 0.2,
-                              child: Image.memory(data)),
-                          Text(fileName),
-                          IconButton(
-                            onPressed: () {
-                              setState(() {
-                                fileUploaded = false;
-                              });
-                            },
-                            icon: const Icon(Icons.restart_alt_outlined),
-                          ),
-                        ],
-                      )
-                    : _buildDropZone(),
-              ),
-              TextField(
-                controller: titleController,
-                decoration: const InputDecoration(
-                  labelText: "Title",
+    return IgnorePointer(
+      ignoring: _isLoading,
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: size.height * 0.3,
+                  width: size.width * 0.3,
+                  child: fileUploaded
+                      ? Column(
+                          children: [
+                            SizedBox(
+                                height: size.height * 0.2,
+                                width: size.width * 0.2,
+                                child: Image.memory(data)),
+                            Text(fileName),
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  fileUploaded = false;
+                                });
+                              },
+                              icon: const Icon(Icons.restart_alt_outlined),
+                            ),
+                          ],
+                        )
+                      : _buildDropZone(),
                 ),
-              ),
-              TextField(
-                controller: contentController,
-                decoration: const InputDecoration(
-                  labelText: "Content",
+                TextField(
+                  controller: titleController,
+                  decoration: const InputDecoration(
+                    labelText: "Title",
+                  ),
                 ),
-              ),
-            ],
+                TextField(
+                  controller: contentController,
+                  decoration: const InputDecoration(
+                    labelText: "Content",
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: widget.onCanceled,
-                  child: const Text('Cancel'),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: widget.onCanceled,
+                    child: const Text('Cancel'),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await _upload();
-                  },
-                  child: const Text('Done'),
-                ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      await _upload();
+                      setState(() {
+                        _isLoading = false;
+                      });
+                    },
+                    child: const Text('Done'),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-        Positioned.fill(child: _buildUploadProgress()),
-      ],
+          Positioned.fill(child: _buildUploadProgress()),
+        ],
+      ),
     );
   }
 
@@ -165,14 +175,43 @@ class _BlogDataState extends State<BlogData> {
               repeat: _startAnimation,
             ),
           ),
+          Positioned.fill(
+            child: InkWell(
+              onTap: () async {
+                FilePickerResult? result = await FilePicker.platform.pickFiles(
+                  type: FileType.custom,
+                  allowedExtensions: [
+                    'jpg',
+                    'jpeg',
+                    'png',
+                    'bmp',
+                    'gif',
+                  ],
+                );
+                if (result != null) {
+                  fileName = result.files.single.name;
+                  data = result.files.single.bytes!;
+                  setState(() {
+                    fileUploaded = true;
+                  });
+                }
+              },
+            ),
+          )
         ],
       );
 
+  bool _isLoading = false;
   Widget _buildUploadProgress() {
-    if (uploadTask != null) {
-      return Center(
-        child: LoadingAnimation(
-          uploadTask: uploadTask!,
+    if (_isLoading) {
+      return Container(
+        color: Colors.black.withOpacity(0.5),
+        child: Center(
+          child: uploadTask != null
+              ? LoadingAnimation(
+                  uploadTask: uploadTask!,
+                )
+              : const SizedBox(),
         ),
       );
     } else {

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:lottie/lottie.dart';
 
 import '../../../../../DataBase/Controllers/events_controller.dart';
 import '../../../../../DataBase/Models/events.dart';
+import '../Shared/loading_animation.dart';
 
 class EventData extends StatefulWidget {
   const EventData({super.key, required this.event, required this.onCanceled});
@@ -60,101 +62,111 @@ class _EventDataState extends State<EventData> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
-          child: Column(
-            children: [
-              SizedBox(
-                height: size.height * 0.3,
-                width: size.width * 0.3,
-                child: fileUploaded
-                    ? Column(
-                        children: [
-                          SizedBox(
-                              height: size.height * 0.2,
-                              width: size.width * 0.2,
-                              child: Image.memory(data)),
-                          Text(fileName),
-                          IconButton(
-                            onPressed: () {
-                              setState(() {
-                                fileUploaded = false;
-                              });
-                            },
-                            icon: const Icon(Icons.restart_alt_outlined),
-                          ),
-                        ],
-                      )
-                    : _buildDropZone(),
-              ),
-              TextField(
-                controller: _nameController,
-                decoration: const InputDecoration(
-                  labelText: 'Name',
+    return IgnorePointer(
+      ignoring: _isLoading,
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: size.height * 0.3,
+                  width: size.width * 0.3,
+                  child: fileUploaded
+                      ? Column(
+                          children: [
+                            SizedBox(
+                                height: size.height * 0.2,
+                                width: size.width * 0.2,
+                                child: Image.memory(data)),
+                            Text(fileName),
+                            IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  fileUploaded = false;
+                                });
+                              },
+                              icon: const Icon(Icons.restart_alt_outlined),
+                            ),
+                          ],
+                        )
+                      : _buildDropZone(),
                 ),
-              ),
-              TextField(
-                controller: _descriptionController,
-                decoration: const InputDecoration(
-                  labelText: 'Description',
+                TextField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    labelText: 'Name',
+                  ),
                 ),
-              ),
-              TextField(
-                controller: _organisationController,
-                decoration: const InputDecoration(
-                  labelText: 'Organisation',
+                TextField(
+                  controller: _descriptionController,
+                  decoration: const InputDecoration(
+                    labelText: 'Description',
+                  ),
                 ),
-              ),
-              TextField(
-                controller: _cityController,
-                decoration: const InputDecoration(
-                  labelText: 'City',
+                TextField(
+                  controller: _organisationController,
+                  decoration: const InputDecoration(
+                    labelText: 'Organisation',
+                  ),
                 ),
-              ),
-              TextField(
-                controller: _themeController,
-                decoration: const InputDecoration(
-                  labelText: 'Theme',
+                TextField(
+                  controller: _cityController,
+                  decoration: const InputDecoration(
+                    labelText: 'City',
+                  ),
                 ),
-              ),
-              DateTimePicker(
-                type: DateTimePickerType.dateTime,
-                initialValue: '',
-                firstDate: DateTime(2000),
-                lastDate: DateTime(2100),
-                dateLabelText: 'Date',
-                onSaved: (val) => selectedDate = DateTime.parse(val!),
-              )
-            ],
+                TextField(
+                  controller: _themeController,
+                  decoration: const InputDecoration(
+                    labelText: 'Theme',
+                  ),
+                ),
+                DateTimePicker(
+                  type: DateTimePickerType.dateTime,
+                  initialValue: '',
+                  firstDate: DateTime(2000),
+                  lastDate: DateTime(2100),
+                  dateLabelText: 'Date',
+                  onSaved: (val) => selectedDate = DateTime.parse(val!),
+                )
+              ],
+            ),
           ),
-        ),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: widget.onCanceled,
-                  child: const Text('Cancel'),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: widget.onCanceled,
+                    child: const Text('Cancel'),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await _upload();
-                  },
-                  child: const Text('Done'),
-                ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      await _upload();
+                      setState(() {
+                        _isLoading = false;
+                      });
+                    },
+                    child: const Text('Done'),
+                  ),
+                )
+              ],
+            ),
           ),
-        )
-      ],
+          Positioned.fill(child: _buildUploadProgress())
+        ],
+      ),
     );
   }
 
@@ -189,6 +201,7 @@ class _EventDataState extends State<EventData> {
                 fileName = await dropZoneController.getFilename(value);
                 data = await dropZoneController.getFileData(value);
                 fileUploaded = true;
+                setState(() {});
               },
             ),
           ),
@@ -199,8 +212,49 @@ class _EventDataState extends State<EventData> {
               repeat: _startAnimation,
             ),
           ),
+          Positioned.fill(
+            child: InkWell(
+              onTap: () async {
+                FilePickerResult? result = await FilePicker.platform.pickFiles(
+                  type: FileType.custom,
+                  allowedExtensions: [
+                    'jpg',
+                    'jpeg',
+                    'png',
+                    'bmp',
+                    'gif',
+                  ],
+                );
+                if (result != null) {
+                  fileName = result.files.single.name;
+                  data = result.files.single.bytes!;
+                  setState(() {
+                    fileUploaded = true;
+                  });
+                }
+              },
+            ),
+          )
         ],
       );
+
+  bool _isLoading = false;
+  Widget _buildUploadProgress() {
+    if (_isLoading) {
+      return Container(
+        color: Colors.black.withOpacity(0.5),
+        child: Center(
+          child: uploadTask != null
+              ? LoadingAnimation(
+                  uploadTask: uploadTask!,
+                )
+              : const SizedBox(),
+        ),
+      );
+    } else {
+      return const SizedBox();
+    }
+  }
 
   _upload() async {
     if (widget.event.name.isEmpty ||
@@ -222,7 +276,7 @@ class _EventDataState extends State<EventData> {
 
       if (newEvent != null) {
         try {
-          final String path = 'files/blog/${newEvent.uid}/$fileName';
+          final String path = 'files/event/${newEvent.uid}/$fileName';
           final Reference ref = FirebaseStorage.instance.ref(path);
           setState(() {
             uploadTask = ref.putData(data);
@@ -254,7 +308,7 @@ class _EventDataState extends State<EventData> {
       }
     } else {
       try {
-        final String path = 'files/blog/${widget.event.uid}/$fileName';
+        final String path = 'files/event/${widget.event.uid}/$fileName';
 
         debugPrint(path);
         final Reference ref = FirebaseStorage.instance.ref(path);
