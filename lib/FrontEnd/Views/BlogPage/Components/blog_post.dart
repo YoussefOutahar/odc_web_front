@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../DataBase/Models/blog_post.dart';
 import '../../../../Services/constants.dart';
@@ -18,9 +19,10 @@ class BlogPostCard extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: kDefaultPadding),
       child: Column(
         children: [
-          const AspectRatio(
-            aspectRatio: 1.78,
-            // child: Image.asset(blog.image!), //TODO: add image
+          Image.asset(
+            blogPost.image,
+            width: double.infinity,
+            fit: BoxFit.fill,
           ),
           Container(
             padding: const EdgeInsets.all(kDefaultPadding),
@@ -76,7 +78,12 @@ class BlogPostCard extends StatelessWidget {
                 Row(
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        blogPosts.contains(blogPost)
+                            ? Get.toNamed(
+                                "/blogPost/${blogPosts.indexOf(blogPost)}")
+                            : null;
+                      },
                       child: Container(
                         padding:
                             const EdgeInsets.only(bottom: kDefaultPadding / 4),

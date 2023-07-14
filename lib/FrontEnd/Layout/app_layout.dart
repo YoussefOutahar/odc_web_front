@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../Components/deafult_button.dart';
 import 'Components/tab_tile.dart';
 import 'footer.dart';
 import 'header.dart';
@@ -33,39 +35,77 @@ class _AppLayoutState extends State<AppLayout> {
                 },
               ),
             ),
-            SliverToBoxAdapter(
-              child: Transform.translate(
-                offset: const Offset(0, -kToolbarHeight),
-                child: Container(
-                  width: size.width,
-                  height: size.height * 0.7,
-                  color: Theme.of(context).primaryColor.withOpacity(0.6),
-                  child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+            if (!(Get.currentRoute.startsWith("/member/") ||
+                Get.currentRoute.startsWith("/formation/")))
+              SliverToBoxAdapter(
+                child: Transform.translate(
+                  offset: const Offset(0, -kToolbarHeight),
+                  child: Stack(
                     children: [
-                      Text(
-                        "Optima Decision Consulting",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold,
+                      Container(
+                        width: size.width,
+                        height: size.height * 0.7,
+                        color: Theme.of(context).primaryColor.withOpacity(0.6),
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Optima Decision Consulting",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 40.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 20.0),
+                            Text(
+                              "Smart future is yours",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(height: 20.0),
-                      Text(
-                        "Smart future is yours",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+                      if (Get.currentRoute != "/aboutUs")
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          // Learn more Text
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () => Get.toNamed("/aboutUs"),
+                              child: RichText(
+                                text: const TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: "Learn more",
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    WidgetSpan(
+                                      child: Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 12.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 ),
               ),
-            ),
             SliverToBoxAdapter(
               child: widget.page,
             ),

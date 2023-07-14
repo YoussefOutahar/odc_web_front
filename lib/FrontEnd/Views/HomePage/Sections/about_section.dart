@@ -55,7 +55,6 @@ class AboutSection extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 20 * 3),
           ],
         ),
       );

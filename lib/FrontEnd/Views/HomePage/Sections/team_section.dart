@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../Components/section_title.dart';
 import '../../../../DataBase/Models/team.dart';
@@ -105,22 +106,25 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
                   ],
                 ),
               ),
-              const Positioned(
+              Positioned(
                 right: 0,
                 bottom: 0,
                 child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Text.rich(
-                    TextSpan(
-                      text: "Know more about ",
-                      children: [
-                        TextSpan(
-                          text: "me",
-                          style: TextStyle(
-                            color: Colors.red,
+                  padding: const EdgeInsets.all(20),
+                  child: InkWell(
+                    onTap: () => Get.toNamed("/member/${widget.index}"),
+                    child: const Text.rich(
+                      TextSpan(
+                        text: "Know more about ",
+                        children: [
+                          TextSpan(
+                            text: "me",
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
