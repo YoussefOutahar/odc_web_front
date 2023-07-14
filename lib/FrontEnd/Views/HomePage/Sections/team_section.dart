@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infinite_carousel/infinite_carousel.dart';
 
 import '../../../Components/section_title.dart';
 import '../../../../DataBase/Models/team.dart';
@@ -14,13 +13,6 @@ class TeamSection extends StatelessWidget {
       // constraints: const BoxConstraints(maxWidth: 1110),
       margin: const EdgeInsets.only(top: 20 * 6),
       width: double.infinity,
-      decoration: const BoxDecoration(
-          // color: const Color(0xFFF7E8FF).withOpacity(0.3),
-          // image: const DecorationImage(
-          //   fit: BoxFit.cover,
-          //   image: AssetImage("assets/images/recent_work_bg.png"),
-          // ),
-          ),
       child: Column(
         children: [
           const SectionTitle(

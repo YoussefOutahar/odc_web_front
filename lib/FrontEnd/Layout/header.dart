@@ -23,10 +23,18 @@ class _HeaderState extends State<Header> {
         children: [
           Responsive.isMobile(context)
               ? IconButton(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   onPressed: widget.openDrawer,
                   icon: const Icon(Icons.menu),
                 )
               : const SizedBox(),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: Image.asset(
+              'assets/images/logo.png',
+            ),
+          ),
           const Spacer(),
           !Responsive.isMobile(context)
               ? Row(
@@ -46,42 +54,10 @@ class _HeaderState extends State<Header> {
                 )
               : const SizedBox(),
           const Spacer(),
-          // AuthController.checkIfLogged() ? _buildLogged() : _buildNotLogged(),
         ],
       ),
     );
   }
-
-  // Widget _buildLogged() {
-  //   return const Row(
-  //     children: [
-  //       Padding(
-  //         padding: EdgeInsets.only(right: 10),
-  //         child: Text(
-  //           "Welcome Back",
-  //           style: TextStyle(
-  //             fontSize: 16,
-  //             fontWeight: FontWeight.bold,
-  //             color: Colors.black,
-  //           ),
-  //         ),
-  //       )
-  //     ],
-  //   );
-  // }
-
-  // Widget _buildNotLogged() {
-  //   return Row(
-  //     children: [
-  //       TabTile(
-  //         text: "Login",
-  //         onTap: () {
-  //           Get.toNamed("/authenticate");
-  //         },
-  //       )
-  //     ],
-  //   );
-  // }
 }
 
 class NavBarActionButton extends StatefulWidget {

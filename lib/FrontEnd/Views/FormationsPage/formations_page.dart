@@ -23,14 +23,14 @@ class _FormationsPageState extends State<FormationsPage> {
     return SafeArea(
       child: ScrollTransformView(
         children: [
-          ScrollTransformItem(
-            offsetBuilder: (scrollOffset) {
-              double offset = 0;
-              offset -= kToolbarHeight;
-              return Offset(0, offset);
-            },
-            builder: (_) => TopSection(size: size),
-          ),
+          // ScrollTransformItem(
+          //   offsetBuilder: (scrollOffset) {
+          //     double offset = 0;
+          //     offset -= kToolbarHeight;
+          //     return Offset(0, offset);
+          //   },
+          //   builder: (_) => TopSection(size: size),
+          // ),
           ScrollTransformItem(
             builder: (_) => const SurMesures(),
           ),

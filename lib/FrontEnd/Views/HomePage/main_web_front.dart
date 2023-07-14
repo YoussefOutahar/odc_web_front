@@ -26,15 +26,15 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: ScrollTransformView(
         children: [
-          ScrollTransformItem(
-            offsetBuilder: (scrollOffset) {
-              double offset = 0;
-              // offset by the app bar height
-              offset -= kToolbarHeight;
-              return Offset(0, offset);
-            },
-            builder: (_) => TopSection(size: size),
-          ),
+          // ScrollTransformItem(
+          //   offsetBuilder: (scrollOffset) {
+          //     double offset = 0;
+          //     // offset by the app bar height
+          //     offset -= kToolbarHeight;
+          //     return Offset(0, offset);
+          //   },
+          //   builder: (_) => TopSection(size: size),
+          // ),
           ScrollTransformItem(
             builder: (context) => const AboutSection(),
           ),

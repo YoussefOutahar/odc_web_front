@@ -9,6 +9,7 @@ class AboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     if (Responsive.isMobile(context)) {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 20 * 2),
@@ -22,8 +23,8 @@ class AboutSection extends StatelessWidget {
               height: 40,
             ),
             const AboutSectionText(
-              text:
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore mag aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+              text: "OptimaDecision Consulting (ODC) est une entreprise marocaine spécialisée dans l'optimisation et l’amélioration de la Supply Chain. Nous proposons une gamme complète de services : l’optimisation et l'ingénierie de la chaîne logistique, la simulation des différents maillons de la Supply Chain, les méthodes de  Lean Management, l'accompagnement des entreprises dans l'obtention des divers certifications ISO et la création des Labels. " +
+                  "Notre approche unique et notre engagement à fournir un service de haute qualité permettront à nos clients de réaliser des résultats exceptionnels.",
             ),
             const SizedBox(height: 20),
           ],
@@ -37,39 +38,24 @@ class AboutSection extends StatelessWidget {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text("About us",
                     style: Theme.of(context).textTheme.displayMedium),
-                const SizedBox(
-                  width: 20,
+                SizedBox(
+                  width: size.width / 5,
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 3,
                   child: const AboutSectionText(
-                    text:
-                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore mag aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                    text: "OptimaDecision Consulting (ODC) est une entreprise marocaine spécialisée dans l'optimisation et l’amélioration de la Supply Chain. Nous proposons une gamme complète de services : l’optimisation et l'ingénierie de la chaîne logistique, la simulation des différents maillons de la Supply Chain, les méthodes de  Lean Management, l'accompagnement des entreprises dans l'obtention des divers certifications ISO et la création des Labels. " +
+                        "Notre approche unique et notre engagement à fournir un service de haute qualité permettront à nos clients de réaliser des résultats exceptionnels.",
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 20 * 3),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     DefaultButton(
-            //       imageSrc: "assets/images/hand.png",
-            //       text: "Hire Me!",
-            //       press: () {},
-            //     ),
-            //     const SizedBox(width: 20 * 1.5),
-            //     DefaultButton(
-            //       imageSrc: "assets/images/download.png",
-            //       text: "Download CV",
-            //       press: () {},
-            //     ),
-            //   ],
-            // ),
           ],
         ),
       );

@@ -15,14 +15,6 @@ class Formations extends StatelessWidget {
       margin: const EdgeInsets.only(top: 20 * 6),
       width: double.infinity,
       padding: const EdgeInsets.all(20),
-      // just for demo
-      // height: 600,
-      decoration: const BoxDecoration(
-          // image: const DecorationImage(
-          //   fit: BoxFit.cover,
-          //   image: AssetImage("assets/images/recent_work_bg.png"),
-          // ),
-          ),
       child: Column(
         children: [
           const SectionTitle(

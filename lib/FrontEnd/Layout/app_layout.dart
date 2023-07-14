@@ -38,18 +38,27 @@ class _AppLayoutState extends State<AppLayout> {
                 offset: const Offset(0, -kToolbarHeight),
                 child: Container(
                   width: size.width,
-                  height: size.height * 0.5,
+                  height: size.height * 0.7,
                   color: Theme.of(context).primaryColor.withOpacity(0.6),
-                  child: Row(
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        margin: const EdgeInsets.only(left: 10),
-                        child: Image(
-                          width: size.width * 0.4,
-                          image: const AssetImage("assets/images/logo.png"),
-                          filterQuality: FilterQuality.high,
-                          isAntiAlias: true,
+                      Text(
+                        "Optima Decision Consulting",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 40.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 20.0),
+                      Text(
+                        "Smart future is yours",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],

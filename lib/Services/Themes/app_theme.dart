@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../utils.dart';
+
 class AppThemes {
   // Theme Definitions
   static final ThemeData _defaultTheme = ThemeData(
-    primarySwatch: Colors.red,
+    primarySwatch: createMaterialColor(const Color.fromARGB(0, 76, 95, 171)),
     textTheme: const TextTheme(
       displayLarge: TextStyle(
         fontSize: 72.0,

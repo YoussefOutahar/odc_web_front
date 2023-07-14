@@ -19,14 +19,14 @@ class _AboutUsPageState extends State<AboutUsPage> {
     return SafeArea(
       child: ScrollTransformView(
         children: [
-          ScrollTransformItem(
-            offsetBuilder: (scrollOffset) {
-              double offset = 0;
-              offset -= kToolbarHeight;
-              return Offset(0, offset);
-            },
-            builder: (_) => TopSection(size: size),
-          ),
+          // ScrollTransformItem(
+          //   offsetBuilder: (scrollOffset) {
+          //     double offset = 0;
+          //     offset -= kToolbarHeight;
+          //     return Offset(0, offset);
+          //   },
+          //   builder: (_) => TopSection(size: size),
+          // ),
           ScrollTransformItem(
             builder: (_) => const OurMission(),
           ),
@@ -191,16 +191,9 @@ class Formations extends StatelessWidget {
         children: [
           SectionTitle(
               title: "Formations", subTitle: "", color: Colors.blueGrey),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "Découvrez notre entreprise, votre partenaire privilégié pour votre développement personnel et professionnel. Notre vaste gamme de formations comprend des solutions sur mesure, des programmes de renforcement des soft skills, des formations spécialisées pour les doctorants et même des expériences uniques de voyage et d'apprentissage. Que vous souhaitiez renforcer vos compétences techniques, améliorer votre communication interpersonnelle, approfondir vos connaissances académiques ou vivre une expérience d'apprentissage immersive, nous avons tout ce dont vous avez besoin. Nos formateurs qualifiés et expérimentés vous guideront dans votre parcours de formation, en vous offrant des cours pertinents, interactifs et adaptés à vos besoins spécifiques. Investissez dans votre croissance professionnelle avec nous et ouvrez-vous à un monde de possibilités",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-                height: 2,
-              ),
-            ),
+          AboutUsText(
+            text:
+                "Découvrez notre entreprise, votre partenaire privilégié pour votre développement personnel et professionnel. Notre vaste gamme de formations comprend des solutions sur mesure, des programmes de renforcement des soft skills, des formations spécialisées pour les doctorants et même des expériences uniques de voyage et d'apprentissage. Que vous souhaitiez renforcer vos compétences techniques, améliorer votre communication interpersonnelle, approfondir vos connaissances académiques ou vivre une expérience d'apprentissage immersive, nous avons tout ce dont vous avez besoin. Nos formateurs qualifiés et expérimentés vous guideront dans votre parcours de formation, en vous offrant des cours pertinents, interactifs et adaptés à vos besoins spécifiques. Investissez dans votre croissance professionnelle avec nous et ouvrez-vous à un monde de possibilités",
           ),
         ],
       ),
@@ -221,138 +214,105 @@ class GeneralInfo extends StatelessWidget {
         children: [
           SectionTitle(
               title: "What we do", subTitle: "", color: Colors.blueGrey),
+          AboutUsTitle(
+            title: "SCM & Smart Système",
+          ),
+          AboutUsText(
+            text:
+                "Optimisation et amélioration de la Supply Chain (Achats, Approvisionnement, Production, Distribution et logistique de retour)\n\nAudit logistique (Supply Chain Master, SCOR(APICS))\n\nInstauration du Lean Management\n\nSolution IT adaptée et sur-mesure ",
+          ),
           SizedBox(height: 20 * 3),
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "SCM & Smart Système",
-              style: TextStyle(
+          AboutUsTitle(
+            title: "Certification ISO",
+          ),
+          AboutUsText(
+            text:
+                "Audit d’évaluation de la maturité SMQ de l’organisation\n\nRéalisation/Correction du manuel qualité\n\nFormation au système management de la qualité\n\nTableau de bord ISO",
+          ),
+          SizedBox(height: 20 * 3),
+          AboutUsTitle(
+            title: "Energie & exploitation énergétique",
+          ),
+          AboutUsText(
+            text:
+                "Optimisation de l’exploitation énergétique dans les bâtiments \n\nAudit énergétique\n\n* Amélioration du confort thermique",
+          ),
+          SizedBox(height: 20 * 3),
+          AboutUsTitle(
+            title: "Transformation digitale",
+          ),
+          AboutUsText(
+            text:
+                "Développement et maintenance des sites et applications.\n\nRéférencement Web (SEA - SEO)\n\nWeb Marketing\n\nAccompagnement et conseil en E-logistique",
+          ),
+          SizedBox(height: 20 * 3),
+          AboutUsTitle(
+            title: "Aménagement, Agencement et bâtiment",
+          ),
+          AboutUsText(
+            text:
+                "Conception de bâtiments éco-responsable.\n\nAménagement d’espace et agencement industriel.\n\nConseil et accompagnement d’achats d’équipements et matériels.\n\n* Projets Architecture, Aménagement et Design Urbain.",
+          ),
+          SizedBox(height: 20 * 3),
+          AboutUsTitle(
+            title: "Qualification et renforcement des compétences",
+          ),
+          AboutUsText(
+            text:
+                "Bilan et diagnostic  RH.\n\n* Manuel d’employé.\n\nFormations continues sur mesure pour Top Management. Middle management et collaborateurs.\n\n* Team Building et coaching.",
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AboutUsTitle extends StatelessWidget {
+  const AboutUsTitle({super.key, required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+      constraints: const BoxConstraints(maxWidth: 1110),
+      child: Column(
+        children: [
+          Text(title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey),
+                  color: Colors.blueGrey)),
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+}
+
+class AboutUsText extends StatelessWidget {
+  const AboutUsText({super.key, required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+      constraints: const BoxConstraints(maxWidth: 1110),
+      child: Column(
+        children: [
+          Text(
+            text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 18,
+              color: Colors.black,
             ),
           ),
-          SizedBox(height: 20 * 3),
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "* Optimisation et amélioration de la Supply Chain (Achats, Approvisionnement, Production, Distribution et logistique de retour)\n\n* Audit logistique (Supply Chain Master, SCOR(APICS))\n\n* Instauration du Lean Management\n\n* Solution IT adaptée et sur-mesure ",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(height: 20 * 4),
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "Certification ISO",
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey),
-            ),
-          ),
-          SizedBox(height: 20 * 3),
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "* Audit d’évaluation de la maturité SMQ de l’organisation\n\n* Réalisation/Correction du manuel qualité\n\n* Formation au système management de la qualité\n\n* Tableau de bord ISO",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(height: 20 * 4),
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "Energie & exploitation énergétique",
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey),
-            ),
-          ),
-          SizedBox(height: 20 * 3),
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "* Optimisation de l’exploitation énergétique dans les bâtiments \n\n* Audit énergétique\n\n* Amélioration du confort thermique",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(height: 20 * 4),
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "Transformation digitale",
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey),
-            ),
-          ),
-          SizedBox(height: 20 * 3),
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "* Développement et maintenance des sites et applications.\n\n* Référencement Web (SEA - SEO)\n\n* Web Marketing\n\n* Accompagnement et conseil en E-logistique",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(height: 20 * 4),
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "Aménagement, Agencement et bâtiment",
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey),
-            ),
-          ),
-          SizedBox(height: 20 * 3),
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "* Conception de bâtiments éco-responsable.\n\n* Aménagement d’espace et agencement industriel.\n\n* Conseil et accompagnement d’achats d’équipements et matériels.\n\n* Projets Architecture, Aménagement et Design Urbain.",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(height: 20 * 4),
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "Qualification et renforcement des compétences",
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey),
-            ),
-          ),
-          SizedBox(height: 20 * 3),
-          Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "* Bilan et diagnostic  RH.\n\n* Manuel d’employé.\n\n* Formations continues sur mesure pour Top Management. Middle management et collaborateurs.\n\n* Team Building et coaching.",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
-          ),
+          const SizedBox(height: 20 * 3),
         ],
       ),
     );
