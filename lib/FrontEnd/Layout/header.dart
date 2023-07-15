@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../Services/constants.dart';
 import '../../Services/responsive.dart';
 import '../Animations/entrance_fader.dart';
 import 'Components/tab_tile.dart';
@@ -47,13 +48,22 @@ class _HeaderState extends State<Header> {
                         text: "Formations",
                         onTap: () => Get.toNamed("/formations")),
                     TabTile(text: "Blog", onTap: () => Get.toNamed("/blog")),
-                    TabTile(
-                        text: "Contact Us",
-                        onTap: () => Get.toNamed("/contactUs")),
+                    // TabTile(
+                    //     text: "Contact Us",
+                    //     onTap: () => Get.toNamed("/contactUs")),
                   ],
                 )
               : const SizedBox(),
           const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: ElevatedButton(
+                onPressed: () => Get.toNamed("/contactUs"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                ),
+                child: const Text("Let's Talk")),
+          ),
         ],
       ),
     );

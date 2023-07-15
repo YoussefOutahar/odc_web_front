@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'Layout/app_layout.dart';
 import 'Views/AboutUsPage/about_us_page.dart';
 import 'Views/BlogPage/blog_page.dart';
-import 'Views/BlogPage/blog_post_page.dart';
+import 'Views/InfoPages/blog_post_page.dart';
 import 'Views/ContactUsPage/contact_us_page.dart';
-import 'Views/FormationsPage/formation_info.dart';
+import 'Views/InfoPages/formation_info.dart';
 import 'Views/FormationsPage/formations_page.dart';
 import 'Views/HomePage/main_web_front.dart';
-import 'Views/team_member_page.dart';
+import 'Views/InfoPages/team_member_page.dart';
 
 getFrontNavigations() => [
       GetPage(

@@ -31,7 +31,7 @@ class Formations extends StatelessWidget {
               (index) => FormationCard(index: index, press: () {}),
             ),
           ),
-          const SizedBox(height: 20 * 5),
+          const SizedBox(height: 20 * 2),
         ],
       ),
     );

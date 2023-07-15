@@ -36,7 +36,9 @@ class _AppLayoutState extends State<AppLayout> {
               ),
             ),
             if (!(Get.currentRoute.startsWith("/member/") ||
-                Get.currentRoute.startsWith("/formation/")))
+                Get.currentRoute.startsWith("/formation/") ||
+                Get.currentRoute.startsWith("/blogPost/") ||
+                Get.currentRoute.startsWith("/contactUs")))
               SliverToBoxAdapter(
                 child: Transform.translate(
                   offset: const Offset(0, -kToolbarHeight),
@@ -45,7 +47,7 @@ class _AppLayoutState extends State<AppLayout> {
                       Container(
                         width: size.width,
                         height: size.height * 0.7,
-                        color: Theme.of(context).primaryColor.withOpacity(0.6),
+                        color: Theme.of(context).primaryColor.withOpacity(1),
                         child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
