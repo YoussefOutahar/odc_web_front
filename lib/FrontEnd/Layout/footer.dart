@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../Services/responsive.dart';
+import '../../Services/Utils/responsive.dart';
+import '../../Services/constants.dart';
+import 'Components/social_media_button.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -59,33 +62,40 @@ class Footer extends StatelessWidget {
                     Text('Privacy Policy'),
                   ],
                 ),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Follow Us',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(height: 10.0),
+                    SizedBox(height: 10.0),
                     Row(
                       children: [
-                        IconButton(
-                          icon: const Icon(Icons.facebook),
-                          onPressed: () {
-                            // Handle Facebook button pressed
-                          },
+                        SocialMediaButton(
+                          index: 1,
+                          url: AppConstants.eMail,
+                          iconData: Icons.alternate_email_rounded,
                         ),
-                        IconButton(
-                          icon: const Icon(Icons.abc_outlined),
-                          onPressed: () {
-                            // Handle Twitter button pressed
-                          },
+                        SocialMediaButton(
+                          index: 2,
+                          url: AppConstants.linkedInProfileURL,
+                          iconData: FontAwesomeIcons.linkedin,
                         ),
-                        IconButton(
-                          icon: const Icon(Icons.abc_outlined),
-                          onPressed: () {
-                            // Handle Instagram button pressed
-                          },
+                        SocialMediaButton(
+                          index: 3,
+                          url: AppConstants.twitterURL,
+                          iconData: FontAwesomeIcons.twitter,
+                        ),
+                        SocialMediaButton(
+                          index: 4,
+                          url: AppConstants.facebookProfileURL,
+                          iconData: FontAwesomeIcons.facebook,
+                        ),
+                        SocialMediaButton(
+                          index: 5,
+                          url: AppConstants.instagramProfileURL,
+                          iconData: FontAwesomeIcons.instagram,
                         ),
                       ],
                     ),

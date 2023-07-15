@@ -2,14 +2,12 @@ import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import '../../../Services/responsive.dart';
+import '../../../Services/Utils/responsive.dart';
 import '../../Components/deafult_button.dart';
-import '../../../DataBase/Models/service.dart';
-import '../../Components/section_title.dart';
-import 'Components/service_card.dart';
 import 'Sections/about_section.dart';
 import 'Sections/events_section.dart';
 import 'Sections/formation_section.dart';
+import 'Sections/services_section.dart';
 import 'Sections/team_section.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,7 +20,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: ScrollTransformView(
         children: [
@@ -141,36 +138,5 @@ class TopSectionClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(covariant CustomClipper oldClipper) {
     return true;
-  }
-}
-
-class Services extends StatelessWidget {
-  const Services({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
-      constraints: const BoxConstraints(maxWidth: 1110),
-      child: Column(
-        children: [
-          const SectionTitle(
-            color: Color(0xFFFF0000),
-            title: "Service Offerings",
-            subTitle: "My Strong Arenas",
-          ),
-          Center(
-            child: Wrap(
-              spacing: 20,
-              runSpacing: 20 * 2,
-              children: List.generate(
-                  services.length, (index) => ServiceCard(index: index)),
-            ),
-          )
-        ],
-      ),
-    );
   }
 }

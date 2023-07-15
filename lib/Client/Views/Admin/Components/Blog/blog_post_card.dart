@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../DataBase/Models/blog_post.dart';
 import '../../../../../Services/constants.dart';
-import '../../../../../Services/responsive.dart';
+import '../../../../../Services/Utils/responsive.dart';
 
 class BlogPostCard extends StatefulWidget {
   const BlogPostCard(

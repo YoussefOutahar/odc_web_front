@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../DataBase/Models/formations.dart';
-import '../../../../Services/responsive.dart';
+import '../../../../Services/Utils/responsive.dart';
 
 class FormationCard extends StatefulWidget {
   // just press "Command + ."

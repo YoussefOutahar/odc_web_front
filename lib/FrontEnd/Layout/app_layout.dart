@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../Services/Utils/delayed_widget.dart';
 import '../Components/deafult_button.dart';
 import 'Components/tab_tile.dart';
 import 'footer.dart';
@@ -52,21 +53,29 @@ class _AppLayoutState extends State<AppLayout> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
-                              "Optima Decision Consulting",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 40.0,
-                                fontWeight: FontWeight.bold,
+                            DelayedWidget(
+                              delayDuration: Duration(milliseconds: 500),
+                              from: DelayFrom.bottom,
+                              child: Text(
+                                "Optima Decision Consulting",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 40.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                             SizedBox(height: 20.0),
-                            Text(
-                              "Smart future is yours",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
+                            DelayedWidget(
+                              delayDuration: Duration(milliseconds: 800),
+                              from: DelayFrom.bottom,
+                              child: Text(
+                                "Smart future is yours",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ],
@@ -77,28 +86,32 @@ class _AppLayoutState extends State<AppLayout> {
                           bottom: 0,
                           right: 0,
                           // Learn more Text
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
-                              onTap: () => Get.toNamed("/aboutUs"),
-                              child: RichText(
-                                text: const TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: "Learn more",
-                                      style: TextStyle(
-                                        fontSize: 12.0,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
+                          child: DelayedWidget(
+                            delayDuration: const Duration(milliseconds: 1500),
+                            from: DelayFrom.bottom,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: () => Get.toNamed("/aboutUs"),
+                                child: RichText(
+                                  text: const TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: "Learn more",
+                                        style: TextStyle(
+                                          fontSize: 12.0,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    WidgetSpan(
-                                      child: Icon(
-                                        Icons.arrow_forward_ios,
-                                        size: 12.0,
+                                      WidgetSpan(
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          size: 12.0,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

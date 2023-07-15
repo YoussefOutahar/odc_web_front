@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../Services/constants.dart';
-import '../../Services/responsive.dart';
+import '../../Services/Utils/responsive.dart';
 import '../Animations/entrance_fader.dart';
 import 'Components/tab_tile.dart';
 

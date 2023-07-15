@@ -12,7 +12,6 @@ class Formations extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 20 * 6),
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -31,7 +30,6 @@ class Formations extends StatelessWidget {
               (index) => FormationCard(index: index, press: () {}),
             ),
           ),
-          const SizedBox(height: 20 * 2),
         ],
       ),
     );

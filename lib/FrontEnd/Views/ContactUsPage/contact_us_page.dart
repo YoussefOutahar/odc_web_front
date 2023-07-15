@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../Services/responsive.dart';
+import '../../../Services/Utils/responsive.dart';
 import '../../Components/deafult_button.dart';
 import '../../Components/section_title.dart';
 import 'Components/social_card.dart';

@@ -55,6 +55,21 @@
                 width: 100%;
                 transition: opacity 0.4s ease-out;
             }
+
+            #loader-content img {
+                animation: 1s ease-in-out 0s infinite alternate breathe;
+                transition: opacity 0.4s;
+            }
+
+            @keyframes breathe {
+                from {
+                    transform: scale(1);
+                }
+
+                to {
+                    transform: scale(0.95);
+                }
+            }
         </style>
         <script>
             function delay(time) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../DataBase/Models/blog_post.dart';
 import '../../../Services/constants.dart';
-import '../../../Services/responsive.dart';
+import '../../../Services/Utils/responsive.dart';
 import 'Components/blog_post.dart';
 import 'Components/categories.dart';
 import 'Components/recent_posts.dart';

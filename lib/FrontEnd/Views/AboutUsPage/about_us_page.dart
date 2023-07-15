@@ -2,7 +2,7 @@ import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-import '../../../Services/responsive.dart';
+import '../../../Services/Utils/responsive.dart';
 import '../../Components/section_title.dart';
 
 class AboutUsPage extends StatefulWidget {
