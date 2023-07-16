@@ -27,6 +27,9 @@ class _AboutUsPageState extends State<AboutUsPage> {
           //   builder: (_) => TopSection(size: size),
           // ),
           ScrollTransformItem(
+            builder: (_) => const WhoAreWe(),
+          ),
+          ScrollTransformItem(
             builder: (_) => const OurMission(),
           ),
           ScrollTransformItem(
@@ -125,9 +128,53 @@ class TopSectionClipper extends CustomClipper<Path> {
   }
 }
 
-class OurValues extends StatelessWidget {
+class WhoAreWe extends StatelessWidget {
+  const WhoAreWe({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+      constraints: const BoxConstraints(maxWidth: 1110),
+      child: const Column(
+        children: [
+          SectionTitle(
+              title: "Who are we", subTitle: "", color: Colors.blueGrey),
+          SizedBox(height: 20 * 3),
+          Text(
+            "OptimaDecision Consulting (ODC) est une entreprise marocaine spécialisée dans l'optimisation et l’amélioration de la Supply Chain. Nous proposons une gamme complète de services : l’optimisation et l'ingénierie de la chaîne logistique, la simulation des différents maillons de la Supply Chain, les méthodes de  Lean Management, l'accompagnement des entreprises dans l'obtention des divers certifications ISO et la création des Labels. "
+            "Nous effectuons, également, des audits de la Supply Chain pour nos clients afin de les aider à identifier les opportunités d'amélioration et à mettre en place des plans d'action pour l’obtention leurs objectifs ainsi que des formations dans les métiers de la chaîne logistique."
+            "Notre conviction est que la Supply Chain représente un élément clé de la stratégie de toute entreprise pour laquelle une gestion efficace et efficiente a un impact significatif sur sa performance globale. Notre expertise et notre savoir-faire sont mis à la disposition de nos clients pour les aider à atteindre la performance optimale via création des outils d’aide à la décision."
+            "Notre approche unique et notre engagement à fournir un service de haute qualité permettront à nos clients de réaliser des résultats exceptionnels. ",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.black,
+              height: 1.5,
+            ),
+          ),
+          SizedBox(height: 20 * 3),
+        ],
+      ),
+    );
+  }
+}
+
+class OurValues extends StatefulWidget {
   const OurValues({super.key});
 
+  @override
+  State<OurValues> createState() => _OurValuesState();
+}
+
+class _OurValuesState extends State<OurValues> {
+  final List<String> values = [
+    "Ecoute",
+    "Innovation",
+    "Transparence",
+    "Engagement",
+    "Intégrité"
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -137,7 +184,44 @@ class OurValues extends StatelessWidget {
         children: [
           const SectionTitle(
               title: "Our Values", subTitle: "", color: Colors.orange),
-          Image.asset("assets/images/values.png"),
+          const SizedBox(
+            height: 40,
+          ),
+          Wrap(
+            spacing: 60,
+            runSpacing: 60,
+            children: values
+                .map((e) => Column(
+                      children: [
+                        // Roudned red Container with index
+                        Container(
+                          width: 80,
+                          height: 80,
+                          decoration: const BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Center(
+                            child: Text(
+                              (values.indexOf(e) + 1).toString(),
+                              style: const TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          e,
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 20),
+                      ],
+                    ))
+                .toList(),
+          ),
           const SizedBox(height: 20 * 3),
         ],
       ),
@@ -234,7 +318,7 @@ class GeneralInfo extends StatelessWidget {
           ),
           AboutUsText(
             text:
-                "Optimisation de l’exploitation énergétique dans les bâtiments \n\nAudit énergétique\n\n* Amélioration du confort thermique",
+                "Optimisation de l’exploitation énergétique dans les bâtiments \n\nAudit énergétique\n\nAmélioration du confort thermique",
           ),
           SizedBox(height: 20 * 3),
           AboutUsTitle(
@@ -250,7 +334,7 @@ class GeneralInfo extends StatelessWidget {
           ),
           AboutUsText(
             text:
-                "Conception de bâtiments éco-responsable.\n\nAménagement d’espace et agencement industriel.\n\nConseil et accompagnement d’achats d’équipements et matériels.\n\n* Projets Architecture, Aménagement et Design Urbain.",
+                "Conception de bâtiments éco-responsable.\n\nAménagement d’espace et agencement industriel.\n\nConseil et accompagnement d’achats d’équipements et matériels.\n\nProjets Architecture, Aménagement et Design Urbain.",
           ),
           SizedBox(height: 20 * 3),
           AboutUsTitle(
@@ -258,7 +342,7 @@ class GeneralInfo extends StatelessWidget {
           ),
           AboutUsText(
             text:
-                "Bilan et diagnostic  RH.\n\n* Manuel d’employé.\n\nFormations continues sur mesure pour Top Management. Middle management et collaborateurs.\n\n* Team Building et coaching.",
+                "Bilan et diagnostic  RH.\n\nManuel d’employé.\n\nFormations continues sur mesure pour Top Management. Middle management et collaborateurs.\n\nTeam Building et coaching.",
           ),
         ],
       ),

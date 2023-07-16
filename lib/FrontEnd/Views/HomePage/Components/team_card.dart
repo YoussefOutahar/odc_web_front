@@ -19,7 +19,7 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => Get.toNamed("/member/${widget.index}"),
       onHover: (value) {
         setState(() {
           isHover = value;
@@ -68,25 +68,22 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
                   ],
                 ),
               ),
-              Positioned(
+              const Positioned(
                 right: 0,
                 bottom: 0,
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: InkWell(
-                    onTap: () => Get.toNamed("/member/${widget.index}"),
-                    child: const Text.rich(
-                      TextSpan(
-                        text: "Know more about ",
-                        children: [
-                          TextSpan(
-                            text: "me",
-                            style: TextStyle(
-                              color: Colors.red,
-                            ),
+                  padding: EdgeInsets.all(20),
+                  child: Text.rich(
+                    TextSpan(
+                      text: "Know more about ",
+                      children: [
+                        TextSpan(
+                          text: "me",
+                          style: TextStyle(
+                            color: Colors.red,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

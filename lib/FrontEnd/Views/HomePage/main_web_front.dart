@@ -35,9 +35,7 @@ class _HomePageState extends State<HomePage> {
           ScrollTransformItem(
             builder: (context) => const AboutSection(),
           ),
-          ScrollTransformItem(
-            builder: (context) => const Services(),
-          ),
+
           ScrollTransformItem(
             builder: (context) => const EventsCarousel(),
           ),
@@ -46,6 +44,9 @@ class _HomePageState extends State<HomePage> {
           ),
           ScrollTransformItem(
             builder: (_) => const TeamSection(),
+          ),
+          ScrollTransformItem(
+            builder: (context) => const Services(),
           ),
         ],
       ),

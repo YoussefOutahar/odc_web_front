@@ -28,48 +28,44 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return teamMember != null
-        ? Container(
-            height: 400,
-            width: 300,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 10,
-                  color: Colors.black.withOpacity(0.1),
-                )
-              ],
-            ),
-            child: Card(
-              child: Stack(
-                children: [
-                  Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const CircleAvatar(
-                          radius: 70,
+        ? Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Stack(
+              children: [
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: size.width / 7,
+                      ),
+                      const SizedBox(height: 60),
+                      Text(
+                        teamMember!.name,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(height: 60),
-                        Text(
-                          teamMember!.name,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Text(
-                          teamMember!.role,
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        teamMember!.role,
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 40),
+                      Text(
+                        "data",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      )
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           )
         : const Center(child: Text("No member found"));

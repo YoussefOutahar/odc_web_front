@@ -3,8 +3,13 @@ import 'package:get/get.dart';
 import 'Layout/app_layout.dart';
 import 'Views/AboutUsPage/about_us_page.dart';
 import 'Views/BlogPage/blog_page.dart';
+import 'Views/FormationsInfoPages/formation_doctorant.dart';
+import 'Views/FormationsInfoPages/formation_learning_travel.dart';
+import 'Views/FormationsInfoPages/formation_soft_skills.dart';
+import 'Views/FormationsInfoPages/formation_sur_mesure.dart';
 import 'Views/InfoPages/blog_post_page.dart';
 import 'Views/ContactUsPage/contact_us_page.dart';
+import 'Views/InfoPages/event_info_page.dart';
 import 'Views/InfoPages/formation_info.dart';
 import 'Views/FormationsPage/formations_page.dart';
 import 'Views/HomePage/main_web_front.dart';
@@ -36,6 +41,7 @@ getFrontNavigations() => [
         transition: Transition.fadeIn,
         middlewares: [Middelware()],
         page: () => const AppLayout(
+          showHeader: false,
           page: ContactUsPage(),
         ).animate().fadeIn(
               duration: const Duration(milliseconds: 500),
@@ -59,37 +65,103 @@ getFrontNavigations() => [
               duration: const Duration(milliseconds: 500),
             ),
       ),
-      GetPage(
-        name: "/member/:id",
-        transition: Transition.fadeIn,
-        middlewares: [Middelware()],
-        page: () => const AppLayout(
-          page: TeamMemberPage(),
-        ).animate().fadeIn(
-              duration: const Duration(milliseconds: 500),
-            ),
-      ),
-      GetPage(
-        name: "/blogPost/:id",
-        transition: Transition.fadeIn,
-        middlewares: [Middelware()],
-        page: () => const AppLayout(
-          page: BlogPostPage(),
-        ).animate().fadeIn(
-              duration: const Duration(milliseconds: 500),
-            ),
-      ),
-      GetPage(
-        name: "/formations/:id",
-        transition: Transition.fadeIn,
-        middlewares: [Middelware()],
-        page: () => const AppLayout(
-          page: FormationInfoPage(),
-        ).animate().fadeIn(
-              duration: const Duration(milliseconds: 500),
-            ),
-      ),
+      ...infoPages,
+      ...formationsInfoPages,
     ];
+
+List<GetPage> infoPages = [
+  GetPage(
+    name: "/member/:id",
+    transition: Transition.fadeIn,
+    middlewares: [Middelware()],
+    page: () => const AppLayout(
+      showHeader: false,
+      page: TeamMemberPage(),
+    ).animate().fadeIn(
+          duration: const Duration(milliseconds: 500),
+        ),
+  ),
+  GetPage(
+    name: "/event/:id",
+    transition: Transition.fadeIn,
+    middlewares: [Middelware()],
+    page: () => const AppLayout(
+      showHeader: false,
+      page: EventInfoPage(),
+    ).animate().fadeIn(
+          duration: const Duration(milliseconds: 500),
+        ),
+  ),
+  GetPage(
+    name: "/blogPost/:id",
+    transition: Transition.fadeIn,
+    middlewares: [Middelware()],
+    page: () => const AppLayout(
+      showHeader: false,
+      page: BlogPostPage(),
+    ).animate().fadeIn(
+          duration: const Duration(milliseconds: 500),
+        ),
+  ),
+  GetPage(
+    name: "/formations/:id",
+    transition: Transition.fadeIn,
+    middlewares: [Middelware()],
+    page: () => const AppLayout(
+      showHeader: false,
+      page: FormationInfoPage(),
+    ).animate().fadeIn(
+          duration: const Duration(milliseconds: 500),
+        ),
+  ),
+];
+
+List<GetPage> formationsInfoPages = [
+  GetPage(
+    name: '/formationSurMesures',
+    transition: Transition.fadeIn,
+    middlewares: [Middelware()],
+    page: () => const AppLayout(
+      showHeader: false,
+      page: FormationSurMesuresInfoPage(),
+    ).animate().fadeIn(
+          duration: const Duration(milliseconds: 500),
+        ),
+  ),
+  GetPage(
+    name: '/formationSoftSkills',
+    transition: Transition.fadeIn,
+    middlewares: [Middelware()],
+    page: () => const AppLayout(
+      showHeader: false,
+      page: FormationSoftSkillsInfoPage(),
+    ).animate().fadeIn(
+          duration: const Duration(milliseconds: 500),
+        ),
+  ),
+  GetPage(
+    name: '/formationDoctorant',
+    transition: Transition.fadeIn,
+    middlewares: [Middelware()],
+    page: () => const AppLayout(
+      showHeader: false,
+      page: FormationDoctorantInfoPage(),
+    ).animate().fadeIn(
+          duration: const Duration(milliseconds: 500),
+        ),
+  ),
+  GetPage(
+    name: '/formationLearningTravel',
+    transition: Transition.fadeIn,
+    middlewares: [Middelware()],
+    page: () => const AppLayout(
+      showHeader: false,
+      page: FormationLearningTravelInfoPage(),
+    ).animate().fadeIn(
+          duration: const Duration(milliseconds: 500),
+        ),
+  ),
+];
 
 class Middelware extends GetMiddleware {
   @override

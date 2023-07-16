@@ -9,8 +9,9 @@ import 'footer.dart';
 import 'header.dart';
 
 class AppLayout extends StatefulWidget {
-  const AppLayout({super.key, required this.page});
+  const AppLayout({super.key, required this.page, this.showHeader = true});
   final Widget page;
+  final bool showHeader;
 
   @override
   State<AppLayout> createState() => _AppLayoutState();
@@ -55,10 +56,7 @@ class _AppLayoutState extends State<AppLayout> {
           SliverToBoxAdapter(
             child: Column(
               children: [
-                if (!(Get.currentRoute.startsWith("/member/") ||
-                    Get.currentRoute.startsWith("/formation/") ||
-                    Get.currentRoute.startsWith("/blogPost/") ||
-                    Get.currentRoute.startsWith("/contactUs")))
+                if (widget.showHeader)
                   Transform.translate(
                     offset: const Offset(0, -kToolbarHeight),
                     child: Stack(

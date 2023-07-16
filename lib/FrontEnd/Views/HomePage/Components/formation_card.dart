@@ -7,11 +7,11 @@ class FormationCard extends StatefulWidget {
   // just press "Command + ."
   const FormationCard({
     Key? key,
-    required this.index,
     required this.press,
+    required this.formation,
   }) : super(key: key);
 
-  final int index;
+  final Formation formation;
   final VoidCallback press;
 
   @override
@@ -51,8 +51,7 @@ class _FormationCardState extends State<FormationCard> {
             SizedBox(
               height: Responsive.isMobile(context) ? size.height / 3 : 320,
               width: Responsive.isMobile(context) ? size.width * 0.4 : 270,
-              child: Image.asset(formations[widget.index].image,
-                  fit: BoxFit.cover),
+              child: Image.asset(widget.formation.image, fit: BoxFit.cover),
             ),
             Expanded(
               child: Padding(
@@ -61,9 +60,9 @@ class _FormationCardState extends State<FormationCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(formations[widget.index].category.toUpperCase()),
+                    Text(widget.formation.category.toUpperCase()),
                     const SizedBox(height: 20 / 2),
-                    Text(formations[widget.index].title,
+                    Text(widget.formation.title,
                         style: Theme.of(context).textTheme.headlineSmall),
                     const SizedBox(height: 20),
                     const Text(

@@ -30,10 +30,7 @@ class EventsCarousel extends StatelessWidget {
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: EventCard(
-                  title: events[index].name,
-                  date: events[index].date.toDate(),
-                  description: events[index].description,
-                  imageUrl: events[index].image,
+                  event: events[index],
                 ),
               ),
             ),
