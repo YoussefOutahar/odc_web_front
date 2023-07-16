@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../Services/Utils/animated_opacity_when_hovered.dart';
-import '../../../Services/Utils/delayed_widget.dart';
+import '../../Animations/animated_opacity_when_hovered.dart';
+import '../../Animations/delayed_widget.dart';
 import '../../../Services/Utils/utils.dart';
 
 class SocialMediaButton extends StatelessWidget {

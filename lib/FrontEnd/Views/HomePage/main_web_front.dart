@@ -4,6 +4,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../Services/Utils/responsive.dart';
 import '../../Components/deafult_button.dart';
+import '../../Components/scroll_up_indicator.dart';
 import 'Sections/about_section.dart';
 import 'Sections/events_section.dart';
 import 'Sections/formation_section.dart';
@@ -36,6 +37,9 @@ class _HomePageState extends State<HomePage> {
             builder: (context) => const AboutSection(),
           ),
           ScrollTransformItem(
+            builder: (context) => const Services(),
+          ),
+          ScrollTransformItem(
             builder: (context) => const EventsCarousel(),
           ),
           ScrollTransformItem(
@@ -43,9 +47,6 @@ class _HomePageState extends State<HomePage> {
           ),
           ScrollTransformItem(
             builder: (_) => const TeamSection(),
-          ),
-          ScrollTransformItem(
-            builder: (context) => const Services(),
           ),
         ],
       ),
