@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,7 +5,6 @@ import '../Animations/delayed_widget.dart';
 import '../Components/scroll_up_indicator.dart';
 import 'Components/app_header.dart';
 import 'Components/slider_menu.dart';
-import 'Components/tab_tile.dart';
 import 'footer.dart';
 import 'header.dart';
 

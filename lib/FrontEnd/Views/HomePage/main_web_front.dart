@@ -4,7 +4,6 @@ import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../Services/Utils/responsive.dart';
 import '../../Components/deafult_button.dart';
-import '../../Components/scroll_up_indicator.dart';
 import 'Sections/about_section.dart';
 import 'Sections/events_section.dart';
 import 'Sections/formation_section.dart';

@@ -23,7 +23,8 @@ class AboutSection extends StatelessWidget {
               height: 40,
             ),
             const AboutSectionText(
-              text: "OptimaDecision Consulting (ODC) est une entreprise marocaine spécialisée dans l'optimisation et l’amélioration de la Supply Chain. Nous proposons une gamme complète de services : l’optimisation et l'ingénierie de la chaîne logistique, la simulation des différents maillons de la Supply Chain, les méthodes de  Lean Management, l'accompagnement des entreprises dans l'obtention des divers certifications ISO et la création des Labels. " +
+              text:
+                  "OptimaDecision Consulting (ODC) est une entreprise marocaine spécialisée dans l'optimisation et l’amélioration de la Supply Chain. Nous proposons une gamme complète de services : l’optimisation et l'ingénierie de la chaîne logistique, la simulation des différents maillons de la Supply Chain, les méthodes de  Lean Management, l'accompagnement des entreprises dans l'obtention des divers certifications ISO et la création des Labels. "
                   "Notre approche unique et notre engagement à fournir un service de haute qualité permettront à nos clients de réaliser des résultats exceptionnels.",
             ),
           ],
@@ -45,7 +46,8 @@ class AboutSection extends StatelessWidget {
             SizedBox(
               width: MediaQuery.of(context).size.width / 3,
               child: const AboutSectionText(
-                text: "OptimaDecision Consulting (ODC) est une entreprise marocaine spécialisée dans l'optimisation et l’amélioration de la Supply Chain. Nous proposons une gamme complète de services : l’optimisation et l'ingénierie de la chaîne logistique, la simulation des différents maillons de la Supply Chain, les méthodes de  Lean Management, l'accompagnement des entreprises dans l'obtention des divers certifications ISO et la création des Labels. " +
+                text:
+                    "OptimaDecision Consulting (ODC) est une entreprise marocaine spécialisée dans l'optimisation et l’amélioration de la Supply Chain. Nous proposons une gamme complète de services : l’optimisation et l'ingénierie de la chaîne logistique, la simulation des différents maillons de la Supply Chain, les méthodes de  Lean Management, l'accompagnement des entreprises dans l'obtention des divers certifications ISO et la création des Labels. "
                     "Notre approche unique et notre engagement à fournir un service de haute qualité permettront à nos clients de réaliser des résultats exceptionnels.",
               ),
             ),

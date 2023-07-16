@@ -11,7 +11,6 @@ class LoadingAnimation extends StatefulWidget {
 }
 
 class _LoadingAnimationState extends State<LoadingAnimation> {
-  //TODO: add ignore pointer to all data widgets
   double progress = 0;
   @override
   Widget build(BuildContext context) {

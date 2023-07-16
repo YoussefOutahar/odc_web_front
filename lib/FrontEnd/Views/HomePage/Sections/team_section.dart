@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../Components/section_title.dart';
 import '../../../../DataBase/Models/team.dart';
