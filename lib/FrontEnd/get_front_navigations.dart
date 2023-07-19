@@ -10,7 +10,6 @@ import 'Views/FormationsInfoPages/formation_sur_mesure.dart';
 import 'Views/InfoPages/blog_post_page.dart';
 import 'Views/ContactUsPage/contact_us_page.dart';
 import 'Views/InfoPages/event_info_page.dart';
-import 'Views/InfoPages/formation_info.dart';
 import 'Views/FormationsPage/formations_page.dart';
 import 'Views/HomePage/main_web_front.dart';
 import 'Views/InfoPages/team_member_page.dart';
@@ -103,22 +102,22 @@ List<GetPage> infoPages = [
           duration: const Duration(milliseconds: 500),
         ),
   ),
-  GetPage(
-    name: "/formations/:id",
-    transition: Transition.fadeIn,
-    middlewares: [Middelware()],
-    page: () => const AppLayout(
-      showHeader: false,
-      page: FormationInfoPage(),
-    ).animate().fadeIn(
-          duration: const Duration(milliseconds: 500),
-        ),
-  ),
+  // GetPage(
+  //   name: "/formations/:id",
+  //   transition: Transition.fadeIn,
+  //   middlewares: [Middelware()],
+  //   page: () => const AppLayout(
+  //     showHeader: false,
+  //     page: FormationInfoPage(),
+  //   ).animate().fadeIn(
+  //         duration: const Duration(milliseconds: 500),
+  //       ),
+  // ),
 ];
 
 List<GetPage> formationsInfoPages = [
   GetPage(
-    name: '/formationSurMesures',
+    name: '/formations/surMesures',
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(
@@ -129,7 +128,7 @@ List<GetPage> formationsInfoPages = [
         ),
   ),
   GetPage(
-    name: '/formationSoftSkills',
+    name: '/formations/softSkills',
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(
@@ -140,7 +139,7 @@ List<GetPage> formationsInfoPages = [
         ),
   ),
   GetPage(
-    name: '/formationDoctorant',
+    name: '/formations/doctorant',
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(
@@ -151,7 +150,7 @@ List<GetPage> formationsInfoPages = [
         ),
   ),
   GetPage(
-    name: '/formationLearningTravel',
+    name: '/formations/learningTravel',
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(

@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../Services/Utils/responsive.dart';
@@ -152,7 +153,9 @@ class SurMesures extends StatelessWidget {
           ForamationCard(
             packs:
                 "* Pack E-Commerce\n\n* Pack lean management & SIx Sigma\n\n* Pack optimisiation de process\n\n* Pack gestion de projet (PMI)",
-            press: () {},
+            press: () {
+              Get.toNamed("/formations/surMesures");
+            },
             imageSrc: "assets/images/formations/background1.png",
           )
           // Image.asset("assets/images/formations/sur_mesures.png"),
@@ -181,7 +184,9 @@ class SoftSkills extends StatelessWidget {
           ForamationCard(
             packs:
                 "* Certificat PNL\n\n* Prise de decision\n\n* Innovation et business\n\n* Santé social et bien être",
-            press: () {},
+            press: () {
+              Get.toNamed("/formations/softSkills");
+            },
             imageSrc: "assets/images/formations/background2.png",
           )
         ],
@@ -209,7 +214,9 @@ class FormationDoctorant extends StatelessWidget {
           ForamationCard(
             packs:
                 "* Boîte à outils recherche scientifique\n\n* Boîte à outils Enseignement supérieur et pédagogie\n\n* Boîte à outils Méthodologie & encadrement",
-            press: () {},
+            press: () {
+              Get.toNamed("/formations/doctorant");
+            },
             imageSrc: "assets/images/formations/background3.jpg",
           )
         ],
@@ -237,7 +244,9 @@ class LearningTravel extends StatelessWidget {
           ForamationCard(
             packs:
                 "* Voyage Programmation Informatique\n\n* Voyage découverte pédagogique \n\n* Voyage entreprenariat",
-            press: () {},
+            press: () {
+              Get.toNamed("/formations/learningTravel");
+            },
             imageSrc: "assets/images/OpenSourceImages/img10.png",
           )
         ],

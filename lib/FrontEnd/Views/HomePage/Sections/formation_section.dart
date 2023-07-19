@@ -33,16 +33,16 @@ class Formations extends StatelessWidget {
                 press: () {
                   switch (index) {
                     case 0:
-                      Get.toNamed("/formationSurMesures");
+                      Get.toNamed("/formations/surMesures");
                       break;
                     case 1:
-                      Get.toNamed("/formationSoftSkills");
+                      Get.toNamed("/formations/softSkills");
                       break;
                     case 2:
-                      Get.toNamed("/formationDoctorant");
+                      Get.toNamed("/formations/doctorant");
                       break;
                     case 3:
-                      Get.toNamed("/formationLearningTravel");
+                      Get.toNamed("/formations/learningTravel");
                       break;
                     default:
                   }

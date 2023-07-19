@@ -34,7 +34,6 @@ class AboutSection extends StatelessWidget {
       return Container(
         margin: const EdgeInsets.symmetric(vertical: 20 * 2),
         padding: const EdgeInsets.symmetric(horizontal: 20 * 2),
-        constraints: const BoxConstraints(maxWidth: 1110),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
