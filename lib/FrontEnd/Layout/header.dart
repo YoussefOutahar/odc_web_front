@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../Services/Utils/responsive.dart';
+import '../Animations/delayed_widget.dart';
 import '../Animations/entrance_fader.dart';
 import 'Components/tab_tile.dart';
 
@@ -20,6 +21,7 @@ class _HeaderState extends State<Header> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Responsive.isMobile(context)
               ? IconButton(
@@ -37,20 +39,35 @@ class _HeaderState extends State<Header> {
           ),
           const Spacer(),
           !Responsive.isMobile(context)
-              ? Row(
-                  children: [
-                    TabTile(
-                        text: "Home", onTap: () => Get.offAndToNamed("/home")),
-                    TabTile(
-                        text: "About", onTap: () => Get.toNamed("/aboutUs")),
-                    TabTile(
-                        text: "Formations",
-                        onTap: () => Get.toNamed("/formations")),
-                    TabTile(text: "Blog", onTap: () => Get.toNamed("/blog")),
-                    // TabTile(
-                    //     text: "Contact Us",
-                    //     onTap: () => Get.toNamed("/contactUs")),
-                  ],
+              ? Center(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      DelayedWidget(
+                        delayDuration: const Duration(milliseconds: 800),
+                        child: TabTile(
+                            text: "Home",
+                            onTap: () => Get.offAndToNamed("/home")),
+                      ),
+                      DelayedWidget(
+                        delayDuration: const Duration(milliseconds: 900),
+                        child: TabTile(
+                            text: "About",
+                            onTap: () => Get.toNamed("/aboutUs")),
+                      ),
+                      DelayedWidget(
+                        delayDuration: const Duration(milliseconds: 1000),
+                        child: TabTile(
+                            text: "Formations",
+                            onTap: () => Get.toNamed("/formations")),
+                      ),
+                      DelayedWidget(
+                        delayDuration: const Duration(milliseconds: 1100),
+                        child: TabTile(
+                            text: "Blog", onTap: () => Get.toNamed("/blog")),
+                      ),
+                    ],
+                  ),
                 )
               : const SizedBox(),
           const Spacer(),
@@ -69,58 +86,57 @@ class _HeaderState extends State<Header> {
   }
 }
 
-class NavBarActionButton extends StatefulWidget {
-  const NavBarActionButton({
-    Key? key,
-    required this.label,
-    required this.index,
-  }) : super(key: key);
+// class NavBarActionButton extends StatefulWidget {
+//   const NavBarActionButton({
+//     Key? key,
+//     required this.label,
+//     required this.index,
+//   }) : super(key: key);
 
-  final String label;
-  final int index;
-  @override
-  State<NavBarActionButton> createState() => _NavBarActionButtonState();
-}
+//   final String label;
+//   final int index;
+//   @override
+//   State<NavBarActionButton> createState() => _NavBarActionButtonState();
+// }
 
-class _NavBarActionButtonState extends State<NavBarActionButton> {
-  bool isHover = false;
-  @override
-  Widget build(BuildContext context) {
-    // theme
-    var theme = Theme.of(context);
-    return EntranceFader(
-      offset: const Offset(0, -10),
-      delay: const Duration(milliseconds: 1000),
-      duration: const Duration(milliseconds: 250),
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 5),
-        decoration: BoxDecoration(
-          gradient: isHover
-              ? const LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Color(0XFFaa367c), Color(0XFF4a2fbd)],
-                )
-              : null,
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: InkWell(
-          onHover: (value) {
-            setState(() => isHover = value);
-          },
-          onTap: () {},
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Text(
-              widget.label,
-              style: TextStyle(color: theme.primaryColor),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+// class _NavBarActionButtonState extends State<NavBarActionButton> {
+//   bool isHover = false;
+//   @override
+//   Widget build(BuildContext context) {
+//     // theme
+//     var theme = Theme.of(context);
+//     return EntranceFader(
+//       offset: const Offset(0, -10),
+//       delay: const Duration(milliseconds: 1000),
+//       duration: const Duration(milliseconds: 250),
+//       child: Container(
+//         margin: const EdgeInsets.symmetric(horizontal: 5),
+//         decoration: BoxDecoration(
+//           gradient: isHover
+//               ? const LinearGradient(
+//                   begin: Alignment.centerLeft,
+//                   end: Alignment.centerRight,
+//                   colors: [Color(0XFFaa367c), Color(0XFF4a2fbd)],
+//                 )
+//               : null,
+//           borderRadius: BorderRadius.circular(5.0),
+//         ),
+//         child: InkWell(
+//           onHover: (value) {
+//             setState(() => isHover = value);
+//           },
+//           onTap: () {},
+//           child: Padding(
+//             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+//             child: Text(
+//               widget.label,
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 // class Header2 extends StatefulWidget {
 //   const Header2({super.key});

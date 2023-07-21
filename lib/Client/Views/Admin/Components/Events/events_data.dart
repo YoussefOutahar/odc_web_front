@@ -66,72 +66,76 @@ class _EventDataState extends State<EventData> {
       ignoring: _isLoading,
       child: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: size.height * 0.3,
-                  width: size.width * 0.3,
-                  child: fileUploaded
-                      ? Column(
-                          children: [
-                            SizedBox(
-                                height: size.height * 0.2,
-                                width: size.width * 0.2,
-                                child: Image.memory(data)),
-                            Text(fileName),
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  fileUploaded = false;
-                                });
-                              },
-                              icon: const Icon(Icons.restart_alt_outlined),
-                            ),
-                          ],
-                        )
-                      : _buildDropZone(),
+          Positioned.fill(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: size.height * 0.3,
+                      width: size.width * 0.3,
+                      child: fileUploaded
+                          ? Column(
+                              children: [
+                                SizedBox(
+                                    height: size.height * 0.2,
+                                    width: size.width * 0.2,
+                                    child: Image.memory(data)),
+                                Text(fileName),
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      fileUploaded = false;
+                                    });
+                                  },
+                                  icon: const Icon(Icons.restart_alt_outlined),
+                                ),
+                              ],
+                            )
+                          : _buildDropZone(),
+                    ),
+                    TextField(
+                      controller: _nameController,
+                      decoration: const InputDecoration(
+                        labelText: 'Name',
+                      ),
+                    ),
+                    TextField(
+                      controller: _descriptionController,
+                      decoration: const InputDecoration(
+                        labelText: 'Description',
+                      ),
+                    ),
+                    TextField(
+                      controller: _organisationController,
+                      decoration: const InputDecoration(
+                        labelText: 'Organisation',
+                      ),
+                    ),
+                    TextField(
+                      controller: _cityController,
+                      decoration: const InputDecoration(
+                        labelText: 'City',
+                      ),
+                    ),
+                    TextField(
+                      controller: _themeController,
+                      decoration: const InputDecoration(
+                        labelText: 'Theme',
+                      ),
+                    ),
+                    DateTimePicker(
+                      type: DateTimePickerType.dateTime,
+                      initialValue: '',
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2100),
+                      dateLabelText: 'Date',
+                      onSaved: (val) => selectedDate = DateTime.parse(val!),
+                    )
+                  ],
                 ),
-                TextField(
-                  controller: _nameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Name',
-                  ),
-                ),
-                TextField(
-                  controller: _descriptionController,
-                  decoration: const InputDecoration(
-                    labelText: 'Description',
-                  ),
-                ),
-                TextField(
-                  controller: _organisationController,
-                  decoration: const InputDecoration(
-                    labelText: 'Organisation',
-                  ),
-                ),
-                TextField(
-                  controller: _cityController,
-                  decoration: const InputDecoration(
-                    labelText: 'City',
-                  ),
-                ),
-                TextField(
-                  controller: _themeController,
-                  decoration: const InputDecoration(
-                    labelText: 'Theme',
-                  ),
-                ),
-                DateTimePicker(
-                  type: DateTimePickerType.dateTime,
-                  initialValue: '',
-                  firstDate: DateTime(2000),
-                  lastDate: DateTime(2100),
-                  dateLabelText: 'Date',
-                  onSaved: (val) => selectedDate = DateTime.parse(val!),
-                )
-              ],
+              ),
             ),
           ),
           Positioned(

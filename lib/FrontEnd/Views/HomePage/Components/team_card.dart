@@ -68,26 +68,6 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
                   ],
                 ),
               ),
-              const Positioned(
-                right: 0,
-                bottom: 0,
-                child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Text.rich(
-                    TextSpan(
-                      text: "Know more about ",
-                      children: [
-                        TextSpan(
-                          text: "me",
-                          style: TextStyle(
-                            color: Colors.red,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),

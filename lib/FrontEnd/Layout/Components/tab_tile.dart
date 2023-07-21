@@ -72,7 +72,7 @@ class _TabTileState extends State<TabTile> with TickerProviderStateMixin {
                   const SizedBox(width: 15),
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
-                    width: _hovering ? 50 : 50 * _animation.value,
+                    width: _hovering ? 30 : 30 * _animation.value,
                     height: 4,
                     decoration: const BoxDecoration(
                       borderRadius:

@@ -40,44 +40,48 @@ class _AppLayoutState extends State<AppLayout> {
       drawer: const SliderMenu(),
       floatingActionButton: ScrollUpIndicator(_scrollController),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            forceMaterialTransparency: true,
-            floating: true,
-            flexibleSpace: Header(
-              openDrawer: () {
-                _scaffoldKey.currentState!.openDrawer();
-              },
+      body: Container(
+        color: Theme.of(context).primaryColor.withOpacity(0.2),
+        child: CustomScrollView(
+          controller: _scrollController,
+          slivers: [
+            SliverAppBar(
+              automaticallyImplyLeading: false,
+              forceMaterialTransparency: true,
+              collapsedHeight: kToolbarHeight * 1.2,
+              floating: true,
+              flexibleSpace: Header(
+                openDrawer: () {
+                  _scaffoldKey.currentState!.openDrawer();
+                },
+              ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                if (widget.showHeader)
-                  Transform.translate(
-                    offset: const Offset(0, -kToolbarHeight),
-                    child: Stack(
-                      children: [
-                        const AppHeader(),
-                        if (Get.currentRoute != "/aboutUs")
-                          const Positioned(
-                            bottom: 0,
-                            right: 0,
-                            // Learn more Text
-                            child: LearnMoreButton(),
-                          ),
-                      ],
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  if (widget.showHeader)
+                    Transform.translate(
+                      offset: const Offset(0, -kToolbarHeight * 1.2),
+                      child: Stack(
+                        children: [
+                          const AppHeader(),
+                          if (Get.currentRoute != "/aboutUs")
+                            const Positioned(
+                              bottom: 0,
+                              right: 0,
+                              // Learn more Text
+                              child: LearnMoreButton(),
+                            ),
+                        ],
+                      ),
                     ),
-                  ),
-                widget.page,
-                const Footer(),
-              ],
+                  widget.page,
+                  const Footer(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

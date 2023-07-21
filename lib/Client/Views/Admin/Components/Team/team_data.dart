@@ -54,46 +54,50 @@ class _TeamDataState extends State<TeamData> {
       ignoring: _isLoading,
       child: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: size.height * 0.3,
-                  width: size.width * 0.3,
-                  child: fileUploaded
-                      ? Column(
-                          children: [
-                            SizedBox(
-                                height: size.height * 0.2,
-                                width: size.width * 0.2,
-                                child: Image.memory(data)),
-                            Text(fileName),
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  fileUploaded = false;
-                                });
-                              },
-                              icon: const Icon(Icons.restart_alt_outlined),
-                            ),
-                          ],
-                        )
-                      : _buildDropZone(),
+          Positioned.fill(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: size.height * 0.3,
+                      width: size.width * 0.3,
+                      child: fileUploaded
+                          ? Column(
+                              children: [
+                                SizedBox(
+                                    height: size.height * 0.2,
+                                    width: size.width * 0.2,
+                                    child: Image.memory(data)),
+                                Text(fileName),
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      fileUploaded = false;
+                                    });
+                                  },
+                                  icon: const Icon(Icons.restart_alt_outlined),
+                                ),
+                              ],
+                            )
+                          : _buildDropZone(),
+                    ),
+                    TextField(
+                      controller: _nameController,
+                      decoration: const InputDecoration(
+                        labelText: 'Name',
+                      ),
+                    ),
+                    TextField(
+                      controller: _roleController,
+                      decoration: const InputDecoration(
+                        labelText: 'Role',
+                      ),
+                    ),
+                  ],
                 ),
-                TextField(
-                  controller: _nameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Name',
-                  ),
-                ),
-                TextField(
-                  controller: _roleController,
-                  decoration: const InputDecoration(
-                    labelText: 'Role',
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
           Positioned(

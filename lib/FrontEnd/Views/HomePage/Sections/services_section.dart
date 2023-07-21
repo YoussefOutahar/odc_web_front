@@ -23,7 +23,7 @@ class Services extends StatelessWidget {
           Center(
             child: Wrap(
               spacing: 20,
-              runSpacing: 20 * 2,
+              runSpacing: 10,
               children: List.generate(
                   services.length, (index) => ServiceCard(index: index)),
             ),

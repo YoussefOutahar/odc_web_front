@@ -33,6 +33,7 @@ dependencies:
   dotted_border: ^2.0.0+3
   date_time_picker: ^2.1.0
   font_awesome_flutter: ^10.5.0
+  flutter_staggered_grid_view: ^0.6.2
 
   # Utils
   email_validator: ^2.1.17

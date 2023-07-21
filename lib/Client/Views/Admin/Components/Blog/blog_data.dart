@@ -54,48 +54,53 @@ class _BlogDataState extends State<BlogData> {
       ignoring: _isLoading,
       child: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: size.height * 0.3,
-                  width: size.width * 0.3,
-                  child: fileUploaded
-                      ? Column(
-                          children: [
-                            SizedBox(
-                                height: size.height * 0.2,
-                                width: size.width * 0.2,
-                                child: Image.memory(data)),
-                            Text(fileName),
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  fileUploaded = false;
-                                });
-                              },
-                              icon: const Icon(Icons.restart_alt_outlined),
-                            ),
-                          ],
-                        )
-                      : _buildDropZone(),
-                ),
-                TextField(
-                  controller: titleController,
-                  decoration: const InputDecoration(
-                    labelText: "Title",
+          Positioned.fill(
+              child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: size.height * 0.3,
+                    width: size.width * 0.3,
+                    child: fileUploaded
+                        ? Column(
+                            children: [
+                              SizedBox(
+                                  height: size.height * 0.2,
+                                  width: size.width * 0.2,
+                                  child: Image.memory(data)),
+                              Text(fileName),
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    fileUploaded = false;
+                                  });
+                                },
+                                icon: const Icon(Icons.restart_alt_outlined),
+                              ),
+                            ],
+                          )
+                        : _buildDropZone(),
                   ),
-                ),
-                TextField(
-                  controller: contentController,
-                  decoration: const InputDecoration(
-                    labelText: "Content",
+                  TextField(
+                    controller: titleController,
+                    decoration: const InputDecoration(
+                      labelText: "Title",
+                    ),
                   ),
-                ),
-              ],
+                  TextField(
+                    controller: contentController,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    decoration: const InputDecoration(
+                      labelText: "Content",
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+          )),
           Positioned(
             bottom: 0,
             right: 0,

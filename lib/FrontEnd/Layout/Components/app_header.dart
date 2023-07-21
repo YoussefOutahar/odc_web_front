@@ -13,7 +13,7 @@ class AppHeader extends StatelessWidget {
     return Container(
       width: size.width,
       height: size.height * 0.7,
-      color: Theme.of(context).primaryColor.withOpacity(1),
+      color: const Color.fromRGBO(228, 87, 46, 1),
       child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,6 +1,3 @@
-import 'dart:ui';
-import 'dart:math' as math;
-
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +6,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import '../../../Services/Utils/responsive.dart';
 import '../../Components/deafult_button.dart';
 import '../../Components/section_title.dart';
+import 'Components/formation_card.dart';
 
 class FormationsPage extends StatefulWidget {
   const FormationsPage({super.key});
@@ -156,7 +154,7 @@ class SurMesures extends StatelessWidget {
             press: () {
               Get.toNamed("/formations/surMesures");
             },
-            imageSrc: "assets/images/formations/background1.png",
+            imageSrc: "assets/images/OpenSourceImages/img2.png",
           )
           // Image.asset("assets/images/formations/sur_mesures.png"),
         ],
@@ -187,7 +185,7 @@ class SoftSkills extends StatelessWidget {
             press: () {
               Get.toNamed("/formations/softSkills");
             },
-            imageSrc: "assets/images/formations/background2.png",
+            imageSrc: "assets/images/OpenSourceImages/img5.png",
           )
         ],
       ),
@@ -217,7 +215,7 @@ class FormationDoctorant extends StatelessWidget {
             press: () {
               Get.toNamed("/formations/doctorant");
             },
-            imageSrc: "assets/images/formations/background3.jpg",
+            imageSrc: "assets/images/OpenSourceImages/img7.png",
           )
         ],
       ),
@@ -250,91 +248,6 @@ class LearningTravel extends StatelessWidget {
             imageSrc: "assets/images/OpenSourceImages/img10.png",
           )
         ],
-      ),
-    );
-  }
-}
-
-class ForamationCard extends StatelessWidget {
-  const ForamationCard(
-      {super.key,
-      required this.packs,
-      required this.press,
-      required this.imageSrc});
-
-  final String packs;
-  final VoidCallback press;
-  final String imageSrc;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 900,
-      height: 400,
-      child: Card(
-        semanticContainer: true,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        elevation: 5,
-        margin: const EdgeInsets.all(10),
-        child: Stack(
-          children: [
-            Image.asset(
-              imageSrc,
-              fit: BoxFit.cover,
-              width: 900,
-              height: 400,
-            ),
-            Center(
-              child: ClipRect(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 7.0, sigmaY: 7.0),
-                  child: Container(
-                    padding: const EdgeInsets.all(40.0),
-                    margin: const EdgeInsets.all(40.0),
-                    child: Center(
-                      child: Text(
-                        packs,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              right: 0,
-              bottom: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: DefaultButton(
-                  press: press,
-                  text: 'Learn more',
-                ),
-              ),
-            ),
-            Positioned(
-              left: 0,
-              top: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Transform(
-                      alignment: Alignment.center,
-                      transform: Matrix4.rotationY(math.pi),
-                      child: Image.asset("assets/images/odc_pattern.png")),
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
