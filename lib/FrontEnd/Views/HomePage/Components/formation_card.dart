@@ -30,18 +30,19 @@ class _FormationCardState extends State<FormationCard> {
           isHover = value;
         });
       },
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 1000),
-        switchInCurve: Curves.easeIn,
-        switchOutCurve: Curves.easeOut,
-        child: isHover ? _buildHoverCard(size) : _buildCard(size),
-        transitionBuilder: (child, animation) {
-          return FadeTransition(
-            opacity: animation,
-            child: ScaleTransition(scale: animation, child: child),
-          );
-        },
-      ),
+      child: _buildHoverCard(size),
+      // child: AnimatedSwitcher(
+      //   duration: const Duration(milliseconds: 1000),
+      //   switchInCurve: Curves.easeIn,
+      //   switchOutCurve: Curves.easeOut,
+      //   child: isHover ? _buildHoverCard(size) : _buildCard(size),
+      //   transitionBuilder: (child, animation) {
+      //     return FadeTransition(
+      //       opacity: animation,
+      //       child: ScaleTransition(scale: animation, child: child),
+      //     );
+      //   },
+      // ),
     );
   }
 

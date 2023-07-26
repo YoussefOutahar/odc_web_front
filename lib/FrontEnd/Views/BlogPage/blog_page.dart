@@ -34,7 +34,7 @@ class BlogPage extends StatelessWidget {
               children: [
                 Search(),
                 SizedBox(height: kDefaultPadding),
-                Categories(),
+                // Categories(),
                 SizedBox(height: kDefaultPadding),
                 RecentPosts(),
               ],

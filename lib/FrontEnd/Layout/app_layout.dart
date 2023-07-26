@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../Animations/delayed_widget.dart';
 import '../Components/scroll_up_indicator.dart';
 import 'Components/app_header.dart';
+import 'Components/header_type.dart';
+import 'Components/learn_more_button.dart';
 import 'Components/slider_menu.dart';
 import 'footer.dart';
 import 'header.dart';
 
 class AppLayout extends StatefulWidget {
-  const AppLayout({super.key, required this.page, this.showHeader = true});
+  const AppLayout({super.key, required this.page, required this.type});
   final Widget page;
-  final bool showHeader;
+  final HeaderType type;
 
   @override
   State<AppLayout> createState() => _AppLayoutState();
@@ -59,22 +60,21 @@ class _AppLayoutState extends State<AppLayout> {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  if (widget.showHeader)
-                    Transform.translate(
-                      offset: const Offset(0, -kToolbarHeight * 1.2),
-                      child: Stack(
-                        children: [
-                          const AppHeader(),
-                          if (Get.currentRoute != "/aboutUs")
-                            const Positioned(
-                              bottom: 0,
-                              right: 0,
-                              // Learn more Text
-                              child: LearnMoreButton(),
-                            ),
-                        ],
-                      ),
+                  Transform.translate(
+                    offset: const Offset(0, -kToolbarHeight * 1.2),
+                    child: Stack(
+                      children: [
+                        AppHeader(type: widget.type),
+                        if (Get.currentRoute != "/aboutUs")
+                          const Positioned(
+                            bottom: 0,
+                            right: 0,
+                            // Learn more Text
+                            child: LearnMoreButton(),
+                          ),
+                      ],
                     ),
+                  ),
                   widget.page,
                   const SizedBox(height: 20.0),
                   const Footer(),
@@ -82,46 +82,6 @@ class _AppLayoutState extends State<AppLayout> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class LearnMoreButton extends StatelessWidget {
-  const LearnMoreButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return DelayedWidget(
-      delayDuration: const Duration(milliseconds: 1500),
-      from: DelayFrom.bottom,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: InkWell(
-          onTap: () => Get.toNamed("/aboutUs"),
-          child: RichText(
-            text: const TextSpan(
-              children: [
-                TextSpan(
-                  text: "Learn more",
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                WidgetSpan(
-                  child: Icon(
-                    Icons.arrow_forward_ios,
-                    size: 12.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
         ),
       ),
     );

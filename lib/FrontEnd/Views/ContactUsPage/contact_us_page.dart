@@ -10,18 +10,9 @@ class ContactUsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // this height only for demo
-      // height: 500,
+    return const SizedBox(
       width: double.infinity,
-      decoration: const BoxDecoration(
-        color: Color(0xFFE8F0F9),
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: AssetImage("assets/images/bg_img_2.png"),
-        ),
-      ),
-      child: const Column(
+      child: Column(
         children: [
           SizedBox(height: 20 * 2.5),
           SectionTitle(
@@ -46,7 +37,6 @@ class ContactBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints(maxWidth: 1110),
-      margin: const EdgeInsets.only(top: 20 * 2),
       padding: const EdgeInsets.all(20 * 3),
       decoration: const BoxDecoration(
         color: Colors.white,

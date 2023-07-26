@@ -1,8 +1,10 @@
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'Layout/Components/header_type.dart';
 import 'Layout/app_layout.dart';
 import 'Views/AboutUsPage/about_us_page.dart';
 import 'Views/BlogPage/blog_page.dart';
+import 'Views/ConseilsPage/conseils_page.dart';
 import 'Views/FormationsInfoPages/formation_doctorant.dart';
 import 'Views/FormationsInfoPages/formation_learning_travel.dart';
 import 'Views/FormationsInfoPages/formation_soft_skills.dart';
@@ -20,6 +22,7 @@ getFrontNavigations() => [
         transition: Transition.fadeIn,
         middlewares: [Middelware()],
         page: () => const AppLayout(
+          type: HeaderType.header,
           page: HomePage(),
         ).animate().fadeIn(
               duration: const Duration(milliseconds: 500),
@@ -30,6 +33,7 @@ getFrontNavigations() => [
         transition: Transition.fadeIn,
         middlewares: [Middelware()],
         page: () => const AppLayout(
+          type: HeaderType.compactHeader,
           page: AboutUsPage(),
         ).animate().fadeIn(
               duration: const Duration(milliseconds: 500),
@@ -40,7 +44,7 @@ getFrontNavigations() => [
         transition: Transition.fadeIn,
         middlewares: [Middelware()],
         page: () => const AppLayout(
-          showHeader: false,
+          type: HeaderType.compactHeader,
           page: ContactUsPage(),
         ).animate().fadeIn(
               duration: const Duration(milliseconds: 500),
@@ -50,6 +54,7 @@ getFrontNavigations() => [
         name: "/formations",
         transition: Transition.fadeIn,
         page: () => const AppLayout(
+          type: HeaderType.compactHeader,
           page: FormationsPage(),
         ).animate().fadeIn(
               duration: const Duration(milliseconds: 500),
@@ -57,10 +62,24 @@ getFrontNavigations() => [
         children: const [],
       ),
       GetPage(
+        name: "/conseils",
+        transition: Transition.fadeIn,
+        middlewares: [Middelware()],
+        page: () => const AppLayout(
+          type: HeaderType.compactHeader,
+          page: ConseilsPage(),
+        ).animate().fadeIn(
+              duration: const Duration(milliseconds: 500),
+            ),
+      ),
+      GetPage(
         name: "/blog",
         transition: Transition.fadeIn,
         middlewares: [Middelware()],
-        page: () => const AppLayout(page: BlogPage()).animate().fadeIn(
+        page: () => const AppLayout(
+          type: HeaderType.compactHeader,
+          page: BlogPage(),
+        ).animate().fadeIn(
               duration: const Duration(milliseconds: 500),
             ),
       ),
@@ -74,7 +93,7 @@ List<GetPage> infoPages = [
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(
-      showHeader: false,
+      type: HeaderType.hideHeader,
       page: TeamMemberPage(),
     ).animate().fadeIn(
           duration: const Duration(milliseconds: 500),
@@ -85,7 +104,7 @@ List<GetPage> infoPages = [
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(
-      showHeader: false,
+      type: HeaderType.hideHeader,
       page: EventInfoPage(),
     ).animate().fadeIn(
           duration: const Duration(milliseconds: 500),
@@ -96,7 +115,7 @@ List<GetPage> infoPages = [
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(
-      showHeader: false,
+      type: HeaderType.hideHeader,
       page: BlogPostPage(),
     ).animate().fadeIn(
           duration: const Duration(milliseconds: 500),
@@ -121,7 +140,7 @@ List<GetPage> formationsInfoPages = [
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(
-      showHeader: false,
+      type: HeaderType.hideHeader,
       page: FormationSurMesuresInfoPage(),
     ).animate().fadeIn(
           duration: const Duration(milliseconds: 500),
@@ -132,7 +151,7 @@ List<GetPage> formationsInfoPages = [
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(
-      showHeader: false,
+      type: HeaderType.hideHeader,
       page: FormationSoftSkillsInfoPage(),
     ).animate().fadeIn(
           duration: const Duration(milliseconds: 500),
@@ -143,7 +162,7 @@ List<GetPage> formationsInfoPages = [
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(
-      showHeader: false,
+      type: HeaderType.hideHeader,
       page: FormationDoctorantInfoPage(),
     ).animate().fadeIn(
           duration: const Duration(milliseconds: 500),
@@ -154,7 +173,7 @@ List<GetPage> formationsInfoPages = [
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(
-      showHeader: false,
+      type: HeaderType.hideHeader,
       page: FormationLearningTravelInfoPage(),
     ).animate().fadeIn(
           duration: const Duration(milliseconds: 500),

@@ -44,7 +44,7 @@ dependencies:
   cached_network_image: ^3.2.3
   file_picker: ^5.3.2
   flutter_markdown: ^0.6.17
-  easy_localization: ^3.0.2 #TODO: Fix this dependency
+  easy_localization: ^3.0.2
 
 dependency_overrides:
   intl: 0.17.0

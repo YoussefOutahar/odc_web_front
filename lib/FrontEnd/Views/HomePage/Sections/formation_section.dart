@@ -23,10 +23,9 @@ class Formations extends StatelessWidget {
             color: Color(0xFFFFB100),
           ),
           const SizedBox(height: 20 * 1.5),
-          GridView(
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2),
+          Wrap(
+            spacing: 20,
+            runSpacing: 20 * 2,
             children: List.generate(
               formations.length,
               (index) => FormationCard(
@@ -51,33 +50,6 @@ class Formations extends StatelessWidget {
               ),
             ),
           ),
-          // Wrap(
-          //   spacing: 20,
-          //   runSpacing: 20 * 2,
-          //   children: List.generate(
-          //     formations.length,
-          //     (index) => FormationCard(
-          //       formation: formations[index],
-          //       press: () {
-          //         switch (index) {
-          //           case 0:
-          //             Get.toNamed("/formations/surMesures");
-          //             break;
-          //           case 1:
-          //             Get.toNamed("/formations/softSkills");
-          //             break;
-          //           case 2:
-          //             Get.toNamed("/formations/doctorant");
-          //             break;
-          //           case 3:
-          //             Get.toNamed("/formations/learningTravel");
-          //             break;
-          //           default:
-          //         }
-          //       },
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

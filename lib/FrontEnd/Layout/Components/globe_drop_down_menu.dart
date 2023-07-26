@@ -9,6 +9,7 @@ class GlobeDropdownMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
       icon: const Icon(Icons.language),
+      tooltip: "Change Language",
       onSelected: (String language) async {
         if (language == 'english') {
           await context.setLocale(const Locale('en'));
