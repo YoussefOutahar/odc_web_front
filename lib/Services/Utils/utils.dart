@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'dart:js' as js;
 
@@ -26,4 +28,33 @@ void launchUrl(String url, {bool newTab = true}) {
     'open',
     [url, newTab ? '_blank' : '_self'],
   );
+}
+
+List<List<T>> splitListIntoPairs<T>(List<T> originalList) {
+  List<List<T>> resultList = [];
+  int length = originalList.length;
+
+  for (int i = 0; i < length; i += 2) {
+    if (i + 1 < length) {
+      List<T> pair = [originalList[i], originalList[i + 1]];
+      resultList.add(pair);
+    } else {
+      List<T> single = [originalList[i]];
+      resultList.add(single);
+    }
+  }
+
+  return resultList;
+}
+
+List<List<T>> splitListIntoSubsets<T>(List<T> originalList, int subsetLength) {
+  List<List<T>> resultList = [];
+  int length = originalList.length;
+
+  for (int i = 0; i < length; i += subsetLength) {
+    List<T> subset = originalList.sublist(i, min(i + subsetLength, length));
+    resultList.add(subset);
+  }
+
+  return resultList;
 }

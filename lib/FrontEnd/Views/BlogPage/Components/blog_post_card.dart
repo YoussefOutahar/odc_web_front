@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -69,10 +70,12 @@ class BlogPostCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
-                  blogPost.content,
-                  maxLines: 4,
-                  style: const TextStyle(height: 1.5),
+                SizedBox(
+                  width: double.infinity,
+                  child: MarkdownBody(
+                    data: "${blogPost.content.substring(0, 300)}...",
+                    selectable: true,
+                  ),
                 ),
                 const SizedBox(height: kDefaultPadding),
                 Row(

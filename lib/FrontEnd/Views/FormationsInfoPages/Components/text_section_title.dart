@@ -9,6 +9,7 @@ class TextSectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
+      textAlign: TextAlign.center,
       style: const TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,

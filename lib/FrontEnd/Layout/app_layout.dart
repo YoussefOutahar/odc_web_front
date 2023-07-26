@@ -76,6 +76,7 @@ class _AppLayoutState extends State<AppLayout> {
                       ),
                     ),
                   widget.page,
+                  const SizedBox(height: 20.0),
                   const Footer(),
                 ],
               ),

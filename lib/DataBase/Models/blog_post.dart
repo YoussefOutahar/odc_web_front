@@ -59,6 +59,12 @@ List<BlogPost> blogPosts = [
   BlogPost(
     title: "Our “Secret” Formula to Online Workshops",
     content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar tortor. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl."
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar tortor. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl."
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar tortor. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl."
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar tortor. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl."
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar tortor. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl."
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar tortor. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl."
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar tortor. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl. Nulla facilisi. Donec euismod, nisl sed aliquam ultricies, nunc sapien ultricies arcu, eget aliquet quam nisi eget nisl.",
     image: "assets/images/recent_1.png",
     createdAt: Timestamp.now(),

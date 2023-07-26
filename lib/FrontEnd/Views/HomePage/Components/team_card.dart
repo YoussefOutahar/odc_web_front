@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import '../../../../DataBase/Models/team.dart';
 
 class TeamCard extends StatefulWidget {
-  const TeamCard({super.key, required this.index});
+  const TeamCard({super.key, required this.member});
 
-  final int index;
+  final TeamMember member;
 
   @override
   State<TeamCard> createState() => _TeamCardState();
@@ -19,7 +19,7 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.toNamed("/member/${widget.index}"),
+      onTap: () => Get.toNamed("/member/${widget.member.uid}"),
       onHover: (value) {
         setState(() {
           isHover = value;
@@ -53,7 +53,7 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
                     ),
                     const SizedBox(height: 60),
                     Text(
-                      members[widget.index].name,
+                      widget.member.name,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 20,
@@ -62,7 +62,7 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      members[widget.index].role,
+                      widget.member.role,
                       textAlign: TextAlign.center,
                     ),
                   ],

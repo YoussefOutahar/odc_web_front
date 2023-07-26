@@ -22,6 +22,7 @@ class _HeaderState extends State<Header> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Responsive.isMobile(context)
               ? IconButton(
@@ -33,14 +34,21 @@ class _HeaderState extends State<Header> {
               : const SizedBox(),
           Padding(
             padding: const EdgeInsets.only(left: 8),
-            child: Image.asset(
-              'assets/images/logo.png',
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => Get.offAndToNamed("/home"),
+                child: Image.asset(
+                  'assets/images/logo_no_text.png',
+                ),
+              ),
             ),
           ),
           const Spacer(),
           !Responsive.isMobile(context)
               ? Center(
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       DelayedWidget(

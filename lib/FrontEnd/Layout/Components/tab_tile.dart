@@ -57,7 +57,7 @@ class _TabTileState extends State<TabTile> with TickerProviderStateMixin {
           child: GestureDetector(
             onTap: widget.onTap,
             child: Container(
-              margin: const EdgeInsets.only(right: 10, left: 10),
+              margin: const EdgeInsets.only(right: 10, left: 10, top: 10),
               padding: const EdgeInsets.only(right: 5, top: 5, bottom: 5),
               child: Column(
                 children: [

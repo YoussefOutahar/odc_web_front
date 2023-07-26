@@ -31,11 +31,14 @@ class ForamationCard extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         child: Stack(
           children: [
-            Image.asset(
-              imageSrc,
-              fit: BoxFit.cover,
-              width: 900,
-              height: 400,
+            Opacity(
+              opacity: 0.5,
+              child: Image.asset(
+                imageSrc,
+                fit: BoxFit.cover,
+                width: 900,
+                height: 400,
+              ),
             ),
             Center(
               child: ClipRect(

@@ -12,37 +12,50 @@ class AppHeader extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
-      height: size.height * 0.7,
+      height: size.height,
       color: const Color.fromRGBO(228, 87, 46, 1),
-      child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Stack(
         children: [
-          DelayedWidget(
-            delayDuration: Duration(milliseconds: 500),
-            from: DelayFrom.bottom,
-            child: SelectableText(
-              "Optima Decision Consulting",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 40.0,
-                fontWeight: FontWeight.bold,
-              ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Image.asset(
+              "assets/images/odc_pattern5.png",
             ),
           ),
-          SizedBox(height: 20.0),
-          DelayedWidget(
-            delayDuration: Duration(milliseconds: 800),
-            from: DelayFrom.bottom,
-            child: SelectableText(
-              "Smart future is yours",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),
+          const Positioned.fill(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                DelayedWidget(
+                  delayDuration: Duration(milliseconds: 500),
+                  from: DelayFrom.bottom,
+                  child: SelectableText(
+                    "Optima Decision Consulting",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 50.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20.0),
+                DelayedWidget(
+                  delayDuration: Duration(milliseconds: 800),
+                  from: DelayFrom.bottom,
+                  child: SelectableText(
+                    "Smart future is yours",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
+          )
         ],
       ),
     );

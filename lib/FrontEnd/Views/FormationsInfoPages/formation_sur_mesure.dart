@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../../../DataBase/Models/formations.dart';
 import '../../../Services/Utils/responsive.dart';
 import 'Components/data_grid.dart';
+import 'Components/formation_header.dart';
 import 'Components/text_card.dart';
 import 'Components/text_section_title.dart';
 
@@ -26,29 +27,19 @@ class _FormationSurMesuresInfoPageState
 
   @override
   Widget build(BuildContext context) {
-    return _buildPage();
+    Size size = MediaQuery.of(context).size;
+    return _buildPage(size);
   }
 
-  Widget _buildPage() => Column(
+  Widget _buildPage(Size size) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            formation.image,
-            width: double.maxFinite,
-            height: 400,
-            fit: BoxFit.cover,
-          ),
-          const SizedBox(height: 20),
-          Text(
-            formation.title,
-            style: Theme.of(context).textTheme.headlineLarge,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              formation.category,
-              style: Theme.of(context).textTheme.bodyLarge,
+          Transform.translate(
+            offset: const Offset(0, -kToolbarHeight * 1.2),
+            child: FormationHeader(
+              imgSrc: formation.image,
+              title: formation.title,
             ),
           ),
           const Divider(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -87,11 +88,18 @@ class _BlogPostPageState extends State<BlogPostPage> {
                           ),
                         ),
                       ),
-                      Text(
-                        blogPost!.content,
-                        maxLines: 4,
-                        style: const TextStyle(height: 1.5),
-                      ),
+                      SizedBox(
+                          width: double.infinity,
+                          child: MarkdownBody(
+                            data: blogPost!.content,
+                            styleSheet: MarkdownStyleSheet(
+                              p: const TextStyle(
+                                fontFamily: "Raleway",
+                                color: Color(0xFF191919),
+                                height: 1.5,
+                              ),
+                            ),
+                          )),
                       const SizedBox(height: kDefaultPadding),
                       Row(
                         children: [

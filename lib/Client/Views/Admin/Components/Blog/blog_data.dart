@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../../DataBase/Controllers/blog_controller.dart';
@@ -89,12 +90,40 @@ class _BlogDataState extends State<BlogData> {
                       labelText: "Title",
                     ),
                   ),
-                  TextField(
-                    controller: contentController,
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    decoration: const InputDecoration(
-                      labelText: "Content",
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Card(
+                      elevation: 8,
+                      // color: Theme.of(context).primaryColor,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextField(
+                          controller: contentController,
+                          keyboardType: TextInputType.multiline,
+                          maxLines: null,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            // labelText: "Content",
+                            hintText: "Edit your blog markdown here",
+                          ),
+                          onChanged: (text) => setState(() {}),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    elevation: 8,
+                    // color: Theme.of(context).primaryColor,
+
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: size.height * 0.3,
+                        child: MarkdownBody(
+                          data: contentController.text,
+                        ),
+                      ),
                     ),
                   ),
                 ],
