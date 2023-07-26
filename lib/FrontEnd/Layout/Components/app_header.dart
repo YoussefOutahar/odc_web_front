@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../translations/locale_keys.g.dart';
 import '../../Animations/delayed_widget.dart';
 
 class AppHeader extends StatelessWidget {
@@ -23,31 +25,31 @@ class AppHeader extends StatelessWidget {
               "assets/images/odc_pattern5.png",
             ),
           ),
-          const Positioned.fill(
+          Positioned.fill(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 DelayedWidget(
-                  delayDuration: Duration(milliseconds: 500),
+                  delayDuration: const Duration(milliseconds: 500),
                   from: DelayFrom.bottom,
                   child: SelectableText(
-                    "Optima Decision Consulting",
+                    LocaleKeys.website_name.tr(),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 50.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 DelayedWidget(
-                  delayDuration: Duration(milliseconds: 800),
+                  delayDuration: const Duration(milliseconds: 800),
                   from: DelayFrom.bottom,
                   child: SelectableText(
-                    "Smart future is yours",
+                    LocaleKeys.website_subtitle.tr(),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                     ),

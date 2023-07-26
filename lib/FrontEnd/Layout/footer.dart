@@ -20,7 +20,7 @@ class Footer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/logo.png',
+                      'assets/images/logo_no_text.png',
                       height: 50.0,
                       filterQuality: FilterQuality.high,
                       fit: BoxFit.fill,
@@ -105,7 +105,7 @@ class Footer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.asset(
-                      'assets/images/logo.png',
+                      'assets/images/logo_no_text.png',
                       height: 50.0,
                       filterQuality: FilterQuality.high,
                       fit: BoxFit.fill,

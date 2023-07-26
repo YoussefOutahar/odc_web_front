@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../Services/Utils/responsive.dart';
 import '../Animations/delayed_widget.dart';
 import '../Animations/entrance_fader.dart';
+import 'Components/globe_drop_down_menu.dart';
 import 'Components/tab_tile.dart';
 
 class Header extends StatefulWidget {
@@ -79,6 +80,10 @@ class _HeaderState extends State<Header> {
                 )
               : const SizedBox(),
           const Spacer(),
+          const Padding(
+            padding: EdgeInsets.only(right: 8.0),
+            child: GlobeDropdownMenu(),
+          ),
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: ElevatedButton(

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -10,14 +11,27 @@ import 'Services/Themes/app_theme.dart';
 import 'DataBase/firebase_options.dart';
 import 'FrontEnd/Views/error_page.dart';
 import 'FrontEnd/get_front_navigations.dart';
+import 'translations/codegen_loader.g.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await EasyLocalization.ensureInitialized();
   setPathUrlStrategy();
-  runApp(const MyApp());
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('en'),
+        Locale('fr'),
+      ],
+      fallbackLocale: const Locale('fr'),
+      assetLoader: const CodegenLoader(),
+      path: "assets/translations",
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,6 +44,9 @@ class MyApp extends StatelessWidget {
       theme: AppThemes.deafult,
       darkTheme: AppThemes.alternative,
       themeMode: AppThemes().themeMode,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       getPages: [
         ...getFrontNavigations(),
         ...getDashboardNavigations(),
