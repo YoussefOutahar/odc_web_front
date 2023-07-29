@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
+import 'package:easy_localization/easy_localization.dart';
 
+import '../../../../translations/locale_keys.g.dart';
 import '../../../Components/section_title.dart';
 import '../../../../DataBase/Models/formations.dart';
 import '../Components/formation_card.dart';
@@ -17,10 +19,10 @@ class Formations extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          const SectionTitle(
-            title: "Formations",
-            subTitle: "Nos formations",
-            color: Color(0xFFFFB100),
+          SectionTitle(
+            title: LocaleKeys.home_page_title_formations.tr(),
+            subTitle: LocaleKeys.home_page_subtitle_formations.tr(),
+            color: const Color(0xFFFFB100),
           ),
           const SizedBox(height: 20 * 1.5),
           Wrap(

@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 
+import '../../../translations/locale_keys.g.dart';
 import 'globe_drop_down_menu.dart';
 import 'tab_tile.dart';
 
@@ -29,16 +31,22 @@ class SliderMenu extends StatelessWidget {
                   ),
                   const SizedBox(height: 40.0),
                   TabTile(
-                      text: "Home", onTap: () => Get.offAndToNamed("/home")),
-                  TabTile(text: "About", onTap: () => Get.toNamed("/aboutUs")),
+                      text: LocaleKeys.tab_tiles_home.tr(),
+                      onTap: () => Get.offAndToNamed("/home")),
                   TabTile(
-                      text: "Formations",
+                      text: LocaleKeys.tab_tiles_about.tr(),
+                      onTap: () => Get.toNamed("/aboutUs")),
+                  TabTile(
+                      text: LocaleKeys.tab_tiles_formation.tr(),
                       onTap: () => Get.toNamed("/formations")),
-                  TabTile(text: "Blog", onTap: () => Get.toNamed("/blog")),
                   TabTile(
-                      text: "Conseils", onTap: () => Get.toNamed("/conseils")),
+                      text: LocaleKeys.tab_tiles_blog.tr(),
+                      onTap: () => Get.toNamed("/blog")),
                   TabTile(
-                      text: "Contact Us",
+                      text: LocaleKeys.tab_tiles_conseils.tr(),
+                      onTap: () => Get.toNamed("/conseils")),
+                  TabTile(
+                      text: LocaleKeys.tab_tiles_contact_us.tr(),
                       onTap: () => Get.toNamed("/contactUs")),
                   const SizedBox(height: 20.0),
                 ],

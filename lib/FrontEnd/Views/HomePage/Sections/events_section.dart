@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:odc/DataBase/Models/events.dart';
 
 import '../../../../Services/Utils/responsive.dart';
 import '../../../../Services/Utils/utils.dart';
+import '../../../../translations/locale_keys.g.dart';
 import '../../../Animations/animated_opacity_when_hovered.dart';
 import '../../../Components/section_title.dart';
 import '../Components/event_card.dart';
@@ -26,10 +28,10 @@ class _EventsCarouselState extends State<EventsCarousel> {
       margin: const EdgeInsets.symmetric(vertical: 20 * 2),
       child: Column(
         children: [
-          const SectionTitle(
-            color: Color(0xFFFF0000),
-            title: "Events",
-            subTitle: "Recent Events",
+          SectionTitle(
+            color: const Color(0xFFFF0000),
+            title: LocaleKeys.home_page_title_events.tr(),
+            subTitle: LocaleKeys.home_page_subtitle_events.tr(),
           ),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 20.0),

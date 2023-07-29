@@ -12,22 +12,16 @@ class TextCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 600,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: const Color.fromRGBO(228, 87, 46, 1).withOpacity(0.3),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextSectionTitle(title: title),
-              const SizedBox(height: 10),
-              TextSectionText(text: text),
-            ],
-          ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextSectionTitle(title: title),
+            const SizedBox(height: 10),
+            TextSectionText(text: text),
+          ],
         ),
       ),
     );

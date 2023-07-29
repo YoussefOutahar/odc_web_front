@@ -55,6 +55,7 @@ class _AppLayoutState extends State<AppLayout> {
                 openDrawer: () {
                   _scaffoldKey.currentState!.openDrawer();
                 },
+                showLogo: widget.type != HeaderType.compactHeader,
               ),
             ),
             SliverToBoxAdapter(

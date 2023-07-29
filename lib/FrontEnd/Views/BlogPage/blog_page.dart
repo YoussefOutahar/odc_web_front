@@ -4,7 +4,6 @@ import '../../../DataBase/Models/blog_post.dart';
 import '../../../Services/constants.dart';
 import '../../../Services/Utils/responsive.dart';
 import 'Components/blog_post_card.dart';
-import 'Components/categories.dart';
 import 'Components/recent_posts.dart';
 import 'Components/search.dart';
 
@@ -18,26 +17,35 @@ class BlogPage extends StatelessWidget {
       children: [
         Expanded(
           flex: 2,
-          child: Column(
-            children: List.generate(
-              blogPosts.length,
-              (index) => BlogPostCard(blogPost: blogPosts[index]),
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: kDefaultPadding * 2,
+              right: kDefaultPadding * 2,
+            ),
+            child: Column(
+              children: List.generate(
+                blogPosts.length,
+                (index) => BlogPostCard(blogPost: blogPosts[index]),
+              ),
             ),
           ),
         ),
-        if (!Responsive.isMobile(context))
-          const SizedBox(width: kDefaultPadding),
-        // Sidebar
-        if (!Responsive.isMobile(context))
+        if (Responsive.isDesktop(context))
           const Expanded(
-            child: Column(
-              children: [
-                Search(),
-                SizedBox(height: kDefaultPadding),
-                // Categories(),
-                SizedBox(height: kDefaultPadding),
-                RecentPosts(),
-              ],
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: kDefaultPadding * 2,
+                right: kDefaultPadding * 2,
+              ),
+              child: Column(
+                children: [
+                  Search(),
+                  SizedBox(height: kDefaultPadding),
+                  // Categories(),
+                  SizedBox(height: kDefaultPadding),
+                  RecentPosts(),
+                ],
+              ),
             ),
           ),
       ],

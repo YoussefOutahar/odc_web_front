@@ -1,9 +1,10 @@
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../Services/Utils/responsive.dart';
 import '../../../../Services/Utils/utils.dart';
+import '../../../../translations/locale_keys.g.dart';
 import '../../../Animations/animated_opacity_when_hovered.dart';
 import '../../../Components/section_title.dart';
 import '../../../../DataBase/Models/team.dart';
@@ -22,16 +23,14 @@ class _TeamSectionState extends State<TeamSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // margin: const EdgeInsets.symmetric(vertical: 20 * 2),
-      // constraints: const BoxConstraints(maxWidth: 1110),
       margin: const EdgeInsets.only(top: 20 * 6),
       width: double.infinity,
       child: Column(
         children: [
-          const SectionTitle(
+          SectionTitle(
             color: Colors.red,
-            subTitle: 'Meet the team behind ODC',
-            title: 'Our Team',
+            subTitle: LocaleKeys.home_page_subtitle_team.tr(),
+            title: LocaleKeys.home_page_title_team.tr(),
           ),
           const SizedBox(height: 20 * 1.5),
           Container(
@@ -49,16 +48,22 @@ class _TeamSectionState extends State<TeamSection> {
                           const Duration(milliseconds: 800),
                       autoPlayCurve: Curves.fastOutSlowIn,
                       viewportFraction: Responsive.isDesktop(context)
-                          ? 2
+                          ? 1
                           : Responsive.isTablet(context)
                               ? 1
-                              : 0.5,
+                              : 0.7,
                       height: 400,
                     ),
                     items: Responsive.isMobile(context)
                         ? members
                             .map((e) => Builder(
-                                  builder: (context) => TeamCard(member: e),
+                                  builder: (context) => Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 20.0,
+                                      right: 20.0,
+                                    ),
+                                    child: TeamCard(member: e),
+                                  ),
                                 ))
                             .toList()
                         : Responsive.isTablet(context)
@@ -67,7 +72,13 @@ class _TeamSectionState extends State<TeamSection> {
                                   (e) => Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: e
-                                        .map((e) => TeamCard(member: e))
+                                        .map((e) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                left: 20.0,
+                                                right: 20.0,
+                                              ),
+                                              child: TeamCard(member: e),
+                                            ))
                                         .toList(),
                                   ),
                                 )
@@ -77,7 +88,13 @@ class _TeamSectionState extends State<TeamSection> {
                                   (e) => Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: e
-                                        .map((e) => TeamCard(member: e))
+                                        .map((e) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                left: 20.0,
+                                                right: 20.0,
+                                              ),
+                                              child: TeamCard(member: e),
+                                            ))
                                         .toList(),
                                   ),
                                 )

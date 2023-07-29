@@ -30,6 +30,7 @@ class SidebarContainer extends StatelessWidget {
             style: const TextStyle(
               color: kDarkBlackColor,
               fontWeight: FontWeight.w600,
+              fontSize: 18,
             ),
           ),
           const SizedBox(height: kDefaultPadding / 2), //10

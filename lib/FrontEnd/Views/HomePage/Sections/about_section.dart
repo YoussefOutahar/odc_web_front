@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../Services/Utils/responsive.dart';
+import '../../../../translations/locale_keys.g.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({
@@ -18,7 +20,10 @@ class AboutSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("About us", style: Theme.of(context).textTheme.displayMedium),
+            Text(
+              LocaleKeys.home_page_title_about_us.tr(),
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
             const SizedBox(
               height: 40,
             ),
@@ -38,7 +43,8 @@ class AboutSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("About us", style: Theme.of(context).textTheme.displayMedium),
+            Text(LocaleKeys.home_page_title_about_us.tr(),
+                style: Theme.of(context).textTheme.displayMedium),
             SizedBox(
               width: size.width / 5,
             ),

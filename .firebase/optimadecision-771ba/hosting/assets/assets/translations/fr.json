@@ -1,0 +1,27 @@
+{
+  "website_name": "OptimaDecision Consulting",
+  "website_subtitle": "Un avenir intelligent est à vous",
+  "tab_tiles": {
+    "home": "Accueil",
+    "blog": "Blog",
+    "about": "À propos",
+    "formation": "Formations",
+    "conseils": "Conseils",
+    "contact_us": "Contactez-nous"
+  },
+  "home_page": {
+    "title": {
+      "about_us": "À propos",
+      "events": "Evenements",
+      "formations": "Formations",
+      "team": "Notre Equipe",
+      "conseils": "Conseils"
+    },
+    "subtitle": {
+      "team": "Rencontrez l'équipe derrière ODC",
+      "events": "Événements récents",
+      "formations": "Nos formations",
+      "conseils": "test"
+    }
+  }
+}

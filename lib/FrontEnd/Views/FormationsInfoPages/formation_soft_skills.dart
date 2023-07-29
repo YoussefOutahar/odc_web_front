@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../DataBase/Models/formations.dart';
 import '../../../Services/Utils/responsive.dart';
 import 'Components/data_grid.dart';
 import 'Components/formation_header.dart';
-import 'Components/text_card.dart';
 import 'Components/text_section_title.dart';
 
 class FormationSoftSkillsInfoPage extends StatefulWidget {

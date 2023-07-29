@@ -1,8 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../Services/Utils/responsive.dart';
 import '../../Services/constants.dart';
+import '../../translations/locale_keys.g.dart';
+import '../Components/optima_logo.dart';
 import 'Components/social_media_button.dart';
 
 class Footer extends StatelessWidget {
@@ -13,20 +16,15 @@ class Footer extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20.0),
       child: Responsive.isMobile(context)
-          ? Row(
+          ? const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/images/logo_no_text.png',
-                      height: 50.0,
-                      filterQuality: FilterQuality.high,
-                      fit: BoxFit.fill,
-                    ),
-                    const SizedBox(height: 10.0),
-                    const Text(
+                    OptimaDecisionLogo(),
+                    SizedBox(height: 10.0),
+                    Text(
                       'OptimaDecision Consulting',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -37,40 +35,27 @@ class Footer extends StatelessWidget {
           : Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Contact Us',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      LocaleKeys.footer_contact.tr(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 10.0),
-                    Text('Email: contact@example.com'),
-                    Text('Phone: +1 123 456 7890'),
+                    const SizedBox(height: 10.0),
+                    const Text('Email: contact@example.com'),
+                    const Text('Phone: +1 123 456 7890'),
                   ],
                 ),
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Support',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      LocaleKeys.footer_follow.tr(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 10.0),
-                    Text('FAQ'),
-                    Text('Terms and Conditions'),
-                    Text('Privacy Policy'),
-                  ],
-                ),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Follow Us',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10.0),
-                    Row(
+                    const SizedBox(height: 10.0),
+                    const Row(
                       children: [
                         SocialMediaButton(
                           index: 1,
@@ -101,17 +86,12 @@ class Footer extends StatelessWidget {
                     ),
                   ],
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/images/logo_no_text.png',
-                      height: 50.0,
-                      filterQuality: FilterQuality.high,
-                      fit: BoxFit.fill,
-                    ),
-                    const SizedBox(height: 10.0),
-                    const Text(
+                    OptimaDecisionLogo(),
+                    SizedBox(height: 10.0),
+                    Text(
                       'OptimaDecision Consulting',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),

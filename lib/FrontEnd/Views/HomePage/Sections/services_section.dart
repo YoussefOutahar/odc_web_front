@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:odc/translations/locale_keys.g.dart';
 
 import '../../../../DataBase/Models/service.dart';
 import '../../../Components/section_title.dart';
@@ -15,10 +17,10 @@ class Services extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 20 * 2),
       child: Column(
         children: [
-          const SectionTitle(
-            color: Color(0xFFFF0000),
-            title: "Service Offerings",
-            subTitle: "My Strong Arenas",
+          SectionTitle(
+            color: const Color(0xFFFF0000),
+            title: LocaleKeys.home_page_title_conseils.tr(),
+            subTitle: LocaleKeys.home_page_subtitle_conseils.tr(),
           ),
           Center(
             child: Wrap(

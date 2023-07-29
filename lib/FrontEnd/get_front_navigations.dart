@@ -19,6 +19,7 @@ import 'Views/InfoPages/team_member_page.dart';
 getFrontNavigations() => [
       GetPage(
         name: "/home",
+        transitionDuration: const Duration(milliseconds: 700),
         transition: Transition.fadeIn,
         middlewares: [Middelware()],
         page: () => const AppLayout(
@@ -30,6 +31,7 @@ getFrontNavigations() => [
       ),
       GetPage(
         name: "/aboutUs",
+        transitionDuration: const Duration(milliseconds: 700),
         transition: Transition.fadeIn,
         middlewares: [Middelware()],
         page: () => const AppLayout(
@@ -41,6 +43,7 @@ getFrontNavigations() => [
       ),
       GetPage(
         name: "/contactUs",
+        transitionDuration: const Duration(milliseconds: 700),
         transition: Transition.fadeIn,
         middlewares: [Middelware()],
         page: () => const AppLayout(
@@ -52,6 +55,7 @@ getFrontNavigations() => [
       ),
       GetPage(
         name: "/formations",
+        transitionDuration: const Duration(milliseconds: 700),
         transition: Transition.fadeIn,
         page: () => const AppLayout(
           type: HeaderType.compactHeader,
@@ -63,6 +67,7 @@ getFrontNavigations() => [
       ),
       GetPage(
         name: "/conseils",
+        transitionDuration: const Duration(milliseconds: 700),
         transition: Transition.fadeIn,
         middlewares: [Middelware()],
         page: () => const AppLayout(
@@ -74,6 +79,7 @@ getFrontNavigations() => [
       ),
       GetPage(
         name: "/blog",
+        transitionDuration: const Duration(milliseconds: 700),
         transition: Transition.fadeIn,
         middlewares: [Middelware()],
         page: () => const AppLayout(
