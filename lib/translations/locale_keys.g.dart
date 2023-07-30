@@ -31,5 +31,10 @@ abstract class  LocaleKeys {
   static const about_page_what_we_do = 'about_page.what_we_do';
   static const about_page_formations = 'about_page.formations';
   static const about_page = 'about_page';
+  static const blog_page_read_more = 'blog_page.read_more';
+  static const blog_page_recent_posts = 'blog_page.recent_posts';
+  static const blog_page_search_title = 'blog_page.search_title';
+  static const blog_page_search_hint = 'blog_page.search_hint';
+  static const blog_page = 'blog_page';
 
 }

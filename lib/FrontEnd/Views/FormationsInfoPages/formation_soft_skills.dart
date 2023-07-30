@@ -5,6 +5,7 @@ import '../../../Services/Utils/responsive.dart';
 import 'Components/data_grid.dart';
 import 'Components/formation_header.dart';
 import 'Components/text_section_title.dart';
+import 'data.dart';
 
 class FormationSoftSkillsInfoPage extends StatefulWidget {
   const FormationSoftSkillsInfoPage({super.key});
@@ -17,6 +18,11 @@ class FormationSoftSkillsInfoPage extends StatefulWidget {
 class _FormationSoftSkillsInfoPageState
     extends State<FormationSoftSkillsInfoPage> {
   late Formation formation;
+
+  String formation1 = "Pack Certificat PNL";
+  String formation2 = "Pack Innovation & Business";
+  String formation3 = "Pack Santé sociale et bien être";
+  String formation4 = "Pack Prise de décision";
   @override
   void initState() {
     formation = formations[1];
@@ -50,85 +56,32 @@ class _FormationSoftSkillsInfoPageState
           const SizedBox(height: 20),
           const TextSectionTitle(title: "Pack Certificat PNL"),
           const SizedBox(height: 20),
-          const Padding(
-            padding: EdgeInsets.all(20.0),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
             child: DataGrid(
-              name: "PNL",
+              name: FormationData.formationDoctorantData[formation1]!["name"],
               whyData:
-                  "Maîtriser des techniques d’amélioration et de changement,\n"
-                  "Modéliser des stratégies d’excellence et de motivation, \n"
-                  "Transformer des comportements indésirables en attitudes positives,\n"
-                  "Passer d’un état présent à un état désiré, \n"
-                  "Libérer ses potentialités et capacités.\n",
-              publicCibleData:
-                  "Les Coachs, les professionnels de la communication, de la santé, de l'éducation, du sport, de la relation d'aide sont concernés par la PNL. Toute personne exerçant une fonction d'encadrement, chefs d'entreprises, managers et cadres .., ainsi que toute personne considérant la communication comme un élément important de son activité et de sa vie.",
-              objectifsPedagogiqueData:
-                  "Savoir et comprendre les sources de la PNL, son historique et son évolution.\n"
-                  "Savoir et pratiquer le travail dans un cadre objectif.\n"
-                  "Savoir et comprendre à mieux communiquer avec les différents systèmes de représentation.\n"
-                  "Prendre conscience de l'index de computation et ses différents champs d'application.\n"
-                  "Apprendre à appliquer la calibration dans son intervention.\n"
-                  "Apprendre à appliquer les différentes formes de synchronisation.\n"
-                  "Apprendre à mieux établir le rapport avec son client.\n"
-                  "Savoir et comprendre les méta-programmes de base.\n"
-                  "Savoir à intervenir en utilisant la triple description.\n"
-                  "Savoir et appliquer la technique de stratégie de Disney\n",
-              certificationData:
-                  "Le candidat sera certifié en ayant satisfait les normes de compétence de l'INLPTA et de AMERICAN BOARD ; du diplôme de PNL, telles qu'évaluées par le formateur enregistré.",
-              programData: "1.Sources de la PNL.\n"
-                  "2.Historique PNL.\n"
-                  "3.Evolution de la PNL.\n"
-                  "4.Définition de la PNL.\n"
-                  "5.Présuppositions PNL.\n"
-                  "6.Les piliers de la PNL.\n"
-                  "7.L'échelle d'apprentissage.\n"
-                  "8.Cadres PNL.\n"
-                  "9.Index de computation.\n"
-                  "10. État présent et état désiré.\n"
-                  "11. Gestion état interne.\n"
-                  "12. Formule de Changement PNL.\n"
-                  "13. Les conditions de la bonne formulation d'un 	objectif.\n"
-                  "14. Gain secondaire.\n"
-                  "15. Ecologie comportementale.\n"
-                  "16. Le VAKOG.\n"
-                  "17. Les systèmes de représentation.\n"
-                  "18. Acuité sensorielle.\n"
-                  "19. Macro-Calibration et Micro-Calibration.\n"
-                  "20. Prédicats.\n"
-                  "21. Mouvements Oculaires.\n"
-                  "22. Introduction (Méta Programmes ).\n"
-                  "23. Synchronisation.\n"
-                  "24. Rapport.\n"
-                  "25. Conscience interne et conscience externe.\n"
-                  "26. Stratégie Betty Erickson.\n"
-                  "27. Auto-Ancrage.\n"
-                  "28. Association Dissociation.\n"
-                  "29. Générateur de nouveaux comportements.\n"
-                  "30. Triple Description (Position Perceptuelles).\n"
-                  "31. Stratégie de Disney.\n"
-                  "32. Cercle d'excellence.\n",
-              dureeData: "20h sur  4j ( 2 Week end)\n"
-                  "Vendredi 19h00 - 21h00\n"
-                  "Samedi 9h00 - 17h00\n",
-              lieuData: "Rabat",
-              tarifData: "Pour les particuliers : 5000 DH.\n"
-                  "Pour les entreprise la formation est facturé au prix 7000 DH/ HT\n",
-              cvAnimateur: "Ingénieur d’état grade principal.\n"
-                  "Enseignant PNL certifié par INLPTA et ABNLP.\n"
-                  "Master Coach PNL ABNLP.\n"
-                  "Coach PCC Certifié ICF.\n"
-                  "Coach Senior Praticien EMCC.\n"
-                  "Mentor de Coach ICF.\n"
-                  "Assesseur ICF.\n"
-                  "Certifié aux outils psychométriques (DISC, WPMOT) Par TTI Success Insights France.\n"
-                  "Certifié en Analyse Transactionnelle par l’IFAT (Institut Français de l’Analyse Transactionnelle) Certifié en Analyse.\n"
-                  "Transactionnelle par EATA (European Association of Transactionnel Analysis).\n"
-                  "Certifié  PMP (Project Management Professional) par PMI (Project Management Institute) Pennsylvanie USA.\n",
-              contactData:
-                  "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
-                  "06 41 86 59 12\n"
-                  "06 41 58 85 05\n",
-              coutData: '--------',
+                  FormationData.formationDoctorantData[formation1]!["whyData"],
+              publicCibleData: FormationData
+                  .formationDoctorantData[formation1]!["publicCibleData"],
+              objectifsPedagogiqueData: FormationData.formationDoctorantData[
+                  formation1]!["objectifsPedagogiqueData"],
+              certificationData: FormationData
+                  .formationDoctorantData[formation1]!["certificationData"],
+              programData: FormationData
+                  .formationDoctorantData[formation1]!["programData"],
+              cvAnimateur: FormationData
+                  .formationDoctorantData[formation1]!["cvAnimateur"],
+              dureeData: FormationData
+                  .formationDoctorantData[formation1]!["dureeData"],
+              lieuData:
+                  FormationData.formationDoctorantData[formation1]!["lieuData"],
+              tarifData: FormationData
+                  .formationDoctorantData[formation1]!["tarifData"],
+              coutData:
+                  FormationData.formationDoctorantData[formation1]!["coutData"],
+              contactData: FormationData
+                  .formationDoctorantData[formation1]!["contactData"],
             ),
           ),
           const SizedBox(height: 20),

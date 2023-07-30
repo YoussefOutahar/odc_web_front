@@ -5,6 +5,7 @@ import '../../../Services/Utils/responsive.dart';
 import 'Components/data_grid.dart';
 import 'Components/formation_header.dart';
 import 'Components/text_section_title.dart';
+import 'data.dart';
 
 class FormationLearningTravelInfoPage extends StatefulWidget {
   const FormationLearningTravelInfoPage({super.key});
@@ -17,6 +18,10 @@ class FormationLearningTravelInfoPage extends StatefulWidget {
 class _FormationLearningTravelInfoPageState
     extends State<FormationLearningTravelInfoPage> {
   late Formation formation;
+
+  String formation1 = "Voyage Programmation Informatique";
+  String formation2 = "Voyage entreprenariat";
+  String formation3 = "Voyage découverte pédagogique";
   @override
   void initState() {
     formation = formations[3];
@@ -50,47 +55,32 @@ class _FormationLearningTravelInfoPageState
           const SizedBox(height: 20),
           const TextSectionTitle(title: "Voyage Programmation Informatique"),
           const SizedBox(height: 20),
-          const Padding(
-            padding: EdgeInsets.all(20.0),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
             child: DataGrid(
-              name: "Programmation Informatique",
-              whyData: "Initiation aux bases du développement informatique\n"
-                  "Acquisition de compétences en création d'applications et solutions logicielles\n"
-                  "Apprentissage des principes de programmation et des outils collaboratifs\n"
-                  "Favoriser la polyvalence des compétences pour s'adapter à divers secteurs d'activité\n"
-                  "Encourager la créativité et la résolution de problèmes grâce à la maîtrise de la programmation\n",
-              publicCibleData: "Débutants en développement informatique\n"
-                  "Professionnels en reconversion\n"
-                  "Personnes souhaitant compléter leurs compétences avec la programmation\n",
-              objectifsPedagogiqueData:
-                  "Comprendre les concepts fondamentaux de la programmation\n"
-                  "Se familiariser avec un langage de programmation spécifique\n"
-                  "Développer des applications simples\n"
-                  "Appliquer les bonnes pratiques de développement\n"
-                  "Utiliser les outils de travail collaboratif et de gestion de projet\n",
-              certificationData: "--------------",
-              programData: "Jour 1: Introduction et fondamentaux\n"
-                  "Introduction au développement informatique \n"
-                  "Concepts fondamentaux de la programmation \n"
-                  "Présentation du langage de programmation choisi\n"
-                  "Jour 2: Développement pratique et bonnes pratiques\n"
-                  "Environnement de développement et outils \n"
-                  "Syntaxe et structures de contrôle \n"
-                  "Pause déjeuner \n"
-                  "Fonctions, classes et objets\n"
-                  "Bonnes pratiques de développement \n"
-                  "Jour 3: Projets et travail collaboratif\n"
-                  "Introduction aux bibliothèques et frameworks \n"
-                  "Travailler avec des API \n"
-                  "Projet pratique en groupe \n"
-                  "Outils de travail collaboratif et gestion de projet\n"
-                  "Conclusion et évaluation de la formation\n",
-              contactData: "--------",
-              coutData: "--------",
-              cvAnimateur: "--------",
-              dureeData: "--------",
-              lieuData: "--------",
-              tarifData: "--------",
+              name: FormationData.formationDoctorantData[formation1]!["name"],
+              whyData:
+                  FormationData.formationDoctorantData[formation1]!["whyData"],
+              publicCibleData: FormationData
+                  .formationDoctorantData[formation1]!["publicCibleData"],
+              objectifsPedagogiqueData: FormationData.formationDoctorantData[
+                  formation1]!["objectifsPedagogiqueData"],
+              certificationData: FormationData
+                  .formationDoctorantData[formation1]!["certificationData"],
+              programData: FormationData
+                  .formationDoctorantData[formation1]!["programData"],
+              cvAnimateur: FormationData
+                  .formationDoctorantData[formation1]!["cvAnimateur"],
+              dureeData: FormationData
+                  .formationDoctorantData[formation1]!["dureeData"],
+              lieuData:
+                  FormationData.formationDoctorantData[formation1]!["lieuData"],
+              tarifData: FormationData
+                  .formationDoctorantData[formation1]!["tarifData"],
+              coutData:
+                  FormationData.formationDoctorantData[formation1]!["coutData"],
+              contactData: FormationData
+                  .formationDoctorantData[formation1]!["contactData"],
             ),
           ),
           const SizedBox(height: 20),
@@ -104,54 +94,32 @@ class _FormationLearningTravelInfoPageState
           const SizedBox(height: 20),
           const TextSectionTitle(title: "Voyage entreprenariat"),
           const SizedBox(height: 20),
-          const Padding(
-            padding: EdgeInsets.all(20.0),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
             child: DataGrid(
-              name: "entreprenariat",
+              name: FormationData.formationDoctorantData[formation2]!["name"],
               whyData:
-                  "Acquérir les compétences et les connaissances pour devenir un entrepreneur réussi\n"
-                  "Comprendre les principes de base de l'entrepreneuriat et du démarrage d'entreprise\n"
-                  "Identifier les opportunités d'affaires et évaluer leur potentiel.\n"
-                  "Élaborer un plan d'affaires complet.\n"
-                  "Gérer les finances de votre entreprise, y compris la budgétisation, la comptabilité et le financement\n",
-              publicCibleData:
-                  "Cette formation est destinée à toute personne intéressée par l'entrepreneuriat, qu'il s'agisse d'entrepreneurs débutants ou expérimentés, de cadres d'entreprise ou de travailleurs indépendants.",
-              objectifsPedagogiqueData:
-                  "Au terme de cette formation, vous serez capable de :\n"
-                  "Comprendre les principes de base de l'entrepreneuriat et du démarrage d'entreprise\n"
-                  "Identifier les opportunités d'affaires et évaluer leur potentiel\n"
-                  "Élaborer un plan d'affaires complet\n"
-                  "Gérer les finances de votre entreprise, y compris la budgétisation, la comptabilité et le financement\n"
-                  "Développer et commercialiser votre produit ou service\n"
-                  "Gérer les risques et les défis liés à l'entrepreneuriat\n",
-              certificationData: "----------",
-              programData: "Jour 1 : Les bases de l'entrepreneuriat\n"
-                  "Introduction à l'entrepreneuriat\n"
-                  "Les traits de personnalité d'un entrepreneur réussi\n"
-                  "Comment générer des idées d'affaires\n"
-                  "Comment évaluer le potentiel d'une opportunité d'affaires\n"
-                  "Les différentes formes juridiques d'entreprise\n"
-                  "Jour 2 : Planification et gestion financière\n"
-                  "Élaboration d'un plan d'affaires complet\n"
-                  "Comment établir un budget pour votre entreprise\n"
-                  "Comptabilité et tenue des registres financiers\n"
-                  "Sources de financement pour les startups\n"
-                  "Stratégies fiscales pour les entrepreneurs\n"
-                  "Jour 3 : Marketing et gestion des risques\n"
-                  "Comment développer et commercialiser votre produit ou service\n"
-                  "Les techniques de marketing pour les startups\n"
-                  "Gestion des risques et des défis dans l'entrepreneuriat\n"
-                  "Comment établir et gérer des partenariats d'affaires\n"
-                  "Résumé de la formation et plan d'action pour la suite\n",
-              contactData:
-                  "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
-                  "06 41 86 59 12\n"
-                  "06 41 58 85 05\n",
-              coutData: "--------",
-              cvAnimateur: "--------",
-              dureeData: "--------",
-              lieuData: "--------",
-              tarifData: "--------",
+                  FormationData.formationDoctorantData[formation2]!["whyData"],
+              publicCibleData: FormationData
+                  .formationDoctorantData[formation2]!["publicCibleData"],
+              objectifsPedagogiqueData: FormationData.formationDoctorantData[
+                  formation2]!["objectifsPedagogiqueData"],
+              certificationData: FormationData
+                  .formationDoctorantData[formation2]!["certificationData"],
+              programData: FormationData
+                  .formationDoctorantData[formation2]!["programData"],
+              cvAnimateur: FormationData
+                  .formationDoctorantData[formation2]!["cvAnimateur"],
+              dureeData: FormationData
+                  .formationDoctorantData[formation2]!["dureeData"],
+              lieuData:
+                  FormationData.formationDoctorantData[formation2]!["lieuData"],
+              tarifData: FormationData
+                  .formationDoctorantData[formation2]!["tarifData"],
+              coutData:
+                  FormationData.formationDoctorantData[formation2]!["coutData"],
+              contactData: FormationData
+                  .formationDoctorantData[formation2]!["contactData"],
             ),
           ),
           const SizedBox(height: 20),
@@ -165,29 +133,32 @@ class _FormationLearningTravelInfoPageState
           const SizedBox(height: 20),
           const TextSectionTitle(title: "Voyage découverte pédagogique"),
           const SizedBox(height: 20),
-          const Padding(
-            padding: EdgeInsets.all(20.0),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
             child: DataGrid(
-              name: "découverte pédagogique ",
+              name: FormationData.formationDoctorantData[formation3]!["name"],
               whyData:
-                  "Voyage de détente et de découverte culturelle de la région pour vocation personnel ou professionnel\n"
-                  "Apprendre l’artisanat de la région visité\n"
-                  "Découvrir la partie gastronomique de la région visité\n"
-                  "Découvrir la richesse de la région \n",
-              certificationData: "Certificat de l’artisanat de la région\n"
-                  "Certificat du management produits du terroir\n",
-              contactData:
-                  "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
-                  "06 41 86 59 12\n"
-                  "06 41 58 85 05",
-              coutData: "--------",
-              cvAnimateur: "--------",
-              dureeData: "--------",
-              lieuData: "--------",
-              tarifData: "--------",
-              objectifsPedagogiqueData: "--------",
-              programData: "--------",
-              publicCibleData: "--------",
+                  FormationData.formationDoctorantData[formation3]!["whyData"],
+              publicCibleData: FormationData
+                  .formationDoctorantData[formation3]!["publicCibleData"],
+              objectifsPedagogiqueData: FormationData.formationDoctorantData[
+                  formation3]!["objectifsPedagogiqueData"],
+              certificationData: FormationData
+                  .formationDoctorantData[formation3]!["certificationData"],
+              programData: FormationData
+                  .formationDoctorantData[formation3]!["programData"],
+              cvAnimateur: FormationData
+                  .formationDoctorantData[formation3]!["cvAnimateur"],
+              dureeData: FormationData
+                  .formationDoctorantData[formation3]!["dureeData"],
+              lieuData:
+                  FormationData.formationDoctorantData[formation3]!["lieuData"],
+              tarifData: FormationData
+                  .formationDoctorantData[formation3]!["tarifData"],
+              coutData:
+                  FormationData.formationDoctorantData[formation3]!["coutData"],
+              contactData: FormationData
+                  .formationDoctorantData[formation3]!["contactData"],
             ),
           ),
           const SizedBox(height: 20),

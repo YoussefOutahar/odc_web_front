@@ -1,11 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 
 import '../../../../DataBase/Models/blog_post.dart';
 import '../../../../Services/constants.dart';
 import '../../../../Services/Utils/responsive.dart';
+import '../../../../translations/locale_keys.g.dart';
 
 class BlogPostCard extends StatelessWidget {
   final BlogPost blogPost;
@@ -40,22 +42,9 @@ class BlogPostCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Design".toUpperCase(),
-                        style: const TextStyle(
-                          color: Color(0xFF191919),
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(width: kDefaultPadding),
-                      Text(
-                        blogPost.createdAt.toDate().toString(),
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ],
+                  Text(
+                    blogPost.createdAt.toDate().toString(),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                   Padding(
                     padding:
@@ -99,9 +88,9 @@ class BlogPostCard extends StatelessWidget {
                                   BorderSide(color: kPrimaryColor, width: 3),
                             ),
                           ),
-                          child: const Text(
-                            "Read More",
-                            style: TextStyle(color: Color(0xFF191919)),
+                          child: Text(
+                            LocaleKeys.blog_page_read_more.tr(),
+                            style: const TextStyle(color: Color(0xFF191919)),
                           ),
                         ),
                       ),

@@ -50,6 +50,12 @@ class CodegenLoader extends AssetLoader{
     "our_values": "Our Values",
     "what_we_do": "What we do",
     "formations": "Formations"
+  },
+  "blog_page": {
+    "read_more": "Read more",
+    "recent_posts": "Recent posts",
+    "search_title": "Search",
+    "search_hint": "Type here..."
   }
 };
 static const Map<String,dynamic> fr = {
@@ -88,6 +94,12 @@ static const Map<String,dynamic> fr = {
     "our_values": "Nos Valeurs",
     "what_we_do": "Ce qu'on fait",
     "formations": "Trainings"
+  },
+  "blog_page": {
+    "read_more": "En savoir plus",
+    "recent_posts": "Posts récents",
+    "search_title": "Recherche",
+    "search_hint": "Écrivez ici..."
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "fr": fr};

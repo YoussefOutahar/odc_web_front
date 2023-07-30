@@ -3,6 +3,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:odc/FrontEnd/Views/FormationsInfoPages/Components/text_card.dart';
 
 import '../../../../Services/Utils/responsive.dart';
+import 'folded_text_card.dart';
 
 class DataGrid extends StatelessWidget {
   const DataGrid({
@@ -42,7 +43,7 @@ class DataGrid extends StatelessWidget {
       TextCard(
           title: "Objectifs pédagogique :", text: objectifsPedagogiqueData),
       TextCard(title: "Certification :", text: certificationData),
-      TextCard(title: "Programme :", text: programData),
+      FoldedTextCard(title: "Programme :", text: programData),
       TextCard(title: "Durée :", text: dureeData),
       TextCard(title: "Lieu :", text: lieuData),
       TextCard(title: "Tarif :", text: tarifData),

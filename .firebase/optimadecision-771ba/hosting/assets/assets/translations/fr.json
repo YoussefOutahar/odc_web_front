@@ -23,5 +23,22 @@
       "formations": "Nos formations",
       "conseils": "test"
     }
+  },
+  "footer": {
+    "contact": "Contactez-nous",
+    "follow": "Suivez-nous"
+  },
+  "about_page": {
+    "who_are_we": "Qui sommes nous",
+    "our_mission": "Notre mission",
+    "our_values": "Nos Valeurs",
+    "what_we_do": "Ce qu'on fait",
+    "formations": "Trainings"
+  },
+  "blog_page": {
+    "read_more": "En savoir plus",
+    "recent_posts": "Posts récents",
+    "search_title": "Recherche",
+    "search_hint": "Écrivez ici..."
   }
 }

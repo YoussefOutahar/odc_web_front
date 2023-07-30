@@ -51,86 +51,86 @@ class _FormationSurMesuresInfoPageState
           const TextSectionTitle(title: "Pack E-commerce"),
           const SizedBox(height: 20),
           const Padding(
-              padding: EdgeInsets.all(20.0),
-              child: DataGrid(
-                name: "e-commerce",
-                whyData:
-                    "La formation assure aux créateurs et gestionnaires des projets e-commerce : \n"
-                    "La maîtrise du processus de développement d’un projet e-commerce;\n"
-                    "Les outils d’analyse et d’aide à la décision nécessaires pour l’amélioration durable de leurs business;\n"
-                    "Une meilleur compréhension du marché e-commerce;\n"
-                    "La maîtrise du process d'intégration des EDI; ( les septs modules d'intégration  EDI)\n"
-                    "Les outils de stratégie et  marketing digital.\n",
-                publicCibleData: "Entrepreneurs;\n"
-                    "Professionnels du marketing et des ventes;\n"
-                    "Gestionnaires de projets e-commerce;\n"
-                    "Future créateur de projet e-commerce;\n"
-                    "Personnes souhaitant améliorer leurs compétences en e-commerce\n",
-                objectifsPedagogiqueData:
-                    "Maîtriser les concepts clés du e-commerce;\n"
-                    "Acquérir les  compétences de création et la gestion d’un site e-commerce;\n"
-                    "Comprendre les stratégies du marketing digital et des canaux de promotion;\n"
-                    "Maîtriser les outils de management des achats et sourcing en e-commerce;\n"
-                    "Maîtriser les aspects logistiques du business e-commerce;\n"
-                    "Élaborer les outils d’aide à la décision pour améliorer la performance globale du business e-commerce;\n"
-                    "Maîtriser  la sécurité en ligne et les réglementations applicables en e-commerce;\n"
-                    "Améliorer la compétitivité des entreprises sur le marché du commerce électronique;\n"
-                    "Développer des projets innovants dans le commerce en ligne.\n",
-                certificationData:
-                    "Certificat Executive en Stratégie et Management e-commerce. (CSMEC)\n"
-                    "Des outils informatiques  sont fournis à la fin de la formation.\n",
-                programData:
-                    "Introduction au e-commerce et panorama du marché\n"
-                    "Étude des différents modèles de e-commerce (B2C, B2B, C2C)\n"
-                    "Conception et création d'une boutique en ligne\n"
-                    "Choix de la plateforme et des solutions techniques\n"
-                    "Design et expérience utilisateur\n"
-                    "Catalogue de produits et gestion des stocks\n"
-                    "Paiements et logistique\n"
-                    "Solutions de paiement en ligne\n"
-                    "Gestion des commandes et des expéditions\n"
-                    "Gestion des retours et du service client\n"
-                    "Marketing digital et promotion de la boutique en ligne\n"
-                    "Référencement naturel (SEO)\n"
-                    "Publicité en ligne (SEA, réseaux sociaux, e-mailing)\n"
-                    "Affiliation et partenariats\n"
-                    "Suivi des performances et optimisation\n"
-                    "Analyse des données et indicateurs clés de performance (KPI)\n"
-                    "A/B testing et optimisation de l'expérience utilisateur\n"
-                    "Stratégies de fidélisation et d'engagement client\n"
-                    "Maîtrise des coûts\n"
-                    "Tendances et perspectives du e-commerce\n"
-                    "Commerce mobile et applications dédiées\n"
-                    "Intelligence artificielle et personnalisation\n"
-                    "Réalité augmentée et virtuelle dans le commerce en ligne\n"
-                    "Processus d'intégration des EDI\n"
-                    "Forward Logistic\n"
-                    "Re/Labeling\n"
-                    "Reverse Logistic\n"
-                    "Tracking\n"
-                    "Undelivry\n"
-                    "Delivery Network\n"
-                    "COD Report\n"
-                    "Sécurité et conformité\n"
-                    "Protection des données personnelles et réglementation (RGPD)\n"
-                    "Sécurité des transactions et prévention de la fraude\n"
-                    "Étude de cas et réalisation d'un projet e-commerce en groupe\n"
-                    "Bilan de la formation et évaluation des compétences acquise\n",
-                dureeData: "20h sur  4j ( 2 Week end)\n"
-                    "Vendredi 19h00 - 21h00\n"
-                    "Samedi 9h00 - 17h00\n",
-                lieuData: "Salle d’un hôtel 4* minimum ou chez l’entreprise\n",
-                tarifData: "10 000 dh / personne TTC pour entreprise\n"
-                    "7 000 dh / personne  pour particulier en présentiel\n"
-                    "3 500 dh/ personne à distance (minimum)\n"
-                    "10 personnes minimum.\n",
-                coutData: "Intervenant : 12 000 dh\n"
-                    "Salle de formation 20 000 dh\n"
-                    "Administration : 15 000 dh\n",
-                cvAnimateur: "CV de M. El Youssfi\n",
-                contactData: "Tél: 06 41 86 59 12\n"
-                    "Tél: 06 41 58 85 05\n",
-              )),
+            padding: EdgeInsets.all(20.0),
+            child: DataGrid(
+              name: "e-commerce",
+              whyData:
+                  "La formation assure aux créateurs et gestionnaires des projets e-commerce : \n"
+                  "La maîtrise du processus de développement d’un projet e-commerce;\n"
+                  "Les outils d’analyse et d’aide à la décision nécessaires pour l’amélioration durable de leurs business;\n"
+                  "Une meilleur compréhension du marché e-commerce;\n"
+                  "La maîtrise du process d'intégration des EDI; ( les septs modules d'intégration  EDI)\n"
+                  "Les outils de stratégie et  marketing digital.\n",
+              publicCibleData: "Entrepreneurs;\n"
+                  "Professionnels du marketing et des ventes;\n"
+                  "Gestionnaires de projets e-commerce;\n"
+                  "Future créateur de projet e-commerce;\n"
+                  "Personnes souhaitant améliorer leurs compétences en e-commerce\n",
+              objectifsPedagogiqueData:
+                  "Maîtriser les concepts clés du e-commerce;\n"
+                  "Acquérir les  compétences de création et la gestion d’un site e-commerce;\n"
+                  "Comprendre les stratégies du marketing digital et des canaux de promotion;\n"
+                  "Maîtriser les outils de management des achats et sourcing en e-commerce;\n"
+                  "Maîtriser les aspects logistiques du business e-commerce;\n"
+                  "Élaborer les outils d’aide à la décision pour améliorer la performance globale du business e-commerce;\n"
+                  "Maîtriser  la sécurité en ligne et les réglementations applicables en e-commerce;\n"
+                  "Améliorer la compétitivité des entreprises sur le marché du commerce électronique;\n"
+                  "Développer des projets innovants dans le commerce en ligne.\n",
+              certificationData:
+                  "Certificat Executive en Stratégie et Management e-commerce. (CSMEC)\n"
+                  "Des outils informatiques  sont fournis à la fin de la formation.\n",
+              programData: "Introduction au e-commerce et panorama du marché\n"
+                  "Étude des différents modèles de e-commerce (B2C, B2B, C2C)\n"
+                  "Conception et création d'une boutique en ligne\n"
+                  "Choix de la plateforme et des solutions techniques\n"
+                  "Design et expérience utilisateur\n"
+                  "Catalogue de produits et gestion des stocks\n"
+                  "Paiements et logistique\n"
+                  "Solutions de paiement en ligne\n"
+                  "Gestion des commandes et des expéditions\n"
+                  "Gestion des retours et du service client\n"
+                  "Marketing digital et promotion de la boutique en ligne\n"
+                  "Référencement naturel (SEO)\n"
+                  "Publicité en ligne (SEA, réseaux sociaux, e-mailing)\n"
+                  "Affiliation et partenariats\n"
+                  "Suivi des performances et optimisation\n"
+                  "Analyse des données et indicateurs clés de performance (KPI)\n"
+                  "A/B testing et optimisation de l'expérience utilisateur\n"
+                  "Stratégies de fidélisation et d'engagement client\n"
+                  "Maîtrise des coûts\n"
+                  "Tendances et perspectives du e-commerce\n"
+                  "Commerce mobile et applications dédiées\n"
+                  "Intelligence artificielle et personnalisation\n"
+                  "Réalité augmentée et virtuelle dans le commerce en ligne\n"
+                  "Processus d'intégration des EDI\n"
+                  "Forward Logistic\n"
+                  "Re/Labeling\n"
+                  "Reverse Logistic\n"
+                  "Tracking\n"
+                  "Undelivry\n"
+                  "Delivery Network\n"
+                  "COD Report\n"
+                  "Sécurité et conformité\n"
+                  "Protection des données personnelles et réglementation (RGPD)\n"
+                  "Sécurité des transactions et prévention de la fraude\n"
+                  "Étude de cas et réalisation d'un projet e-commerce en groupe\n"
+                  "Bilan de la formation et évaluation des compétences acquise\n",
+              dureeData: "20h sur  4j ( 2 Week end)\n"
+                  "Vendredi 19h00 - 21h00\n"
+                  "Samedi 9h00 - 17h00\n",
+              lieuData: "Salle d’un hôtel 4* minimum ou chez l’entreprise\n",
+              tarifData: "10 000 dh / personne TTC pour entreprise\n"
+                  "7 000 dh / personne  pour particulier en présentiel\n"
+                  "3 500 dh/ personne à distance (minimum)\n"
+                  "10 personnes minimum.\n",
+              coutData: "Intervenant : 12 000 dh\n"
+                  "Salle de formation 20 000 dh\n"
+                  "Administration : 15 000 dh\n",
+              cvAnimateur: "CV de M. El Youssfi\n",
+              contactData: "Tél: 06 41 86 59 12\n"
+                  "Tél: 06 41 58 85 05\n",
+            ),
+          ),
           const SizedBox(height: 20),
           const Divider(
             color: Colors.black,

@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../Services/constants.dart';
+import '../../../../translations/locale_keys.g.dart';
 import 'sidebar_container.dart';
 
 class RecentPosts extends StatelessWidget {
@@ -11,7 +13,7 @@ class RecentPosts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SidebarContainer(
-      title: "Recent Post",
+      title: LocaleKeys.blog_page_recent_posts.tr(),
       child: Column(
         children: [
           RecentPostCard(

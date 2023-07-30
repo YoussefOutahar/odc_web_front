@@ -34,5 +34,11 @@
     "our_values": "Nos Valeurs",
     "what_we_do": "Ce qu'on fait",
     "formations": "Trainings"
+  },
+  "blog_page": {
+    "read_more": "En savoir plus",
+    "recent_posts": "Posts récents",
+    "search_title": "Recherche",
+    "search_hint": "Écrivez ici..."
   }
 }
