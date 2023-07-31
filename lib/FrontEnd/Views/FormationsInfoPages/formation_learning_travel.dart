@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../DataBase/Models/formations.dart';
-import '../../../Services/Utils/responsive.dart';
+import '../../../Services/constants.dart';
 import 'Components/data_grid.dart';
 import 'Components/formation_header.dart';
 import 'Components/text_section_title.dart';
@@ -16,164 +16,99 @@ class FormationLearningTravelInfoPage extends StatefulWidget {
 }
 
 class _FormationLearningTravelInfoPageState
-    extends State<FormationLearningTravelInfoPage> {
+    extends State<FormationLearningTravelInfoPage>
+    with SingleTickerProviderStateMixin {
   late Formation formation;
 
-  String formation1 = "Voyage Programmation Informatique";
-  String formation2 = "Voyage entreprenariat";
-  String formation3 = "Voyage découverte pédagogique";
+  late TabController _tabController;
+
+  List<String> formationsKeys = [
+    "Voyage Programmation Informatique",
+    "Voyage entreprenariat",
+    "Voyage découverte pédagogique"
+  ];
+
   @override
   void initState() {
     formation = formations[3];
+    _tabController = TabController(length: 3, vsync: this);
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return _buildPage(size);
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
-  Widget _buildPage(Size size) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Transform.translate(
-            offset: const Offset(0, -kToolbarHeight * 1.2),
-            child: FormationHeader(
-              imgSrc: formation.image,
-              title: formation.title,
-            ),
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Transform.translate(
+          offset: const Offset(0, -kToolbarHeight * 1.2),
+          child: FormationHeader(
+            imgSrc: formation.image,
+            title: formation.title,
           ),
-          const Divider(
-            color: Colors.black,
-            height: 20,
-            thickness: 2,
-            indent: 20,
-            endIndent: 20,
-          ),
-          const SizedBox(height: 20),
-          const TextSectionTitle(title: "Voyage Programmation Informatique"),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: DataGrid(
-              name: FormationData.formationDoctorantData[formation1]!["name"],
-              whyData:
-                  FormationData.formationDoctorantData[formation1]!["whyData"],
-              publicCibleData: FormationData
-                  .formationDoctorantData[formation1]!["publicCibleData"],
-              objectifsPedagogiqueData: FormationData.formationDoctorantData[
-                  formation1]!["objectifsPedagogiqueData"],
-              certificationData: FormationData
-                  .formationDoctorantData[formation1]!["certificationData"],
-              programData: FormationData
-                  .formationDoctorantData[formation1]!["programData"],
-              cvAnimateur: FormationData
-                  .formationDoctorantData[formation1]!["cvAnimateur"],
-              dureeData: FormationData
-                  .formationDoctorantData[formation1]!["dureeData"],
-              lieuData:
-                  FormationData.formationDoctorantData[formation1]!["lieuData"],
-              tarifData: FormationData
-                  .formationDoctorantData[formation1]!["tarifData"],
-              coutData:
-                  FormationData.formationDoctorantData[formation1]!["coutData"],
-              contactData: FormationData
-                  .formationDoctorantData[formation1]!["contactData"],
-            ),
-          ),
-          const SizedBox(height: 20),
-          const Divider(
-            color: Colors.black,
-            height: 20,
-            thickness: 2,
-            indent: 20,
-            endIndent: 20,
-          ),
-          const SizedBox(height: 20),
-          const TextSectionTitle(title: "Voyage entreprenariat"),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: DataGrid(
-              name: FormationData.formationDoctorantData[formation2]!["name"],
-              whyData:
-                  FormationData.formationDoctorantData[formation2]!["whyData"],
-              publicCibleData: FormationData
-                  .formationDoctorantData[formation2]!["publicCibleData"],
-              objectifsPedagogiqueData: FormationData.formationDoctorantData[
-                  formation2]!["objectifsPedagogiqueData"],
-              certificationData: FormationData
-                  .formationDoctorantData[formation2]!["certificationData"],
-              programData: FormationData
-                  .formationDoctorantData[formation2]!["programData"],
-              cvAnimateur: FormationData
-                  .formationDoctorantData[formation2]!["cvAnimateur"],
-              dureeData: FormationData
-                  .formationDoctorantData[formation2]!["dureeData"],
-              lieuData:
-                  FormationData.formationDoctorantData[formation2]!["lieuData"],
-              tarifData: FormationData
-                  .formationDoctorantData[formation2]!["tarifData"],
-              coutData:
-                  FormationData.formationDoctorantData[formation2]!["coutData"],
-              contactData: FormationData
-                  .formationDoctorantData[formation2]!["contactData"],
-            ),
-          ),
-          const SizedBox(height: 20),
-          const Divider(
-            color: Colors.black,
-            height: 20,
-            thickness: 2,
-            indent: 20,
-            endIndent: 20,
-          ),
-          const SizedBox(height: 20),
-          const TextSectionTitle(title: "Voyage découverte pédagogique"),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: DataGrid(
-              name: FormationData.formationDoctorantData[formation3]!["name"],
-              whyData:
-                  FormationData.formationDoctorantData[formation3]!["whyData"],
-              publicCibleData: FormationData
-                  .formationDoctorantData[formation3]!["publicCibleData"],
-              objectifsPedagogiqueData: FormationData.formationDoctorantData[
-                  formation3]!["objectifsPedagogiqueData"],
-              certificationData: FormationData
-                  .formationDoctorantData[formation3]!["certificationData"],
-              programData: FormationData
-                  .formationDoctorantData[formation3]!["programData"],
-              cvAnimateur: FormationData
-                  .formationDoctorantData[formation3]!["cvAnimateur"],
-              dureeData: FormationData
-                  .formationDoctorantData[formation3]!["dureeData"],
-              lieuData:
-                  FormationData.formationDoctorantData[formation3]!["lieuData"],
-              tarifData: FormationData
-                  .formationDoctorantData[formation3]!["tarifData"],
-              coutData:
-                  FormationData.formationDoctorantData[formation3]!["coutData"],
-              contactData: FormationData
-                  .formationDoctorantData[formation3]!["contactData"],
-            ),
-          ),
-          const SizedBox(height: 20),
-        ],
-      );
-
-  Widget _buildExplanationImage(BuildContext context, Size size) =>
-      Responsive.isMobile(context)
-          ? Align(
-              alignment: Alignment.center,
-              child: Image.asset(
-                "assets/images/formations/sur_mesures.png",
-                width: size.width / 2,
-                height: size.height / 2,
+        ),
+        Transform.translate(
+          offset: const Offset(0, -kToolbarHeight * 0.5),
+          child: TabBar(
+            controller: _tabController,
+            labelColor: Colors.black,
+            indicatorColor: Colors.black,
+            onTap: (index) => setState(() {}),
+            tabs: [
+              Tab(
+                text: formationsKeys[0],
               ),
-            )
-          : const SizedBox.shrink();
+              Tab(
+                text: formationsKeys[1],
+              ),
+              Tab(
+                text: formationsKeys[2],
+              ),
+            ],
+          ),
+        ),
+        Builder(
+          builder: (context) {
+            return Padding(
+              padding: const EdgeInsets.all(kDefaultPadding),
+              child: DataGrid(
+                name: FormationData.formationLearningTravelData[
+                    formationsKeys[_tabController.index]]!["name"],
+                whyData: FormationData.formationLearningTravelData[
+                    formationsKeys[_tabController.index]]!["whyData"],
+                publicCibleData: FormationData.formationLearningTravelData[
+                    formationsKeys[_tabController.index]]!["publicCibleData"],
+                objectifsPedagogiqueData:
+                    FormationData.formationLearningTravelData[formationsKeys[
+                        _tabController.index]]!["objectifsPedagogiqueData"],
+                certificationData: FormationData.formationLearningTravelData[
+                    formationsKeys[_tabController.index]]!["certificationData"],
+                programData: FormationData.formationLearningTravelData[
+                    formationsKeys[_tabController.index]]!["programData"],
+                cvAnimateur: FormationData.formationLearningTravelData[
+                    formationsKeys[_tabController.index]]!["cvAnimateur"],
+                dureeData: FormationData.formationLearningTravelData[
+                    formationsKeys[_tabController.index]]!["dureeData"],
+                lieuData: FormationData.formationLearningTravelData[
+                    formationsKeys[_tabController.index]]!["lieuData"],
+                tarifData: FormationData.formationLearningTravelData[
+                    formationsKeys[_tabController.index]]!["tarifData"],
+                coutData: FormationData.formationLearningTravelData[
+                    formationsKeys[_tabController.index]]!["coutData"],
+                contactData: FormationData.formationLearningTravelData[
+                    formationsKeys[_tabController.index]]!["contactData"],
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
 }
