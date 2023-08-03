@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:url_strategy/url_strategy.dart';
 
 import 'Client/get_dashboard_navigations.dart';
 import 'Services/analytics_service.dart';

@@ -25,8 +25,10 @@ class _FoldedTextCardState extends State<FoldedTextCard> {
       duration: const Duration(milliseconds: 800),
       onTapPadding: 20,
       scrollPhysics: const BouncingScrollPhysics(),
-      content: TextSectionText(
-        text: widget.text,
+      content: Center(
+        child: TextSectionText(
+          text: widget.text,
+        ),
       ),
       title: TextSectionTitle(
         title: widget.title,

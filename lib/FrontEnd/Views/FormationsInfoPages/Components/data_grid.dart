@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:odc/FrontEnd/Views/FormationsInfoPages/Components/text_card.dart';
+import 'package:odc/Services/constants.dart';
 
 import '../../../../Services/Utils/responsive.dart';
 import 'folded_text_card.dart';
@@ -38,34 +39,45 @@ class DataGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> textdata = [
-      TextCard(title: "Pourquoi se former en $name ?", text: whyData),
       TextCard(title: "Public Cible :", text: publicCibleData),
       TextCard(
           title: "Objectifs pédagogique :", text: objectifsPedagogiqueData),
       TextCard(title: "Certification :", text: certificationData),
-      FoldedTextCard(title: "Programme :", text: programData),
-      TextCard(title: "Durée :", text: dureeData),
       TextCard(title: "Lieu :", text: lieuData),
-      TextCard(title: "Tarif :", text: tarifData),
       TextCard(title: "Coût :", text: coutData),
       TextCard(title: "Animateur :", text: cvAnimateur),
-      TextCard(title: "Contacter nous sure :", text: contactData),
     ];
-    return MasonryGridView.count(
-      mainAxisSpacing: 20,
-      crossAxisSpacing: 20,
-      shrinkWrap: true,
-      crossAxisCount: Responsive.isMobile(context)
-          ? 1
-          : Responsive.isTablet(context)
-              ? 2
-              : 3,
-      itemCount: textdata.length,
-      itemBuilder: (context, index) {
-        return Center(
-          child: textdata[index],
-        );
-      },
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        TextCard(title: "Pourquoi se former en $name ?", text: whyData),
+        TextCard(title: "Durée :", text: dureeData),
+        TextCard(title: "Tarif :", text: tarifData),
+        const SizedBox(height: kDefaultPadding),
+        const Divider(),
+        const SizedBox(height: kDefaultPadding),
+        MasonryGridView.count(
+          mainAxisSpacing: 20,
+          crossAxisSpacing: 20,
+          shrinkWrap: true,
+          crossAxisCount: Responsive.isMobile(context)
+              ? 1
+              : Responsive.isTablet(context)
+                  ? 2
+                  : 3,
+          itemCount: textdata.length,
+          itemBuilder: (context, index) {
+            return Center(
+              child: textdata[index],
+            );
+          },
+        ),
+        const SizedBox(height: kDefaultPadding),
+        const Divider(),
+        const SizedBox(height: kDefaultPadding),
+        FoldedTextCard(title: "Programme :", text: programData),
+        TextCard(title: "Contacter nous sure :", text: contactData),
+      ],
     );
   }
 }

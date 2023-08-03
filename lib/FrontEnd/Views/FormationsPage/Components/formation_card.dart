@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../../Components/deafult_button.dart';
+import '../../../Components/Buttons/deafult_button.dart';
 
 class ForamationCard extends StatelessWidget {
   const ForamationCard(

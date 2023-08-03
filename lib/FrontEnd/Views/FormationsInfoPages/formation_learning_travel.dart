@@ -4,7 +4,6 @@ import '../../../DataBase/Models/formations.dart';
 import '../../../Services/constants.dart';
 import 'Components/data_grid.dart';
 import 'Components/formation_header.dart';
-import 'Components/text_section_title.dart';
 import 'data.dart';
 
 class FormationLearningTravelInfoPage extends StatefulWidget {

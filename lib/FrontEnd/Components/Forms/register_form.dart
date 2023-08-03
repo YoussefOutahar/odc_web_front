@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../DataBase/Auth/auth.dart';
+import '../../../DataBase/Auth/auth.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm(

@@ -18,10 +18,15 @@ class BlogPage extends StatelessWidget {
         Expanded(
           flex: 2,
           child: Padding(
-            padding: const EdgeInsets.only(
-              left: kDefaultPadding * 2,
-              right: kDefaultPadding * 2,
-            ),
+            padding: Responsive.isDesktop(context)
+                ? const EdgeInsets.only(
+                    left: kDefaultPadding * 2,
+                    right: kDefaultPadding * 2,
+                  )
+                : const EdgeInsets.only(
+                    left: kDefaultPadding,
+                    right: kDefaultPadding,
+                  ),
             child: Column(
               children: List.generate(
                 blogPosts.length,
@@ -31,13 +36,18 @@ class BlogPage extends StatelessWidget {
           ),
         ),
         if (Responsive.isDesktop(context))
-          const Expanded(
+          Expanded(
             child: Padding(
-              padding: EdgeInsets.only(
-                left: kDefaultPadding * 2,
-                right: kDefaultPadding * 2,
-              ),
-              child: Column(
+              padding: Responsive.isDesktop(context)
+                  ? const EdgeInsets.only(
+                      left: kDefaultPadding * 2,
+                      right: kDefaultPadding * 2,
+                    )
+                  : const EdgeInsets.only(
+                      left: kDefaultPadding,
+                      right: kDefaultPadding,
+                    ),
+              child: const Column(
                 children: [
                   Search(),
                   SizedBox(height: kDefaultPadding),

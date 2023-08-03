@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Animations/animated_opacity_when_hovered.dart';
+import '../../Animations/animated_opacity_when_hovered.dart';
 
 class ScrollUpIndicator extends StatefulWidget {
   final ScrollController scrollController;

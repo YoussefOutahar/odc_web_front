@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
 import '../../../DataBase/Models/formations.dart';
 import '../../../Services/Utils/responsive.dart';
@@ -60,6 +61,13 @@ class _FormationSurMesuresInfoPageState
             controller: _tabController,
             labelColor: Colors.black,
             indicatorColor: Colors.black,
+            // add it here
+            indicator: DotIndicator(
+              color: Colors.black,
+              distanceFromCenter: 16,
+              radius: 3,
+              paintingStyle: PaintingStyle.fill,
+            ),
             onTap: (index) => setState(() {}),
             tabs: [
               Tab(

@@ -1,6 +1,8 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+// ignore_for_file: constant_identifier_names
+
+abstract class LocaleKeys {
   static const website_name = 'website_name';
   static const website_subtitle = 'website_subtitle';
   static const tab_tiles_home = 'tab_tiles.home';
@@ -36,5 +38,4 @@ abstract class  LocaleKeys {
   static const blog_page_search_title = 'blog_page.search_title';
   static const blog_page_search_hint = 'blog_page.search_hint';
   static const blog_page = 'blog_page';
-
 }

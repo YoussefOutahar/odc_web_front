@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../Components/scroll_up_indicator.dart';
+import '../Components/Buttons/scroll_up_indicator.dart';
 import 'Components/app_header.dart';
 import 'Components/header_type.dart';
 import 'Components/learn_more_button.dart';
