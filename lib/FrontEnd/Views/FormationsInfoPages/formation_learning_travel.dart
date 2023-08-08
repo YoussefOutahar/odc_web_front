@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../DataBase/Models/formations.dart';
 import '../../../Services/constants.dart';
 import 'Components/data_grid.dart';
-import 'Components/formation_header.dart';
+import '../../Components/page_header.dart';
 import 'data.dart';
 
 class FormationLearningTravelInfoPage extends StatefulWidget {
@@ -42,15 +42,18 @@ class _FormationLearningTravelInfoPageState
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Transform.translate(
           offset: const Offset(0, -kToolbarHeight * 1.2),
-          child: FormationHeader(
+          child: PageHeader(
             imgSrc: formation.image,
             title: formation.title,
+            size: size,
+            subTitle: '',
           ),
         ),
         Transform.translate(
@@ -62,13 +65,22 @@ class _FormationLearningTravelInfoPageState
             onTap: (index) => setState(() {}),
             tabs: [
               Tab(
-                text: formationsKeys[0],
+                child: Text(
+                  formationsKeys[0],
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               Tab(
-                text: formationsKeys[1],
+                child: Text(
+                  formationsKeys[1],
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               Tab(
-                text: formationsKeys[2],
+                child: Text(
+                  formationsKeys[2],
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),

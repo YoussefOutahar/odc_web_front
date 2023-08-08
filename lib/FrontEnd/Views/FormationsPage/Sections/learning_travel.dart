@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../DataBase/Models/formations.dart';
 import '../../../Components/section_title.dart';
 import '../Components/formation_card.dart';
 
@@ -26,7 +27,7 @@ class LearningTravel extends StatelessWidget {
             press: () {
               Get.toNamed("/formations/learningTravel");
             },
-            imageSrc: "assets/images/OpenSourceImages/img10.png",
+            imageSrc: formations[3].image,
           )
         ],
       ),

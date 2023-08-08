@@ -60,3 +60,14 @@ List<List<T>> splitListIntoSubsets<T>(List<T> originalList, int subsetLength) {
 
   return resultList;
 }
+
+String extractFirstLetterFromWords(String text) {
+  List<String> words = text.split(" ");
+  String firstLetters = "";
+
+  for (String word in words) {
+    firstLetters += word[0];
+  }
+
+  return firstLetters;
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../DataBase/Models/events.dart';
+import '../../Components/page_header.dart';
 
 class EventInfoPage extends StatefulWidget {
   const EventInfoPage({super.key});
@@ -26,40 +27,41 @@ class _EventInfoPageState extends State<EventInfoPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return event != null
-        ? Stack(
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Image.asset(
-                      "assets/images/OpenSourceImages/img3.png",
-                      filterQuality: FilterQuality.high,
-                      fit: BoxFit.cover,
-                      width: double.maxFinite,
-                      height: 500,
-                    ),
-                    const SizedBox(height: 60),
-                    Text(
-                      event!.name,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 40),
-                    Text(event!.date.toDate().toString()),
-                    const SizedBox(height: 20),
-                    Text(event!.description),
-                    Text(event!.city),
-                    Text(event!.organisation),
-                    Text(event!.theme),
-                  ],
+              PageHeader(
+                imgSrc: "assets/images/OpenSourceImages/img3.png",
+                size: size,
+                subTitle: '',
+                title: '',
+              ),
+              // Image.asset(
+              //   ,
+              //   filterQuality: FilterQuality.high,
+              //   fit: BoxFit.cover,
+              //   width: double.maxFinite,
+              //   height: 500,
+              // ),
+              const SizedBox(height: 60),
+              Text(
+                event!.name,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-              )
+              ),
+              const SizedBox(height: 40),
+              Text(event!.date.toDate().toString()),
+              const SizedBox(height: 20),
+              Text(event!.description),
+              Text(event!.city),
+              Text(event!.organisation),
+              Text(event!.theme),
             ],
           )
-        : const SizedBox.shrink();
+        : const Center(child: Text("Event not found!"));
   }
 }

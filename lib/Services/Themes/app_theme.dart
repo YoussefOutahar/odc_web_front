@@ -7,7 +7,7 @@ import '../Utils/utils.dart';
 class AppThemes {
   // Theme Definitions
   static final ThemeData _defaultTheme = ThemeData(
-    primarySwatch: createMaterialColor(const Color(0x004C5FAB)),
+    primarySwatch: createMaterialColor(const Color.fromARGB(255, 76, 95, 171)),
     textTheme: const TextTheme(
       displayLarge: TextStyle(
         fontSize: 72.0,

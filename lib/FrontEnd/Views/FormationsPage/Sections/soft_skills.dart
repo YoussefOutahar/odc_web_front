@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../DataBase/Models/formations.dart';
 import '../../../Components/section_title.dart';
 import '../Components/formation_card.dart';
 
@@ -26,7 +27,7 @@ class SoftSkills extends StatelessWidget {
             press: () {
               Get.toNamed("/formations/softSkills");
             },
-            imageSrc: "assets/images/OpenSourceImages/img5.png",
+            imageSrc: formations[1].image,
           )
         ],
       ),

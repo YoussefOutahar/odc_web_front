@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../DataBase/Models/formations.dart';
 import '../../../Components/section_title.dart';
 import '../Components/formation_card.dart';
 
@@ -26,9 +27,8 @@ class SurMesures extends StatelessWidget {
             press: () {
               Get.toNamed("/formations/surMesures");
             },
-            imageSrc: "assets/images/OpenSourceImages/img2.png",
+            imageSrc: formations[0].image,
           )
-          // Image.asset("assets/images/formations/sur_mesures.png"),
         ],
       ),
     );

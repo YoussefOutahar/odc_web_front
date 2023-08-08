@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../DataBase/Models/formations.dart';
 import '../../../Services/constants.dart';
 import 'Components/data_grid.dart';
-import 'Components/formation_header.dart';
+import '../../Components/page_header.dart';
 import 'data.dart';
 
 class FormationSoftSkillsInfoPage extends StatefulWidget {
@@ -31,7 +31,7 @@ class _FormationSoftSkillsInfoPageState
   @override
   void initState() {
     formation = formations[1];
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     super.initState();
   }
 
@@ -43,15 +43,18 @@ class _FormationSoftSkillsInfoPageState
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Transform.translate(
           offset: const Offset(0, -kToolbarHeight * 1.2),
-          child: FormationHeader(
+          child: PageHeader(
             imgSrc: formation.image,
             title: formation.title,
+            size: size,
+            subTitle: '',
           ),
         ),
         Transform.translate(
@@ -63,13 +66,28 @@ class _FormationSoftSkillsInfoPageState
             onTap: (index) => setState(() {}),
             tabs: [
               Tab(
-                text: formationsKeys[0],
+                child: Text(
+                  formationsKeys[0],
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               Tab(
-                text: formationsKeys[1],
+                child: Text(
+                  formationsKeys[1],
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
               Tab(
-                text: formationsKeys[2],
+                child: Text(
+                  formationsKeys[2],
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              Tab(
+                child: Text(
+                  formationsKeys[3],
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),

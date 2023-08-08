@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/route_middleware.dart';
 
+import '../DataBase/Auth/auth_guard.dart';
 import 'Views/Admin/dashboard.dart';
 import 'Views/login_page.dart';
 
@@ -11,9 +12,12 @@ getDashboardNavigations() => [
       GetPage(
         name: "/dashboard",
         middlewares: [Middelware()],
-        page: () => const Dashboard()
-            .animate()
-            .fadeIn(duration: const Duration(milliseconds: 500)),
+        page: () => AuthCheck(
+          routeName: '/dashboard',
+          child: const Dashboard()
+              .animate()
+              .fadeIn(duration: const Duration(milliseconds: 500)),
+        ),
       ),
       GetPage(
         name: "/authenticate",

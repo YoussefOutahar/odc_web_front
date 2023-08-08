@@ -5,7 +5,7 @@ import '../../../DataBase/Models/formations.dart';
 import '../../../Services/Utils/responsive.dart';
 import '../../../Services/constants.dart';
 import 'Components/data_grid.dart';
-import 'Components/formation_header.dart';
+import '../../Components/page_header.dart';
 import 'data.dart';
 
 class FormationSurMesuresInfoPage extends StatefulWidget {
@@ -44,42 +44,61 @@ class _FormationSurMesuresInfoPageState
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Transform.translate(
           offset: const Offset(0, -kToolbarHeight * 1.2),
-          child: FormationHeader(
+          child: PageHeader(
             imgSrc: formation.image,
             title: formation.title,
+            size: size,
+            subTitle: '',
           ),
         ),
         Transform.translate(
           offset: const Offset(0, -kToolbarHeight * 0.5),
-          child: TabBar(
-            controller: _tabController,
-            labelColor: Colors.black,
-            indicatorColor: Colors.black,
-            // add it here
-            indicator: DotIndicator(
-              color: Colors.black,
-              distanceFromCenter: 16,
-              radius: 3,
-              paintingStyle: PaintingStyle.fill,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: kDefaultPadding,
+              right: kDefaultPadding,
             ),
-            onTap: (index) => setState(() {}),
-            tabs: [
-              Tab(
-                text: formationsKeys[0],
+            child: TabBar(
+              controller: _tabController,
+              labelColor: Colors.black,
+              indicatorColor: Colors.black,
+              // add it here
+              indicator: RectangularIndicator(
+                paintingStyle: PaintingStyle.stroke,
+                bottomLeftRadius: 10,
+                bottomRightRadius: 10,
+                topLeftRadius: 10,
+                topRightRadius: 10,
               ),
-              Tab(
-                text: formationsKeys[1],
-              ),
-              Tab(
-                text: formationsKeys[2],
-              ),
-            ],
+              onTap: (index) => setState(() {}),
+              tabs: [
+                Tab(
+                  child: Text(
+                    formationsKeys[0],
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    formationsKeys[1],
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    formationsKeys[2],
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Builder(
