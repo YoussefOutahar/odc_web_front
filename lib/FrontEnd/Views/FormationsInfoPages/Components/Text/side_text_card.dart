@@ -19,7 +19,7 @@ class SideTextCard extends StatelessWidget {
       ),
       child: Card(
         child: Container(
-          color: const Color.fromRGBO(228, 87, 46, 1).withOpacity(0.1),
+          color: kPrimaryColor.withOpacity(0.1),
           child: Padding(
             padding: const EdgeInsets.all(kDefaultPadding),
             child: Column(

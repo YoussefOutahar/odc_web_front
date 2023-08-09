@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:odc/Services/constants.dart';
 
 import '../Components/Buttons/scroll_up_indicator.dart';
 import 'Components/app_header.dart';
@@ -42,7 +43,7 @@ class _AppLayoutState extends State<AppLayout> {
       floatingActionButton: ScrollUpIndicator(_scrollController),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: Container(
-        color: Theme.of(context).primaryColor.withOpacity(0.2),
+        color: kBgColor,
         child: CustomScrollView(
           controller: _scrollController,
           slivers: [

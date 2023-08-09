@@ -48,6 +48,8 @@ dependencies:
   file_picker: ^5.3.2
   flutter_markdown: ^0.6.17
   easy_localization: ^3.0.2
+  pdfx: ^2.4.0
+  internet_file: ^1.2.0
 
 dependency_overrides:
   intl: 0.17.0

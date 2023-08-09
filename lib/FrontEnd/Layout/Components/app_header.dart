@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:odc/Services/constants.dart';
 
 import '../../../Services/Utils/responsive.dart';
 import '../../../translations/locale_keys.g.dart';
@@ -23,7 +24,7 @@ class AppHeader extends StatelessWidget {
       return Container(
         width: size.width,
         height: size.height,
-        color: const Color.fromRGBO(228, 87, 46, 1),
+        color: kPrimaryColor,
         child: Stack(
           children: [
             Positioned(
@@ -74,7 +75,7 @@ class AppHeader extends StatelessWidget {
       return Container(
         width: size.width,
         height: size.height / 2.5,
-        color: const Color.fromRGBO(228, 87, 46, 1),
+        color: kPrimaryColor,
         child: Stack(
           children: [
             Positioned(
