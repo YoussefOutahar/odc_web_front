@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:lottie/lottie.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../../../../../DataBase/Controllers/team_controller.dart';
 import '../../../../../DataBase/Models/team.dart';
@@ -26,12 +27,17 @@ class _TeamDataState extends State<TeamData> {
   final TextEditingController _roleController = TextEditingController();
 
   late DropzoneViewController dropZoneController;
-  UploadTask? uploadTask;
   bool _startAnimation = false;
 
-  bool fileUploaded = false;
-  String fileName = '';
-  Uint8List data = Uint8List(0);
+  UploadTask? imageUploadTask;
+  bool imageFileUploaded = false;
+  String imageFileName = '';
+  Uint8List imageData = Uint8List(0);
+
+  UploadTask? cvUploadTask;
+  bool cvFileUploaded = false;
+  String cvFileName = '';
+  Uint8List cvData = Uint8List(0);
 
   @override
   void initState() {
@@ -63,18 +69,18 @@ class _TeamDataState extends State<TeamData> {
                     SizedBox(
                       height: size.height * 0.3,
                       width: size.width * 0.3,
-                      child: fileUploaded
+                      child: imageFileUploaded
                           ? Column(
                               children: [
                                 SizedBox(
                                     height: size.height * 0.2,
                                     width: size.width * 0.2,
-                                    child: Image.memory(data)),
-                                Text(fileName),
+                                    child: Image.memory(imageData)),
+                                Text(imageFileName),
                                 IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      fileUploaded = false;
+                                      imageFileUploaded = false;
                                     });
                                   },
                                   icon: const Icon(Icons.restart_alt_outlined),
@@ -94,6 +100,48 @@ class _TeamDataState extends State<TeamData> {
                       decoration: const InputDecoration(
                         labelText: 'Role',
                       ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.3,
+                      width: size.width * 0.3,
+                      child: cvFileUploaded
+                          ? Column(
+                              children: [
+                                SizedBox(
+                                    height: size.height * 0.2,
+                                    width: size.width * 0.2,
+                                    child: SfPdfViewer.memory(cvData)),
+                                Text(cvFileName),
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      cvFileUploaded = false;
+                                    });
+                                  },
+                                  icon: const Icon(Icons.restart_alt_outlined),
+                                ),
+                              ],
+                            )
+                          : TextButton.icon(
+                              onPressed: () async {
+                                FilePickerResult? result =
+                                    await FilePicker.platform.pickFiles(
+                                  type: FileType.custom,
+                                  allowedExtensions: [
+                                    'pdf',
+                                  ],
+                                );
+                                if (result != null) {
+                                  cvFileName = result.files.single.name;
+                                  cvData = result.files.single.bytes!;
+                                  setState(() {
+                                    cvFileUploaded = true;
+                                  });
+                                }
+                              },
+                              icon: const Icon(Icons.upload_file),
+                              label: const Text("Upload CV"),
+                            ),
                     ),
                   ],
                 ),
@@ -164,9 +212,9 @@ class _TeamDataState extends State<TeamData> {
                 _startAnimation = false;
               }),
               onDrop: (value) async {
-                fileName = await dropZoneController.getFilename(value);
-                data = await dropZoneController.getFileData(value);
-                fileUploaded = true;
+                imageFileName = await dropZoneController.getFilename(value);
+                imageData = await dropZoneController.getFileData(value);
+                imageFileUploaded = true;
                 setState(() {});
               },
             ),
@@ -192,10 +240,10 @@ class _TeamDataState extends State<TeamData> {
                   ],
                 );
                 if (result != null) {
-                  fileName = result.files.single.name;
-                  data = result.files.single.bytes!;
+                  imageFileName = result.files.single.name;
+                  imageData = result.files.single.bytes!;
                   setState(() {
-                    fileUploaded = true;
+                    imageFileUploaded = true;
                   });
                 }
               },
@@ -210,9 +258,9 @@ class _TeamDataState extends State<TeamData> {
       return Container(
         color: Colors.black.withOpacity(0.5),
         child: Center(
-          child: uploadTask != null
+          child: imageUploadTask != null || cvUploadTask != null
               ? LoadingAnimation(
-                  uploadTask: uploadTask!,
+                  uploadTask: imageUploadTask ?? cvUploadTask!,
                 )
               : const SizedBox(),
         ),
@@ -223,25 +271,39 @@ class _TeamDataState extends State<TeamData> {
   }
 
   _upload() async {
-    if (widget.teamMember.name.isEmpty || widget.teamMember.role.isEmpty) {
+    if (widget.teamMember.name.isEmpty ||
+        widget.teamMember.role.isEmpty ||
+        !imageFileUploaded ||
+        !cvFileUploaded) {
       TeamMember? newTeamMember = await TeamController.addTeamMember(
         TeamMember(
           name: _nameController.text,
           role: _roleController.text,
           image: "",
+          pdfUrl: "",
         ),
       );
 
       if (newTeamMember != null) {
         try {
-          final String path = 'files/team/${newTeamMember.uid}/$fileName';
-          final Reference ref = FirebaseStorage.instance.ref(path);
+          final String imagePath =
+              'files/team/${newTeamMember.uid}/$imageFileName';
+          final Reference imageRef = FirebaseStorage.instance.ref(imagePath);
+
+          final String cvPath = 'files/team/${newTeamMember.uid}/$cvFileName';
+          final Reference cvRef = FirebaseStorage.instance.ref(cvPath);
           setState(() {
-            uploadTask = ref.putData(data);
+            imageUploadTask = imageRef.putData(imageData);
+            cvUploadTask = cvRef.putData(cvData);
           });
-          await uploadTask!.whenComplete(() {
+          await imageUploadTask!.whenComplete(() {
             setState(() {
-              uploadTask = null;
+              imageUploadTask = null;
+            });
+          });
+          await cvUploadTask!.whenComplete(() {
+            setState(() {
+              cvUploadTask = null;
             });
           });
           await TeamController.updateTeamMember(
@@ -249,7 +311,8 @@ class _TeamDataState extends State<TeamData> {
               uid: newTeamMember.uid,
               name: _nameController.text,
               role: _roleController.text,
-              image: path,
+              image: imagePath,
+              pdfUrl: cvPath,
             ),
           );
           setState(() {});
@@ -261,25 +324,35 @@ class _TeamDataState extends State<TeamData> {
       }
     } else {
       try {
-        final String path = 'files/team/${widget.teamMember.uid}/$fileName';
+        final String imagePath =
+            'files/team/${widget.teamMember.uid}/$imageFileName';
+        final Reference imageRef = FirebaseStorage.instance.ref(imagePath);
 
-        debugPrint(path);
-        final Reference ref = FirebaseStorage.instance.ref(path);
+        final String cvPath = 'files/team/${widget.teamMember.uid}/$cvFileName';
+        final Reference cvRef = FirebaseStorage.instance.ref(cvPath);
+
         await TeamController.updateTeamMember(
           TeamMember(
             uid: widget.teamMember.uid,
             name: _nameController.text,
             role: _roleController.text,
-            image: path,
+            image: imagePath,
+            pdfUrl: cvPath,
           ),
         );
 
         setState(() {
-          uploadTask = ref.putData(data);
+          imageUploadTask = imageRef.putData(imageData);
+          cvUploadTask = cvRef.putData(cvData);
         });
-        await uploadTask!.whenComplete(() {
+        await imageUploadTask!.whenComplete(() {
           setState(() {
-            uploadTask = null;
+            imageUploadTask = null;
+          });
+        });
+        await cvUploadTask!.whenComplete(() {
+          setState(() {
+            cvUploadTask = null;
           });
         });
         setState(() {});

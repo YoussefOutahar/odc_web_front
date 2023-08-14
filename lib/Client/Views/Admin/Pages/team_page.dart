@@ -81,6 +81,7 @@ class _TeamPageState extends State<TeamPage> {
                 name: "",
                 role: "",
                 image: "",
+                pdfUrl: "",
               ),
               onCanceled: () => setState(() {
                     currentView = _buildTeamListView();

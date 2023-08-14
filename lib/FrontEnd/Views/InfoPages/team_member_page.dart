@@ -1,10 +1,10 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:internet_file/internet_file.dart';
 import 'package:odc/Services/Utils/utils.dart';
 import 'package:odc/Services/constants.dart';
-import 'package:pdfx/pdfx.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../DataBase/Models/team.dart';
 import '../../../Services/Utils/responsive.dart';
@@ -20,7 +20,7 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
   late TeamMember? teamMember;
   late String teamMemberUid;
 
-  late final PdfController pdfController;
+  String dataUrl = "https://www.africau.edu/images/default/sample.pdf";
 
   @override
   initState() {
@@ -30,27 +30,7 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
 
     teamMember = members.firstWhere((element) => element.uid == teamMemberUid);
 
-    pdfController = PdfController(
-      document: PdfDocument.openData(
-        InternetFile.get(
-          "https://www.africau.edu/images/default/sample.pdf",
-          headers: {
-            "Content-Type": "application/pdf",
-            "Access-Control-Allow-Origin": " *",
-            "Access-Control-Allow-Methods": " GET, POST",
-            "Access-Control-Allow-Headers": " X-Requested-With",
-          },
-        ),
-      ),
-    );
-
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    pdfController.dispose();
-    super.dispose();
   }
 
   @override
@@ -103,20 +83,10 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
               ],
             ),
             Container(
-              height: 564,
-              width: 400,
-              color: Colors.white,
-              child: PdfView(
-                controller: pdfController,
-                renderer: (page) => page.render(
-                  width: page.width,
-                  height: page.height,
-                  format: PdfPageImageFormat.jpeg,
-                  quality: 100,
-                  forPrint: true,
-                ),
-              ),
-            ),
+                height: 564,
+                width: 400,
+                color: Colors.white,
+                child: SfPdfViewer.network(dataUrl)),
           ],
         ),
       );
@@ -162,20 +132,10 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
               ),
               const SizedBox(height: kDefaultPadding * 2),
               Container(
-                height: size.height,
-                width: size.width,
-                color: Colors.white,
-                child: PdfView(
-                  controller: pdfController,
-                  renderer: (page) => page.render(
-                    width: page.width,
-                    height: page.height,
-                    format: PdfPageImageFormat.jpeg,
-                    quality: 100,
-                    forPrint: true,
-                  ),
-                ),
-              ),
+                  height: size.height,
+                  width: size.width,
+                  color: Colors.white,
+                  child: SfPdfViewer.network(dataUrl)),
               const SizedBox(height: kDefaultPadding * 2),
             ],
           ),

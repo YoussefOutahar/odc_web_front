@@ -1,3 +1,4 @@
+import 'package:animate_gradient/animate_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:odc/Services/constants.dart';
@@ -42,24 +43,34 @@ class _AppLayoutState extends State<AppLayout> {
       drawer: const SliderMenu(),
       floatingActionButton: ScrollUpIndicator(_scrollController),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      body: Container(
-        color: kBgColor,
-        child: CustomScrollView(
-          controller: _scrollController,
-          slivers: [
-            SliverAppBar(
-              automaticallyImplyLeading: false,
-              forceMaterialTransparency: true,
-              collapsedHeight: kToolbarHeight * 1.2,
-              floating: true,
-              flexibleSpace: Header(
-                openDrawer: () {
-                  _scaffoldKey.currentState!.openDrawer();
-                },
-                showLogo: widget.type != HeaderType.compactHeader,
-              ),
+      body: CustomScrollView(
+        controller: _scrollController,
+        slivers: [
+          SliverAppBar(
+            automaticallyImplyLeading: false,
+            forceMaterialTransparency: true,
+            collapsedHeight: kToolbarHeight * 1.2,
+            floating: true,
+            flexibleSpace: Header(
+              openDrawer: () {
+                _scaffoldKey.currentState!.openDrawer();
+              },
+              showLogo: widget.type != HeaderType.compactHeader,
             ),
-            SliverToBoxAdapter(
+          ),
+          SliverToBoxAdapter(
+            child: AnimateGradient(
+              duration: const Duration(seconds: 10),
+              primaryColors: const [
+                kBgColor,
+                Colors.white,
+                Colors.white,
+              ],
+              secondaryColors: const [
+                kBgColor,
+                kBgColor,
+                Colors.white,
+              ],
               child: Column(
                 children: [
                   Transform.translate(
@@ -83,8 +94,8 @@ class _AppLayoutState extends State<AppLayout> {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

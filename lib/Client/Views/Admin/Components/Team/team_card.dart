@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../../../DataBase/Models/team.dart';
 
@@ -43,7 +45,34 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () async {
+        String dataUrl = await FirebaseStorage.instance
+            .ref(widget.teamMember.pdfUrl)
+            .getDownloadURL();
+
+        // ignore: use_build_context_synchronously
+        await showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: SizedBox(
+                height: 500,
+                width: 400,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(widget.teamMember.name),
+                    const SizedBox(height: 20),
+                    Text(widget.teamMember.role),
+                    const SizedBox(height: 20),
+                    SfPdfViewer.network(imageUrl!)
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
       onHover: (value) {
         setState(() {
           isHover = value;

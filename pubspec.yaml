@@ -38,6 +38,7 @@ dependencies:
   expandable: ^5.0.1
   tab_indicator_styler: ^2.0.0
   circular_profile_avatar: ^2.0.5
+  animate_gradient: ^0.0.2+1
 
   # Utils
   email_validator: ^2.1.17
@@ -48,8 +49,12 @@ dependencies:
   file_picker: ^5.3.2
   flutter_markdown: ^0.6.17
   easy_localization: ^3.0.2
-  pdfx: ^2.4.0
-  internet_file: ^1.2.0
+  syncfusion_flutter_pdfviewer: ^22.2.8
+  http: ^1.1.0
+
+  #Experimental
+  percent_indicator: ^4.2.2
+  url_launcher: ^6.1.0
 
 dependency_overrides:
   intl: 0.17.0
