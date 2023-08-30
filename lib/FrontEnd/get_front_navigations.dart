@@ -99,7 +99,7 @@ List<GetPage> infoPages = [
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(
-      type: HeaderType.hideHeader,
+      type: HeaderType.compactHeader,
       page: TeamMemberPage(),
     ).animate().fadeIn(
           duration: const Duration(milliseconds: 500),
@@ -121,7 +121,7 @@ List<GetPage> infoPages = [
     transition: Transition.fadeIn,
     middlewares: [Middelware()],
     page: () => const AppLayout(
-      type: HeaderType.hideHeader,
+      type: HeaderType.compactHeader,
       page: BlogPostPage(),
     ).animate().fadeIn(
           duration: const Duration(milliseconds: 500),

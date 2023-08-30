@@ -86,7 +86,14 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
                 height: 564,
                 width: 400,
                 color: Colors.white,
-                child: SfPdfViewer.network(dataUrl)),
+                child: SfPdfViewer.network(
+                  dataUrl,
+                  headers: {
+                    "Content-Type": "application/pdf",
+                    "Accept": "application/pdf",
+                    "Access-Control-Allow-Origin": "*"
+                  },
+                )),
           ],
         ),
       );
@@ -135,7 +142,9 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
                   height: size.height,
                   width: size.width,
                   color: Colors.white,
-                  child: SfPdfViewer.network(dataUrl)),
+                  child: SfPdfViewer.network(
+                    dataUrl,
+                  )),
               const SizedBox(height: kDefaultPadding * 2),
             ],
           ),

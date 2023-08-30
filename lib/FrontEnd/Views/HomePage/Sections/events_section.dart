@@ -20,6 +20,7 @@ class _EventsCarouselState extends State<EventsCarousel> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20 * 2),
       child: Column(
@@ -31,8 +32,8 @@ class _EventsCarouselState extends State<EventsCarousel> {
           ),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 20.0),
-            height: 400,
-            width: 700,
+            height: 600,
+            width: size.width,
             child: const SliderView(),
           ),
         ],

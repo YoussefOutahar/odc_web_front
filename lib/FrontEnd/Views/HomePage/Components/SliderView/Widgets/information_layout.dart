@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:odc/Services/constants.dart';
 
+import '../../../../../../DataBase/Models/events.dart';
+import '../../event_card.dart';
 import '../information_model.dart';
 import 'arrow_button.dart';
 import 'information_card.dart';
@@ -7,7 +10,7 @@ import 'information_card.dart';
 class InformationLayout extends StatefulWidget {
   final Function() previousArrowEvent;
   final Function() nextArrowEvent;
-  final List<InformationModel> data;
+  final List<Event> data;
   final PageController pageController;
   const InformationLayout({
     Key? key,
@@ -44,7 +47,7 @@ class _InformationLayoutState extends State<InformationLayout> {
             icon: Icons.chevron_left,
             onTap: widget.previousArrowEvent,
           ),
-          const SizedBox(width: 5.0),
+          const SizedBox(width: kDefaultPadding * 2),
           Expanded(
             child: PageView.builder(
               itemCount: widget.data.length,
@@ -54,11 +57,12 @@ class _InformationLayoutState extends State<InformationLayout> {
                 setState(() {});
               },
               itemBuilder: (context, i) {
+                // return EventCard(event: widget.data[i]);
                 return InformationCardTile(data: widget.data[i]);
               },
             ),
           ),
-          const SizedBox(width: 5.0),
+          const SizedBox(width: kDefaultPadding * 2),
           ArrowButton(
             isHover: isHover,
             icon: Icons.chevron_right,

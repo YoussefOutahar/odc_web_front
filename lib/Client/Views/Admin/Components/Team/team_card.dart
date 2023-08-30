@@ -61,11 +61,9 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(widget.teamMember.name),
-                    const SizedBox(height: 20),
-                    Text(widget.teamMember.role),
-                    const SizedBox(height: 20),
-                    SfPdfViewer.network(imageUrl!)
+                    Expanded(
+                      child: SfPdfViewer.network(dataUrl),
+                    )
                   ],
                 ),
               ),

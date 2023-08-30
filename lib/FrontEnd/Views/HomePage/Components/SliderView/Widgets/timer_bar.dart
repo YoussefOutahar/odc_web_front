@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import '../information_model.dart';
-
 class TimerBar extends StatefulWidget {
-  final List<InformationModel> data;
+  final List data;
   final List<double> percentage;
   const TimerBar({
     Key? key,

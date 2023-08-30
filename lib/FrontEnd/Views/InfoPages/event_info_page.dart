@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:odc/Services/constants.dart';
 
 import '../../../DataBase/Models/events.dart';
 import '../../Components/page_header.dart';
@@ -32,36 +34,78 @@ class _EventInfoPageState extends State<EventInfoPage> {
         ? Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              PageHeader(
-                imgSrc: "assets/images/OpenSourceImages/img3.png",
-                size: size,
-                subTitle: '',
-                title: '',
-              ),
-              // Image.asset(
-              //   ,
-              //   filterQuality: FilterQuality.high,
-              //   fit: BoxFit.cover,
-              //   width: double.maxFinite,
-              //   height: 500,
-              // ),
-              const SizedBox(height: 60),
-              Text(
-                event!.name,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+              Transform.translate(
+                offset: const Offset(0, -kToolbarHeight * 1.2),
+                child: PageHeader(
+                  imgSrc: "assets/images/OpenSourceImages/img3.png",
+                  size: size,
+                  subTitle: '',
+                  title: event!.name,
                 ),
               ),
-              const SizedBox(height: 40),
-              Text(event!.date.toDate().toString()),
-              const SizedBox(height: 20),
-              Text(event!.description),
-              Text(event!.city),
-              Text(event!.organisation),
-              Text(event!.theme),
+              Padding(
+                padding: const EdgeInsets.all(kDefaultPadding),
+                child: Row(
+                  children: [
+                    Text(
+                      event!.date.toDate().toString(),
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    const Spacer(),
+                    Text(
+                      event!.theme,
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(),
+              Padding(
+                padding: const EdgeInsets.all(kDefaultPadding / 2),
+                child: SizedBox(
+                  width: size.width,
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(kDefaultPadding),
+                      child: MarkdownBody(
+                        data: event!.description,
+                        selectable: true,
+                        styleSheet: MarkdownStyleSheet(
+                          p: const TextStyle(
+                            fontFamily: "Raleway",
+                            color: Color(0xFF191919),
+                            height: 1.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const Divider(),
+              Padding(
+                padding: const EdgeInsets.all(kDefaultPadding),
+                child: Row(
+                  children: [
+                    Text(
+                      event!.city,
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                    const Spacer(),
+                    Text(
+                      event!.organisation,
+                      style: Theme.of(context).textTheme.labelLarge,
+                    ),
+                  ],
+                ),
+              ),
             ],
           )
-        : const Center(child: Text("Event not found!"));
+        : Center(
+            child: Text(
+              "Event not found!",
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
+          );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:odc/Services/constants.dart';
 
 import 'Widgets/information_layout.dart';
+import 'Widgets/play_pause.dart';
 import 'Widgets/timer_bar.dart';
 import 'const.dart';
 import 'slider_data_controller.dart';
@@ -56,7 +57,6 @@ class _SliderViewState extends State<SliderView>
             for (var _ in _sliderDataController.data) {
               progress.add(0.0);
             }
-            _initSlider();
           }
         }
       });
@@ -98,12 +98,17 @@ class _SliderViewState extends State<SliderView>
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                gradient: const LinearGradient(
-                  colors: [kPrimaryColor, kSecondaryColor],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  tileMode: TileMode.decal,
-                ),
+                color: kPrimaryColor.withOpacity(0.8),
+                // gradient: LinearGradient(
+                //   colors: [
+                //     kPrimaryColor,
+                //     kPrimaryColor.withOpacity(0.5),
+                //     Colors.white
+                //   ],
+                //   begin: Alignment.topCenter,
+                //   end: Alignment.bottomCenter,
+                //   tileMode: TileMode.decal,
+                // ),
               ),
             ),
             Positioned(
