@@ -56,7 +56,7 @@ class _InfoImagesState extends State<InfoImages> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: isHover
-                  ? Row(
+                  ? const Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -69,8 +69,8 @@ class _InfoImagesState extends State<InfoImages> {
                         //     fontWeight: FontWeight.w500,
                         //   ),
                         // ),
-                        const SizedBox(width: 10.0),
-                        const Icon(
+                        SizedBox(width: 10.0),
+                        Icon(
                           Icons.ads_click,
                           color: Colors.white,
                           size: 15,

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:odc/Services/Utils/utils.dart';
 import 'package:odc/Services/constants.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:http/http.dart' as http;
 
 import '../../../DataBase/Models/team.dart';
 import '../../../Services/Utils/responsive.dart';
@@ -88,7 +87,7 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
                 color: Colors.white,
                 child: SfPdfViewer.network(
                   dataUrl,
-                  headers: {
+                  headers: const {
                     "Content-Type": "application/pdf",
                     "Accept": "application/pdf",
                     "Access-Control-Allow-Origin": "*"

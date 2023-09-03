@@ -1,5 +1,4 @@
 import '../../../../../DataBase/Models/events.dart';
-import 'information_model.dart';
 
 class SliderDataController {
   final data = events;

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:odc/Services/constants.dart';
 
 import '../../../../../../DataBase/Models/events.dart';
-import '../../event_card.dart';
-import '../information_model.dart';
 import 'arrow_button.dart';
 import 'information_card.dart';
 

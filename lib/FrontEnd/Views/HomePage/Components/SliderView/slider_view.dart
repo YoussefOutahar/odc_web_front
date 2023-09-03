@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:odc/Services/constants.dart';
 
 import 'Widgets/information_layout.dart';
-import 'Widgets/play_pause.dart';
 import 'Widgets/timer_bar.dart';
 import 'const.dart';
 import 'slider_data_controller.dart';
@@ -20,6 +19,20 @@ class _SliderViewState extends State<SliderView>
     with SingleTickerProviderStateMixin {
   final _sliderDataController = SliderDataController();
   PageController pageController = PageController();
+
+  /// Default Progress Index
+  int currentIndex = 0;
+  List<double> progress = [];
+
+  /// Timers
+  Timer? timer;
+
+  /// Default Positions Value
+  final double positionTop = 10;
+  final double positionLeft = 10;
+  final double positionRight = 10;
+  final double positionBottom = 10;
+
   @override
   void initState() {
     super.initState();
@@ -54,9 +67,10 @@ class _SliderViewState extends State<SliderView>
             currentIndex++;
             _watchingProgress();
           } else {
-            for (var _ in _sliderDataController.data) {
-              progress.add(0.0);
-            }
+            progress.clear();
+            currentIndex = 0;
+            pageController.jumpToPage(0);
+            _initSlider();
           }
         }
       });
