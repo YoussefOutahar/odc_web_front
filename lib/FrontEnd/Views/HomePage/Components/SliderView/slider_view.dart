@@ -5,7 +5,6 @@ import 'package:odc/Services/constants.dart';
 
 import 'Widgets/information_layout.dart';
 import 'Widgets/timer_bar.dart';
-import 'const.dart';
 import 'slider_data_controller.dart';
 
 class SliderView extends StatefulWidget {
@@ -106,58 +105,59 @@ class _SliderViewState extends State<SliderView>
     return Padding(
       padding: const EdgeInsets.all(kDefaultPadding),
       child: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: kPrimaryColor.withOpacity(0.8),
-                // gradient: LinearGradient(
-                //   colors: [
-                //     kPrimaryColor,
-                //     kPrimaryColor.withOpacity(0.5),
-                //     Colors.white
-                //   ],
-                //   begin: Alignment.topCenter,
-                //   end: Alignment.bottomCenter,
-                //   tileMode: TileMode.decal,
-                // ),
+        child: Card(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              // Container(
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(5),
+              //     // gradient: LinearGradient(
+              //     //   colors: [
+              //     //     kPrimaryColor,
+              //     //     kPrimaryColor.withOpacity(0.5),
+              //     //     Colors.white
+              //     //   ],
+              //     //   begin: Alignment.topCenter,
+              //     //   end: Alignment.bottomCenter,
+              //     //   tileMode: TileMode.decal,
+              //     // ),
+              //   ),
+              // ),
+              Positioned(
+                top: positionTop,
+                left: positionLeft,
+                right: positionRight,
+                child: TimerBar(
+                    data: _sliderDataController.data, percentage: progress),
               ),
-            ),
-            Positioned(
-              top: positionTop,
-              left: positionLeft,
-              right: positionRight,
-              child: TimerBar(
-                  data: _sliderDataController.data, percentage: progress),
-            ),
-            Positioned(
-              top: positionTop + 20,
-              left: 0,
-              right: 0,
-              bottom: positionBottom + 10,
-              child: InformationLayout(
-                data: _sliderDataController.data,
-                previousArrowEvent: previousSlide,
-                nextArrowEvent: nextSlide,
-                pageController: pageController,
+              Positioned(
+                top: positionTop + 20,
+                left: 0,
+                right: 0,
+                bottom: positionBottom + 10,
+                child: InformationLayout(
+                  data: _sliderDataController.data,
+                  previousArrowEvent: previousSlide,
+                  nextArrowEvent: nextSlide,
+                  pageController: pageController,
+                ),
               ),
-            ),
-            // Positioned(
-            //   top: positionTop + 20,
-            //   left: positionLeft + 10,
-            //   child: PlayPause(
-            //     startStop: () {
-            //       _watchingProgress();
-            //       if (timer!.isActive == false) {
-            //       } else {
-            //         timer!.cancel();
-            //       }
-            //     },
-            //   ),
-            // ),
-          ],
+              // Positioned(
+              //   top: positionTop + 20,
+              //   left: positionLeft + 10,
+              //   child: PlayPause(
+              //     startStop: () {
+              //       _watchingProgress();
+              //       if (timer!.isActive == false) {
+              //       } else {
+              //         timer!.cancel();
+              //       }
+              //     },
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );
