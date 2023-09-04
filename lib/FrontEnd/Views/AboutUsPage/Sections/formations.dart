@@ -16,13 +16,10 @@ class Formations extends StatelessWidget {
       child: Column(
         children: [
           SectionTitle(
-              title: LocaleKeys.about_page_formations.tr(),
+              title: LocaleKeys.about_page_title_formations.tr(),
               subTitle: "",
               color: Colors.blueGrey),
-          const AboutUsText(
-            text:
-                "Découvrez notre entreprise, votre partenaire privilégié pour votre développement personnel et professionnel. Notre vaste gamme de formations comprend des solutions sur mesure, des programmes de renforcement des soft skills, des formations spécialisées pour les doctorants et même des expériences uniques de voyage et d'apprentissage. Que vous souhaitiez renforcer vos compétences techniques, améliorer votre communication interpersonnelle, approfondir vos connaissances académiques ou vivre une expérience d'apprentissage immersive, nous avons tout ce dont vous avez besoin. Nos formateurs qualifiés et expérimentés vous guideront dans votre parcours de formation, en vous offrant des cours pertinents, interactifs et adaptés à vos besoins spécifiques. Investissez dans votre croissance professionnelle avec nous et ouvrez-vous à un monde de possibilités",
-          ),
+          AboutUsText(text: LocaleKeys.about_page_text_formations.tr()),
         ],
       ),
     );

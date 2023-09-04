@@ -12,13 +12,6 @@ class OurValues extends StatefulWidget {
 }
 
 class _OurValuesState extends State<OurValues> {
-  final List<String> values = [
-    "Ecoute",
-    "Innovation",
-    "Transparence",
-    "Engagement",
-    "Intégrité"
-  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +20,7 @@ class _OurValuesState extends State<OurValues> {
       child: Column(
         children: [
           SectionTitle(
-              title: LocaleKeys.about_page_our_values.tr(),
+              title: LocaleKeys.about_page_title_our_values.tr(),
               subTitle: "",
               color: Colors.orange),
           const SizedBox(
@@ -36,41 +29,46 @@ class _OurValuesState extends State<OurValues> {
           Wrap(
             spacing: 60,
             runSpacing: 60,
-            children: values
-                .map((e) => Column(
-                      children: [
-                        // Roudned red Container with index
-                        Container(
-                          width: 80,
-                          height: 80,
-                          decoration: const BoxDecoration(
-                            color: Colors.red,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Center(
-                            child: Text(
-                              (values.indexOf(e) + 1).toString(),
-                              style: const TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Text(
-                          e,
-                          style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 20),
-                      ],
-                    ))
-                .toList(),
+            children: [
+              buildValueBubble(1, LocaleKeys.about_page_text_our_values_1.tr()),
+              buildValueBubble(2, LocaleKeys.about_page_text_our_values_2.tr()),
+              buildValueBubble(3, LocaleKeys.about_page_text_our_values_3.tr()),
+              buildValueBubble(4, LocaleKeys.about_page_text_our_values_4.tr()),
+              buildValueBubble(5, LocaleKeys.about_page_text_our_values_5.tr()),
+            ],
           ),
           const SizedBox(height: 20 * 3),
         ],
       ),
     );
   }
+
+  Widget buildValueBubble(int index, String valueName) => Column(
+        children: [
+          // Roudned red Container with index
+          Container(
+            width: 80,
+            height: 80,
+            decoration: const BoxDecoration(
+              color: Colors.red,
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: Text(
+                index.toString(),
+                style: const TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            valueName,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 20),
+        ],
+      );
 }

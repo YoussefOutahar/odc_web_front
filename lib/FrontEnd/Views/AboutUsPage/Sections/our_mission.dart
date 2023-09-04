@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../Services/constants.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../Components/section_title.dart';
+import '../Components/about_us_text.dart';
 
 class OurMission extends StatelessWidget {
   const OurMission({super.key});
@@ -16,23 +17,32 @@ class OurMission extends StatelessWidget {
       child: Column(
         children: [
           SectionTitle(
-              title: LocaleKeys.about_page_our_mission.tr(),
+              title: LocaleKeys.about_page_title_our_mission.tr(),
               subTitle: "",
               color: Colors.orange),
           const SizedBox(height: kDefaultPadding),
-          Padding(
-            padding: const EdgeInsets.all(kDefaultPadding),
-            child: Image.asset("assets/images/text/description1.png"),
+          // Padding(
+          //   padding: const EdgeInsets.all(kDefaultPadding),
+          //   child: Image.asset("assets/images/text/description1.png"),
+          // ),
+          AboutUsText(
+            text: LocaleKeys.about_page_text_our_mission_1.tr(),
           ),
           const SizedBox(height: kDefaultPadding),
-          Padding(
-            padding: const EdgeInsets.all(kDefaultPadding),
-            child: Image.asset("assets/images/text/description2.png"),
+          // Padding(
+          //   padding: const EdgeInsets.all(kDefaultPadding),
+          //   child: Image.asset("assets/images/text/description2.png"),
+          // ),
+          AboutUsText(
+            text: LocaleKeys.about_page_text_our_mission_1.tr(),
           ),
           const SizedBox(height: kDefaultPadding),
-          Padding(
-            padding: const EdgeInsets.all(kDefaultPadding),
-            child: Image.asset("assets/images/text/description3.png"),
+          // Padding(
+          //   padding: const EdgeInsets.all(kDefaultPadding),
+          //   child: Image.asset("assets/images/text/description3.png"),
+          // ),
+          AboutUsText(
+            text: LocaleKeys.about_page_text_our_mission_1.tr(),
           ),
         ],
       ),

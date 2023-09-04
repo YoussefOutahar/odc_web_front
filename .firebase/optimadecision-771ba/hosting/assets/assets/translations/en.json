@@ -22,18 +22,63 @@
       "events": "Recent events",
       "formations": "Our trainings",
       "conseils": "test"
-    }
+    },
+    "about_us_text": "OptimaDecision Consulting (ODC) is a Moroccan company specialized in the optimization and improvement of the Supply Chain. We offer a full range of services: optimization and engineering of the supply chain, simulation of the various links in the Supply Chain, Lean Management methods, support for companies in obtaining various ISO certifications and the creation of Labels.\nOur unique approach and commitment to providing high quality service will enable our clients to achieve exceptional results."
   },
   "footer": {
     "contact": "Contact Us",
     "follow": "Follow Us"
   },
   "about_page": {
-    "who_are_we": "Who are we",
-    "our_mission": "Our mission",
-    "our_values": "Our Values",
-    "what_we_do": "What we do",
-    "formations": "Formations"
+    "text": {
+      "who_are_we": "OptimaDecision Consulting (ODC) is a Moroccan company specialized in the optimization and improvement of the Supply Chain. We offer a full range of services: optimization and engineering of the supply chain, simulation of the various links in the Supply Chain, Lean Management methods, support for companies in obtaining various ISO certifications and the creation of Labels.\n              We also carry out Supply Chain audits for our clients in order to help them identify opportunities for improvement and to set up action plans to achieve their objectives as well as training in supply chain professions. Supply Chain.\n              Our conviction is that the Supply Chain represents a key element of the strategy of any company for which effective and efficient management has a significant impact on its overall performance. Our expertise and know-how are made available to our customers to help them achieve optimal performance through the creation of decision support tools.\n              Our unique approach and commitment to providing high quality service will enable our clients to achieve exceptional results.",
+      "formations": "Discover our company, your preferred partner for your personal and professional development. Our extensive range of training includes tailor-made solutions, soft skills building programs, specialist training for doctoral students and even unique travel and learning experiences. Whether you want to strengthen your technical skills, improve your interpersonal communication, deepen your academic knowledge, or enjoy an immersive learning experience, we have everything you need. Our qualified and experienced trainers will guide you through your training journey, offering you relevant, interactive courses tailored to your specific needs. Invest in your professional growth with us and open yourself to a world of possibilities",
+      "our_values": {
+        "1": "Listening",
+        "2": "Innovation",
+        "3": "Transparency",
+        "4": "Commitment",
+        "5": "Integrity"
+      },
+      "what_we_do": {
+        "1": {
+          "title": "SCM & Smart System",
+          "text": "Optimization and improvement of the Supply Chain (Purchasing, Supply, Production, Distribution and return logistics)\n\nLogistics audit (Supply Chain Master, SCOR (APICS))\n\nIntroduction of Lean Management\n\nIT solution adapted and on -measure"
+        },
+        "2": {
+          "title": "ISO certification",
+          "text": "Audit to assess the organization's QMS maturity\n\nRealization/Correction of the quality manual\n\nTraining in the quality management system\n\nISO dashboard"
+        },
+        "3": {
+          "title": "Energy & energy exploitation",
+          "text": "Optimization of energy use in buildings \n\nEnergy audit\n\nImprovement of thermal comfort"
+        },
+        "4": {
+          "title": "Digital transformation",
+          "text": "Development and maintenance of sites and applications.\n\nWeb referencing (SEA - SEO)\n\nWeb Marketing\n\nE-logistics support and advice"
+        },
+        "5": {
+          "title": "Development, Layout and building",
+          "text": "Design of eco-responsible buildings.\n\nSpace planning and industrial layout.\n\nAdvice and support for the purchase of equipment and materials.\n\nArchitecture, Development and Urban Design projects."
+        },
+        "6": {
+          "title": "Qualification and skills building",
+          "text": "HR assessment and diagnosis.\n\nEmployee manual.\n\nTailored continuing education for Top Management. Middle management and collaborators.\n\nTeam building and coaching."
+        }
+      },
+      "our_mission": {
+        "1": "OptimaDecisionconsulting is a consulting firm founded by experienced professionals, our company is dedicated to providing tailor-made solutions to help clients achieve optimal performance.",
+        "2": "Our areas of expertise focus on logistics and the supply chain, energy and energy exploitation and services associated with building and urban development.",
+        "3": "We offer our customers tailored intelligent decision support tools for operational excellence"
+      }
+    },
+    "title": {
+      "what_we_do": "What we do",
+      "who_are_we": "Who are we",
+      "our_values": "Our Values",
+      "our_mission": "Our mission",
+      "formations": "Trainings"
+    }
   },
   "blog_page": {
     "read_more": "Read more",

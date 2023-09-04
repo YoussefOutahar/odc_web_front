@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:get/get.dart' hide Trans;
 
 import '../../../../DataBase/Models/blog_post.dart';
@@ -95,20 +96,25 @@ class BlogPostCard extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      IconButton(
-                        icon: SvgPicture.asset(
-                            "assets/icons/feather_thumbs-up.svg"),
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        icon: SvgPicture.asset(
-                            "assets/icons/feather_message-square.svg"),
-                        onPressed: () {},
-                      ),
+                      // IconButton(
+                      //   icon: SvgPicture.asset(
+                      //       "assets/icons/feather_thumbs-up.svg"),
+                      //   onPressed: () {},
+                      // ),
+                      // IconButton(
+                      //   icon: SvgPicture.asset(
+                      //       "assets/icons/feather_message-square.svg"),
+                      //   onPressed: () {},
+                      // ),
                       IconButton(
                         icon: SvgPicture.asset(
                             "assets/icons/feather_share-2.svg"),
-                        onPressed: () {},
+                        onPressed: () {
+                          Share.share(
+                            "https://https://optimadecision-771ba.web.app/#/home/blogPost/${blogPosts.indexOf(blogPost)}",
+                            subject: blogPost.title,
+                          );
+                        },
                       ),
                     ],
                   ),
