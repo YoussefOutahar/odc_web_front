@@ -25,11 +25,26 @@ class BlogPostCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         child: Column(
           children: [
-            Image.asset(
-              blogPost.image,
-              width: double.infinity,
-              height: 400,
-              fit: BoxFit.cover,
+            FutureBuilder(
+              future: blogPost.getImageDownloadlink,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Image.network(
+                    snapshot.data.toString(),
+                    width: double.infinity,
+                    height: 400,
+                    fit: BoxFit.cover,
+                  );
+                } else if (snapshot.hasError) {
+                  return const Center(
+                    child: Text('Error'),
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
             ),
             Container(
               padding: const EdgeInsets.all(kDefaultPadding),
@@ -66,7 +81,7 @@ class BlogPostCard extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: MarkdownBody(
-                      data: "${blogPost.content.substring(0, 300)}...",
+                      data: blogPost.content,
                       selectable: true,
                     ),
                   ),
@@ -75,10 +90,7 @@ class BlogPostCard extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          blogPosts.contains(blogPost)
-                              ? Get.toNamed(
-                                  "/blogPost/${blogPosts.indexOf(blogPost)}")
-                              : null;
+                          Get.toNamed("/blogPost/${blogPost.uid}");
                         },
                         child: Container(
                           padding: const EdgeInsets.only(
@@ -111,7 +123,7 @@ class BlogPostCard extends StatelessWidget {
                             "assets/icons/feather_share-2.svg"),
                         onPressed: () {
                           Share.share(
-                            "https://https://optimadecision-771ba.web.app/#/home/blogPost/${blogPosts.indexOf(blogPost)}",
+                            "https://https://optimadecision-771ba.web.app/#/home/blogPost/${blogPost.uid}",
                             subject: blogPost.title,
                           );
                         },

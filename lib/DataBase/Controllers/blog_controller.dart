@@ -34,7 +34,7 @@ class BlogController {
   }
 
   //Read:
-  Future<BlogPost?> getBlogPost(String uid) async {
+  static Future<BlogPost?> getBlogPost(String uid) async {
     DocumentSnapshot? document;
     try {
       document = await FirebaseFirestore.instance
@@ -60,6 +60,19 @@ class BlogController {
     } catch (e) {
       debugPrint(e.toString());
       return const Stream.empty();
+    }
+  }
+
+  static Future<List<BlogPost>> getBlogPostsFuture() async {
+    try {
+      final QuerySnapshot<Map<String, dynamic>> snapshot =
+          await FirebaseFirestore.instance.collection('BlogPosts').get();
+      return snapshot.docs
+          .map((document) => BlogPost.fromJson(document.data()))
+          .toList();
+    } catch (e) {
+      debugPrint(e.toString());
+      return const [];
     }
   }
 

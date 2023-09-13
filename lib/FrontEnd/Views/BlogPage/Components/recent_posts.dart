@@ -1,33 +1,66 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../DataBase/Controllers/blog_controller.dart';
+import '../../../../DataBase/Models/blog_post.dart';
 import '../../../../Services/constants.dart';
 import '../../../../translations/locale_keys.g.dart';
 import 'sidebar_container.dart';
 
-class RecentPosts extends StatelessWidget {
+class RecentPosts extends StatefulWidget {
   const RecentPosts({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<RecentPosts> createState() => _RecentPostsState();
+}
+
+class _RecentPostsState extends State<RecentPosts> {
+  late Future<List<BlogPost>> recentBlogPosts;
+
+  @override
+  void initState() {
+    recentBlogPosts = BlogController.getBlogPostsFuture();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SidebarContainer(
       title: LocaleKeys.blog_page_recent_posts.tr(),
-      child: Column(
-        children: [
-          RecentPostCard(
-            image: "assets/images/recent_1.png",
-            title: "Our “Secret” Formula to Online Workshops",
-            press: () {},
-          ),
-          const SizedBox(height: kDefaultPadding),
-          RecentPostCard(
-            image: "assets/images/recent_2.png",
-            title: "Digital Product Innovations from Warsaw with Love",
-            press: () {},
-          ),
-        ],
+      child: FutureBuilder(
+        future: recentBlogPosts,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final List<BlogPost> blogPosts = snapshot.data as List<BlogPost>;
+            return ListView.builder(
+              itemCount: blogPosts.length,
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(kDefaultPadding),
+              itemBuilder: (context, index) => FutureBuilder<String>(
+                future: blogPosts[index].getImageDownloadlink,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return RecentPostCard(
+                      image: snapshot.data as String,
+                      title: blogPosts[index].title,
+                      press: () {},
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }
@@ -54,7 +87,12 @@ class RecentPostCard extends StatelessWidget {
           children: [
             Expanded(
               flex: 2,
-              child: Image.asset(image),
+              child: Image.network(
+                image,
+                height: 50,
+                width: 50,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(width: kDefaultPadding),
             Expanded(

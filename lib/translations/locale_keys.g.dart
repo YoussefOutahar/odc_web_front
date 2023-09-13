@@ -1,6 +1,8 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+// ignore_for_file: constant_identifier_names
+
+abstract class LocaleKeys {
   static const website_name = 'website_name';
   static const website_subtitle = 'website_subtitle';
   static const tab_tiles_home = 'tab_tiles.home';
@@ -34,23 +36,35 @@ abstract class  LocaleKeys {
   static const about_page_text_our_values_4 = 'about_page.text.our_values.4';
   static const about_page_text_our_values_5 = 'about_page.text.our_values.5';
   static const about_page_text_our_values = 'about_page.text.our_values';
-  static const about_page_text_what_we_do_1_title = 'about_page.text.what_we_do.1.title';
-  static const about_page_text_what_we_do_1_text = 'about_page.text.what_we_do.1.text';
+  static const about_page_text_what_we_do_1_title =
+      'about_page.text.what_we_do.1.title';
+  static const about_page_text_what_we_do_1_text =
+      'about_page.text.what_we_do.1.text';
   static const about_page_text_what_we_do_1 = 'about_page.text.what_we_do.1';
-  static const about_page_text_what_we_do_2_title = 'about_page.text.what_we_do.2.title';
-  static const about_page_text_what_we_do_2_text = 'about_page.text.what_we_do.2.text';
+  static const about_page_text_what_we_do_2_title =
+      'about_page.text.what_we_do.2.title';
+  static const about_page_text_what_we_do_2_text =
+      'about_page.text.what_we_do.2.text';
   static const about_page_text_what_we_do_2 = 'about_page.text.what_we_do.2';
-  static const about_page_text_what_we_do_3_title = 'about_page.text.what_we_do.3.title';
-  static const about_page_text_what_we_do_3_text = 'about_page.text.what_we_do.3.text';
+  static const about_page_text_what_we_do_3_title =
+      'about_page.text.what_we_do.3.title';
+  static const about_page_text_what_we_do_3_text =
+      'about_page.text.what_we_do.3.text';
   static const about_page_text_what_we_do_3 = 'about_page.text.what_we_do.3';
-  static const about_page_text_what_we_do_4_title = 'about_page.text.what_we_do.4.title';
-  static const about_page_text_what_we_do_4_text = 'about_page.text.what_we_do.4.text';
+  static const about_page_text_what_we_do_4_title =
+      'about_page.text.what_we_do.4.title';
+  static const about_page_text_what_we_do_4_text =
+      'about_page.text.what_we_do.4.text';
   static const about_page_text_what_we_do_4 = 'about_page.text.what_we_do.4';
-  static const about_page_text_what_we_do_5_title = 'about_page.text.what_we_do.5.title';
-  static const about_page_text_what_we_do_5_text = 'about_page.text.what_we_do.5.text';
+  static const about_page_text_what_we_do_5_title =
+      'about_page.text.what_we_do.5.title';
+  static const about_page_text_what_we_do_5_text =
+      'about_page.text.what_we_do.5.text';
   static const about_page_text_what_we_do_5 = 'about_page.text.what_we_do.5';
-  static const about_page_text_what_we_do_6_title = 'about_page.text.what_we_do.6.title';
-  static const about_page_text_what_we_do_6_text = 'about_page.text.what_we_do.6.text';
+  static const about_page_text_what_we_do_6_title =
+      'about_page.text.what_we_do.6.title';
+  static const about_page_text_what_we_do_6_text =
+      'about_page.text.what_we_do.6.text';
   static const about_page_text_what_we_do_6 = 'about_page.text.what_we_do.6';
   static const about_page_text_what_we_do = 'about_page.text.what_we_do';
   static const about_page_text_our_mission_1 = 'about_page.text.our_mission.1';
@@ -70,5 +84,4 @@ abstract class  LocaleKeys {
   static const blog_page_search_title = 'blog_page.search_title';
   static const blog_page_search_hint = 'blog_page.search_hint';
   static const blog_page = 'blog_page';
-
 }

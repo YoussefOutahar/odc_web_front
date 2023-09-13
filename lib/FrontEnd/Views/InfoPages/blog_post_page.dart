@@ -3,6 +3,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../DataBase/Controllers/blog_controller.dart';
 import '../../../DataBase/Models/blog_post.dart';
 import '../../../Services/constants.dart';
 import '../../../Services/Utils/responsive.dart';
@@ -15,16 +16,20 @@ class BlogPostPage extends StatefulWidget {
 }
 
 class _BlogPostPageState extends State<BlogPostPage> {
-  late BlogPost? blogPost;
-  late int blogPostId;
+  BlogPost? blogPost;
+  late String blogPostId;
 
   @override
   void initState() {
     Get.parameters['id'] != null
-        ? blogPostId = int.parse(Get.parameters['id']!)
-        : blogPostId = 5;
+        ? blogPostId = Get.parameters['id']!
+        : blogPostId = "Error";
 
-    blogPosts.length > blogPostId ? blogPost = blogPosts[blogPostId] : null;
+    BlogController.getBlogPost(blogPostId).then((value) {
+      setState(() {
+        blogPost = value;
+      });
+    });
     super.initState();
   }
 
@@ -42,9 +47,34 @@ class _BlogPostPageState extends State<BlogPostPage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(20.0),
-                          child: Image.asset(
-                            blogPost!.image,
-                            fit: BoxFit.cover,
+                          child: SizedBox(
+                            width: 400,
+                            height: 300,
+                            child: FutureBuilder(
+                              future: blogPost!.getImageDownloadlink,
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return Image.network(snapshot.data.toString(),
+                                      fit: BoxFit.cover,
+                                      loadingBuilder:
+                                          (context, child, loadingProgress) =>
+                                              loadingProgress == null
+                                                  ? child
+                                                  : const Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    ));
+                                } else if (snapshot.hasError) {
+                                  return const Center(
+                                    child: Text('Error'),
+                                  );
+                                } else {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                              },
+                            ),
                           ),
                         ),
                         Column(
