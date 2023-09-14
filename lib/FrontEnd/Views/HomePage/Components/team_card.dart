@@ -48,8 +48,19 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const CircleAvatar(
-                      radius: 70,
+                    FutureBuilder(
+                      future: widget.member.getImageDownloadLink,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return CircleAvatar(
+                            radius: 60,
+                            backgroundImage:
+                                NetworkImage(snapshot.data.toString()),
+                          );
+                        } else {
+                          return const CircularProgressIndicator();
+                        }
+                      },
                     ),
                     const SizedBox(height: 60),
                     Text(

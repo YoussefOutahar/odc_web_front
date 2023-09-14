@@ -61,6 +61,7 @@ class _LoginFormState extends State<LoginForm> {
           SizedBox(height: MediaQuery.of(context).size.height * 0.02),
           TextField(
             controller: _passwordController,
+            obscureText: true,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Password',

@@ -5,6 +5,7 @@ import 'package:odc/Services/Utils/utils.dart';
 import 'package:odc/Services/constants.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
+import '../../../DataBase/Controllers/team_controller.dart';
 import '../../../DataBase/Models/team.dart';
 import '../../../Services/Utils/responsive.dart';
 
@@ -16,7 +17,7 @@ class TeamMemberPage extends StatefulWidget {
 }
 
 class _TeamMemberPageState extends State<TeamMemberPage> {
-  late TeamMember? teamMember;
+  TeamMember? teamMember;
   late String teamMemberUid;
 
   String dataUrl = "https://www.africau.edu/images/default/sample.pdf";
@@ -25,9 +26,11 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
   initState() {
     Get.parameters["id"] != null
         ? teamMemberUid = Get.parameters["id"]!
-        : teamMemberUid = "";
+        : teamMemberUid = "Error";
 
-    teamMember = members.firstWhere((element) => element.uid == teamMemberUid);
+    TeamController.getTeamMember(teamMemberUid).then((value) => setState(() {
+          teamMember = value;
+        }));
 
     super.initState();
   }
@@ -51,21 +54,30 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
           children: [
             Column(
               children: [
-                CircularProfileAvatar(
-                  "",
-                  initialsText: Text(
-                    extractFirstLetterFromWords(teamMember!.name),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 35,
-                    ),
-                  ),
-                  backgroundColor: kSecondaryColor,
-                  borderColor: kPrimaryColor,
-                  borderWidth: 2,
-                  radius: Responsive.isMobile(context)
-                      ? size.width / 7
-                      : size.height / 6,
+                FutureBuilder(
+                  future: teamMember!.getImageDownloadLink,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return CircularProfileAvatar(
+                        snapshot.data.toString(),
+                        initialsText: Text(
+                          extractFirstLetterFromWords(teamMember!.name),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 35,
+                          ),
+                        ),
+                        backgroundColor: kSecondaryColor,
+                        borderColor: kPrimaryColor,
+                        borderWidth: 2,
+                        radius: Responsive.isMobile(context)
+                            ? size.width / 7
+                            : size.height / 6,
+                      );
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
+                  },
                 ),
                 const SizedBox(height: kDefaultPadding * 2),
                 Text(
