@@ -47,6 +47,20 @@ class EventsController {
     }
   }
 
+  static Future<List<Event>> getEventsList() async {
+    try {
+      final QuerySnapshot<Map<String, dynamic>> snapshot =
+          await FirebaseFirestore.instance.collection('Events').get();
+
+      return snapshot.docs
+          .map((document) => Event.fromJson(document.data()))
+          .toList();
+    } catch (e) {
+      debugPrint(e.toString());
+      return [];
+    }
+  }
+
   static Future<Event?> getEvent(String uid) async {
     DocumentSnapshot? document;
     try {

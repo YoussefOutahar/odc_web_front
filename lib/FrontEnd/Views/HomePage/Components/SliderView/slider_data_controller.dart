@@ -1,7 +1,12 @@
+import '../../../../../DataBase/Controllers/events_controller.dart';
 import '../../../../../DataBase/Models/events.dart';
 
 class SliderDataController {
-  final data = events;
+  Future<List<Event>> get getData async {
+    List<Event> events = [];
+    EventsController.getEventsList().then((value) => events = value);
+    return events;
+  }
 }
 
 String image1 =

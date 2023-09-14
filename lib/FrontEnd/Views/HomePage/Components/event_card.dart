@@ -40,14 +40,25 @@ class _EventCardState extends State<EventCard> {
         child: Card(
           child: Column(
             children: [
-              SizedBox(
-                height: 170,
-                width: 540,
-                child: Image.asset(
-                  "assets/images/OpenSourceImages/img3.png",
-                  filterQuality: FilterQuality.high,
-                  fit: BoxFit.cover,
-                ),
+              FutureBuilder(
+                future: widget.event.getImageDownloadLink,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return SizedBox(
+                      height: 170,
+                      width: 540,
+                      child: Image.asset(
+                        snapshot.data.toString(),
+                        filterQuality: FilterQuality.high,
+                        fit: BoxFit.cover,
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                },
               ),
               Expanded(
                 child: Center(

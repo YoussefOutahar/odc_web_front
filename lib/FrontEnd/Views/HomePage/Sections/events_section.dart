@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../DataBase/Controllers/events_controller.dart';
 import '../../../../Services/Utils/responsive.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../Components/section_title.dart';
@@ -28,11 +29,24 @@ class _EventsCarouselState extends State<EventsCarousel> {
             title: LocaleKeys.home_page_title_events.tr(),
             subTitle: LocaleKeys.home_page_subtitle_events.tr(),
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 20.0),
-            height: Responsive.isDesktop(context) ? 600 : 340,
-            width: size.width,
-            child: const SliderView(),
+          FutureBuilder(
+            future: EventsController.getEventsList(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(vertical: 20.0),
+                  height: Responsive.isDesktop(context) ? 600 : 340,
+                  width: size.width,
+                  child: SliderView(
+                    data: snapshot.data!,
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              } else {
+                return const CircularProgressIndicator();
+              }
+            },
           ),
         ],
       ),

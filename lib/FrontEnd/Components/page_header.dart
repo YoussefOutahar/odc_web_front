@@ -32,7 +32,7 @@ class PageHeader extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(
+            child: Image.network(
               imgSrc,
               fit: BoxFit.cover,
               width: size.width,

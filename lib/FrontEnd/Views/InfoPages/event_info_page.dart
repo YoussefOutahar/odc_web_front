@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:get/get.dart';
 import 'package:odc/Services/constants.dart';
 
+import '../../../DataBase/Controllers/events_controller.dart';
 import '../../../DataBase/Models/events.dart';
 import '../../Components/page_header.dart';
 
@@ -14,16 +16,19 @@ class EventInfoPage extends StatefulWidget {
 
 class _EventInfoPageState extends State<EventInfoPage> {
   late Event? event;
-  late int eventId;
+  late String eventId;
 
   @override
   void initState() {
-    // Get.parameters["id"] != null
-    //     ? eventId = int.parse(Get.parameters['id']!)
-    //     : eventId = 5;
+    Get.parameters["id"] != null
+        ? eventId = Get.parameters['id']!
+        : eventId = "Error";
 
-    eventId = 5;
-    events.length > eventId ? event = events[eventId] : event = null;
+    EventsController.getEvent(eventId).then((value) {
+      setState(() {
+        event = value;
+      });
+    });
     super.initState();
   }
 
@@ -36,11 +41,22 @@ class _EventInfoPageState extends State<EventInfoPage> {
             children: [
               Transform.translate(
                 offset: const Offset(0, -kToolbarHeight * 1.2),
-                child: PageHeader(
-                  imgSrc: "assets/images/OpenSourceImages/img3.png",
-                  size: size,
-                  subTitle: '',
-                  title: event!.name,
+                child: FutureBuilder(
+                  future: event!.getImageDownloadLink,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return PageHeader(
+                        size: size,
+                        imgSrc: snapshot.data.toString(),
+                        title: event!.name,
+                        subTitle: event!.organisation,
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text("${snapshot.error}");
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
+                  },
                 ),
               ),
               Padding(

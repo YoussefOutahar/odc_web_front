@@ -11,10 +11,11 @@ import '../../../../Animations/animated_opacity_when_hovered.dart';
 import '../event_card.dart';
 import 'Widgets/information_layout.dart';
 import 'Widgets/timer_bar.dart';
-import 'slider_data_controller.dart';
 
 class SliderView extends StatefulWidget {
-  const SliderView({Key? key}) : super(key: key);
+  const SliderView({Key? key, required this.data}) : super(key: key);
+
+  final List<Event> data;
 
   @override
   State<SliderView> createState() => _SliderViewState();
@@ -24,7 +25,6 @@ class _SliderViewState extends State<SliderView>
     with
         SingleTickerProviderStateMixin,
         AutomaticKeepAliveClientMixin<SliderView> {
-  final _sliderDataController = SliderDataController();
   PageController pageController = PageController(keepPage: true);
   CarouselController scrollController = CarouselController();
 
@@ -54,10 +54,13 @@ class _SliderViewState extends State<SliderView>
   }
 
   _initSlider() {
-    for (var _ in _sliderDataController.data) {
+    progress.clear();
+    for (var _ in widget.data) {
       progress.add(0.0);
     }
-    _watchingProgress();
+    if (progress.isNotEmpty) {
+      _watchingProgress();
+    }
   }
 
   _watchingProgress() {
@@ -73,7 +76,7 @@ class _SliderViewState extends State<SliderView>
                 duration: const Duration(milliseconds: 200),
                 curve: Curves.decelerate);
           }
-          if (currentIndex < _sliderDataController.data.length - 1) {
+          if (currentIndex < widget.data.length - 1) {
             currentIndex++;
             _watchingProgress();
           } else {
@@ -103,7 +106,7 @@ class _SliderViewState extends State<SliderView>
   }
 
   void nextSlide() {
-    if (currentIndex < _sliderDataController.data.length - 1) {
+    if (currentIndex < widget.data.length - 1) {
       progress[currentIndex] = 1;
       currentIndex++;
       pageController.nextPage(
@@ -121,7 +124,7 @@ class _SliderViewState extends State<SliderView>
     if (Responsive.isDesktop(context)) {
       return _buildDesktop();
     } else {
-      return _buildMobileTabletersiion();
+      return _buildMobileTabletVersion();
     }
   }
 
@@ -141,8 +144,7 @@ class _SliderViewState extends State<SliderView>
                   top: positionTop,
                   left: positionLeft,
                   right: positionRight,
-                  child: TimerBar(
-                      data: _sliderDataController.data, percentage: progress),
+                  child: TimerBar(data: widget.data, percentage: progress),
                 ),
                 Positioned(
                   top: positionTop + 20,
@@ -150,7 +152,7 @@ class _SliderViewState extends State<SliderView>
                   right: 0,
                   bottom: positionBottom + 10,
                   child: InformationLayout(
-                    data: _sliderDataController.data,
+                    data: widget.data,
                     previousArrowEvent: previousSlide,
                     nextArrowEvent: nextSlide,
                     pageController: pageController,
@@ -175,88 +177,86 @@ class _SliderViewState extends State<SliderView>
         ),
       );
 
-  Widget _buildMobileTabletersiion() {
-    return Stack(
-      children: [
-        CarouselSlider(
-          carouselController: scrollController,
-          options: CarouselOptions(
-            autoPlay: true,
-            autoPlayInterval: const Duration(seconds: 6),
-            autoPlayAnimationDuration: const Duration(milliseconds: 800),
-            autoPlayCurve: Curves.fastOutSlowIn,
-            viewportFraction: 1,
-            enlargeFactor: 2,
-            height: 340,
-          ),
-          items: Responsive.isTablet(context)
-              ? splitListIntoPairs(events)
-                  .map((e) => Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: e
-                            .map((e) => Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: EventCard(
-                                    event: e,
-                                  ),
-                                ))
-                            .toList(),
-                      ))
-                  .toList()
-              : events
-                  .map((e) => Builder(
-                        builder: (context) => Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: EventCard(
-                            event: e,
+  Widget _buildMobileTabletVersion() => Stack(
+        children: [
+          CarouselSlider(
+            carouselController: scrollController,
+            options: CarouselOptions(
+              autoPlay: true,
+              autoPlayInterval: const Duration(seconds: 6),
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              viewportFraction: 1,
+              enlargeFactor: 2,
+              height: 340,
+            ),
+            items: Responsive.isTablet(context)
+                ? splitListIntoPairs(widget.data)
+                    .map((e) => Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: e
+                              .map((e) => Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: EventCard(
+                                      event: e,
+                                    ),
+                                  ))
+                              .toList(),
+                        ))
+                    .toList()
+                : (widget.data)
+                    .map((e) => Builder(
+                          builder: (context) => Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: EventCard(
+                              event: e,
+                            ),
                           ),
-                        ),
-                      ))
-                  .toList(),
-        ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: AnimatedOpacityWhenHovered(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.7),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.keyboard_arrow_left_outlined),
-                  onPressed: () {
-                    scrollController.previousPage();
-                  },
+                        ))
+                    .toList(),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: AnimatedOpacityWhenHovered(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: IconButton(
+                    icon: const Icon(Icons.keyboard_arrow_left_outlined),
+                    onPressed: () {
+                      scrollController.previousPage();
+                    },
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: AnimatedOpacityWhenHovered(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.7),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    scrollController.nextPage();
-                  },
-                  icon: const Icon(Icons.keyboard_arrow_right_outlined),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: AnimatedOpacityWhenHovered(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      scrollController.nextPage();
+                    },
+                    icon: const Icon(Icons.keyboard_arrow_right_outlined),
+                  ),
                 ),
               ),
             ),
-          ),
-        )
-      ],
-    );
-  }
+          )
+        ],
+      );
 
   @override
   bool get wantKeepAlive => true;
