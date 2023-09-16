@@ -26,23 +26,26 @@ class _InformationCardTileState extends State<InformationCardTile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FutureBuilder(
-              future: widget.data.getImageDownloadLink,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return SizedBox(
-                    height: 400,
-                    width: 600,
-                    child: InfoImages(
+            SizedBox(
+              height: 400,
+              width: 600,
+              child: FutureBuilder(
+                future: widget.data.getImageDownloadLink,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return InfoImages(
                       imagesUrl: snapshot.data.toString(),
-                    ),
-                  );
-                } else if (snapshot.hasError) {
-                  return Text("${snapshot.error}");
-                } else {
-                  return const CircularProgressIndicator();
-                }
-              },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  } else {
+                    return const Center(
+                        child: CircularProgressIndicator(
+                      color: kSecondaryColor,
+                    ));
+                  }
+                },
+              ),
             ),
             const SizedBox(height: kDefaultPadding / 2),
             Text(

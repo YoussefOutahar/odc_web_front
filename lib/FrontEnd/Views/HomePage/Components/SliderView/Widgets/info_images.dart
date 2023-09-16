@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../Services/cached_image_service.dart';
+
 class InfoImages extends StatefulWidget {
   final String imagesUrl;
   const InfoImages({
@@ -35,11 +37,12 @@ class _InfoImagesState extends State<InfoImages> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                widget.imagesUrl,
+              child: SizedBox(
                 height: double.infinity,
                 width: double.infinity,
-                fit: BoxFit.cover,
+                child: ImageManager(
+                  imageUrl: widget.imagesUrl,
+                ),
               ),
             ),
             AnimatedContainer(

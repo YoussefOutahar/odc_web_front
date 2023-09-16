@@ -2,6 +2,7 @@ import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 
 import '../../Services/Utils/responsive.dart';
+import '../../Services/cached_image_service.dart';
 import 'Buttons/deafult_button.dart';
 import 'image_clipper.dart';
 
@@ -32,11 +33,8 @@ class PageHeader extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            child: Image.network(
-              imgSrc,
-              fit: BoxFit.cover,
-              width: size.width,
-            ),
+            // width: size.width,
+            child: ImageManager(imageUrl: imgSrc),
           ),
           Positioned.fill(
             child: ClipPath(

@@ -15,7 +15,7 @@ class EventInfoPage extends StatefulWidget {
 }
 
 class _EventInfoPageState extends State<EventInfoPage> {
-  late Event? event;
+  Event? event;
   late String eventId;
 
   @override

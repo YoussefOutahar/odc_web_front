@@ -1,7 +1,11 @@
+import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../DataBase/Models/team.dart';
+import '../../../../Services/Utils/utils.dart';
+import '../../../../Services/cached_image_service.dart';
+import '../../../../Services/constants.dart';
 
 class TeamCard extends StatefulWidget {
   const TeamCard({super.key, required this.member});
@@ -15,6 +19,14 @@ class TeamCard extends StatefulWidget {
 class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
   bool isHover = false;
   Duration duration = const Duration(milliseconds: 200);
+
+  late Future<String> _imageUrl;
+
+  @override
+  void initState() {
+    _imageUrl = widget.member.getImageDownloadLink;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,16 +61,26 @@ class _TeamCardState extends State<TeamCard> with TickerProviderStateMixin {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     FutureBuilder(
-                      future: widget.member.getImageDownloadLink,
+                      future: _imageUrl,
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
-                          return CircleAvatar(
-                            radius: 60,
-                            backgroundImage:
-                                NetworkImage(snapshot.data.toString()),
+                          return CircularProfileAvatar(
+                            snapshot.data.toString(),
+                            initialsText: Text(
+                              extractFirstLetterFromWords(widget.member.name),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 35,
+                              ),
+                            ),
+                            backgroundColor: kSecondaryColor,
+                            borderColor: kPrimaryColor,
+                            borderWidth: 2,
+                            radius: 70,
                           );
                         } else {
-                          return const CircularProgressIndicator();
+                          return const Center(
+                              child: CircularProgressIndicator());
                         }
                       },
                     ),

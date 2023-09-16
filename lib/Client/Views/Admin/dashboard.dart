@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
-import 'Pages/blog_page.dart';
-import 'Pages/events_page.dart';
+import 'Pages/Blog/blog_page.dart';
+import 'Pages/Events/events_page.dart';
 import 'Pages/formation_page.dart';
-import 'Pages/team_page.dart';
+import 'Pages/Team/team_page.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});

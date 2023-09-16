@@ -22,6 +22,8 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
 
   String dataUrl = "https://www.africau.edu/images/default/sample.pdf";
 
+  late Future<String> _imgUrl;
+
   @override
   initState() {
     Get.parameters["id"] != null
@@ -30,6 +32,7 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
 
     TeamController.getTeamMember(teamMemberUid).then((value) => setState(() {
           teamMember = value;
+          _imgUrl = teamMember!.getImageDownloadLink;
         }));
 
     super.initState();
@@ -55,7 +58,7 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
             Column(
               children: [
                 FutureBuilder(
-                  future: teamMember!.getImageDownloadLink,
+                  future: _imgUrl,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return CircularProfileAvatar(
@@ -115,37 +118,50 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircularProfileAvatar(
-                "",
-                initialsText: Text(
-                  extractFirstLetterFromWords(teamMember!.name),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 35,
-                  ),
-                ),
-                backgroundColor: kPrimaryColor,
-                borderColor: kSecondaryColor,
-                radius: Responsive.isMobile(context)
-                    ? size.width / 7
-                    : size.height / 6,
+              FutureBuilder(
+                future: _imgUrl,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return CircularProfileAvatar(
+                      snapshot.data.toString(),
+                      initialsText: Text(
+                        extractFirstLetterFromWords(teamMember!.name),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 35,
+                        ),
+                      ),
+                      backgroundColor: kSecondaryColor,
+                      borderColor: kPrimaryColor,
+                      borderWidth: 2,
+                      radius: Responsive.isMobile(context)
+                          ? size.width / 7
+                          : size.height / 6,
+                    );
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                },
               ),
               const SizedBox(height: kDefaultPadding * 2),
               Padding(
-                padding: const EdgeInsets.only(left: kDefaultPadding),
+                padding: const EdgeInsets.all(kDefaultPadding),
                 child: Text(
                   teamMember!.name,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              const SizedBox(height: kDefaultPadding * 2),
+              const SizedBox(height: kDefaultPadding / 2),
               Padding(
-                padding: const EdgeInsets.only(left: kDefaultPadding),
+                padding: const EdgeInsets.all(kDefaultPadding),
                 child: Text(
                   teamMember!.role,
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
                 ),
               ),
               const SizedBox(height: kDefaultPadding * 2),

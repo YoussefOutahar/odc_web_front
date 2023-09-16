@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart' hide Trans;
 
 import '../../../../DataBase/Controllers/blog_controller.dart';
 import '../../../../DataBase/Models/blog_post.dart';
+import '../../../../Services/cached_image_service.dart';
 import '../../../../Services/constants.dart';
 import '../../../../translations/locale_keys.g.dart';
 import 'sidebar_container.dart';
@@ -18,6 +20,7 @@ class RecentPosts extends StatefulWidget {
 
 class _RecentPostsState extends State<RecentPosts> {
   late Future<List<BlogPost>> recentBlogPosts;
+  late List<Future<String>> imageLinkFutures;
 
   @override
   void initState() {
@@ -34,18 +37,22 @@ class _RecentPostsState extends State<RecentPosts> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final List<BlogPost> blogPosts = snapshot.data as List<BlogPost>;
+            imageLinkFutures =
+                blogPosts.map((e) => e.getImageDownloadlink).toList();
             return ListView.builder(
               itemCount: blogPosts.length,
               shrinkWrap: true,
               padding: const EdgeInsets.all(kDefaultPadding),
               itemBuilder: (context, index) => FutureBuilder<String>(
-                future: blogPosts[index].getImageDownloadlink,
+                future: imageLinkFutures[index],
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return RecentPostCard(
                       image: snapshot.data as String,
                       title: blogPosts[index].title,
-                      press: () {},
+                      press: () {
+                        Get.toNamed("/blogPost/${blogPosts[index].uid}");
+                      },
                     );
                   } else {
                     return const Center(
@@ -87,11 +94,12 @@ class RecentPostCard extends StatelessWidget {
           children: [
             Expanded(
               flex: 2,
-              child: Image.network(
-                image,
+              child: SizedBox(
                 height: 50,
                 width: 50,
-                fit: BoxFit.cover,
+                child: ImageManager(
+                  imageUrl: image,
+                ),
               ),
             ),
             const SizedBox(width: kDefaultPadding),

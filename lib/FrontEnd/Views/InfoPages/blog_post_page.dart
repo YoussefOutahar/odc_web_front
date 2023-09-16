@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../DataBase/Controllers/blog_controller.dart';
 import '../../../DataBase/Models/blog_post.dart';
+import '../../../Services/cached_image_service.dart';
 import '../../../Services/constants.dart';
 import '../../../Services/Utils/responsive.dart';
 
@@ -19,6 +20,8 @@ class _BlogPostPageState extends State<BlogPostPage> {
   BlogPost? blogPost;
   late String blogPostId;
 
+  late Future<String> imageLinkFuture;
+
   @override
   void initState() {
     Get.parameters['id'] != null
@@ -28,6 +31,7 @@ class _BlogPostPageState extends State<BlogPostPage> {
     BlogController.getBlogPost(blogPostId).then((value) {
       setState(() {
         blogPost = value;
+        imageLinkFuture = blogPost!.getImageDownloadlink;
       });
     });
     super.initState();
@@ -51,19 +55,12 @@ class _BlogPostPageState extends State<BlogPostPage> {
                             width: 400,
                             height: 300,
                             child: FutureBuilder(
-                              future: blogPost!.getImageDownloadlink,
+                              future: imageLinkFuture,
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
-                                  return Image.network(snapshot.data.toString(),
-                                      fit: BoxFit.cover,
-                                      loadingBuilder:
-                                          (context, child, loadingProgress) =>
-                                              loadingProgress == null
-                                                  ? child
-                                                  : const Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    ));
+                                  return ImageManager(
+                                    imageUrl: snapshot.data.toString(),
+                                  );
                                 } else if (snapshot.hasError) {
                                   return const Center(
                                     child: Text('Error'),

@@ -29,8 +29,8 @@ class _EventsCarouselState extends State<EventsCarousel> {
             title: LocaleKeys.home_page_title_events.tr(),
             subTitle: LocaleKeys.home_page_subtitle_events.tr(),
           ),
-          FutureBuilder(
-            future: EventsController.getEventsList(),
+          StreamBuilder(
+            stream: EventsController.getEvents(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Container(
@@ -44,7 +44,7 @@ class _EventsCarouselState extends State<EventsCarousel> {
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               } else {
-                return const CircularProgressIndicator();
+                return const Center(child: CircularProgressIndicator());
               }
             },
           ),

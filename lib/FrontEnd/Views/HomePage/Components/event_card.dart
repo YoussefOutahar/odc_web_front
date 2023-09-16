@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../DataBase/Models/events.dart';
+import '../../../../Services/cached_image_service.dart';
 
 class EventCard extends StatefulWidget {
   const EventCard({super.key, required this.event});
@@ -14,6 +15,15 @@ class EventCard extends StatefulWidget {
 class _EventCardState extends State<EventCard> {
   bool isHover = false;
   Duration duration = const Duration(milliseconds: 200);
+
+  late Future<String> _imageUrl;
+
+  @override
+  void initState() {
+    _imageUrl = widget.event.getImageDownloadLink;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -41,22 +51,21 @@ class _EventCardState extends State<EventCard> {
           child: Column(
             children: [
               FutureBuilder(
-                future: widget.event.getImageDownloadLink,
+                future: _imageUrl,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return SizedBox(
                       height: 170,
                       width: 540,
-                      child: Image.asset(
-                        snapshot.data.toString(),
-                        filterQuality: FilterQuality.high,
-                        fit: BoxFit.cover,
+                      child: ImageManager(
+                        imageUrl: snapshot.data.toString(),
                       ),
                     );
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
                   } else {
-                    return const CircularProgressIndicator();
+                    return const Expanded(
+                        child: Center(child: CircularProgressIndicator()));
                   }
                 },
               ),

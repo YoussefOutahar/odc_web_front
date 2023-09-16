@@ -6,16 +6,30 @@ import 'package:share_plus/share_plus.dart';
 import 'package:get/get.dart' hide Trans;
 
 import '../../../../DataBase/Models/blog_post.dart';
+import '../../../../Services/cached_image_service.dart';
 import '../../../../Services/constants.dart';
 import '../../../../Services/Utils/responsive.dart';
 import '../../../../translations/locale_keys.g.dart';
 
-class BlogPostCard extends StatelessWidget {
+class BlogPostCard extends StatefulWidget {
   final BlogPost blogPost;
   const BlogPostCard({
     Key? key,
     required this.blogPost,
   }) : super(key: key);
+
+  @override
+  State<BlogPostCard> createState() => _BlogPostCardState();
+}
+
+class _BlogPostCardState extends State<BlogPostCard> {
+  late Future<String> imageLinkFuture;
+
+  @override
+  void initState() {
+    imageLinkFuture = widget.blogPost.getImageDownloadlink;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,22 +40,25 @@ class BlogPostCard extends StatelessWidget {
         child: Column(
           children: [
             FutureBuilder(
-              future: blogPost.getImageDownloadlink,
+              future: imageLinkFuture,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return Image.network(
-                    snapshot.data.toString(),
+                  return SizedBox(
                     width: double.infinity,
                     height: 400,
-                    fit: BoxFit.cover,
+                    child: ImageManager(
+                      imageUrl: snapshot.data.toString(),
+                    ),
                   );
                 } else if (snapshot.hasError) {
                   return const Center(
                     child: Text('Error'),
                   );
                 } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return const SizedBox(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
                   );
                 }
               },
@@ -59,14 +76,14 @@ class BlogPostCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    blogPost.createdAt.toDate().toString(),
+                    widget.blogPost.createdAt.toDate().toString(),
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(vertical: kDefaultPadding),
                     child: Text(
-                      blogPost.title,
+                      widget.blogPost.title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -81,7 +98,7 @@ class BlogPostCard extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: MarkdownBody(
-                      data: blogPost.content,
+                      data: widget.blogPost.content,
                       selectable: true,
                     ),
                   ),
@@ -90,7 +107,7 @@ class BlogPostCard extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Get.toNamed("/blogPost/${blogPost.uid}");
+                          Get.toNamed("/blogPost/${widget.blogPost.uid}");
                         },
                         child: Container(
                           padding: const EdgeInsets.only(
@@ -123,8 +140,8 @@ class BlogPostCard extends StatelessWidget {
                             "assets/icons/feather_share-2.svg"),
                         onPressed: () {
                           Share.share(
-                            "https://https://optimadecision-771ba.web.app/#/home/blogPost/${blogPost.uid}",
-                            subject: blogPost.title,
+                            "https://https://optimadecision-771ba.web.app/#/home/blogPost/${widget.blogPost.uid}",
+                            subject: widget.blogPost.title,
                           );
                         },
                       ),
