@@ -38,6 +38,13 @@ class TeamMember {
         await FirebaseStorage.instance.ref().child(image).getDownloadURL();
     return downloadLink;
   }
+
+  Future<String> get getPdfDownloadLink async {
+    String downloadLink;
+    downloadLink =
+        await FirebaseStorage.instance.ref().child(pdfUrl).getDownloadURL();
+    return downloadLink;
+  }
 }
 
 // List<TeamMember> members = [

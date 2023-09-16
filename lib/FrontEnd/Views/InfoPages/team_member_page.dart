@@ -20,8 +20,7 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
   TeamMember? teamMember;
   late String teamMemberUid;
 
-  String dataUrl = "https://www.africau.edu/images/default/sample.pdf";
-
+  late Future<String> _pdfUrl;
   late Future<String> _imgUrl;
 
   @override
@@ -33,6 +32,7 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
     TeamController.getTeamMember(teamMemberUid).then((value) => setState(() {
           teamMember = value;
           _imgUrl = teamMember!.getImageDownloadLink;
+          _pdfUrl = teamMember!.getPdfDownloadLink;
         }));
 
     super.initState();
@@ -97,17 +97,22 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
               ],
             ),
             Container(
-                height: 564,
-                width: 400,
-                color: Colors.white,
-                child: SfPdfViewer.network(
-                  dataUrl,
-                  headers: const {
-                    "Content-Type": "application/pdf",
-                    "Accept": "application/pdf",
-                    "Access-Control-Allow-Origin": "*"
-                  },
-                )),
+              height: 564,
+              width: 400,
+              color: Colors.white,
+              child: FutureBuilder(
+                future: _pdfUrl,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return SfPdfViewer.network(
+                      snapshot.data.toString(),
+                    );
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                },
+              ),
+            ),
           ],
         ),
       );
@@ -166,12 +171,22 @@ class _TeamMemberPageState extends State<TeamMemberPage> {
               ),
               const SizedBox(height: kDefaultPadding * 2),
               Container(
-                  height: size.height,
-                  width: size.width,
-                  color: Colors.white,
-                  child: SfPdfViewer.network(
-                    dataUrl,
-                  )),
+                height: size.height,
+                width: size.width,
+                color: Colors.white,
+                child: FutureBuilder(
+                  future: _pdfUrl,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return SfPdfViewer.network(
+                        snapshot.data.toString(),
+                      );
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
+                  },
+                ),
+              ),
               const SizedBox(height: kDefaultPadding * 2),
             ],
           ),
