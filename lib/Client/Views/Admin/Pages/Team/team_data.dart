@@ -9,11 +9,12 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../../../../../DataBase/Controllers/team_controller.dart';
 import '../../../../../DataBase/Models/team.dart';
+import '../../../../../Services/image_service.dart';
+import '../../Components/drop_zone.dart';
 import '../../Components/loading_animation.dart';
 
 class TeamData extends StatefulWidget {
-  const TeamData(
-      {super.key, required this.teamMember, required this.onFinished});
+  const TeamData({super.key, required this.teamMember, required this.onFinished});
 
   final TeamMember teamMember;
   final VoidCallback onFinished;
@@ -25,9 +26,6 @@ class TeamData extends StatefulWidget {
 class _TeamDataState extends State<TeamData> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _roleController = TextEditingController();
-
-  late DropzoneViewController dropZoneController;
-  bool _startAnimation = false;
 
   UploadTask? imageUploadTask;
   bool imageFileUploaded = false;
@@ -73,9 +71,7 @@ class _TeamDataState extends State<TeamData> {
                           ? Column(
                               children: [
                                 SizedBox(
-                                    height: size.height * 0.2,
-                                    width: size.width * 0.2,
-                                    child: Image.memory(imageData)),
+                                    height: size.height * 0.2, width: size.width * 0.2, child: Image.memory(imageData)),
                                 Text(imageFileName),
                                 IconButton(
                                   onPressed: () {
@@ -124,8 +120,7 @@ class _TeamDataState extends State<TeamData> {
                             )
                           : TextButton.icon(
                               onPressed: () async {
-                                FilePickerResult? result =
-                                    await FilePicker.platform.pickFiles(
+                                FilePickerResult? result = await FilePicker.platform.pickFiles(
                                   type: FileType.custom,
                                   allowedExtensions: [
                                     'pdf',
@@ -184,73 +179,39 @@ class _TeamDataState extends State<TeamData> {
     );
   }
 
-  Widget _buildDropZone() => Stack(
-        children: [
-          DottedBorder(
-            color: Colors.black,
-            strokeWidth: 2,
-            dashPattern: const [10, 10],
-            borderType: BorderType.RRect,
-            radius: const Radius.circular(20),
-            child: DropzoneView(
-              operation: DragOperation.copy,
-              cursor: CursorType.grab,
-              onCreated: (DropzoneViewController controller) {
-                dropZoneController = controller;
-              },
-              mime: const [
-                'image/jpeg',
-                'image/png',
-                'image/bmp',
-                'image/gif',
-                'image/jpg',
-              ],
-              onHover: () => setState(() {
-                _startAnimation = true;
-              }),
-              onLeave: () => setState(() {
-                _startAnimation = false;
-              }),
-              onDrop: (value) async {
-                imageFileName = await dropZoneController.getFilename(value);
-                imageData = await dropZoneController.getFileData(value);
-                imageFileUploaded = true;
-                setState(() {});
-              },
-            ),
-          ),
-          Center(
-            child: Lottie.asset(
-              'assets/animations/download-file-icon-animation.json',
-              frameRate: FrameRate.max,
-              repeat: _startAnimation,
-            ),
-          ),
-          Positioned.fill(
-            child: InkWell(
-              onTap: () async {
-                FilePickerResult? result = await FilePicker.platform.pickFiles(
-                  type: FileType.custom,
-                  allowedExtensions: [
-                    'jpg',
-                    'jpeg',
-                    'png',
-                    'bmp',
-                    'gif',
-                  ],
-                );
-                if (result != null) {
-                  imageFileName = result.files.single.name;
-                  imageData = result.files.single.bytes!;
-                  setState(() {
-                    imageFileUploaded = true;
-                  });
-                }
-              },
-            ),
-          )
-        ],
-      );
+  late DropzoneViewController dropZoneController;
+  Widget _buildDropZone() {
+    return DropZone(
+      onCreated: (DropzoneViewController controller) {
+        dropZoneController = controller;
+      },
+      onDrop: (value) async {
+        imageFileName = await dropZoneController.getFilename(value);
+        imageData = await dropZoneController.getFileData(value);
+        imageFileUploaded = true;
+        setState(() {});
+      },
+      onTap: () async {
+        FilePickerResult? result = await FilePicker.platform.pickFiles(
+          type: FileType.custom,
+          allowedExtensions: [
+            'jpg',
+            'jpeg',
+            'png',
+            'bmp',
+            'gif',
+          ],
+        );
+        if (result != null) {
+          imageFileName = result.files.single.name;
+          imageData = result.files.single.bytes!;
+          setState(() {
+            imageFileUploaded = true;
+          });
+        }
+      },
+    );
+  }
 
   bool _isLoading = false;
   Widget _buildUploadProgress() {
@@ -271,10 +232,7 @@ class _TeamDataState extends State<TeamData> {
   }
 
   _upload() async {
-    if (widget.teamMember.name.isEmpty ||
-        widget.teamMember.role.isEmpty ||
-        !imageFileUploaded ||
-        !cvFileUploaded) {
+    if (widget.teamMember.name.isEmpty || widget.teamMember.role.isEmpty || !imageFileUploaded || !cvFileUploaded) {
       TeamMember? newTeamMember = await TeamController.addTeamMember(
         TeamMember(
           name: _nameController.text,
@@ -286,12 +244,13 @@ class _TeamDataState extends State<TeamData> {
 
       if (newTeamMember != null) {
         try {
-          final String imagePath =
-              'files/team/${newTeamMember.uid}/$imageFileName';
+          final String imagePath = 'files/team/${newTeamMember.uid}/$imageFileName';
           final Reference imageRef = FirebaseStorage.instance.ref(imagePath);
+          imageData = await ImageManager.compressImage(imageData);
 
           final String cvPath = 'files/team/${newTeamMember.uid}/$cvFileName';
           final Reference cvRef = FirebaseStorage.instance.ref(cvPath);
+          cvData = await ImageManager.compressImage(cvData);
           setState(() {
             imageUploadTask = imageRef.putData(imageData);
             cvUploadTask = cvRef.putData(cvData);
@@ -324,12 +283,13 @@ class _TeamDataState extends State<TeamData> {
       }
     } else {
       try {
-        final String imagePath =
-            'files/team/${widget.teamMember.uid}/$imageFileName';
+        final String imagePath = 'files/team/${widget.teamMember.uid}/$imageFileName';
         final Reference imageRef = FirebaseStorage.instance.ref(imagePath);
+        imageData = await ImageManager.compressImage(imageData);
 
         final String cvPath = 'files/team/${widget.teamMember.uid}/$cvFileName';
         final Reference cvRef = FirebaseStorage.instance.ref(cvPath);
+        cvData = await ImageManager.compressImage(cvData);
 
         await TeamController.updateTeamMember(
           TeamMember(

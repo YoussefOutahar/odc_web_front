@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../Services/cached_image_service.dart';
+import '../../../../../../Services/image_service.dart';
 
 class InfoImages extends StatefulWidget {
   final String imagesUrl;
@@ -40,7 +40,7 @@ class _InfoImagesState extends State<InfoImages> {
               child: SizedBox(
                 height: double.infinity,
                 width: double.infinity,
-                child: ImageManager(
+                child: CachedImageManager(
                   imageUrl: widget.imagesUrl,
                 ),
               ),
@@ -50,12 +50,9 @@ class _InfoImagesState extends State<InfoImages> {
               height: double.infinity,
               width: double.infinity,
               alignment: Alignment.bottomCenter,
-              padding: EdgeInsets.symmetric(
-                  horizontal: isHover ? 12 : 10, vertical: isHover ? 7 : 5),
+              padding: EdgeInsets.symmetric(horizontal: isHover ? 12 : 10, vertical: isHover ? 7 : 5),
               decoration: BoxDecoration(
-                color: isHover
-                    ? Colors.black.withOpacity(0.3)
-                    : Colors.transparent,
+                color: isHover ? Colors.black.withOpacity(0.3) : Colors.transparent,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: isHover

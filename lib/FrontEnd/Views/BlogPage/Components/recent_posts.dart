@@ -4,7 +4,7 @@ import 'package:get/get.dart' hide Trans;
 
 import '../../../../DataBase/Controllers/blog_controller.dart';
 import '../../../../DataBase/Models/blog_post.dart';
-import '../../../../Services/cached_image_service.dart';
+import '../../../../Services/image_service.dart';
 import '../../../../Services/constants.dart';
 import '../../../../translations/locale_keys.g.dart';
 import 'sidebar_container.dart';
@@ -37,8 +37,7 @@ class _RecentPostsState extends State<RecentPosts> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final List<BlogPost> blogPosts = snapshot.data as List<BlogPost>;
-            imageLinkFutures =
-                blogPosts.map((e) => e.getImageDownloadlink).toList();
+            imageLinkFutures = blogPosts.map((e) => e.getImageDownloadlink).toList();
             return ListView.builder(
               itemCount: blogPosts.length,
               shrinkWrap: true,
@@ -97,7 +96,7 @@ class RecentPostCard extends StatelessWidget {
               child: SizedBox(
                 height: 50,
                 width: 50,
-                child: ImageManager(
+                child: CachedImageManager(
                   imageUrl: image,
                 ),
               ),

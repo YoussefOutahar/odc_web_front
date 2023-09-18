@@ -10,6 +10,8 @@ import 'package:lottie/lottie.dart';
 
 import '../../../../../DataBase/Controllers/events_controller.dart';
 import '../../../../../DataBase/Models/events.dart';
+import '../../../../../Services/image_service.dart';
+import '../../Components/drop_zone.dart';
 import '../../Components/loading_animation.dart';
 
 class EventData extends StatefulWidget {
@@ -30,10 +32,8 @@ class _EventDataState extends State<EventData> {
   final TextEditingController _organisationController = TextEditingController();
   DateTime selectedDate = DateTime.now();
 
-  late DropzoneViewController dropZoneController;
   UploadTask? uploadTask;
   double progress = 0;
-  bool _startAnimation = false;
 
   bool fileUploaded = false;
   String fileName = '';
@@ -78,10 +78,7 @@ class _EventDataState extends State<EventData> {
                       child: fileUploaded
                           ? Column(
                               children: [
-                                SizedBox(
-                                    height: size.height * 0.2,
-                                    width: size.width * 0.2,
-                                    child: Image.memory(data)),
+                                SizedBox(height: size.height * 0.2, width: size.width * 0.2, child: Image.memory(data)),
                                 Text(fileName),
                                 IconButton(
                                   onPressed: () {
@@ -174,73 +171,39 @@ class _EventDataState extends State<EventData> {
     );
   }
 
-  Widget _buildDropZone() => Stack(
-        children: [
-          DottedBorder(
-            color: Colors.black,
-            strokeWidth: 2,
-            dashPattern: const [10, 10],
-            borderType: BorderType.RRect,
-            radius: const Radius.circular(20),
-            child: DropzoneView(
-              operation: DragOperation.copy,
-              cursor: CursorType.grab,
-              onCreated: (DropzoneViewController controller) {
-                dropZoneController = controller;
-              },
-              mime: const [
-                'image/jpeg',
-                'image/png',
-                'image/bmp',
-                'image/gif',
-                'image/jpg',
-              ],
-              onHover: () => setState(() {
-                _startAnimation = true;
-              }),
-              onLeave: () => setState(() {
-                _startAnimation = false;
-              }),
-              onDrop: (value) async {
-                fileName = await dropZoneController.getFilename(value);
-                data = await dropZoneController.getFileData(value);
-                fileUploaded = true;
-                setState(() {});
-              },
-            ),
-          ),
-          Center(
-            child: Lottie.asset(
-              'assets/animations/download-file-icon-animation.json',
-              frameRate: FrameRate.max,
-              repeat: _startAnimation,
-            ),
-          ),
-          Positioned.fill(
-            child: InkWell(
-              onTap: () async {
-                FilePickerResult? result = await FilePicker.platform.pickFiles(
-                  type: FileType.custom,
-                  allowedExtensions: [
-                    'jpg',
-                    'jpeg',
-                    'png',
-                    'bmp',
-                    'gif',
-                  ],
-                );
-                if (result != null) {
-                  fileName = result.files.single.name;
-                  data = result.files.single.bytes!;
-                  setState(() {
-                    fileUploaded = true;
-                  });
-                }
-              },
-            ),
-          )
-        ],
-      );
+  late DropzoneViewController dropZoneController;
+  Widget _buildDropZone() {
+    return DropZone(
+      onCreated: (DropzoneViewController controller) {
+        dropZoneController = controller;
+      },
+      onDrop: (value) async {
+        fileName = await dropZoneController.getFilename(value);
+        data = await dropZoneController.getFileData(value);
+        fileUploaded = true;
+        setState(() {});
+      },
+      onTap: () async {
+        FilePickerResult? result = await FilePicker.platform.pickFiles(
+          type: FileType.custom,
+          allowedExtensions: [
+            'jpg',
+            'jpeg',
+            'png',
+            'bmp',
+            'gif',
+          ],
+        );
+        if (result != null) {
+          fileName = result.files.single.name;
+          data = result.files.single.bytes!;
+          setState(() {
+            fileUploaded = true;
+          });
+        }
+      },
+    );
+  }
 
   bool _isLoading = false;
   Widget _buildUploadProgress() {
@@ -282,6 +245,7 @@ class _EventDataState extends State<EventData> {
         try {
           final String path = 'files/event/${newEvent.uid}/$fileName';
           final Reference ref = FirebaseStorage.instance.ref(path);
+          data = await ImageManager.compressImage(data);
           setState(() {
             uploadTask = ref.putData(data);
           });
@@ -313,9 +277,8 @@ class _EventDataState extends State<EventData> {
     } else {
       try {
         final String path = 'files/event/${widget.event.uid}/$fileName';
-
-        debugPrint(path);
         final Reference ref = FirebaseStorage.instance.ref(path);
+        data = await ImageManager.compressImage(data);
         await EventsController.updateEvent(
           Event(
             uid: widget.event.uid,

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 
 import '../Models/blog_post.dart';
@@ -7,24 +10,17 @@ class BlogController {
   //Create:
   static Future<BlogPost?> addBlogPost(BlogPost blogPost) async {
     try {
-      await FirebaseFirestore.instance
-          .collection('BlogPosts')
-          .doc()
-          .set(blogPost.toJson());
+      await FirebaseFirestore.instance.collection('BlogPosts').doc().set(blogPost.toJson());
 
-      final QuerySnapshot<Map<String, dynamic>> snapshot =
-          await FirebaseFirestore.instance
-              .collection("BlogPosts")
-              .where("title", isEqualTo: blogPost.title)
-              .where("content", isEqualTo: blogPost.content)
-              .where("image", isEqualTo: blogPost.image)
-              .get();
+      final QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
+          .collection("BlogPosts")
+          .where("title", isEqualTo: blogPost.title)
+          .where("content", isEqualTo: blogPost.content)
+          .where("image", isEqualTo: blogPost.image)
+          .get();
 
       final String uid = snapshot.docs.first.id;
-      await FirebaseFirestore.instance
-          .collection('BlogPosts')
-          .doc(uid)
-          .update({"uid": uid});
+      await FirebaseFirestore.instance.collection('BlogPosts').doc(uid).update({"uid": uid});
 
       blogPost.uid = uid;
       return blogPost;
@@ -37,10 +33,7 @@ class BlogController {
   static Future<BlogPost?> getBlogPost(String uid) async {
     DocumentSnapshot? document;
     try {
-      document = await FirebaseFirestore.instance
-          .collection('BlogPosts')
-          .doc(uid)
-          .get();
+      document = await FirebaseFirestore.instance.collection('BlogPosts').doc(uid).get();
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -53,10 +46,10 @@ class BlogController {
 
   static Stream<List<BlogPost>> getBlogPosts() {
     try {
-      return FirebaseFirestore.instance.collection('BlogPosts').snapshots().map(
-          (snapshot) => snapshot.docs
-              .map((document) => BlogPost.fromJson(document.data()))
-              .toList());
+      return FirebaseFirestore.instance
+          .collection('BlogPosts')
+          .snapshots()
+          .map((snapshot) => snapshot.docs.map((document) => BlogPost.fromJson(document.data())).toList());
     } catch (e) {
       debugPrint(e.toString());
       return const Stream.empty();
@@ -67,9 +60,7 @@ class BlogController {
     try {
       final QuerySnapshot<Map<String, dynamic>> snapshot =
           await FirebaseFirestore.instance.collection('BlogPosts').get();
-      return snapshot.docs
-          .map((document) => BlogPost.fromJson(document.data()))
-          .toList();
+      return snapshot.docs.map((document) => BlogPost.fromJson(document.data())).toList();
     } catch (e) {
       debugPrint(e.toString());
       return const [];
@@ -79,10 +70,7 @@ class BlogController {
   //Update:
   static Future<bool> updateBlogPost(BlogPost blogPost) async {
     try {
-      await FirebaseFirestore.instance
-          .collection('BlogPosts')
-          .doc(blogPost.uid)
-          .update(blogPost.toJson());
+      await FirebaseFirestore.instance.collection('BlogPosts').doc(blogPost.uid).update(blogPost.toJson());
       return true;
     } catch (e) {
       return false;
@@ -92,13 +80,18 @@ class BlogController {
   //Delete:
   static Future<bool> deleteBlogPost(String uid) async {
     try {
-      await FirebaseFirestore.instance
-          .collection('BlogPosts')
-          .doc(uid)
-          .delete();
+      await FirebaseFirestore.instance.collection('BlogPosts').doc(uid).delete();
       return true;
     } catch (e) {
       return false;
     }
+  }
+
+  static UploadTask? uploadImage() {
+    return null;
+  }
+
+  static UploadTask? updateImage() {
+    return null;
   }
 }

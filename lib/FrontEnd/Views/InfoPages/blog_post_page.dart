@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../DataBase/Controllers/blog_controller.dart';
 import '../../../DataBase/Models/blog_post.dart';
-import '../../../Services/cached_image_service.dart';
+import '../../../Services/image_service.dart';
 import '../../../Services/constants.dart';
 import '../../../Services/Utils/responsive.dart';
 
@@ -24,9 +24,7 @@ class _BlogPostPageState extends State<BlogPostPage> {
 
   @override
   void initState() {
-    Get.parameters['id'] != null
-        ? blogPostId = Get.parameters['id']!
-        : blogPostId = "Error";
+    Get.parameters['id'] != null ? blogPostId = Get.parameters['id']! : blogPostId = "Error";
 
     BlogController.getBlogPost(blogPostId).then((value) {
       setState(() {
@@ -58,7 +56,7 @@ class _BlogPostPageState extends State<BlogPostPage> {
                               future: imageLinkFuture,
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
-                                  return ImageManager(
+                                  return CachedImageManager(
                                     imageUrl: snapshot.data.toString(),
                                   );
                                 } else if (snapshot.hasError) {
@@ -79,15 +77,13 @@ class _BlogPostPageState extends State<BlogPostPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: kDefaultPadding),
+                              padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
                               child: Text(
                                 blogPost!.title,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                  fontSize:
-                                      Responsive.isDesktop(context) ? 32 : 24,
+                                  fontSize: Responsive.isDesktop(context) ? 32 : 24,
                                   fontFamily: "Raleway",
                                   color: const Color(0xFF191919),
                                   height: 1.3,
@@ -130,13 +126,11 @@ class _BlogPostPageState extends State<BlogPostPage> {
                             children: [
                               const Spacer(),
                               IconButton(
-                                icon: SvgPicture.asset(
-                                    "assets/icons/feather_thumbs-up.svg"),
+                                icon: SvgPicture.asset("assets/icons/feather_thumbs-up.svg"),
                                 onPressed: () {},
                               ),
                               IconButton(
-                                icon: SvgPicture.asset(
-                                    "assets/icons/feather_message-square.svg"),
+                                icon: SvgPicture.asset("assets/icons/feather_message-square.svg"),
                                 onPressed: () {},
                               ),
                               // IconButton(

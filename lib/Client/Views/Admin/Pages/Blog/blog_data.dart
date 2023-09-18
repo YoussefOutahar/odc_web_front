@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:lottie/lottie.dart';
 
 import '../../../../../DataBase/Controllers/blog_controller.dart';
 import '../../../../../DataBase/Models/blog_post.dart';
+import '../../../../../Services/image_service.dart';
+import '../../Components/drop_zone.dart';
 import '../../Components/loading_animation.dart';
 
 class BlogData extends StatefulWidget {
@@ -26,9 +26,7 @@ class _BlogDataState extends State<BlogData> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
 
-  late DropzoneViewController dropZoneController;
   UploadTask? uploadTask;
-  bool _startAnimation = false;
 
   bool fileUploaded = false;
   String fileName = '';
@@ -56,80 +54,76 @@ class _BlogDataState extends State<BlogData> {
       child: Stack(
         children: [
           Positioned.fill(
-              child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: size.height * 0.3,
-                    width: size.width * 0.3,
-                    child: fileUploaded
-                        ? Column(
-                            children: [
-                              SizedBox(
-                                  height: size.height * 0.2,
-                                  width: size.width * 0.2,
-                                  child: Image.memory(data)),
-                              Text(fileName),
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    fileUploaded = false;
-                                  });
-                                },
-                                icon: const Icon(Icons.restart_alt_outlined),
-                              ),
-                            ],
-                          )
-                        : _buildDropZone(),
-                  ),
-                  TextField(
-                    controller: titleController,
-                    decoration: const InputDecoration(
-                      labelText: "Title",
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50.0, left: 40, right: 40),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: size.height * 0.3,
+                      width: size.width * 0.3,
+                      child: fileUploaded
+                          ? Column(
+                              children: [
+                                SizedBox(height: size.height * 0.2, width: size.width * 0.2, child: Image.memory(data)),
+                                Text(fileName),
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      fileUploaded = false;
+                                    });
+                                  },
+                                  icon: const Icon(Icons.restart_alt_outlined),
+                                ),
+                              ],
+                            )
+                          : _buildDropZone(),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Card(
+                    TextField(
+                      controller: titleController,
+                      decoration: const InputDecoration(
+                        labelText: "Title",
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Card(
+                        elevation: 8,
+                        // color: Theme.of(context).primaryColor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            controller: contentController,
+                            keyboardType: TextInputType.multiline,
+                            maxLines: null,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              // labelText: "Content",
+                              hintText: "Edit your blog markdown here",
+                            ),
+                            onChanged: (text) => setState(() {}),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
                       elevation: 8,
-                      // color: Theme.of(context).primaryColor,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: TextField(
-                          controller: contentController,
-                          keyboardType: TextInputType.multiline,
-                          maxLines: null,
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            // labelText: "Content",
-                            hintText: "Edit your blog markdown here",
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: size.height * 0.3,
+                          child: MarkdownBody(
+                            data: contentController.text,
                           ),
-                          onChanged: (text) => setState(() {}),
                         ),
                       ),
                     ),
-                  ),
-                  Card(
-                    elevation: 8,
-                    // color: Theme.of(context).primaryColor,
-
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        width: double.infinity,
-                        height: size.height * 0.3,
-                        child: MarkdownBody(
-                          data: contentController.text,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          )),
+          ),
           Positioned(
             bottom: 0,
             right: 0,
@@ -166,74 +160,40 @@ class _BlogDataState extends State<BlogData> {
     );
   }
 
-  Widget _buildDropZone() => Stack(
-        children: [
-          DottedBorder(
-            color: Colors.black,
-            strokeWidth: 2,
-            dashPattern: const [10, 10],
-            borderType: BorderType.RRect,
-            radius: const Radius.circular(20),
-            child: DropzoneView(
-              operation: DragOperation.copy,
-              cursor: CursorType.grab,
-              onCreated: (DropzoneViewController controller) {
-                dropZoneController = controller;
-              },
-              mime: const [
-                'image/jpeg',
-                'image/png',
-                'image/bmp',
-                'image/gif',
-                'image/jpg',
-              ],
-              onHover: () => setState(() {
-                _startAnimation = true;
-              }),
-              onLeave: () => setState(() {
-                _startAnimation = false;
-              }),
-              onDrop: (value) async {
-                fileName = await dropZoneController.getFilename(value);
-                data = await dropZoneController.getFileData(value);
-                setState(() {
-                  fileUploaded = true;
-                });
-              },
-            ),
-          ),
-          Center(
-            child: Lottie.asset(
-              'assets/animations/download-file-icon-animation.json',
-              frameRate: FrameRate.max,
-              repeat: _startAnimation,
-            ),
-          ),
-          Positioned.fill(
-            child: InkWell(
-              onTap: () async {
-                FilePickerResult? result = await FilePicker.platform.pickFiles(
-                  type: FileType.custom,
-                  allowedExtensions: [
-                    'jpg',
-                    'jpeg',
-                    'png',
-                    'bmp',
-                    'gif',
-                  ],
-                );
-                if (result != null) {
-                  fileName = result.files.single.name;
-                  data = result.files.single.bytes!;
-                  setState(() {
-                    fileUploaded = true;
-                  });
-                }
-              },
-            ),
-          )
-        ],
-      );
+  late DropzoneViewController dropZoneController;
+  Widget _buildDropZone() {
+    return DropZone(
+      onCreated: (DropzoneViewController controller) {
+        dropZoneController = controller;
+      },
+      onDrop: (value) async {
+        fileName = await dropZoneController.getFilename(value);
+        data = await dropZoneController.getFileData(value);
+        setState(() {
+          fileUploaded = true;
+        });
+      },
+      onTap: () async {
+        FilePickerResult? result = await FilePicker.platform.pickFiles(
+          type: FileType.custom,
+          allowedExtensions: [
+            'jpg',
+            'jpeg',
+            'png',
+            'bmp',
+            'gif',
+          ],
+        );
+        if (result != null) {
+          fileName = result.files.single.name;
+          data = result.files.single.bytes!;
+          setState(() {
+            fileUploaded = true;
+          });
+        }
+      },
+    );
+  }
 
   bool _isLoading = false;
   Widget _buildUploadProgress() {
@@ -268,6 +228,7 @@ class _BlogDataState extends State<BlogData> {
         try {
           final String path = 'files/blog/${newBlogPost.uid}/$fileName';
           final Reference ref = FirebaseStorage.instance.ref(path);
+          data = await ImageManager.compressImage(data);
           setState(() {
             uploadTask = ref.putData(data);
           });
@@ -295,9 +256,8 @@ class _BlogDataState extends State<BlogData> {
     } else {
       try {
         final String path = 'files/blog/${widget.blogPost.uid}/$fileName';
-
-        debugPrint(path);
         final Reference ref = FirebaseStorage.instance.ref(path);
+        data = await ImageManager.compressImage(data);
         await BlogController.updateBlogPost(
           BlogPost(
             uid: widget.blogPost.uid,

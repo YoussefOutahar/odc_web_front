@@ -2,16 +2,12 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../DataBase/Models/blog_post.dart';
-import '../../../../../Services/cached_image_service.dart';
+import '../../../../../Services/image_service.dart';
 import '../../../../../Services/constants.dart';
 import '../../../../../Services/Utils/responsive.dart';
 
 class BlogPostCard extends StatefulWidget {
-  const BlogPostCard(
-      {super.key,
-      required this.blogPost,
-      required this.onDeleted,
-      required this.onModified});
+  const BlogPostCard({super.key, required this.blogPost, required this.onDeleted, required this.onModified});
 
   final BlogPost blogPost;
   final VoidCallback onDeleted;
@@ -31,9 +27,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
   }
 
   Future<void> loadImageUrl() async {
-    String downloadUrl = await FirebaseStorage.instance
-        .ref(widget.blogPost.image)
-        .getDownloadURL();
+    String downloadUrl = await FirebaseStorage.instance.ref(widget.blogPost.image).getDownloadURL();
     setState(() {
       imageUrl = downloadUrl;
     });
@@ -60,7 +54,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
             AspectRatio(
                 aspectRatio: 1.78,
                 child: imageUrl != null
-                    ? ImageManager(imageUrl: imageUrl)
+                    ? CachedImageManager(imageUrl: imageUrl)
                     : const Center(child: CircularProgressIndicator())),
             Container(
               padding: const EdgeInsets.all(kDefaultPadding),
@@ -75,8 +69,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: kDefaultPadding),
+                    padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
                     child: Text(
                       widget.blogPost.title,
                       textAlign: TextAlign.center,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../DataBase/Models/events.dart';
-import '../../../../Services/cached_image_service.dart';
+import '../../../../Services/image_service.dart';
 
 class EventCard extends StatefulWidget {
   const EventCard({super.key, required this.event});
@@ -57,15 +57,14 @@ class _EventCardState extends State<EventCard> {
                     return SizedBox(
                       height: 170,
                       width: 540,
-                      child: ImageManager(
+                      child: CachedImageManager(
                         imageUrl: snapshot.data.toString(),
                       ),
                     );
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
                   } else {
-                    return const Expanded(
-                        child: Center(child: CircularProgressIndicator()));
+                    return const Expanded(child: Center(child: CircularProgressIndicator()));
                   }
                 },
               ),

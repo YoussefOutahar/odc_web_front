@@ -6,7 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:get/get.dart' hide Trans;
 
 import '../../../../DataBase/Models/blog_post.dart';
-import '../../../../Services/cached_image_service.dart';
+import '../../../../Services/image_service.dart';
 import '../../../../Services/constants.dart';
 import '../../../../Services/Utils/responsive.dart';
 import '../../../../translations/locale_keys.g.dart';
@@ -46,7 +46,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
                   return SizedBox(
                     width: double.infinity,
                     height: 400,
-                    child: ImageManager(
+                    child: CachedImageManager(
                       imageUrl: snapshot.data.toString(),
                     ),
                   );
@@ -80,8 +80,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: kDefaultPadding),
+                    padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
                     child: Text(
                       widget.blogPost.title,
                       maxLines: 2,
@@ -110,12 +109,10 @@ class _BlogPostCardState extends State<BlogPostCard> {
                           Get.toNamed("/blogPost/${widget.blogPost.uid}");
                         },
                         child: Container(
-                          padding: const EdgeInsets.only(
-                              bottom: kDefaultPadding / 4),
+                          padding: const EdgeInsets.only(bottom: kDefaultPadding / 4),
                           decoration: const BoxDecoration(
                             border: Border(
-                              bottom:
-                                  BorderSide(color: kPrimaryColor, width: 3),
+                              bottom: BorderSide(color: kPrimaryColor, width: 3),
                             ),
                           ),
                           child: Text(
@@ -136,8 +133,7 @@ class _BlogPostCardState extends State<BlogPostCard> {
                       //   onPressed: () {},
                       // ),
                       IconButton(
-                        icon: SvgPicture.asset(
-                            "assets/icons/feather_share-2.svg"),
+                        icon: SvgPicture.asset("assets/icons/feather_share-2.svg"),
                         onPressed: () {
                           Share.share(
                             "https://https://optimadecision-771ba.web.app/#/home/blogPost/${widget.blogPost.uid}",

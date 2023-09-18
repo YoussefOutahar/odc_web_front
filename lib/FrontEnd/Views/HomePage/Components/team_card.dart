@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../../../DataBase/Models/team.dart';
 import '../../../../Services/Utils/utils.dart';
-import '../../../../Services/cached_image_service.dart';
 import '../../../../Services/constants.dart';
 
 class TeamCard extends StatefulWidget {

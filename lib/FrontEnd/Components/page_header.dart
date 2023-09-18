@@ -2,7 +2,7 @@ import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 
 import '../../Services/Utils/responsive.dart';
-import '../../Services/cached_image_service.dart';
+import '../../Services/image_service.dart';
 import 'Buttons/deafult_button.dart';
 import 'image_clipper.dart';
 
@@ -28,13 +28,12 @@ class PageHeader extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width,
-      height:
-          Responsive.isMobile(context) ? size.height * 0.5 : size.height * 0.9,
+      height: Responsive.isMobile(context) ? size.height * 0.5 : size.height * 0.9,
       child: Stack(
         children: [
           Positioned.fill(
             // width: size.width,
-            child: ImageManager(imageUrl: imgSrc),
+            child: CachedImageManager(imageUrl: imgSrc),
           ),
           Positioned.fill(
             child: ClipPath(

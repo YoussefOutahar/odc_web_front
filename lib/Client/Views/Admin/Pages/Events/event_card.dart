@@ -2,8 +2,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../DataBase/Controllers/events_controller.dart';
 import '../../../../../DataBase/Models/events.dart';
-import '../../../../../Services/cached_image_service.dart';
+import '../../../../../Services/image_service.dart';
 
 class EventCard extends StatefulWidget {
   const EventCard({super.key, required this.event, required this.onEdit});
@@ -26,8 +27,7 @@ class _EventCardState extends State<EventCard> {
   }
 
   Future<void> loadImageUrl() async {
-    String downloadUrl =
-        await FirebaseStorage.instance.ref(widget.event.image).getDownloadURL();
+    String downloadUrl = await FirebaseStorage.instance.ref(widget.event.image).getDownloadURL();
     setState(() {
       imageUrl = downloadUrl;
     });
@@ -43,7 +43,7 @@ class _EventCardState extends State<EventCard> {
                 ? SizedBox(
                     height: 200,
                     width: 200,
-                    child: ImageManager(
+                    child: CachedImageManager(
                       imageUrl: imageUrl,
                     ),
                   )
@@ -60,8 +60,7 @@ class _EventCardState extends State<EventCard> {
                 IconButton(
                   icon: const Icon(Icons.delete),
                   onPressed: () async {
-                    // await EventsController.deleteEvent(
-                    //     snapshot.data![index].uid);
+                    await EventsController.deleteEvent(widget.event.uid!);
                     Get.snackbar(
                       'Event Deleted',
                       'Event Deleted Successfully',
