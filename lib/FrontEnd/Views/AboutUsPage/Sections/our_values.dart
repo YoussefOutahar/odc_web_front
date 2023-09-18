@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../Services/constants.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../Components/section_title.dart';
 
@@ -19,10 +20,7 @@ class _OurValuesState extends State<OurValues> {
       constraints: const BoxConstraints(maxWidth: 1110),
       child: Column(
         children: [
-          SectionTitle(
-              title: LocaleKeys.about_page_title_our_values.tr(),
-              subTitle: "",
-              color: Colors.orange),
+          SectionTitle(title: LocaleKeys.about_page_title_our_values.tr(), subTitle: "", color: kAppColors[2]),
           const SizedBox(
             height: 40,
           ),
@@ -56,10 +54,7 @@ class _OurValuesState extends State<OurValues> {
             child: Center(
               child: Text(
                 index.toString(),
-                style: const TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
           ),

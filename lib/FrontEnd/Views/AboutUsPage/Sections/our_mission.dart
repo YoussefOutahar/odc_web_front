@@ -16,10 +16,7 @@ class OurMission extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: 1110),
       child: Column(
         children: [
-          SectionTitle(
-              title: LocaleKeys.about_page_title_our_mission.tr(),
-              subTitle: "",
-              color: Colors.orange),
+          SectionTitle(title: LocaleKeys.about_page_title_our_mission.tr(), subTitle: "", color: kAppColors[1]),
           const SizedBox(height: kDefaultPadding),
           // Padding(
           //   padding: const EdgeInsets.all(kDefaultPadding),

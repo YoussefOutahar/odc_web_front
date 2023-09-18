@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../DataBase/Models/formations.dart';
+import '../../../../Services/constants.dart';
 import '../../../Components/section_title.dart';
 import '../Components/formation_card.dart';
 
@@ -15,15 +16,14 @@ class SoftSkills extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: 1110),
       child: Column(
         children: [
-          const SectionTitle(
-            color: Color(0xFFFF0000),
+          SectionTitle(
+            color: kAppColors[2],
             title: "Soft Skills",
             subTitle: "Recent Events",
           ),
           const SizedBox(height: 20 * 2),
           ForamationCard(
-            packs:
-                "* Certificat PNL\n\n* Prise de decision\n\n* Innovation et business\n\n* Santé social et bien être",
+            packs: "* Certificat PNL\n\n* Prise de decision\n\n* Innovation et business\n\n* Santé social et bien être",
             press: () {
               Get.toNamed("/formations/softSkills");
             },

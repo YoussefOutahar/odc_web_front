@@ -61,14 +61,6 @@ class _InfoImagesState extends State<InfoImages> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        // Text(
-                        //   widget.imagesData.source.toString(),
-                        //   style: const TextStyle(
-                        //     color: Colors.white,
-                        //     fontSize: 10,
-                        //     fontWeight: FontWeight.w500,
-                        //   ),
-                        // ),
                         SizedBox(width: 10.0),
                         Icon(
                           Icons.ads_click,

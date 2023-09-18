@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../../DataBase/Controllers/team_controller.dart';
 import '../../../../Services/Utils/responsive.dart';
 import '../../../../Services/Utils/utils.dart';
+import '../../../../Services/constants.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../Animations/animated_opacity_when_hovered.dart';
 import '../../../Components/section_title.dart';
@@ -29,7 +30,7 @@ class _TeamSectionState extends State<TeamSection> {
       child: Column(
         children: [
           SectionTitle(
-            color: Colors.red,
+            color: kAppColors[3],
             subTitle: LocaleKeys.home_page_subtitle_team.tr(),
             title: LocaleKeys.home_page_title_team.tr(),
           ),
@@ -50,8 +51,7 @@ class _TeamSectionState extends State<TeamSection> {
                           options: CarouselOptions(
                             autoPlay: true,
                             autoPlayInterval: const Duration(seconds: 6),
-                            autoPlayAnimationDuration:
-                                const Duration(milliseconds: 800),
+                            autoPlayAnimationDuration: const Duration(milliseconds: 800),
                             autoPlayCurve: Curves.fastOutSlowIn,
                             viewportFraction: Responsive.isDesktop(context)
                                 ? 1
@@ -76,12 +76,10 @@ class _TeamSectionState extends State<TeamSection> {
                                   ? splitListIntoSubsets(members, 2)
                                       .map(
                                         (e) => Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           children: e
                                               .map((e) => Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                       left: 20.0,
                                                       right: 20.0,
                                                     ),
@@ -94,12 +92,10 @@ class _TeamSectionState extends State<TeamSection> {
                                   : splitListIntoSubsets(members, 3)
                                       .map(
                                         (e) => Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           children: e
                                               .map((e) => Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                       left: 20.0,
                                                       right: 20.0,
                                                     ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:odc/Services/constants.dart';
 
 import '../../../../../../DataBase/Models/events.dart';
+import '../../../../../../Services/constants.dart';
 import 'info_images.dart';
 
 class InformationCardTile extends StatefulWidget {
@@ -13,10 +13,12 @@ class InformationCardTile extends StatefulWidget {
   State<InformationCardTile> createState() => _InformationCardTileState();
 }
 
-class _InformationCardTileState extends State<InformationCardTile> {
+class _InformationCardTileState extends State<InformationCardTile>
+    with AutomaticKeepAliveClientMixin<InformationCardTile> {
   bool linkHover = false;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -87,6 +89,34 @@ class _InformationCardTileState extends State<InformationCardTile> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: kDefaultPadding),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    widget.data.organisation,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.fade,
+                  ),
+                  const SizedBox(width: kDefaultPadding / 2),
+                  Text(
+                    widget.data.city,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.fade,
+                  ),
+                ],
+              ),
+              const Divider(
+                endIndent: 20,
+                indent: 20,
+              ),
+              const Spacer(),
               Text(
                 widget.data.name,
                 style: const TextStyle(
@@ -101,56 +131,58 @@ class _InformationCardTileState extends State<InformationCardTile> {
                 widget.data.description,
                 overflow: TextOverflow.fade,
               ),
-            ],
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: MouseRegion(
-            onEnter: (event) {
-              setState(() {
-                linkHover = true;
-              });
-            },
-            onExit: (event) {
-              setState(() {
-                linkHover = false;
-              });
-            },
-            child: InkWell(
-              onTap: () {
-                // UrlLaunch.launchInBrowser(
-                //     url: 'https://${widget.data.sourceUrl}');
-                Get.toNamed('/event/${widget.data.uid}');
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  padding: EdgeInsets.symmetric(
-                      horizontal: linkHover ? 12 : 10,
-                      vertical: linkHover ? 7 : 5),
-                  decoration: BoxDecoration(
-                    color: linkHover
-                        ? Colors.black.withOpacity(0.5)
-                        : Colors.white.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.white, width: 0.5),
-                  ),
-                  child: const Text(
-                    "Learn More",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 9,
-                      fontWeight: FontWeight.w400,
+              const Spacer(),
+              const Divider(
+                endIndent: 20,
+                indent: 20,
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: MouseRegion(
+                  onEnter: (event) {
+                    setState(() {
+                      linkHover = true;
+                    });
+                  },
+                  onExit: (event) {
+                    setState(() {
+                      linkHover = false;
+                    });
+                  },
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed('/event/${widget.data.uid}');
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        padding: EdgeInsets.symmetric(horizontal: linkHover ? 12 : 10, vertical: linkHover ? 7 : 5),
+                        decoration: BoxDecoration(
+                          color: linkHover ? Colors.black.withOpacity(0.5) : Colors.white.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: Colors.white, width: 0.5),
+                        ),
+                        child: const Text(
+                          "Learn More",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 9,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
+              )
+            ],
           ),
-        )
+        ),
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -22,9 +22,7 @@ class SliderView extends StatefulWidget {
 }
 
 class _SliderViewState extends State<SliderView>
-    with
-        SingleTickerProviderStateMixin,
-        AutomaticKeepAliveClientMixin<SliderView> {
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin<SliderView> {
   PageController pageController = PageController(keepPage: true);
   CarouselController scrollController = CarouselController();
 
@@ -73,8 +71,7 @@ class _SliderViewState extends State<SliderView>
           timer.cancel();
           if (Responsive.isDesktop(context)) {
             pageController.animateToPage(currentIndex + 1,
-                duration: const Duration(milliseconds: 200),
-                curve: Curves.decelerate);
+                duration: const Duration(milliseconds: 200), curve: Curves.decelerate);
           }
           if (currentIndex < widget.data.length - 1) {
             currentIndex++;
@@ -83,9 +80,7 @@ class _SliderViewState extends State<SliderView>
             progress.clear();
             currentIndex = 0;
             if (Responsive.isDesktop(context)) {
-              pageController.animateToPage(0,
-                  duration: const Duration(milliseconds: 200),
-                  curve: Curves.decelerate);
+              pageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.decelerate);
             }
             _initSlider();
           }
@@ -99,9 +94,7 @@ class _SliderViewState extends State<SliderView>
       progress[currentIndex - 1] = 0;
       progress[currentIndex] = 0;
       currentIndex--;
-      pageController.previousPage(
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.decelerate);
+      pageController.previousPage(duration: const Duration(milliseconds: 200), curve: Curves.decelerate);
     }
   }
 
@@ -109,9 +102,7 @@ class _SliderViewState extends State<SliderView>
     if (currentIndex < widget.data.length - 1) {
       progress[currentIndex] = 1;
       currentIndex++;
-      pageController.nextPage(
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.decelerate);
+      pageController.nextPage(duration: const Duration(milliseconds: 200), curve: Curves.decelerate);
     } else {
       progress[currentIndex] = 1;
       timer!.cancel();
@@ -135,7 +126,7 @@ class _SliderViewState extends State<SliderView>
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: kPrimaryColor.withOpacity(0.8),
+            color: kAppColors[4],
             surfaceTintColor: kPrimaryColor,
             child: Stack(
               alignment: Alignment.center,

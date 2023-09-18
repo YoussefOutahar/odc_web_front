@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../DataBase/Controllers/events_controller.dart';
 import '../../../../Services/Utils/responsive.dart';
+import '../../../../Services/constants.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../Components/section_title.dart';
 import '../Components/SliderView/slider_view.dart';
@@ -25,7 +26,7 @@ class _EventsCarouselState extends State<EventsCarousel> {
       child: Column(
         children: [
           SectionTitle(
-            color: const Color(0xFFFF0000),
+            color: kAppColors[0],
             title: LocaleKeys.home_page_title_events.tr(),
             subTitle: LocaleKeys.home_page_subtitle_events.tr(),
           ),

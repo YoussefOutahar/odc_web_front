@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../Services/constants.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../Components/section_title.dart';
 import '../Components/about_us_text.dart';
@@ -16,9 +17,10 @@ class Formations extends StatelessWidget {
       child: Column(
         children: [
           SectionTitle(
-              title: LocaleKeys.about_page_title_formations.tr(),
-              subTitle: "",
-              color: Colors.blueGrey),
+            color: kAppColors[3],
+            title: LocaleKeys.about_page_title_formations.tr(),
+            subTitle: "",
+          ),
           AboutUsText(text: LocaleKeys.about_page_text_formations.tr()),
         ],
       ),

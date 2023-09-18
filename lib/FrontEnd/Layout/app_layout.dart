@@ -1,8 +1,8 @@
 import 'package:animate_gradient/animate_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:odc/Services/constants.dart';
 
+import '../../Services/constants.dart';
 import '../Components/Buttons/scroll_up_indicator.dart';
 import 'Components/app_header.dart';
 import 'Components/header_type.dart';
@@ -89,7 +89,7 @@ class _AppLayoutState extends State<AppLayout> {
                     ),
                   ),
                   widget.page,
-                  const SizedBox(height: 20.0),
+                  const SizedBox(height: kDefaultPadding * 2),
                   const Footer(),
                 ],
               ),

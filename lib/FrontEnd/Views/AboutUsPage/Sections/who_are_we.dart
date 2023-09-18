@@ -15,10 +15,7 @@ class WhoAreWe extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: 1110),
       child: Column(
         children: [
-          SectionTitle(
-              title: LocaleKeys.about_page_title_who_are_we.tr(),
-              subTitle: "",
-              color: Colors.blueGrey),
+          SectionTitle(title: LocaleKeys.about_page_title_who_are_we.tr(), subTitle: "", color: kAppColors[0]),
           const SizedBox(height: 20 * 3),
           Padding(
             padding: const EdgeInsets.all(kDefaultPadding),

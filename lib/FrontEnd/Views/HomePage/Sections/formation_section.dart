@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
 import 'package:easy_localization/easy_localization.dart';
 
+import '../../../../Services/constants.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../Components/section_title.dart';
 import '../../../../DataBase/Models/formations.dart';
@@ -20,9 +21,9 @@ class Formations extends StatelessWidget {
       child: Column(
         children: [
           SectionTitle(
+            color: kAppColors[1],
             title: LocaleKeys.home_page_title_formations.tr(),
             subTitle: LocaleKeys.home_page_subtitle_formations.tr(),
-            color: const Color(0xFFFFB100),
           ),
           const SizedBox(height: 20 * 1.5),
           Wrap(

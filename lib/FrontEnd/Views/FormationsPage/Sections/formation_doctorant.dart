@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../DataBase/Models/formations.dart';
+import '../../../../Services/constants.dart';
 import '../../../Components/section_title.dart';
 import '../Components/formation_card.dart';
 
@@ -15,8 +16,8 @@ class FormationDoctorant extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: 1110),
       child: Column(
         children: [
-          const SectionTitle(
-            color: Color(0xFFFF0000),
+          SectionTitle(
+            color: kAppColors[0],
             title: "Formations Doctorants",
             subTitle: "Recent Events",
           ),

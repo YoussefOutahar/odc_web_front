@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../Services/constants.dart';
 import '../../../../translations/locale_keys.g.dart';
 import '../../../Components/section_title.dart';
 import '../Components/about_us_text.dart';
@@ -17,46 +18,43 @@ class GeneralInfo extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SectionTitle(
-              title: LocaleKeys.about_page_title_what_we_do.tr(),
-              subTitle: "",
-              color: Colors.blueGrey),
-          const SizedBox(height: 20 * 3),
+          SectionTitle(title: LocaleKeys.about_page_title_what_we_do.tr(), subTitle: "", color: kAppColors[4]),
+          const SizedBox(height: kDefaultPadding),
           AboutUsTitle(
             title: LocaleKeys.about_page_text_what_we_do_1_title.tr(),
           ),
           AboutUsText(
             text: LocaleKeys.about_page_text_what_we_do_1_text.tr(),
           ),
-          const SizedBox(height: 20 * 3),
+          const SizedBox(height: kDefaultPadding),
           AboutUsTitle(
             title: LocaleKeys.about_page_text_what_we_do_2_title.tr(),
           ),
           AboutUsText(
             text: LocaleKeys.about_page_text_what_we_do_2_text.tr(),
           ),
-          const SizedBox(height: 20 * 3),
+          const SizedBox(height: kDefaultPadding),
           AboutUsTitle(
             title: LocaleKeys.about_page_text_what_we_do_3_title.tr(),
           ),
           AboutUsText(
             text: LocaleKeys.about_page_text_what_we_do_3_text.tr(),
           ),
-          const SizedBox(height: 20 * 3),
+          const SizedBox(height: kDefaultPadding),
           AboutUsTitle(
             title: LocaleKeys.about_page_text_what_we_do_4_title.tr(),
           ),
           AboutUsText(
             text: LocaleKeys.about_page_text_what_we_do_4_text.tr(),
           ),
-          const SizedBox(height: 20 * 3),
+          const SizedBox(height: kDefaultPadding),
           AboutUsTitle(
             title: LocaleKeys.about_page_text_what_we_do_5_title.tr(),
           ),
           AboutUsText(
             text: LocaleKeys.about_page_text_what_we_do_5_text.tr(),
           ),
-          const SizedBox(height: 20 * 3),
+          const SizedBox(height: kDefaultPadding),
           AboutUsTitle(
             title: LocaleKeys.about_page_text_what_we_do_6_title.tr(),
           ),
