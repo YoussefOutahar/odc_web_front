@@ -31,7 +31,7 @@ class _SliderViewState extends State<SliderView>
   List<double> progress = [];
 
   /// Timers
-  Timer? timer;
+  // Timer? timer;
 
   /// Default Positions Value
   final double positionTop = 10;
@@ -39,74 +39,76 @@ class _SliderViewState extends State<SliderView>
   final double positionRight = 10;
   final double positionBottom = 10;
 
-  @override
-  void initState() {
-    super.initState();
-    _initSlider();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // _initSlider();
+  // }
 
-  @override
-  void dispose() {
-    super.dispose();
-    timer!.cancel();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   timer!.cancel();
+  // }
 
-  _initSlider() {
-    progress.clear();
-    for (var _ in widget.data) {
-      progress.add(0.0);
-    }
-    if (progress.isNotEmpty) {
-      _watchingProgress();
-    }
-  }
+  // _initSlider() {
+  //   progress.clear();
+  //   for (var _ in widget.data) {
+  //     progress.add(0.0);
+  //   }
+  //   if (progress.isNotEmpty) {
+  //     _watchingProgress();
+  //   }
+  // }
 
-  _watchingProgress() {
-    Timer.periodic(const Duration(milliseconds: 50), (timer) {
-      setState(() {
-        if (progress[currentIndex] + 0.01 < 1) {
-          progress[currentIndex] += 0.01;
-        } else {
-          progress[currentIndex] = 1;
-          timer.cancel();
-          if (Responsive.isDesktop(context)) {
-            pageController.animateToPage(currentIndex + 1,
-                duration: const Duration(milliseconds: 200), curve: Curves.decelerate);
-          }
-          if (currentIndex < widget.data.length - 1) {
-            currentIndex++;
-            _watchingProgress();
-          } else {
-            progress.clear();
-            currentIndex = 0;
-            if (Responsive.isDesktop(context)) {
-              pageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.decelerate);
-            }
-            _initSlider();
-          }
-        }
-      });
-    });
-  }
+  // _watchingProgress() {
+  //   Timer.periodic(const Duration(milliseconds: 50), (timer) {
+  //     setState(() {
+  //       if (progress[currentIndex] + 0.01 < 1) {
+  //         progress[currentIndex] += 0.01;
+  //       } else {
+  //         progress[currentIndex] = 1;
+  //         timer.cancel();
+  //         if (Responsive.isDesktop(context)) {
+  //           pageController.animateToPage(currentIndex + 1,
+  //               duration: const Duration(milliseconds: 200), curve: Curves.decelerate);
+  //         }
+  //         if (currentIndex < widget.data.length - 1) {
+  //           currentIndex++;
+  //           _watchingProgress();
+  //         } else {
+  //           progress.clear();
+  //           currentIndex = 0;
+  //           if (Responsive.isDesktop(context)) {
+  //             pageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.decelerate);
+  //           }
+  //           _initSlider();
+  //         }
+  //       }
+  //     });
+  //   });
+  // }
 
   void previousSlide() {
-    if (currentIndex > 0) {
-      progress[currentIndex - 1] = 0;
-      progress[currentIndex] = 0;
-      currentIndex--;
-      pageController.previousPage(duration: const Duration(milliseconds: 200), curve: Curves.decelerate);
-    }
+    // if (currentIndex > 0) {
+    //   progress[currentIndex - 1] = 0;
+    //   progress[currentIndex] = 0;
+    //   currentIndex--;
+    //   pageController.previousPage(duration: const Duration(milliseconds: 200), curve: Curves.decelerate);
+    // }
+    scrollController.previousPage();
   }
 
   void nextSlide() {
-    if (currentIndex < widget.data.length - 1) {
-      progress[currentIndex] = 1;
-      currentIndex++;
-      pageController.nextPage(duration: const Duration(milliseconds: 200), curve: Curves.decelerate);
-    } else {
-      progress[currentIndex] = 1;
-      timer!.cancel();
-    }
+    // if (currentIndex < widget.data.length - 1) {
+    //   progress[currentIndex] = 1;
+    //   currentIndex++;
+    //   pageController.nextPage(duration: const Duration(milliseconds: 200), curve: Curves.decelerate);
+    // } else {
+    //   progress[currentIndex] = 1;
+    //   timer!.cancel();
+    // }
+    scrollController.nextPage();
   }
 
   @override
@@ -131,12 +133,12 @@ class _SliderViewState extends State<SliderView>
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Positioned(
-                  top: positionTop,
-                  left: positionLeft,
-                  right: positionRight,
-                  child: TimerBar(data: widget.data, percentage: progress),
-                ),
+                // Positioned(
+                //   top: positionTop,
+                //   left: positionLeft,
+                //   right: positionRight,
+                //   child: TimerBar(data: widget.data, percentage: progress),
+                // ),
                 Positioned(
                   top: positionTop + 20,
                   left: 0,
@@ -146,7 +148,7 @@ class _SliderViewState extends State<SliderView>
                     data: widget.data,
                     previousArrowEvent: previousSlide,
                     nextArrowEvent: nextSlide,
-                    pageController: pageController,
+                    pageController: scrollController,
                   ),
                 ),
                 // Positioned(

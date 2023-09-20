@@ -29,7 +29,7 @@ class _InformationCardTileState extends State<InformationCardTile>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 400,
+              height: 314,
               width: 600,
               child: FutureBuilder(
                 future: widget.data.getImageDownloadLink,

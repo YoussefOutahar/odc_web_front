@@ -50,26 +50,26 @@ class ImageManager {
   }
 
   static int calculateProportionalQuality(int size) {
-    int quality = 100;
-    if (size > 1000000) {
-      quality = 10;
-    } else if (size > 500000) {
-      quality = 20;
-    } else if (size > 250000) {
-      quality = 30;
-    } else if (size > 100000) {
-      quality = 40;
-    } else if (size > 50000) {
-      quality = 50;
-    } else if (size > 25000) {
-      quality = 60;
-    } else if (size > 10000) {
-      quality = 70;
-    } else if (size > 5000) {
-      quality = 80;
-    } else if (size > 1000) {
-      quality = 90;
-    }
+    int quality = 60;
+    // if (size > 1000000) {
+    //   quality = 10;
+    // } else if (size > 500000) {
+    //   quality = 20;
+    // } else if (size > 250000) {
+    //   quality = 30;
+    // } else if (size > 100000) {
+    //   quality = 40;
+    // } else if (size > 50000) {
+    //   quality = 50;
+    // } else if (size > 25000) {
+    //   quality = 60;
+    // } else if (size > 10000) {
+    //   quality = 70;
+    // } else if (size > 5000) {
+    //   quality = 80;
+    // } else if (size > 1000) {
+    //   quality = 90;
+    // }
     return quality;
   }
 }

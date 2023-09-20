@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:odc/Services/constants.dart';
 
@@ -9,7 +10,7 @@ class InformationLayout extends StatefulWidget {
   final Function() previousArrowEvent;
   final Function() nextArrowEvent;
   final List<Event> data;
-  final PageController pageController;
+  final CarouselController pageController;
   const InformationLayout({
     Key? key,
     required this.previousArrowEvent,
@@ -47,18 +48,31 @@ class _InformationLayoutState extends State<InformationLayout> {
           ),
           const SizedBox(width: kDefaultPadding * 2),
           Expanded(
-            child: PageView.builder(
-              itemCount: widget.data.length,
-              controller: widget.pageController,
-              physics: const NeverScrollableScrollPhysics(),
-              onPageChanged: (v) {
-                setState(() {});
-              },
-              itemBuilder: (context, i) {
-                // return EventCard(event: widget.data[i]);
-                return InformationCardTile(data: widget.data[i]);
-              },
-            ),
+            child: CarouselSlider(
+                carouselController: widget.pageController,
+                options: CarouselOptions(
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 6),
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  viewportFraction: 1,
+                  enlargeFactor: 2,
+                  height: 340,
+                ),
+                items: widget.data.map((e) => InformationCardTile(data: e)).toList()),
+
+            // PageView.builder(
+            //   itemCount: widget.data.length,
+            //   controller: widget.pageController,
+            //   physics: const NeverScrollableScrollPhysics(),
+            //   onPageChanged: (v) {
+            //     setState(() {});
+            //   },
+            //   itemBuilder: (context, i) {
+            //     // return EventCard(event: widget.data[i]);
+            //     return InformationCardTile(data: widget.data[i]);
+            //   },
+            // ),
           ),
           const SizedBox(width: kDefaultPadding * 2),
           ArrowButton(
