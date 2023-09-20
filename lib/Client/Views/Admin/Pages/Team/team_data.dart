@@ -1,3 +1,5 @@
+import 'dart:html' hide VoidCallback;
+
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -29,6 +31,7 @@ class _TeamDataState extends State<TeamData> {
   bool imageFileUploaded = false;
   String imageFileName = '';
   Uint8List imageData = Uint8List(0);
+  String imageFilePath = '';
 
   UploadTask? cvUploadTask;
   bool cvFileUploaded = false;
@@ -186,6 +189,7 @@ class _TeamDataState extends State<TeamData> {
       onDrop: (value) async {
         imageFileName = await dropZoneController.getFilename(value);
         imageData = await dropZoneController.getFileData(value);
+        imageFilePath = await dropZoneController.createFileUrl(value);
         imageFileUploaded = true;
         setState(() {});
       },
@@ -203,6 +207,8 @@ class _TeamDataState extends State<TeamData> {
         if (result != null) {
           imageFileName = result.files.single.name;
           imageData = result.files.single.bytes!;
+          File file = File(imageData, imageFileName);
+          imageFilePath = await dropZoneController.createFileUrl(file);
           setState(() {
             imageFileUploaded = true;
           });
@@ -244,11 +250,10 @@ class _TeamDataState extends State<TeamData> {
         try {
           final String imagePath = 'files/team/${newTeamMember.uid}/$imageFileName';
           final Reference imageRef = FirebaseStorage.instance.ref(imagePath);
-          imageData = await ImageManager.compressImage(imageData);
+          imageData = await ImageManager.compressImage(imageData, imageFilePath);
 
           final String cvPath = 'files/team/${newTeamMember.uid}/$cvFileName';
           final Reference cvRef = FirebaseStorage.instance.ref(cvPath);
-          cvData = await ImageManager.compressImage(cvData);
           setState(() {
             imageUploadTask = imageRef.putData(imageData);
             cvUploadTask = cvRef.putData(cvData);
@@ -283,11 +288,10 @@ class _TeamDataState extends State<TeamData> {
       try {
         final String imagePath = 'files/team/${widget.teamMember.uid}/$imageFileName';
         final Reference imageRef = FirebaseStorage.instance.ref(imagePath);
-        imageData = await ImageManager.compressImage(imageData);
+        imageData = await ImageManager.compressImage(imageData, imageFilePath);
 
         final String cvPath = 'files/team/${widget.teamMember.uid}/$cvFileName';
         final Reference cvRef = FirebaseStorage.instance.ref(cvPath);
-        cvData = await ImageManager.compressImage(cvData);
 
         await TeamController.updateTeamMember(
           TeamMember(

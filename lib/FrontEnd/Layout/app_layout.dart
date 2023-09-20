@@ -63,7 +63,7 @@ class _AppLayoutState extends State<AppLayout> {
               duration: const Duration(seconds: 10),
               primaryColors: const [
                 kBgColor,
-                Colors.white,
+                kBgColor,
                 Colors.white,
               ],
               secondaryColors: const [

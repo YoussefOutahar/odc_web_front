@@ -1,6 +1,5 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../../../DataBase/Controllers/events_controller.dart';
 import '../../../../../DataBase/Models/events.dart';
@@ -39,37 +38,33 @@ class _EventCardState extends State<EventCard> {
       padding: const EdgeInsets.all(8.0),
       child: Card(
         child: ListTile(
-            leading: imageUrl != null
-                ? SizedBox(
-                    height: 200,
-                    width: 200,
-                    child: CachedImageManager(
-                      imageUrl: imageUrl,
-                    ),
-                  )
-                : const CircularProgressIndicator(),
-            title: Text(widget.event.name),
-            subtitle: Text(widget.event.description),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.edit),
-                  onPressed: widget.onEdit,
-                ),
-                IconButton(
-                  icon: const Icon(Icons.delete),
-                  onPressed: () async {
-                    await EventsController.deleteEvent(widget.event.uid!);
-                    Get.snackbar(
-                      'Event Deleted',
-                      'Event Deleted Successfully',
-                      snackPosition: SnackPosition.BOTTOM,
-                    );
-                  },
-                ),
-              ],
-            )),
+          leading: imageUrl != null
+              ? SizedBox(
+                  height: 200,
+                  width: 200,
+                  child: CachedImageManager(
+                    imageUrl: imageUrl,
+                  ),
+                )
+              : const CircularProgressIndicator(),
+          title: Text(widget.event.name),
+          subtitle: Text(widget.event.description),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.edit),
+                onPressed: widget.onEdit,
+              ),
+              IconButton(
+                icon: const Icon(Icons.delete),
+                onPressed: () async {
+                  await EventsController.deleteEvent(widget.event.uid!);
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

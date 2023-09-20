@@ -1,3 +1,5 @@
+import 'dart:html' hide VoidCallback;
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -29,8 +31,11 @@ class _BlogDataState extends State<BlogData> {
   UploadTask? uploadTask;
 
   bool fileUploaded = false;
+
+  // file data
   String fileName = '';
   Uint8List data = Uint8List(0);
+  String filePath = '';
 
   @override
   void initState() {
@@ -169,6 +174,7 @@ class _BlogDataState extends State<BlogData> {
       onDrop: (value) async {
         fileName = await dropZoneController.getFilename(value);
         data = await dropZoneController.getFileData(value);
+        filePath = await dropZoneController.createFileUrl(value);
         setState(() {
           fileUploaded = true;
         });
@@ -187,6 +193,8 @@ class _BlogDataState extends State<BlogData> {
         if (result != null) {
           fileName = result.files.single.name;
           data = result.files.single.bytes!;
+          File file = File(data, fileName);
+          filePath = await dropZoneController.createFileUrl(file);
           setState(() {
             fileUploaded = true;
           });
@@ -228,7 +236,7 @@ class _BlogDataState extends State<BlogData> {
         try {
           final String path = 'files/blog/${newBlogPost.uid}/$fileName';
           final Reference ref = FirebaseStorage.instance.ref(path);
-          data = await ImageManager.compressImage(data);
+          data = await ImageManager.compressImage(data, filePath);
           setState(() {
             uploadTask = ref.putData(data);
           });
@@ -257,7 +265,7 @@ class _BlogDataState extends State<BlogData> {
       try {
         final String path = 'files/blog/${widget.blogPost.uid}/$fileName';
         final Reference ref = FirebaseStorage.instance.ref(path);
-        data = await ImageManager.compressImage(data);
+        data = await ImageManager.compressImage(data, filePath);
         await BlogController.updateBlogPost(
           BlogPost(
             uid: widget.blogPost.uid,

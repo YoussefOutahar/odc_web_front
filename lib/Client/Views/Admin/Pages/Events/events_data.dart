@@ -1,8 +1,10 @@
+import 'dart:html' hide VoidCallback;
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropzone/flutter_dropzone.dart';
 
@@ -34,8 +36,11 @@ class _EventDataState extends State<EventData> {
   double progress = 0;
 
   bool fileUploaded = false;
+
+  // file data
   String fileName = '';
   Uint8List data = Uint8List(0);
+  String filePath = '';
 
   @override
   void initState() {
@@ -178,6 +183,7 @@ class _EventDataState extends State<EventData> {
       onDrop: (value) async {
         fileName = await dropZoneController.getFilename(value);
         data = await dropZoneController.getFileData(value);
+        filePath = await dropZoneController.createFileUrl(value);
         fileUploaded = true;
         setState(() {});
       },
@@ -195,6 +201,8 @@ class _EventDataState extends State<EventData> {
         if (result != null) {
           fileName = result.files.single.name;
           data = result.files.single.bytes!;
+          File file = File(data, fileName);
+          filePath = await dropZoneController.createFileUrl(file);
           setState(() {
             fileUploaded = true;
           });
@@ -243,7 +251,7 @@ class _EventDataState extends State<EventData> {
         try {
           final String path = 'files/event/${newEvent.uid}/$fileName';
           final Reference ref = FirebaseStorage.instance.ref(path);
-          data = await ImageManager.compressImage(data);
+          data = await ImageManager.compressImage(data, filePath);
           setState(() {
             uploadTask = ref.putData(data);
           });
@@ -276,7 +284,7 @@ class _EventDataState extends State<EventData> {
       try {
         final String path = 'files/event/${widget.event.uid}/$fileName';
         final Reference ref = FirebaseStorage.instance.ref(path);
-        data = await ImageManager.compressImage(data);
+        data = await ImageManager.compressImage(data, filePath);
         await EventsController.updateEvent(
           Event(
             uid: widget.event.uid,
