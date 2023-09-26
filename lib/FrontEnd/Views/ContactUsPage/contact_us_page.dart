@@ -40,7 +40,7 @@ class ContactBox extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       constraints: const BoxConstraints(maxWidth: 1110),
-      padding: const EdgeInsets.all(20 * 3),
+      padding: const EdgeInsets.all(kDefaultPadding * 3),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(

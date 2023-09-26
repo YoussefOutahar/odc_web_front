@@ -69,9 +69,9 @@ class MessageController {
     }
   }
 
-  static Future<bool> deleteMessage(Message msg) async {
+  static Future<bool> deleteMessage(String uid) async {
     try {
-      await FirebaseFirestore.instance.collection('Messages').doc(msg.uid).delete();
+      await FirebaseFirestore.instance.collection('Messages').doc(uid).delete();
       return true;
     } catch (e) {
       debugPrint(e.toString());

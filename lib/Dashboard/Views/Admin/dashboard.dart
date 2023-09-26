@@ -3,6 +3,7 @@ import 'package:sidebarx/sidebarx.dart';
 
 import 'Pages/Blog/blog_page.dart';
 import 'Pages/Events/events_page.dart';
+import 'Pages/Home/home_page.dart';
 import 'Pages/formation_page.dart';
 import 'Pages/Team/team_page.dart';
 
@@ -155,9 +156,7 @@ class _PagesControllerState extends State<PagesController> {
   }
 
   List<Widget> pages = [
-    const Center(
-      child: Text("home"),
-    ),
+    const HomePage(),
     const EventsPage(),
     const BlogPage(),
     const TeamPage(),
