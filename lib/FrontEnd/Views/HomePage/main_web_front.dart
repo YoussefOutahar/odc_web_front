@@ -30,10 +30,10 @@ class _HomePageState extends State<HomePage> {
             builder: (context) => const Formations(),
           ),
           ScrollTransformItem(
-            builder: (_) => const TeamSection(),
+            builder: (context) => const Services(),
           ),
           ScrollTransformItem(
-            builder: (context) => const Services(),
+            builder: (_) => const TeamSection(),
           ),
         ],
       ),

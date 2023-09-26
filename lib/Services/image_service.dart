@@ -38,9 +38,6 @@ class ImageManager {
       ImageFile tmp = await compressor.compressWebpThenPng(param);
 
       result = tmp.rawBytes;
-      // result = await FlutterImageCompress.compressWithList(
-      //   image,
-      // );
     } catch (e) {
       debugPrint('Error compressing image: $e');
       result = image;

@@ -18,12 +18,9 @@ class AboutUsTitle extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blueGrey),
+              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.blueGrey),
             ),
-            const SizedBox(height: 20 * 2),
+            const SizedBox(height: kDefaultPadding * 2),
           ],
         ),
       ),

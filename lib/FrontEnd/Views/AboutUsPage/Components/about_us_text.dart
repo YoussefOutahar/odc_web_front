@@ -23,7 +23,7 @@ class AboutUsText extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            const SizedBox(height: 20 * 3),
+            const SizedBox(height: kDefaultPadding * 3),
           ],
         ),
       ),

@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../FrontEnd/Views/error_page.dart';
-import '../../Client/Views/login_page.dart';
+import '../../Dashboard/Views/LoginPage/login_page.dart';
 
 class AuthCheck extends StatefulWidget {
-  const AuthCheck({Key? key, required this.child, required this.routeName})
-      : super(key: key);
+  const AuthCheck({Key? key, required this.child, required this.routeName}) : super(key: key);
 
   final Widget child;
   final String routeName;
@@ -26,8 +25,7 @@ class _AuthCheckState extends State<AuthCheck> {
         if (snapshot.hasData) {
           return widget.child;
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return LoadingAnimationWidget.threeArchedCircle(
-              color: Colors.black, size: 35);
+          return LoadingAnimationWidget.threeArchedCircle(color: Colors.black, size: 35);
         } else if (snapshot.hasError) {
           return const ErrorPage();
         } else {

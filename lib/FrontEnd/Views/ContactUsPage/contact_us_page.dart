@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../Services/Utils/responsive.dart';
-import '../../Components/Forms/contact_form.dart';
+import '../../../Services/constants.dart';
+import 'Components/contact_form.dart';
 import '../../Components/section_title.dart';
+import 'Components/faq.dart';
 import 'Components/social_card.dart';
 
 class ContactUsPage extends StatelessWidget {
@@ -10,18 +12,18 @@ class ContactUsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         children: [
-          SizedBox(height: 20 * 2.5),
+          const SizedBox(height: kDefaultPadding * 2.5),
           SectionTitle(
             title: "Contact Us",
             subTitle: "For Project inquiry and information",
-            color: Color(0xFF07E24A),
+            color: kAppColors[4],
           ),
-          ContactBox(),
-          SizedBox(height: 20 * 2.5),
+          const ContactBox(),
+          const SizedBox(height: kDefaultPadding * 2.5),
         ],
       ),
     );
@@ -35,6 +37,7 @@ class ContactBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
       constraints: const BoxConstraints(maxWidth: 1110),
       padding: const EdgeInsets.all(20 * 3),
@@ -51,50 +54,76 @@ class ContactBox extends StatelessWidget {
               ? Column(
                   children: [
                     SocialCard(
-                      color: const Color(0xFFE8F0F9),
+                      color: kAppColors[0],
                       iconSrc: "assets/images/linkedin-50.png",
                       name: 'LinkedIn',
                       press: () {},
                     ),
                     SocialCard(
-                      color: const Color(0xFFD9FFFC),
+                      color: kAppColors[1],
                       iconSrc: "assets/images/email-50.png",
                       name: 'Email',
                       press: () {},
                     ),
                     SocialCard(
-                      color: const Color(0xFFE4FFC7),
+                      color: kAppColors[2],
                       iconSrc: "assets/images/phone-50.png",
                       name: 'Call Us',
                       press: () {},
                     ),
                   ],
                 )
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              : Wrap(
+                  runAlignment: WrapAlignment.center,
+                  alignment: WrapAlignment.center,
                   children: [
                     SocialCard(
-                      color: const Color(0xFFE8F0F9),
+                      color: kAppColors[0],
                       iconSrc: "assets/images/linkedin-50.png",
                       name: 'LinkedIn',
                       press: () {},
                     ),
                     SocialCard(
-                      color: const Color(0xFFD9FFFC),
+                      color: kAppColors[1],
                       iconSrc: "assets/images/email-50.png",
                       name: 'Email',
                       press: () {},
                     ),
                     SocialCard(
-                      color: const Color(0xFFE4FFC7),
+                      color: kAppColors[2],
                       iconSrc: "assets/images/phone-50.png",
                       name: 'Call Us',
                       press: () {},
                     ),
                   ],
                 ),
-          const SizedBox(height: 20 * 2),
-          const ContactForm(),
+          const SizedBox(height: kDefaultPadding * 3),
+          Responsive.isMobile(context)
+              ? const Column(
+                  children: [
+                    ContactForm(),
+                    SizedBox(height: kDefaultPadding),
+                    Divider(),
+                    SizedBox(height: kDefaultPadding),
+                    Padding(
+                      padding: EdgeInsets.all(kDefaultPadding),
+                      child: FAQ(),
+                    ),
+                  ],
+                )
+              : Row(
+                  children: [
+                    const Expanded(child: ContactForm()),
+                    const SizedBox(width: kDefaultPadding * 2),
+                    Padding(
+                      padding: const EdgeInsets.all(kDefaultPadding),
+                      child: SizedBox(
+                        width: size.width * 0.3,
+                        child: const FAQ(),
+                      ),
+                    ),
+                  ],
+                ),
         ],
       ),
     );
