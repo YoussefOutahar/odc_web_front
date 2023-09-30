@@ -15,7 +15,7 @@ class Services extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+      margin: const EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
       child: Column(
         children: [
           SectionTitle(

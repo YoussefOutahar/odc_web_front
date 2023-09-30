@@ -77,8 +77,8 @@ class _ContactFormState extends State<ContactForm> {
             child: FittedBox(
               child: DefaultButton(
                 text: "Contact Us!",
-                press: () {
-                  MessageController.addMessage(
+                press: () async {
+                  await MessageController.addMessage(
                     Message(
                       email: _emailController.text,
                       message: _messageController.text,

@@ -17,7 +17,7 @@ class Formations extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(kDefaultPadding),
       child: Column(
         children: [
           SectionTitle(
@@ -25,7 +25,7 @@ class Formations extends StatelessWidget {
             title: LocaleKeys.home_page_title_formations.tr(),
             subTitle: LocaleKeys.home_page_subtitle_formations.tr(),
           ),
-          const SizedBox(height: 20 * 1.5),
+          const SizedBox(height: kDefaultPadding * 1.5),
           Wrap(
             spacing: 20,
             runSpacing: 20 * 2,

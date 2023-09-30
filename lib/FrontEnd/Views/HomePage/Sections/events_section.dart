@@ -22,7 +22,8 @@ class _EventsCarouselState extends State<EventsCarousel> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+      margin: const EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
+      constraints: const BoxConstraints(maxWidth: 1110),
       child: Column(
         children: [
           SectionTitle(
@@ -35,7 +36,7 @@ class _EventsCarouselState extends State<EventsCarousel> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Container(
-                  margin: const EdgeInsets.symmetric(vertical: 20.0),
+                  margin: const EdgeInsets.symmetric(vertical: kDefaultPadding),
                   height: Responsive.isDesktop(context) ? 600 : 340,
                   width: size.width,
                   child: SliderView(

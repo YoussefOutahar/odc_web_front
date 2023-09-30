@@ -32,12 +32,12 @@ class _MessagesSectionState extends State<MessagesSection> {
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.all(kDefaultPadding),
+                  padding: const EdgeInsets.all(kDefaultPadding / 4),
                   child: Card(
                     child: ListTile(
                         leading: snapshot.data![index].isRead
                             ? const Icon(Icons.mark_email_read, color: Colors.green)
-                            : const Icon(Icons.mark_email_unread),
+                            : const Icon(Icons.mark_email_unread, color: Colors.red),
                         title: Text(snapshot.data![index].email),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,

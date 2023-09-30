@@ -25,7 +25,7 @@ class _TeamSectionState extends State<TeamSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 20 * 6),
+      margin: const EdgeInsets.only(top: kDefaultPadding * 2),
       width: double.infinity,
       child: Column(
         children: [
@@ -34,9 +34,9 @@ class _TeamSectionState extends State<TeamSection> {
             subTitle: LocaleKeys.home_page_subtitle_team.tr(),
             title: LocaleKeys.home_page_title_team.tr(),
           ),
-          const SizedBox(height: 20 * 1.5),
+          const SizedBox(height: kDefaultPadding * 1.5),
           Container(
-            margin: const EdgeInsets.symmetric(vertical: 20.0),
+            margin: const EdgeInsets.symmetric(vertical: kDefaultPadding),
             height: 500,
             child: Stack(
               children: [
@@ -65,8 +65,8 @@ class _TeamSectionState extends State<TeamSection> {
                                   .map((e) => Builder(
                                         builder: (context) => Padding(
                                           padding: const EdgeInsets.only(
-                                            left: 20.0,
-                                            right: 20.0,
+                                            left: kDefaultPadding,
+                                            right: kDefaultPadding,
                                           ),
                                           child: TeamCard(member: e),
                                         ),
@@ -80,8 +80,8 @@ class _TeamSectionState extends State<TeamSection> {
                                           children: e
                                               .map((e) => Padding(
                                                     padding: const EdgeInsets.only(
-                                                      left: 20.0,
-                                                      right: 20.0,
+                                                      left: kDefaultPadding,
+                                                      right: kDefaultPadding,
                                                     ),
                                                     child: TeamCard(member: e),
                                                   ))
@@ -96,8 +96,8 @@ class _TeamSectionState extends State<TeamSection> {
                                           children: e
                                               .map((e) => Padding(
                                                     padding: const EdgeInsets.only(
-                                                      left: 20.0,
-                                                      right: 20.0,
+                                                      left: kDefaultPadding,
+                                                      right: kDefaultPadding,
                                                     ),
                                                     child: TeamCard(member: e),
                                                   ))
@@ -115,7 +115,7 @@ class _TeamSectionState extends State<TeamSection> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(kDefaultPadding),
                     child: AnimatedOpacityWhenHovered(
                       child: IconButton(
                         icon: const Icon(Icons.keyboard_arrow_left_outlined),
@@ -129,7 +129,7 @@ class _TeamSectionState extends State<TeamSection> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(kDefaultPadding),
                     child: AnimatedOpacityWhenHovered(
                       child: IconButton(
                         onPressed: () {

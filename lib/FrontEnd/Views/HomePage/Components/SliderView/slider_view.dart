@@ -128,7 +128,6 @@ class _SliderViewState extends State<SliderView>
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            color: kAppColors[4],
             surfaceTintColor: kPrimaryColor,
             child: Stack(
               alignment: Alignment.center,

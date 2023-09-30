@@ -30,7 +30,7 @@ class _InformationCardTileState extends State<InformationCardTile>
           children: [
             SizedBox(
               height: 314,
-              width: 600,
+              width: 500,
               child: FutureBuilder(
                 future: widget.data.getImageDownloadLink,
                 builder: (context, snapshot) {
@@ -90,28 +90,28 @@ class _InformationCardTileState extends State<InformationCardTile>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: kDefaultPadding),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    widget.data.organisation,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    overflow: TextOverflow.fade,
-                  ),
-                  const SizedBox(width: kDefaultPadding / 2),
-                  Text(
-                    widget.data.city,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    overflow: TextOverflow.fade,
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Text(
+              //       widget.data.organisation,
+              //       style: const TextStyle(
+              //         fontSize: 15,
+              //         fontWeight: FontWeight.bold,
+              //       ),
+              //       overflow: TextOverflow.fade,
+              //     ),
+              //     const SizedBox(width: kDefaultPadding / 2),
+              //     Text(
+              //       widget.data.city,
+              //       style: const TextStyle(
+              //         fontSize: 15,
+              //         fontWeight: FontWeight.bold,
+              //       ),
+              //       overflow: TextOverflow.fade,
+              //     ),
+              //   ],
+              // ),
               const Divider(
                 endIndent: 20,
                 indent: 20,
@@ -159,14 +159,14 @@ class _InformationCardTileState extends State<InformationCardTile>
                         duration: const Duration(milliseconds: 200),
                         padding: EdgeInsets.symmetric(horizontal: linkHover ? 12 : 10, vertical: linkHover ? 7 : 5),
                         decoration: BoxDecoration(
-                          color: linkHover ? Colors.black.withOpacity(0.5) : Colors.white.withOpacity(0.1),
+                          color: linkHover ? Colors.black.withOpacity(0.5) : Colors.black.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: Colors.white, width: 0.5),
+                          border: Border.all(color: Colors.black, width: 0.5),
                         ),
                         child: const Text(
                           "Learn More",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 9,
                             fontWeight: FontWeight.w400,
                           ),

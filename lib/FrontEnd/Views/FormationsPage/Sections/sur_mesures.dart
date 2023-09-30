@@ -12,7 +12,7 @@ class SurMesures extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20 * 2),
+      margin: const EdgeInsets.symmetric(vertical: kDefaultPadding * 2),
       constraints: const BoxConstraints(maxWidth: 1110),
       child: Column(
         children: [
@@ -21,7 +21,7 @@ class SurMesures extends StatelessWidget {
             title: "Sur Mesures",
             subTitle: "Recent Events",
           ),
-          const SizedBox(height: 20 * 2),
+          const SizedBox(height: kDefaultPadding * 2),
           ForamationCard(
             packs:
                 "* Pack E-Commerce\n\n* Pack lean management & SIx Sigma\n\n* Pack optimisiation de process\n\n* Pack gestion de projet (PMI)",

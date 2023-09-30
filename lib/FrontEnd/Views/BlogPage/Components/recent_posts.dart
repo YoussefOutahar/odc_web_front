@@ -89,33 +89,36 @@ class RecentPostCard extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: press,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: SizedBox(
-                height: 50,
-                width: 50,
-                child: CachedImageManager(
-                  imageUrl: image,
+        child: Padding(
+          padding: const EdgeInsets.all(kDefaultPadding / 4),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: CachedImageManager(
+                    imageUrl: image,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(width: kDefaultPadding),
-            Expanded(
-              flex: 5,
-              child: Text(
-                title,
-                maxLines: 2,
-                style: const TextStyle(
-                  fontFamily: "Raleway",
-                  color: kDarkBlackColor,
-                  fontWeight: FontWeight.bold,
-                  height: 1.5,
+              const SizedBox(width: kDefaultPadding),
+              Expanded(
+                flex: 5,
+                child: Text(
+                  title,
+                  maxLines: 2,
+                  style: const TextStyle(
+                    fontFamily: "Raleway",
+                    color: kDarkBlackColor,
+                    fontWeight: FontWeight.bold,
+                    height: 1.5,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
