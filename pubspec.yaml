@@ -80,9 +80,9 @@ flutter:
     - assets/icons/
     - assets/translations/
 
-  fonts:
-    - family: Montserrat
-      fonts:
-        - asset: assets/fonts/Montserrat-VariableFont_wght.ttf
-        - asset: assets/fonts/Montserrat-Italic-VariableFont_wght.ttf
-          style: italic
+  # fonts:
+  #   - family: Montserrat
+  #     fonts:
+  #       - asset: assets/fonts/Montserrat-Italic-VariableFont_wght.ttf
+  #       - asset: assets/fonts/Montserrat-VariableFont_wght.ttf
+  #         weight: 900

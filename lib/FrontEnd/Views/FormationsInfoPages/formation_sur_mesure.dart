@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tab_indicator_styler/tab_indicator_styler.dart';
 
 import '../../../DataBase/Models/formations.dart';
-import '../../../Services/Utils/responsive.dart';
 import '../../../Services/constants.dart';
 import 'Components/data_grid.dart';
 import '../../Components/page_header.dart';
@@ -12,13 +11,10 @@ class FormationSurMesuresInfoPage extends StatefulWidget {
   const FormationSurMesuresInfoPage({super.key});
 
   @override
-  State<FormationSurMesuresInfoPage> createState() =>
-      _FormationSurMesuresInfoPageState();
+  State<FormationSurMesuresInfoPage> createState() => _FormationSurMesuresInfoPageState();
 }
 
-class _FormationSurMesuresInfoPageState
-    extends State<FormationSurMesuresInfoPage>
-    with SingleTickerProviderStateMixin {
+class _FormationSurMesuresInfoPageState extends State<FormationSurMesuresInfoPage> with SingleTickerProviderStateMixin {
   late Formation formation;
 
   late TabController _tabController;
@@ -106,31 +102,24 @@ class _FormationSurMesuresInfoPageState
             return Padding(
               padding: const EdgeInsets.all(kDefaultPadding),
               child: DataGrid(
-                name: FormationData.formationSurMesuresData[
-                    formationsKeys[_tabController.index]]!["name"],
-                whyData: FormationData.formationSurMesuresData[
-                    formationsKeys[_tabController.index]]!["whyData"],
-                publicCibleData: FormationData.formationSurMesuresData[
-                    formationsKeys[_tabController.index]]!["publicCibleData"],
-                objectifsPedagogiqueData: FormationData.formationSurMesuresData[
-                        formationsKeys[_tabController.index]]![
-                    "objectifsPedagogiqueData"],
-                certificationData: FormationData.formationSurMesuresData[
-                    formationsKeys[_tabController.index]]!["certificationData"],
-                programData: FormationData.formationSurMesuresData[
-                    formationsKeys[_tabController.index]]!["programData"],
-                cvAnimateur: FormationData.formationSurMesuresData[
-                    formationsKeys[_tabController.index]]!["cvAnimateur"],
-                dureeData: FormationData.formationSurMesuresData[
-                    formationsKeys[_tabController.index]]!["dureeData"],
-                lieuData: FormationData.formationSurMesuresData[
-                    formationsKeys[_tabController.index]]!["lieuData"],
-                tarifData: FormationData.formationSurMesuresData[
-                    formationsKeys[_tabController.index]]!["tarifData"],
-                coutData: FormationData.formationSurMesuresData[
-                    formationsKeys[_tabController.index]]!["coutData"],
-                contactData: FormationData.formationSurMesuresData[
-                    formationsKeys[_tabController.index]]!["contactData"],
+                name: FormationData.formationSurMesuresData[formationsKeys[_tabController.index]]!["name"],
+                whyData: FormationData.formationSurMesuresData[formationsKeys[_tabController.index]]!["whyData"],
+                publicCibleData:
+                    FormationData.formationSurMesuresData[formationsKeys[_tabController.index]]!["publicCibleData"],
+                objectifsPedagogiqueData: FormationData
+                    .formationSurMesuresData[formationsKeys[_tabController.index]]!["objectifsPedagogiqueData"],
+                certificationData:
+                    FormationData.formationSurMesuresData[formationsKeys[_tabController.index]]!["certificationData"],
+                programData:
+                    FormationData.formationSurMesuresData[formationsKeys[_tabController.index]]!["programData"],
+                cvAnimateur:
+                    FormationData.formationSurMesuresData[formationsKeys[_tabController.index]]!["cvAnimateur"],
+                dureeData: FormationData.formationSurMesuresData[formationsKeys[_tabController.index]]!["dureeData"],
+                lieuData: FormationData.formationSurMesuresData[formationsKeys[_tabController.index]]!["lieuData"],
+                tarifData: FormationData.formationSurMesuresData[formationsKeys[_tabController.index]]!["tarifData"],
+                coutData: FormationData.formationSurMesuresData[formationsKeys[_tabController.index]]!["coutData"],
+                contactData:
+                    FormationData.formationSurMesuresData[formationsKeys[_tabController.index]]!["contactData"],
               ),
             );
           },
@@ -139,15 +128,15 @@ class _FormationSurMesuresInfoPageState
     );
   }
 
-  Widget _buildExplanationImage(BuildContext context, Size size) =>
-      Responsive.isMobile(context)
-          ? Align(
-              alignment: Alignment.center,
-              child: Image.asset(
-                "assets/images/formations/sur_mesures.png",
-                width: size.width / 2,
-                height: size.height / 2,
-              ),
-            )
-          : const SizedBox.shrink();
+  // Widget _buildExplanationImage(BuildContext context, Size size) =>
+  //     Responsive.isMobile(context)
+  //         ? Align(
+  //             alignment: Alignment.center,
+  //             child: Image.asset(
+  //               "assets/images/formations/sur_mesures.png",
+  //               width: size.width / 2,
+  //               height: size.height / 2,
+  //             ),
+  //           )
+  //         : const SizedBox.shrink();
 }

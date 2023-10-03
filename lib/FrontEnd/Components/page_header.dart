@@ -32,7 +32,6 @@ class PageHeader extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            // width: size.width,
             child: CachedImageManager(imageUrl: imgSrc),
           ),
           Positioned.fill(

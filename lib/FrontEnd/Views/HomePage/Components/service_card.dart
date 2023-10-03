@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../DataBase/Models/service.dart';
 
-class ServiceCard extends StatefulWidget {
-  const ServiceCard({
+class ConseilCard extends StatefulWidget {
+  const ConseilCard({
     Key? key,
     required this.index,
   }) : super(key: key);
@@ -11,10 +11,10 @@ class ServiceCard extends StatefulWidget {
   final int index;
 
   @override
-  State<ServiceCard> createState() => _ServiceCardState();
+  State<ConseilCard> createState() => _ConseilCardState();
 }
 
-class _ServiceCardState extends State<ServiceCard> {
+class _ConseilCardState extends State<ConseilCard> {
   bool isHover = false;
   Duration duration = const Duration(milliseconds: 200);
   @override

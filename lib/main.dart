@@ -10,6 +10,7 @@ import 'Services/Themes/app_theme.dart';
 import 'DataBase/firebase_options.dart';
 import 'FrontEnd/Views/error_page.dart';
 import 'FrontEnd/get_front_navigations.dart';
+import 'Services/route_aware_service.dart';
 import 'translations/codegen_loader.g.dart';
 
 Future<void> main() async {
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
         ...getDashboardNavigations(),
       ],
       navigatorObservers: [
+        RouteAwareService().getRouteObserver(),
         AnalyticsService().getAnalyticsObserver(),
       ],
       initialRoute: '/home',

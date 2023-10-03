@@ -1,6 +1,6 @@
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'Layout/Components/header_type.dart';
+import 'Layout/Components/Header/header_type.dart';
 import 'Layout/app_layout.dart';
 import 'Views/AboutUsPage/about_us_page.dart';
 import 'Views/BlogPage/blog_page.dart';

@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 import '../../Services/constants.dart';
 import '../Components/Buttons/scroll_up_indicator.dart';
-import 'Components/app_header.dart';
-import 'Components/header_type.dart';
+import 'Components/Header/app_header.dart';
+import 'Components/Header/header_type.dart';
 import 'Components/learn_more_button.dart';
 import 'Components/slider_menu.dart';
 import 'footer.dart';

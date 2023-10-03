@@ -79,8 +79,7 @@ class _FormationCardState extends State<FormationCard> {
                 children: [
                   Text(widget.formation.category.toUpperCase()),
                   const SizedBox(height: 20 / 2),
-                  Text(widget.formation.title,
-                      style: Theme.of(context).textTheme.headlineSmall),
+                  Text(widget.formation.title, style: Theme.of(context).textTheme.headlineSmall),
                   const SizedBox(height: 20),
                   const Text(
                     "View Details",
@@ -95,17 +94,17 @@ class _FormationCardState extends State<FormationCard> {
     );
   }
 
-  Widget _buildCard(Size size) {
-    return Container(
-      height: 160,
-      width: 160,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(widget.formation.image),
-          fit: BoxFit.cover,
-        ),
-        borderRadius: BorderRadius.circular(100),
-      ),
-    );
-  }
+  // Widget _buildCard(Size size) {
+  //   return Container(
+  //     height: 160,
+  //     width: 160,
+  //     decoration: BoxDecoration(
+  //       image: DecorationImage(
+  //         image: AssetImage(widget.formation.image),
+  //         fit: BoxFit.cover,
+  //       ),
+  //       borderRadius: BorderRadius.circular(100),
+  //     ),
+  //   );
+  // }
 }

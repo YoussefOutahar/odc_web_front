@@ -48,13 +48,11 @@ class FormationData {
           "•Evaluation de la fiabilité et la validité des études en fonction de la pertinence et de l’efficacité des procédures employées\n",
       "publicCibleData": "•Doctorants en Management\n"
           "•Doctorants en ingénierie\n",
-      "objectifsPedagogiqueData":
-          "•Maîtriser les démarches méthodologiques appropriées aux études scientifiques menées\n"
-              "•Assurer l’évaluation de la fiabilité et la validité des études en fonction de l’efficacité et la pertinence des techniques utilisées\n"
-              "•Développer un accompagnement méthodique et méthodologique du processus d’élaboration de thèse doctorale\n"
-              "•Mener un encadrement ponctuel des différents phases de la recherche scientifique \n",
-      "certificationData":
-          "Attestation avec volume horaire (6h/1jr)", //TODO : change this to attestation
+      "objectifsPedagogiqueData": "•Maîtriser les démarches méthodologiques appropriées aux études scientifiques menées\n"
+          "•Assurer l’évaluation de la fiabilité et la validité des études en fonction de l’efficacité et la pertinence des techniques utilisées\n"
+          "•Développer un accompagnement méthodique et méthodologique du processus d’élaboration de thèse doctorale\n"
+          "•Mener un encadrement ponctuel des différents phases de la recherche scientifique \n",
+      "certificationData": "Attestation avec volume horaire (6h/1jr)",
       "programData": "•ESPRIT ET MORAL\n"
           "-Comment développer un état d’esprit chercheur ?\n"
           "-Motivation, Méthodologie et guide pratique avec planification ( Court, moyen et long terme )\n"
@@ -75,20 +73,19 @@ class FormationData {
     },
     "Boîte à outils Enseignement supérieur et pédagogie": <String, String>{
       "name": "outils Enseignement supérieur et pédagogie ",
-      "whyData": "•Développement de connaissances, compréhension et maîtrise des exigences liées à la pédagogie universitaire\n"
-          "•Disposition des outils  d’enseignement supérieur  menant à l’efficacité et la pertinence d’application\n"
-          "•Bénéficier d’un programme de formation varié et assuré par des spécialistes en pédagogie et enseignement universitaire\n",
+      "whyData":
+          "•Développement de connaissances, compréhension et maîtrise des exigences liées à la pédagogie universitaire\n"
+              "•Disposition des outils  d’enseignement supérieur  menant à l’efficacité et la pertinence d’application\n"
+              "•Bénéficier d’un programme de formation varié et assuré par des spécialistes en pédagogie et enseignement universitaire\n",
       "publicCibleData": "Doctorants et Docteurs\n"
           "Enseignants vacataires\n"
           "Enseignants universitaires\n",
-      "objectifsPedagogiqueData":
-          "•Prise de connaissance des initiations à la pédagogie universitaire\n"
-              "•\n"
-              "•Développement des méthodes d’enseignement à partir des théories d’apprentissage ( Piaget, Mager, Vygotsky…)\n"
-              "•Accompagnement pour amélioration des outils de préparation des cours et supports de formation, évaluations et examens.\n"
-              "•Application d’une approche systémique de la préparation pédagogique\n",
-      "certificationData":
-          "Attestation d’aptitude de la pédagogie universitaire", //TODO : change this to attestation
+      "objectifsPedagogiqueData": "•Prise de connaissance des initiations à la pédagogie universitaire\n"
+          "•\n"
+          "•Développement des méthodes d’enseignement à partir des théories d’apprentissage ( Piaget, Mager, Vygotsky…)\n"
+          "•Accompagnement pour amélioration des outils de préparation des cours et supports de formation, évaluations et examens.\n"
+          "•Application d’une approche systémique de la préparation pédagogique\n",
+      "certificationData": "Attestation d’aptitude de la pédagogie universitaire",
       "programData": "•INITIATION A LA PÉDAGOGIE UNIVERSITAIRE\n"
           "-La pédagogie universitaire\n"
           "-L’enseignement à l’université\n"
@@ -121,12 +118,11 @@ class FormationData {
       "publicCibleData": "Débutants en développement informatique\n"
           "Professionnels en reconversion\n"
           "Personnes souhaitant compléter leurs compétences avec la programmation\n",
-      "objectifsPedagogiqueData":
-          "Comprendre les concepts fondamentaux de la programmation\n"
-              "Se familiariser avec un langage de programmation spécifique\n"
-              "Développer des applications simples\n"
-              "Appliquer les bonnes pratiques de développement\n"
-              "Utiliser les outils de travail collaboratif et de gestion de projet\n",
+      "objectifsPedagogiqueData": "Comprendre les concepts fondamentaux de la programmation\n"
+          "Se familiariser avec un langage de programmation spécifique\n"
+          "Développer des applications simples\n"
+          "Appliquer les bonnes pratiques de développement\n"
+          "Utiliser les outils de travail collaboratif et de gestion de projet\n",
       "certificationData": "--------------",
       "programData": "Jour 1: Introduction et fondamentaux\n"
           "Introduction au développement informatique \n"
@@ -186,10 +182,9 @@ class FormationData {
           "Gestion des risques et des défis dans l'entrepreneuriat\n"
           "Comment établir et gérer des partenariats d'affaires\n"
           "Résumé de la formation et plan d'action pour la suite\n",
-      "contactData":
-          "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
-              "06 41 86 59 12\n"
-              "06 41 58 85 05\n",
+      "contactData": "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
+          "06 41 86 59 12\n"
+          "06 41 58 85 05\n",
       "coutData": "--------",
       "cvAnimateur": "--------",
       "dureeData": "--------",
@@ -198,17 +193,15 @@ class FormationData {
     },
     "Voyage découverte pédagogique": <String, String>{
       "name": "découverte pédagogique ",
-      "whyData":
-          "Voyage de détente et de découverte culturelle de la région pour vocation personnel ou professionnel\n"
-              "Apprendre l’artisanat de la région visité\n"
-              "Découvrir la partie gastronomique de la région visité\n"
-              "Découvrir la richesse de la région \n",
+      "whyData": "Voyage de détente et de découverte culturelle de la région pour vocation personnel ou professionnel\n"
+          "Apprendre l’artisanat de la région visité\n"
+          "Découvrir la partie gastronomique de la région visité\n"
+          "Découvrir la richesse de la région \n",
       "certificationData": "Certificat de l’artisanat de la région\n"
           "Certificat du management produits du terroir\n",
-      "contactData":
-          "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
-              "06 41 86 59 12\n"
-              "06 41 58 85 05",
+      "contactData": "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
+          "06 41 86 59 12\n"
+          "06 41 58 85 05",
       "coutData": "--------",
       "cvAnimateur": "--------",
       "dureeData": "--------",
@@ -230,17 +223,16 @@ class FormationData {
           "Libérer ses potentialités et capacités.\n",
       "publicCibleData":
           "Les Coachs, les professionnels de la communication, de la santé, de l'éducation, du sport, de la relation d'aide sont concernés par la PNL. Toute personne exerçant une fonction d'encadrement, chefs d'entreprises, managers et cadres .., ainsi que toute personne considérant la communication comme un élément important de son activité et de sa vie.",
-      "objectifsPedagogiqueData":
-          "Savoir et comprendre les sources de la PNL, son historique et son évolution.\n"
-              "Savoir et pratiquer le travail dans un cadre objectif.\n"
-              "Savoir et comprendre à mieux communiquer avec les différents systèmes de représentation.\n"
-              "Prendre conscience de l'index de computation et ses différents champs d'application.\n"
-              "Apprendre à appliquer la calibration dans son intervention.\n"
-              "Apprendre à appliquer les différentes formes de synchronisation.\n"
-              "Apprendre à mieux établir le rapport avec son client.\n"
-              "Savoir et comprendre les méta-programmes de base.\n"
-              "Savoir à intervenir en utilisant la triple description.\n"
-              "Savoir et appliquer la technique de stratégie de Disney\n",
+      "objectifsPedagogiqueData": "Savoir et comprendre les sources de la PNL, son historique et son évolution.\n"
+          "Savoir et pratiquer le travail dans un cadre objectif.\n"
+          "Savoir et comprendre à mieux communiquer avec les différents systèmes de représentation.\n"
+          "Prendre conscience de l'index de computation et ses différents champs d'application.\n"
+          "Apprendre à appliquer la calibration dans son intervention.\n"
+          "Apprendre à appliquer les différentes formes de synchronisation.\n"
+          "Apprendre à mieux établir le rapport avec son client.\n"
+          "Savoir et comprendre les méta-programmes de base.\n"
+          "Savoir à intervenir en utilisant la triple description.\n"
+          "Savoir et appliquer la technique de stratégie de Disney\n",
       "certificationData":
           "Le candidat sera certifié en ayant satisfait les normes de compétence de l'INLPTA et de AMERICAN BOARD ; du diplôme de PNL, telles qu'évaluées par le formateur enregistré.",
       "programData": "1.Sources de la PNL.\n"
@@ -292,10 +284,9 @@ class FormationData {
           "Certifié en Analyse Transactionnelle par l’IFAT (Institut Français de l’Analyse Transactionnelle) Certifié en Analyse.\n"
           "Transactionnelle par EATA (European Association of Transactionnel Analysis).\n"
           "Certifié  PMP (Project Management Professional) par PMI (Project Management Institute) Pennsylvanie USA.\n",
-      "contactData":
-          "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
-              "06 41 86 59 12\n"
-              "06 41 58 85 05\n",
+      "contactData": "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
+          "06 41 86 59 12\n"
+          "06 41 58 85 05\n",
       "coutData": '--------',
     },
     "Pack Innovation & Business": <String, String>{
@@ -314,13 +305,12 @@ class FormationData {
               "Conseiler et accompagnier les créateurs d'entreprise, appui à l'intrapreneuriat;\n"
               "Gérer les projets entrepreneuriaux à la fois par la mise en pratique, la prise de recul et la maîtrise des principaux outils et démarches propres à la création d'entreprise ou la conduite de projets innovants au sein d'organisations existantes.\n",
       "certificationData": "Certificat en Business & Innovation",
-      "programData":
-          "Outils modernes de la créativité, de l'entrepreneuriat et de l'innovation.\n"
-              "Pratiques de gestion pour prendre un projet entrepreneurial de la conception à la validation pour un marché potentiel. \n"
-              "Outils de sa mise en œuvre (Business plan, Business model …) \n"
-              "Principes du Lean Start-up pour amener un projet rapidement vers le marché. \n"
-              "Ecosystème de l'innovation et de l'entrepreneuriat au Maroc. \n"
-              "Activités pratiques\n",
+      "programData": "Outils modernes de la créativité, de l'entrepreneuriat et de l'innovation.\n"
+          "Pratiques de gestion pour prendre un projet entrepreneurial de la conception à la validation pour un marché potentiel. \n"
+          "Outils de sa mise en œuvre (Business plan, Business model …) \n"
+          "Principes du Lean Start-up pour amener un projet rapidement vers le marché. \n"
+          "Ecosystème de l'innovation et de l'entrepreneuriat au Maroc. \n"
+          "Activités pratiques\n",
       "dureeData": "20h sur  4j ( 2 Week end)\n"
           "Vendredi 19h00 - 21h00\n"
           "Samedi 9h00 - 17h00\n",
@@ -328,10 +318,9 @@ class FormationData {
       "tarifData": "Pour les particuliers : 5000 DH.\n"
           "Pour les entreprises la formation est facturé au prix 7000 DH/ HT\n",
       "cvAnimateur": "----------",
-      "contactData":
-          "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
-              "06 41 86 59 12\n"
-              "06 41 58 85 05\n",
+      "contactData": "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
+          "06 41 86 59 12\n"
+          "06 41 58 85 05\n",
       "coutData": '--------',
     },
     "Pack Santé sociale et bien être": <String, String>{
@@ -350,8 +339,7 @@ class FormationData {
               "Renforcer les comportements et la mise en place d’un environnement favorisant la santé sociale ;\n"
               "Découvrir les droits, les recours et les conséquences du point de vue légal en matière d’intimidation.\n"
               "Constater le rôle crucial d’un témoin direct ou indirect;\n",
-      "certificationData":
-          "Attestation de participation offerte à la fin de la formation.", //TODO change to attestation
+      "certificationData": "Attestation de participation offerte à la fin de la formation.",
       "dureeData": "20h sur  4j ( 2 Week end) \n"
           "Vendredi 19h00 - 21h00\n"
           "Samedi 9h00 - 17h00\n",
@@ -359,25 +347,23 @@ class FormationData {
       "tarifData": "Pour les particuliers : 5000 DH.\n"
           "Pour les entreprises la formation est facturé au prix 7000 DH/ HT\n",
       "cvAnimateur": "---------",
-      "contactData":
-          "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
-              "06 41 86 59 12\n"
-              "06 41 58 85 05\n",
+      "contactData": "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
+          "06 41 86 59 12\n"
+          "06 41 58 85 05\n",
       "coutData": '--------',
       "programData": '--------',
     },
     "Pack Prise de décision": <String, String>{
       "name": "Prise de décision",
-      "whyData": "Cette formation apporte une méthodologie et de nombreux outils pour prendre des décisions efficaces quelles que soient vos problématiques.\n"
-          "Les participants travaillent sur des décisions réelles, pour mieux s'approprier les mécanismes parfois inconscients et expérimenter la puissance des outils.\n"
-          "Des outils pratiques et opérationnels, utilisables seul ou en groupe.\n",
-      "publicCibleData":
-          "Toute personne souhaitant optimiser sa prise de décision.",
+      "whyData":
+          "Cette formation apporte une méthodologie et de nombreux outils pour prendre des décisions efficaces quelles que soient vos problématiques.\n"
+              "Les participants travaillent sur des décisions réelles, pour mieux s'approprier les mécanismes parfois inconscients et expérimenter la puissance des outils.\n"
+              "Des outils pratiques et opérationnels, utilisables seul ou en groupe.\n",
+      "publicCibleData": "Toute personne souhaitant optimiser sa prise de décision.",
       "objectifsPedagogiqueData": "Agir à bon escient dans le processus de décision.\n"
           "Utiliser des outils d'analyse et des méthodes de créativité pour résoudre des problèmes.\n"
           "Gérer les dimensions rationnelle et émotionnelle de la décision.\n",
-      "certificationData":
-          "Attestation de la formation", //TODO change to attestation
+      "certificationData": "Attestation de la formation",
       "programData": "Jour 1: Design thinking\n"
           "Introduction à la prise de décision\n"
           "Modélisation du  processus de Design Thinking  et des processus d’analyse\n"
@@ -413,10 +399,9 @@ class FormationData {
       "tarifData": "Pour les particuliers : 2 000DH.\n"
           "Pour les entreprises la formation est facturé au prix 7000 DH/ HT\n",
       "cvAnimateur": "----------",
-      "contactData":
-          "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
-              "06 41 86 59 12\n"
-              "06 41 58 85 05\n",
+      "contactData": "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
+          "06 41 86 59 12\n"
+          "06 41 58 85 05\n",
       "coutData": '--------',
     },
   };
@@ -444,9 +429,8 @@ class FormationData {
           "Maîtriser  la sécurité en ligne et les réglementations applicables en e-commerce;\n"
           "Améliorer la compétitivité des entreprises sur le marché du commerce électronique;\n"
           "Développer des projets innovants dans le commerce en ligne.\n",
-      "certificationData":
-          "Certificat Executive en Stratégie et Management e-commerce. (CSMEC)\n"
-              "Des outils informatiques  sont fournis à la fin de la formation.\n",
+      "certificationData": "Certificat Executive en Stratégie et Management e-commerce. (CSMEC)\n"
+          "Des outils informatiques  sont fournis à la fin de la formation.\n",
       "programData": "Introduction au e-commerce et panorama du marché\n"
           "Étude des différents modèles de e-commerce (B2C, B2B, C2C)\n"
           "Conception et création d'une boutique en ligne\n"
@@ -510,12 +494,11 @@ class FormationData {
           "Professionnels de l'assurance qualité et du contrôle qualité\n"
           "Consultants en gestion de projet et amélioration des processus\n"
           "Personnes souhaitant améliorer leurs compétences en Lean Management et Six Sigma\n",
-      "objectifsPedagogiqueData":
-          "Comprendre les principes fondamentaux du Lean Management et Six Sigma\n"
-              "Identifier et éliminer les sources de variabilité et d'anomalies;\n"
-              "Maîtriser les méthodologies et les outils pour l'amélioration des processus et d’aide à la décision;\n"
-              "Développer des compétences en résolution de problèmes et en gestion de projet\n"
-              "Encourager la culture de l'amélioration continue et de l'efficacité opérationnelle\n",
+      "objectifsPedagogiqueData": "Comprendre les principes fondamentaux du Lean Management et Six Sigma\n"
+          "Identifier et éliminer les sources de variabilité et d'anomalies;\n"
+          "Maîtriser les méthodologies et les outils pour l'amélioration des processus et d’aide à la décision;\n"
+          "Développer des compétences en résolution de problèmes et en gestion de projet\n"
+          "Encourager la culture de l'amélioration continue et de l'efficacité opérationnelle\n",
       "certificationData": "Certificat Lean management et  Six Sigma;\n"
           "Outils informatiques fournis à la fin de la formation. \n",
       "programData": "Accueil et présentation des participants\n"
@@ -551,10 +534,9 @@ class FormationData {
           "Salle de formation : 15 000 dh\n"
           "Administration : 20 000 dh\n",
       "cvAnimateur": "------",
-      "contactData":
-          "Pour savoir comment s’inscrire; Veuillez nous contacter au :\n"
-              "06 41 86 59 12\n"
-              "06 41 58 85 05\n",
+      "contactData": "Pour savoir comment s’inscrire; Veuillez nous contacter au :\n"
+          "06 41 86 59 12\n"
+          "06 41 58 85 05\n",
     },
     "Pack Gestion projet (PMI)": <String, String>{
       "name": "Gestion projet PMI",
@@ -565,14 +547,12 @@ class FormationData {
           "Membres d'équipes de projet\n"
           "Consultants en gestion de projet\n"
           "Professionnels souhaitant obtenir la certification PMP\n",
-      "objectifsPedagogiqueData":
-          "Comprendre les principes fondamentaux de la gestion de projet (PMI)\n"
-              "Maîtriser les domaines de connaissances et les groupes de processus du PMI\n"
-              "Planifier, exécuter et clôturer des projets avec succès\n"
-              "Développer des compétences en leadership, communication et gestion des risques\n"
-              "Se préparer à la certification Project Management Professional (PMP)\n",
-      "certificationData":
-          "Certificat  en Gestion de projet et performance global",
+      "objectifsPedagogiqueData": "Comprendre les principes fondamentaux de la gestion de projet (PMI)\n"
+          "Maîtriser les domaines de connaissances et les groupes de processus du PMI\n"
+          "Planifier, exécuter et clôturer des projets avec succès\n"
+          "Développer des compétences en leadership, communication et gestion des risques\n"
+          "Se préparer à la certification Project Management Professional (PMP)\n",
+      "certificationData": "Certificat  en Gestion de projet et performance global",
       "programData": "Introduction à la gestion de projet et au PMI\n"
           "Les domaines de connaissances du PMI\n"
           "Les groupes de processus du PMI\n"
@@ -610,10 +590,9 @@ class FormationData {
           "Salle de formation : 10 000 dh\n"
           "Administration : 15 000 dh\n",
       "cvAnimateur": "-------",
-      "contactData":
-          "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
-              "06 41 86 59 12\n"
-              "06 41 58 85 05\n",
+      "contactData": "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
+          "06 41 86 59 12\n"
+          "06 41 58 85 05\n",
     },
     "Pack Optimisation des process": <String, String>{
       "name": "optimisation des processus",
@@ -624,13 +603,11 @@ class FormationData {
           "Méthodes pédagogiques : apports théoriques et pratiques (cas concrets, exemples d'application) \n",
       "publicCibleData":
           "Managers, responsables de service, responsables de centre de profit, directeurs de projet, chargés de mission organisation.",
-      "objectifsPedagogiqueData":
-          "Identifier et partager le fonctionnement de ses processus pour plus d’efficacité.\n"
-              "Fiabiliser et optimiser ses processus à partir de solutions concrètes.\n"
-              "Définir des indicateurs de performance pertinents et construire un tableau de bord adapté à sa stratégie.\n"
-              "Assurer un pilotage efficace pour atteindre ses objectifs.\n",
-      "certificationData":
-          "Certification en Management et Optimisation des processus.",
+      "objectifsPedagogiqueData": "Identifier et partager le fonctionnement de ses processus pour plus d’efficacité.\n"
+          "Fiabiliser et optimiser ses processus à partir de solutions concrètes.\n"
+          "Définir des indicateurs de performance pertinents et construire un tableau de bord adapté à sa stratégie.\n"
+          "Assurer un pilotage efficace pour atteindre ses objectifs.\n",
+      "certificationData": "Certification en Management et Optimisation des processus.",
       "programData": "VISUALISER ET CLARIFIER SES PROCESSUS\ne"
           "L’approche processus\ne"
           "Les techniques de visualisation synthétique\ne"
@@ -653,10 +630,9 @@ class FormationData {
           "Salle de formation : 10 000 dh\n"
           "Administration : 15 000 dh\n",
       "cvAnimateur": "---------",
-      "contactData":
-          "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
-              "06 41 86 59 12\n"
-              "06 41 58 85 05\n",
+      "contactData": "Pour savoir comment s’inscrire; Veuillez nous contacter au : \n"
+          "06 41 86 59 12\n"
+          "06 41 58 85 05\n",
     },
   };
 }

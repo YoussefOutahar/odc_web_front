@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:odc/Services/constants.dart';
@@ -8,9 +6,8 @@ import '../../../../../DataBase/Models/events.dart';
 import '../../../../../Services/Utils/responsive.dart';
 import '../../../../../Services/Utils/utils.dart';
 import '../../../../Animations/animated_opacity_when_hovered.dart';
-import '../event_card.dart';
+import 'event_card.dart';
 import 'Widgets/information_layout.dart';
-import 'Widgets/timer_bar.dart';
 
 class SliderView extends StatefulWidget {
   const SliderView({Key? key, required this.data}) : super(key: key);
