@@ -34,7 +34,7 @@
 
         <script>
             // The value below is injected by flutter build, do not touch.
-            const serviceWorkerVersion = "2664913702";
+            const serviceWorkerVersion = "3303560017";
         </script>
         <!-- This script adds the flutter initialization JS code -->
         <script src="flutter.js" defer></script>
@@ -45,6 +45,12 @@
             pdfjsLib.GlobalWorkerOptions.workerSrc =
                 "//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.4.456/pdf.worker.min.js";
         </script>
+        <script>
+            const regExp = new RegExp("bot|google|baidu|bing|msn|teoma|slurp|yandex", "i");
+            if (regExp.test(navigator.userAgent)) {
+              window.flutterWebRenderer = "html";
+            }
+          </script>
         <style>
             body {
                 height: 100vh;
@@ -81,7 +87,7 @@
             function delay(time) {
                 return new Promise((resolve) => setTimeout(resolve, time));
             }
-            let useHtml = false;
+            let useHtml = true;
 
             window.addEventListener("load", function (ev) {
                 var loaderContent = document.querySelector("#loader-content");

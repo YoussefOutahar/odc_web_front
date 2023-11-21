@@ -24,12 +24,16 @@ class SocialMediaButton extends StatelessWidget {
       delayDuration: Duration(milliseconds: 1500 + ((index + 1) * 125)),
       from: DelayFrom.bottom,
       child: AnimatedOpacityWhenHovered(
-        child: IconButton(
-          onPressed: () => launchUrl(url),
-          icon: Icon(
-            iconData,
-            color: Colors.black,
-            size: size,
+        child: Semantics(
+          button: true,
+          label: "Social Media Button",
+          child: IconButton(
+            onPressed: () => launchUrl(url),
+            icon: Icon(
+              iconData,
+              color: Colors.black,
+              size: size,
+            ),
           ),
         ),
       ),

@@ -57,6 +57,7 @@ getFrontNavigations() => [
         name: "/formations",
         transitionDuration: const Duration(milliseconds: 700),
         transition: Transition.fadeIn,
+        middlewares: [Middelware()],
         page: () => const AppLayout(
           type: HeaderType.compactHeader,
           page: FormationsPage(),

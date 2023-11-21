@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:odc/Services/constants.dart';
 
 import '../../../../Services/Utils/responsive.dart';
@@ -43,12 +44,15 @@ class AppHeader extends StatelessWidget {
                   DelayedWidget(
                     delayDuration: const Duration(milliseconds: 500),
                     from: DelayFrom.bottom,
-                    child: SelectableText(
-                      LocaleKeys.website_name.tr(),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 50.0,
-                        fontWeight: FontWeight.bold,
+                    child: Semantics(
+                      label: LocaleKeys.website_name.tr(),
+                      child: SelectableText(
+                        LocaleKeys.website_name.tr(),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 50.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -56,12 +60,15 @@ class AppHeader extends StatelessWidget {
                   DelayedWidget(
                     delayDuration: const Duration(milliseconds: 800),
                     from: DelayFrom.bottom,
-                    child: SelectableText(
-                      LocaleKeys.website_subtitle.tr(),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+                    child: Semantics(
+                      label: LocaleKeys.website_subtitle.tr(),
+                      child: SelectableText(
+                        LocaleKeys.website_subtitle.tr(),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -107,12 +114,15 @@ class AppHeader extends StatelessWidget {
                     DelayedWidget(
                       delayDuration: const Duration(milliseconds: 500),
                       from: DelayFrom.bottom,
-                      child: SelectableText(
-                        LocaleKeys.website_name.tr(),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 35.0,
-                          fontWeight: FontWeight.bold,
+                      child: Semantics(
+                        label: LocaleKeys.website_name.tr(),
+                        child: SelectableText(
+                          LocaleKeys.website_name.tr(),
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 35.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),

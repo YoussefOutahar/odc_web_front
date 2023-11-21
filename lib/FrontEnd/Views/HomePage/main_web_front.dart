@@ -31,12 +31,6 @@ class _HomePageState extends State<HomePage> with RouteAware {
   }
 
   @override
-  void didPush() {
-    debugPrint('didPush');
-    super.didPush();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: ScrollTransformView(

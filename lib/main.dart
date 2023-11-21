@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      // showSemanticsDebugger: true,
       title: 'Optima Decision',
       theme: AppThemes.deafult,
       darkTheme: AppThemes.alternative,

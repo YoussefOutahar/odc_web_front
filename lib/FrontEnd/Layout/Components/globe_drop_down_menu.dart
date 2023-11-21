@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 class GlobeDropdownMenu extends StatelessWidget {
@@ -20,13 +21,19 @@ class GlobeDropdownMenu extends StatelessWidget {
         }
       },
       itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-        const PopupMenuItem<String>(
+        PopupMenuItem<String>(
           value: 'english',
-          child: Text('English'),
+          child: Semantics(
+            label: 'English',
+            child: const Text('English'),
+          ),
         ),
-        const PopupMenuItem<String>(
+        PopupMenuItem<String>(
           value: 'french',
-          child: Text('French'),
+          child: Semantics(
+            label: 'French',
+            child: const Text('French'),
+          ),
         ),
       ],
     );

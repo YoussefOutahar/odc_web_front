@@ -13,37 +13,31 @@ class AppThemes {
       displayLarge: TextStyle(
         fontSize: 72.0,
         fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
         color: Colors.black,
       ),
       displayMedium: TextStyle(
         fontSize: 36.0,
         fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
         color: Colors.black,
       ),
       displaySmall: TextStyle(
         fontSize: 24.0,
         fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
         color: Colors.black,
       ),
       headlineMedium: TextStyle(
         fontSize: 18.0,
         fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
         color: Colors.black,
       ),
       headlineSmall: TextStyle(
         fontSize: 16.0,
         fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
         color: Colors.black,
       ),
       titleLarge: TextStyle(
         fontSize: 14.0,
         fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
         color: Colors.black,
       ),
       bodyLarge: TextStyle(
@@ -66,32 +60,26 @@ class AppThemes {
       displayLarge: TextStyle(
         fontSize: 72.0,
         fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
       ),
       displayMedium: TextStyle(
         fontSize: 36.0,
         fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
       ),
       displaySmall: TextStyle(
         fontSize: 24.0,
         fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
       ),
       headlineMedium: TextStyle(
         fontSize: 18.0,
         fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
       ),
       headlineSmall: TextStyle(
         fontSize: 16.0,
         fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
       ),
       titleLarge: TextStyle(
         fontSize: 14.0,
         fontFamily: 'Montserrat',
-        fontWeight: FontWeight.bold,
       ),
       bodyLarge: TextStyle(
         fontSize: 14.0,
@@ -123,6 +111,5 @@ class AppThemes {
     _saveThemeToBox(!_loadThemeFromBox());
   }
 
-  ThemeMode get themeMode =>
-      _loadThemeFromBox() ? ThemeMode.dark : ThemeMode.light;
+  ThemeMode get themeMode => _loadThemeFromBox() ? ThemeMode.dark : ThemeMode.light;
 }
